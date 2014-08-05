@@ -384,6 +384,60 @@ Thank you, and keep up the good work!
 \chapter{Introduction}
 \label{chapter:intro}
 
+Wireless technology has been established well in everyday life. Most of people have nowadays their own wireless network at home and they use another at school or work. When travelling, hotels and airports almost always offer Wi-Fis, in many cases for free. Wireless networks can also be found in shoping malls, even in buses and trains -- and the number of networks is only growing.
+
+From the very nature of wireless networks, transferred data is always visible to everyone who is inside the range of the network. Compared to traditional on-wire networking, this creates worries for information security. Lots of work has been done in order to make sure that actual transferred data, for example the content of web pages browsed, remains confident and is not visible for eavesdroppers. Such work include, for example, standards for wireless network encryption.
+
+However, we are interested in the data exchange that happens before a device joins a wireless network. The device has not established any connections yet, so all the information must be sent in plaintext, unencrypted, in public. This information includes at least the identifier of the device trying to connect to the network, and the network name it is trying to connect. Or, alternatively, the device can ask information about all networks in the range.
+
+The thesis is organized as follows. In chapter \ref{chapter:protocol}, we tell how the 802.11 protocol, better-known as Wi-Fi, works. In chapter \ref{chapter:mac}, we look how MAC address, the identifier of connecting device, can have privacy concerns. In fact, we show that this has already happened, and that the legislation might be outdated. In chapter \ref{chapter:ssid} we show a novel way to use active probe requests to identify 
+
+\chapter{The 802.11 wireless network protocol}
+\label{chapter:protocol}
+
+How the wi-fi protocol works
+
+probe request, response
+
+active vs passive probe request
+
+mac address
+
+\chapter{MAC Address Profiling}
+\label{chapter:mac}
+
+customer analytics
+
+track location inside a building; helsinki-vantaa airport, stores and shopping malls
+
+\section{Countermeasures for MAC address profiling}
+\label{sec:countermeasures_mac}
+apple randomize mac
+
+
+\chapter{SSID Profiling}
+\label{chapter:ssid}
+
+own work
+
+\section{Evaluation of current mobile devices}
+\label{sec:evaluation}
+iphone, android, WP
+
+
+\section{Countermeasures for SSID profiling}
+\label{sec:countermeasures_ssid}
+broadcast
+
+randomize mac for every probe request?
+
+which one is more valuable, privacy or speed?
+
+settings, defaults
+
+\chapter{Conclusion}
+\label{chapter:conclusion}
+
 
 % Load the bibliographic references
 % ------------------------------------------------------------------
