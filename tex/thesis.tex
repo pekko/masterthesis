@@ -384,13 +384,15 @@ Thank you, and keep up the good work!
 \chapter{Introduction}
 \label{chapter:intro}
 
-Wireless technology has been established well in everyday life. Most of people have nowadays their own wireless network at home and they use another at school or work. When travelling, hotels and airports almost always offer Wi-Fis, in many cases for free. Wireless networks can also be found in shoping malls, even in buses and trains -- and the number of networks is only growing.
+Wireless technology has been established well in everyday life. Most of people have nowadays their own wireless network at home and they use another at school or work. When travelling, hotels and airports almost always offer Wi-Fis, in many cases for free. Wireless networks can also be found in shopping malls, even in buses and trains -- and the number of networks is only growing.
 
 From the very nature of wireless networks, transferred data is always visible to everyone who is inside the range of the network. Compared to traditional on-wire networking, this creates worries for information security. Lots of work has been done in order to make sure that actual transferred data, for example the content of web pages browsed, remains confident and is not visible for eavesdroppers. Such work include, for example, standards for wireless network encryption.
 
 However, we are interested in the data exchange that happens before a device joins a wireless network. The device has not established any connections yet, so all the information must be sent in plaintext, unencrypted, in public. This information includes at least the identifier of the device trying to connect to the network, and the network name it is trying to connect. Or, alternatively, the device can ask information about all networks in the range.
 
-The thesis is organized as follows. In chapter \ref{chapter:protocol}, we tell how the 802.11 protocol, better-known as Wi-Fi, works. In chapter \ref{chapter:mac}, we look how MAC address, the identifier of connecting device, can have privacy concerns. In fact, we show that this has already happened, and that the legislation might be outdated. In chapter \ref{chapter:ssid} we show a novel way to use active probe requests to identify 
+In this thesis, we try to examine what information can be extracted for said part of data transmission, and how it can be used. We will also examine legal and ethical consequences of doing so, and are not limited for techincal side. In addition, we will look for techincal countermeasures for found privacy threats: how our techniques can be circumvented, if wanted.
+
+The thesis is organized as follows. In chapter \ref{chapter:protocol}, we tell how the 802.11 protocol, better-known as Wi-Fi, works. In chapter \ref{chapter:mac}, we look how MAC address, the identifier of connecting device, can have privacy concerns. In fact, we show that this has already happened, and that the legislation might be outdated. In chapter \ref{chapter:ssid} we show a novel way to use active probe requests to identify users and discuss possible implications and countermeasures. Also, we look for current implementations of different mobile devices and discuss the vulnerability for this issue. Finally, in chapter \ref{chapter:conclusion} we conclude the thesis.
 
 \chapter{The 802.11 wireless network protocol}
 \label{chapter:protocol}
