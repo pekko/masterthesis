@@ -194,7 +194,7 @@
 % You can just fix the texts there. Just remember to check all the language
 % variants you use (they are all there in the same place). 
 % ------------------------------------------------------------------
-\newcommand{\TITLE}{Privacy Implications of Wi-Fi Probing}
+\newcommand{\TITLE}{Privacy Implications of WLAN Probing}
 \newcommand{\FTITLE}{Yksityisyydensuoja langattomissa verkoissa}
 \newcommand{\SUBTITLE}{}
 \newcommand{\FSUBTITLE}{}
@@ -408,8 +408,8 @@ We will examine the protocols and data transmissions used inside local area netw
 
 The protocol for wireless LAN (WLAN) is maintained the IEEE LAN/MAN Standards Committee, also known as IEEE 802. The family of protocols covering WLAN is called 802.11 family, and it includes many different versions of the standard, denoted by letters. For example, widely implemented standards are 802.11b, 802.11g, and 802.11n. \cite{IEEE802.11}
 
-\section{Definitions of devices inside a network}
-\label{sec:definitions}
+\section{Wireless networks terminolgy}
+\label{sec:terminology}
 
 Inside a wireless network there can be found several different devices. In the following, we will put them into different categories.
 
@@ -418,6 +418,8 @@ IEEE, a standards organization maintaining the wireless standard, defines all th
 First there can be found devices only connecting to network, which we will call \emph{nodes}. A node can be any kind of device, and most common and most relevant ones for this study are laptops and smartphones. 
 
 Second, the devices building the wireless network and allowing nodes to connect to it are called \emph{Access points} (AP). A wireless network can consist of one or more APs.
+
+Access points and nodes associated with it form a network, which can also be called \emph{Basic Service Set} (BSS). In this thesis, we refer to that simply as \emph{wireless network} or shortly as \emph{network}, if there is no room for confusion.
 
 Nodes can also work in \emph{ad-hoc} mode, where they act simultaneously as an access point and as a node without well-defined structure. However, these networks are not common, and we will not cover them in this thesis.
 
@@ -433,7 +435,7 @@ The second 24-bit part can be freely chosen by the manufacturer, but it should b
 
 The real address space of OUI is 22 bits, because one of 24 bits (the least significant) depends on application, and another (next to LSB) is always set zero. Therefore there are space for $2^{22}$ organizations, which is a bit over four million. Each organization can produce $2^{24}$ devices, which is more than 16 million. If this limit is exceeded, IEEE can give the organization another OUI. However, IEEE states that it will not do so without proper reasons, and says that ``in no way should these addresses be used for purposes that would lead to skipping large numbers of them''. \cite{802_overview}
 
-MAC addresses are presented in hexadecimal notation consisting of six octects, seperated by a colon, for example ``54:26:96:d0:2c:b1''. Graphical representation for the MAC address is shown at figure \ref{fig:mac}, where the first row is a raw binary representation, and the second row shows hexadecimal values. The last row shows seperation between Organizationally Unique Identifier and the part that remains to be determined by the manufacturer.
+MAC addresses are presented in hexadecimal notation consisting of six octects, seperated by a colon, for example ``54:26:96:d0:2c:b1''. Graphical representation for the MAC address is shown in figure \ref{fig:mac}, where the first row is a raw binary representation, and the second row shows hexadecimal values. The last row shows seperation between Organizationally Unique Identifier and the part that remains to be determined by the manufacturer.
 
 \begin{figure}
 \label{fig:mac}
@@ -449,8 +451,11 @@ MAC addresses are presented in hexadecimal notation consisting of six octects, s
 \caption{Strucutre of MAC address ``54:26:96:d0:2c:b1''}
 \end{figure}
 
+
 \section{Service Set Identification (SSID)}
 \label{sec:SSID}
+
+
 
 \section{Joining a network}
 \label{sec:joining}
