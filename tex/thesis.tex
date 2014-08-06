@@ -433,9 +433,10 @@ The second 24-bit part can be freely chosen by the manufacturer, but it should b
 
 The real address space of OUI is 22 bits, because one of 24 bits (the least significant) depends on application, and another (next to LSB) is always set zero. Therefore there are space for $2^{22}$ organizations, which is a bit over four million. Each organization can produce $2^{24}$ devices, which is more than 16 million. If this limit is exceeded, IEEE can give the organization another OUI. However, IEEE states that it will not do so without proper reasons, and says that ``in no way should these addresses be used for purposes that would lead to skipping large numbers of them''. \cite{802_overview}
 
-MAC addresses are presented in hexadecimal notation consisting of six two-character groups, seperated by a colon, for example ``54:26:96:d0:2c:b1''.
+MAC addresses are presented in hexadecimal notation consisting of six octects, seperated by a colon, for example ``54:26:96:d0:2c:b1''. Graphical representation for the MAC address is shown at figure \ref{fig:mac}, where the first row is a raw binary representation, and the second row shows hexadecimal values. The last row shows seperation between Organizationally Unique Identifier and the part that remains to be determined by the manufacturer.
 
 \begin{figure}
+\label{fig:mac}
 \begin{tabular}{ | c|c|c | c|c|c | }
   \hline
   1010100 & 100110 & 10010110 & 11010000 & 101100 & 10110001 \\
