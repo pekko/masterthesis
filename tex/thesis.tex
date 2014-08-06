@@ -423,9 +423,9 @@ Second, the devices building the wireless network and allowing nodes to connect 
 \section{MAC Address}
 \label{sec:MAC}
 
-Every device in the network, wired and wireless, has a media access control (MAC) address. MAC address should be globally unique. The idea is that any two devices could join the same network without problems, and since the network needs to be able to differentiate between devices, every device must have a unique identifier. \cite{802_overview}
+Every device in the network, wired and wireless, has a media access control (MAC) address. A MAC address is bound to specific device and does not change while connecting to different networks. It should also be globally unique: the idea is that any two devices could join the same network without problems, and since the network needs to be able to differentiate between devices, every device must have a unique identifier. \cite{802_overview}
 
-MAC address is 48 bit long and consists of two independent 24-bit parts. The first part is the same for all the devices made by the same manufacturer, and that part is assigned by IEEE. The first part is called Organizationally Unique Identifier, or OUI. 
+A MAC address is 48 bit long and consists of two independent 24-bit parts. The first part is the same for all the devices made by the same manufacturer, and that part is assigned by IEEE. The first part is called Organizationally Unique Identifier, or OUI. 
 
 The second 24-bit part can be freely chosen by the manufacturer, but it should be unique for each device. 
 
@@ -438,8 +438,8 @@ MAC addresses are presented in hexadecimal notation.
 \section{Service Set Identification (SSID)}
 \label{sec:SSID}
 
-\section{Probing}
-\label{sec:probing}
+\section{Joining a network}
+\label{sec:joining}
 
 %%
 
@@ -463,6 +463,7 @@ is there any legislation? terms and conditions -- can't apply, if the user hasn'
 \label{sec:countermeasures_mac}
 apple randomize mac
 
+ipv6 gives more address space in mac?
 
 \chapter{SSID Profiling}
 \label{chapter:ssid}
