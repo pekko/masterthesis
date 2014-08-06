@@ -423,13 +423,13 @@ Second, the devices building the wireless network and allowing nodes to connect 
 \section{MAC Address}
 \label{sec:MAC}
 
-Every device in the network has a media access control (MAC) address. MAC address should be globally unique. The idea is that any two devices could join the same network without problems, and since the network needs to be able to differentiate between devices, every device must have a unique identifier. \cite{802_overview}
+Every device in the network, wired and wireless, has a media access control (MAC) address. MAC address should be globally unique. The idea is that any two devices could join the same network without problems, and since the network needs to be able to differentiate between devices, every device must have a unique identifier. \cite{802_overview}
 
 MAC address is 48 bit long and consists of two independent 24-bit parts. The first part is the same for all the devices made by the same manufacturer, and that part is assigned by IEEE. The first part is called Organizationally Unique Identifier, or OUI. 
 
 The second 24-bit part can be freely chosen by the manufacturer, but it should be unique for each device. 
 
-The real address space of OUI is 22 bits, because one of 24 bits (the least significant) depends on application, and another (next to LSB) is always set zero. Therefore there are space for $2^22$ organizations, which is a bit over four million. Each organization can produce $2^24$ devices, which is more than 16 million. If this limit is exceeded, IEEE can give the organization another OUI.
+The real address space of OUI is 22 bits, because one of 24 bits (the least significant) depends on application, and another (next to LSB) is always set zero. Therefore there are space for $2^{22}$ organizations, which is a bit over four million. Each organization can produce $2^{24}$ devices, which is more than 16 million. If this limit is exceeded, IEEE can give the organization another OUI. However, IEEE states that it will not do so without proper reasons, and says that ``in no way should these addresses be used for purposes that would lead to skipping large numbers of them''. \cite{802_overview}
 
 MAC addresses are presented in hexadecimal notation.
 
@@ -448,8 +448,6 @@ How the wi-fi protocol works
 probe request, response
 
 active vs passive probe request
-
-mac address
 
 \chapter{MAC Address Profiling}
 \label{chapter:mac}
