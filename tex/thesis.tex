@@ -433,15 +433,15 @@ Nodes can also work in \emph{ad-hoc} mode, where they act simultaneously as an a
 \section{MAC Address}
 \label{sec:MAC}
 
-Every device in the network, wired and wireless, has a media access control (MAC) address. A MAC address is bound to specific device and does not change while connecting to different networks. It should also be globally unique: the idea is that any two devices could join the same network without problems, and since the network needs to be able to differentiate between devices, every device must have a unique identifier. \cite{802_overview}
+Every device in the network, wired and wireless, has a media access control (MAC) address. A MAC address is bound to a specific device and does not change while connecting to different networks, being reconfigured, restarted, or anything else. It should also be globally unique: the idea is that any two devices could join the same network without problems, and since the network needs to be able to differentiate between devices, every device must have a unique identifier. \cite{802_overview}
 
-A MAC address is 48 bit long and consists of two independent 24-bit parts. The first part is the same for all the devices made by the same manufacturer, and that part is assigned by IEEE. The first part is called Organizationally Unique Identifier, or OUI. 
+A MAC address is 48 bit long and consists of two independent 24-bit parts. The first part is the same for all the devices made by the same manufacturer, and that part is assigned by IEEE. This first part is called Organizationally Unique Identifier, or OUI. 
 
 The second 24-bit part can be freely chosen by the manufacturer, but it should be unique for each device. 
 
-The real address space of OUI is 22 bits, because one of 24 bits (the least significant) depends on application, and another (next to LSB) is always set zero. Therefore there are space for $2^{22}$ organizations, which is a bit over four million. Each organization can produce $2^{24}$ devices, which is more than 16 million. If this limit is exceeded, IEEE can give the organization another OUI. However, IEEE states that it will not do so without proper reasons, and says that ``in no way should these addresses be used for purposes that would lead to skipping large numbers of them''. \cite{802_overview}
+The real address space of OUI, the organization part of address, is 22 bits, because one of the 24 bits (the least significant) depends on application, and another (next to LSB) is always set zero. Therefore there is space for $2^{22}$ organizations, which is a bit over four million. Each organization can produce $2^{24}$ devices, which is more than 16 million. If this limit is exceeded, IEEE can give the organization another OUI. For example, Apple has more than 300 OUIs assigned. \cite{oui_listing} However, IEEE states that it will not do so without proper reasons, and says that, ``in no way should these addresses be used for purposes that would lead to skipping large numbers of them''. \cite{802_overview} 
 
-MAC addresses are presented in hexadecimal notation consisting of six octects, seperated by a colon, for example ``54:26:96:d0:2c:b1''. Graphical representation for the MAC address is shown in figure \ref{fig:mac}, where the first row is a raw binary representation, and the second row shows hexadecimal values. The last row shows seperation between Organizationally Unique Identifier and the part that remains to be determined by the manufacturer.
+MAC addresses are presented in hexadecimal notation consisting of six octects, seperated by a colon or a dash, for example ``54:26:96:d0:2c:b1''. Graphical representation of a MAC address is shown in figure \ref{fig:mac}, where the first row is a raw binary representation, and the second row shows hexadecimal values. The last row shows seperation between Organizationally Unique Identifier and the part that remains to be determined by the manufacturer.
 
 \begin{figure}
 \label{fig:mac}
@@ -476,6 +476,8 @@ Network can also consist of more than one APs sharing the same SSID. This way, a
 
 \section{Joining a network}
 \label{sec:joining}
+
+So far we have 
 
 %%
 
