@@ -452,9 +452,20 @@ MAC addresses are presented in hexadecimal notation consisting of six octects, s
 \end{figure}
 
 
-\section{Service Set Identification (SSID)}
+\section{Service Set Identifier (SSID)}
 \label{sec:SSID}
 
+As we found in last section, each device in a network as a unique identifier, a MAC address. If there are many APs available for a node to connect to, the node can recognize and select the one by AP's MAC address.
+
+However, such action usually requires human interaction: someone has to tell the node which one of the APs is the correct one. Using only MAC address is not convinient, since twelwe-character hexadecimal representation does not resemble anything familiar or memorizable.
+
+Also, physical network devices do not necessarily correspond to logical networks. There can be a wireless network in a university, where APs are being upgraded to new ones. Therefore the logical network is still the same in the same building with the same purpose, but all the MAC addresses of the APs have been changed: remember, every MAC address is globally unique.
+
+To solve the problem, there is a concept of SSID, \emph{Service Set Identifier}. APs are given a human-readable string, the SSID, which has maximum length of 32 characters. This can be thought as a name of the network.
+
+With SSID there is an abstraction of logical network over a physical one. Using the same example as before, if the university's wireless network keeps the same SSID, its APs can be updated without any problems: nodes will still find the correct network, even if the hardware is completely different and MAC addresses do not match anymore.
+
+Network can also consist of more than one APs sharing the same SSID. This way, a wireless network can cover a huge building or even a larger area. When configured in such way, the network is said to be an \emph{Extended Service Set} (ESS). \cite{IEEE802.11}
 
 
 \section{Joining a network}
