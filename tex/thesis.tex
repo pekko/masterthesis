@@ -382,6 +382,8 @@ Thank you, and keep up the good work!
 \pagestyle{headings}
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 
 \chapter{Introduction}
 \label{chapter:intro}
@@ -396,8 +398,10 @@ However, we are interested in the data exchange that happens before a device joi
 
 In this thesis, we try to examine what information can be extracted for said part of data transmission, and how it can be used. We will also examine legal and ethical consequences of doing so, and are not limited for techincal side. In addition, we will look for techincal countermeasures for found privacy threats: how our techniques can be circumvented, if wanted.
 
-The thesis is organized as follows. In chapter \ref{chapter:protocol}, we tell how the 802.11 protocol, better-known as Wi-Fi, works. In chapter \ref{chapter:mac}, we look how MAC address, the identifier of connecting device, can have privacy concerns. In fact, we show that this has already happened, and that the legislation might be outdated. In chapter \ref{chapter:ssid} we show a  way to use active probe requests to identify users and discuss possible implications and countermeasures. Also, we look for current implementations of different mobile devices and discuss the vulnerability for this issue. Further, in chapter \ref{chapter:attacks} we will see how these features can be used in conducting active attacks and not only passive profiling of devices. Finally, in chapter \ref{chapter:conclusion} we conclude the thesis.
+The thesis is organized as follows. In chapter \ref{chapter:protocol}, we tell how the 802.11 protocol, also known as Wi-Fi, works. In chapter \ref{chapter:profiling} we will examine how and why parts of wireless network protocols can be used for tracking and profiling users. We will also briefly study the legal side of tracking and profiling. Further, in chapter \ref{chapter:attacks} we will see how these features can be used in conducting active attacks and not only passive monitoring of devices. In chapter \ref{chapter:countermeasures} we will see how privacy-concerned users could be protected from previously-mentioned actions. Finally, in chapter \ref{chapter:conclusion} we conclude the thesis.
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 \chapter{The 802.11 wireless network protocol}
@@ -486,6 +490,8 @@ In passive scanning, a node does not send anything by itself in order to find th
 
 However, while doing passive scanning, a node is only interested in one particular field, SSID. As we have learnt previously in section \ref{sec:SSID}, SSID identifies particular network and acts as a human-understandable network name. Therefore node can display the networks it found to end-user, who makes the decision which network to join. Alternatively, node can compare its findings to previously-generated list of known networks, and join one it finds interesting.
 
+Passive scanning has some drawbacks. First, it might be relatively slow, as a node needs to wait for APs to broadcast their beacons. Secondly, it is possible to configure AP so that it does not broadcast its SSID: this feature is called \emph{Hidden SSID}. Therefore, a node using passive scanning never sees APs using Hidden SSIDs.
+
 \subsection{Active scanning}
 \label{subsec:active_scanning}
 
@@ -503,33 +509,70 @@ There exists also a combination of active and passive scanning. A node can reque
 IEEE Standard states wildcard SSID to be the one with all bits set to zero. 
 
 
-\chapter{MAC Address Profiling}
-\label{chapter:mac}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\chapter{Profiling and tracking}
+\label{chapter:profiling}
+
+\section{Customer profiling and tracking}
+\label{sec:profiling}
+
+non-technical section: what is profiling?
 
 customer analytics
 
 track location inside a building; helsinki-vantaa airport, stores and shopping malls
 
-\section{Legal issues}
-is there any legislation? terms and conditions -- can't apply, if the user hasn't joined a network
 
-\section{Countermeasures for MAC address profiling}
-\label{sec:countermeasures_mac}
-apple randomize mac
+\section{Tracking using MAC address}
+\label{sec:mac_tracking}
 
-ipv6 gives more address space in mac?
 
-\chapter{SSID Profiling}
-\label{chapter:ssid}
+\section{Profiling and tracking using SSIDs}
+\label{sec:ssid_tracking}
 
 own work
-questions: twitter, determine location, is there any public database of ssid vs location?
 * https://wigle.net/gps/gps/main/query/
 %* http://en.wikipedia.org/wiki/Wi-Fi_positioning_system
 
-\section{Evaluation of current mobile devices}
-\label{sec:evaluation}
+
+\subsection{Commons}
+\label{subsec:ssid_commons}
+
+\subsection{Geolocation}
+\label{subsec:ssid_geo}
+
+
+\subsection{Evaluation of current mobile devices}
+\label{subsec:evaluation}
 iphone, android, WP
+do they broadcast all the ssids or just a wildcard?
+order? SEE THE SOURCE CODE!
+
+
+\section{Legal issues}
+\label{sec:legal}
+is there any legislation? terms and conditions -- can't apply, if the user hasn't joined a network
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\chapter{Active attacks}
+\label{chapter:attacks}
+
+MITM, Wifi pineapple
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Countermeasures}
+\label{chapter:countermeasures}
+
+\section{Countermeasures for MAC address tracking}
+apple randomize mac
+
+ipv6 gives more address space in mac?
 
 
 \section{Countermeasures for SSID profiling}
@@ -542,10 +585,12 @@ which one is more valuable, privacy or speed?
 
 settings, defaults
 
-\chapter{Active attacks}
-\label{chapter:attacks}
 
-MITM, Wifi pineapple
+\section{Securing against active attacks}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 
 \chapter{Conclusion}
 \label{chapter:conclusion}
