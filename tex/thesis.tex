@@ -477,8 +477,30 @@ Network can also consist of more than one APs sharing the same SSID. This way, a
 \section{Joining a network}
 \label{sec:joining}
 
-So far we have characterized different elements of a wireless network. In this section, we will discuss how a node can join a wireless network.
+So far we have characterized different elements of a wireless network. In this section, we will discuss how a node can find a existing wireless network. This can be achieved using either (1) active scanning or (2) passive scanning, which both are defined in IEEE standard. \cite{IEEE802.11_scanning}
 
+\subsection{Passive scanning}
+\label{subsec:passive_scanning}
+
+In passive scanning, a node does not send anything by itself in order to find the network it wants to join. Instead, a node listens the transmissions and scans for beacon frames sent by APs. Beacon frames are large and contain lots of information, total of 55 different fields, most of which are related to radio transmission parameters.
+
+However, while doing passive scanning, a node is only interested in one particular field, SSID. As we have learnt previously in section \ref{sec:SSID}, SSID identifies particular network and acts as a human-understandable network name. Therefore node can display the networks it found to end-user, who makes the decision which network to join. Alternatively, node can compare its findings to previously-generated list of known networks, and join one it finds interesting.
+
+\subsection{Active scanning}
+\label{subsec:active_scanning}
+
+In active scanning, the situation is different. This time a node knows beforehand which network it would like to join, and sends \emph{probe request frames} into the air. 
+
+Probe requests are smaller than previously-mentioned beacon frames, having only 13 standard fields. The most important field for our study is the first one, SSID. In this field a node tells which network it would like to join, if possible. 
+
+If a node knows lots of different networks and is trying to join all of them, it needs to send a lot of probe request frames. In order to reduce the amount of network traffic, there is a field calles ``SSID List'', 10th in probe request frame. Using this field, a node can combine several requests into a single one. The length of the list is variable, and is limited only by the fact that the actual ``length'' field of SSID List element has size of one octet. Therefore the maximum number of SSIDs in a single SSID List element is 256.
+
+\subsection{Active scanning with a wildcard SSID}
+\label{subsec:active_wildcard}
+
+There exists also a combination of active and passive scanning. A node can request information of all present wireless networks by sending a probe request frame with wildcard SSID. This way, the node does not state which networks it knows or want to join, but it also does not need to wait APs to advertise themselves by beacon frames.
+
+IEEE Standard states wildcard SSID to be the one with all bits set to zero. 
 
 
 \chapter{MAC Address Profiling}
@@ -503,7 +525,7 @@ ipv6 gives more address space in mac?
 own work
 questions: twitter, determine location, is there any public database of ssid vs location?
 * https://wigle.net/gps/gps/main/query/
-* http://en.wikipedia.org/wiki/Wi-Fi_positioning_system
+%* http://en.wikipedia.org/wiki/Wi-Fi_positioning_system
 
 \section{Evaluation of current mobile devices}
 \label{sec:evaluation}
