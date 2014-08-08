@@ -396,9 +396,9 @@ However, we are interested in the data exchange that happens before a device joi
 
 % Say something about always-on scanning?
 
-In this thesis, we try to examine what information can be extracted for said part of data transmission, and how it can be used. We will also examine legal and ethical consequences of doing so, and are not limited for techincal side. In addition, we will look for techincal countermeasures for found privacy threats: how our techniques can be circumvented, if wanted.
+In this thesis, we try to examine what information can be extracted for said part of data transmission, and how it can be used. For this part, we conduct a practical experiment. We will also examine legal and ethical consequences of doing so, and are not limited to techincal part of the issue. In addition, we will look for techincal countermeasures for found privacy threats: how our techniques can be circumvented, if wanted.
 
-The thesis is organized as follows. In chapter \ref{chapter:protocol}, we tell how the 802.11 protocol, also known as Wi-Fi, works. In chapter \ref{chapter:profiling} we will examine how and why parts of wireless network protocols can be used for tracking and profiling users. We will also briefly study the legal side of tracking and profiling. Further, in chapter \ref{chapter:attacks} we will see how these features can be used in conducting active attacks and not only passive monitoring of devices. In chapter \ref{chapter:countermeasures} we will see how privacy-concerned users could be protected from previously-mentioned actions. Finally, in chapter \ref{chapter:conclusion} we conclude the thesis.
+The thesis is organized as follows. In chapter \ref{chapter:protocol}, we tell how the 802.11 protocol, also known as Wi-Fi, works. In chapter \ref{chapter:profiling} we will examine how and why parts of wireless network protocols can be used for tracking and profiling users. We will also briefly study the legal side of tracking and profiling. Further, in chapter \ref{chapter:attacks} we will see how these features can be used in conducting active attacks and not only passive monitoring of devices. Practical experiment of above-mentioned techniques is conducted in chapter \ref{chapter:practical}, and in chapter \ref{chapter:countermeasures} we will see how privacy-concerned users could be protected from the actions we have studied. Finally, in chapter \ref{chapter:conclusion} we conclude the thesis.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -548,18 +548,19 @@ For the physical, brick-and-mortar type of stores, achieving this kind of inform
 
 customer analytics
 
-track location inside a building; helsinki-vantaa airport, stores and shopping malls
 
 already using with CCTV cameras \cite{Newman2002253}
 
 \section{Tracking using MAC address}
 \label{sec:mac_tracking}
 
+track location inside a building; helsinki-vantaa airport, stores and shopping malls
 
 \section{Profiling and tracking using SSIDs}
 \label{sec:ssid_tracking}
 
-own work
+own work, see \ref{chapter:practical}
+
 * https://wigle.net/gps/gps/main/query/
 %* http://en.wikipedia.org/wiki/Wi-Fi_positioning_system
 
@@ -609,6 +610,16 @@ approaches to get an ``I agree'' from customers:
 MITM, Wifi pineapple
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\chapter{Practical study}
+\label{chapter:practical}
+
+test in the wild
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 
 \chapter{Countermeasures}
 \label{chapter:countermeasures}
