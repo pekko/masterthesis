@@ -1,0 +1,11 @@
+Case Helsinki-Vantaa tracking
+    http://arcticstartup.com/2014/07/30/brainwave-readers-or-wi-fi-detectors-walkbase-lands-to-helsinki-vantaa
+    http://www.bloomberg.com/news/2014-07-29/helsinki-airport-tracks-you-to-sell-more-avoid-jams.html
+
+Nordstrom, inc (US) tracking which backfired
+    http://www.forbes.com/sites/petercohan/2013/05/09/how-nordstrom-and-home-depot-use-wifi-to-spy-on-shoppers/
+    http://www.nytimes.com/2013/07/15/business/attention-shopper-stores-are-tracking-your-cell.html?pagewanted=all
+    http://consumerist.com/2013/05/10/nordstrom-decides-to-stop-tracking-customers-smartphones/
+
+iphone leaks previous mac addresses
+    http://arstechnica.com/apple/2012/03/anatomy-of-an-iphone-leak/
