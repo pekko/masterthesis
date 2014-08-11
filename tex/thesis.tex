@@ -554,6 +554,44 @@ already using with CCTV cameras \cite{Newman2002253}
 \section{Tracking using MAC address}
 \label{sec:mac_tracking}
 
+To see where a user has been and how he has moved, tracking system needs to be able to perform two operations. First, it needs to be able to determine the location of the device in question. Second, all the location data needs to be linked together, which means that a device needs to be assigned some form of a unique ID.
+
+Wireless nodes send their MAC address with every probe request, as we learnt in section \ref{subsec:active_scanning}. This is also globally unique; see section \ref{sec:MAC}. MAC address seems to be a good candidate for an ID, so we can continue for a much harder problem, locating nodes.
+
+\subsection{Determining the location of a node}
+\label{sec:location}
+
+A naive yet robust way to determine user's location would be to look which AP received node's probe request. In picture \ref{fig:position_1} an oversimplified situation is presented: there is a rectangular-shaped building with a room, a few shelves, and four access points, labeled with letters from A to D. The building is divided into four sections, and the position of a mobile device is determined by looking which AP received a request from it. For example, it might be assumed that only AP D recieves a signal from the mobile device in the picture, and therefore the user is somewhere in the lower-right section of the building.
+
+\begin{figure}
+    \label{fig:position_1}
+    \includegraphics{images/positioning_1.pdf}
+    \caption{Simplest way to achieve positioning}
+\end{figure}
+
+However, things are obviously not that simple. In real-life situations, coverage of a single AP can be large and easily overlap with others, and signal from the mobile device in picture \ref{fig:position_1} could also be in the ranges of APs B and C. A real-life example from \cite{xiang2004} is presented in picture \ref{fig:ibm_coverage}, where in \ref{subfig:ibm_layout} the layout of building is presented, and in \ref{subfig:ibm_strength} the strength of a signal from a single AP is shown. Note that the whole floor is covered by the AP at least in some amount, but there are still four more APs. This suggests that at least in this case, a device can always catch more than one signal.
+
+\begin{figure}
+\begin{center}
+\subfigure[Layout of the building]{
+  \includegraphics[scale=0.34]{images/ibm_wlan_layout.png}
+  \label{subfig:ibm_layout}
+}
+\subfigure[Coverage of AP$_1$]{
+  \includegraphics[scale=0.34]{images/ibm_wlan_strength.png}
+  \label{subfig:ibm_strength}
+}
+\caption{A real-life example of wlan coverage. Taken from \cite{xiang2004}.}
+\label{fig:ibm_coverage}
+\end{center}
+\end{figure}
+
+Distance from a node to an AP can be estimated by using strength of radio signal. This can not give an exact distance, as transmitting power varies between devices, and we do not know the initial power. However, this problem does not prevent us from using it as an estimate, because we are interested in relative distances. Continuing the simple way, we can select an AP that recieved the strongest signal; for a little more accurate result, a triangular-based calculation could be done with simple trigonometry, if at least three APs received the signal.
+
+Luckily, lots of research has been done for creating WLAN-based positioning systems, and that research includes more and more sophisticated methods for determining the location. Xiang et al. \cite{xiang2004} constructed a model of signal propagation, Roos et al. \cite{roos2002} used probablistics and machine learning, and so on. Most of this research tries to determine mobile phone's own location based on the signal from APs, but exactly same approach can be used other way around, as we would like to. 
+
+--
+
 track location inside a building; helsinki-vantaa airport, stores and shopping malls
 
 \section{Profiling and tracking using SSIDs}
