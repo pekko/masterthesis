@@ -17,3 +17,6 @@ London trash cans
 Google street view
     http://www.huffingtonpost.com/2013/06/21/google-street-view_n_3479045.html "Google Ordered By British Regulators To Delete Street View Data In 35 Days"
 
+http://nakedsecurity.sophos.com/2014/01/16/businesses-are-building-shopper-profiles-based-on-sniffing-phones-wifi/
+http://techcrunch.com/2013/10/22/senator-charles-schumer-location-analytics-firms-unveil-code-of-conduct-for-tracking-consumers-by-cellphones/
+http://www.washingtonpost.com/blogs/the-switch/wp/2013/10/19/how-stores-use-your-phones-wifi-to-track-your-shopping-habits/
