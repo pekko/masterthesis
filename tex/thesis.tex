@@ -518,13 +518,13 @@ IEEE Standard states wildcard SSID to be the one with all bits set to zero.
 \section{Customer profiling and tracking}
 \label{sec:profiling}
 
-First we will define what profiling means. First, Oxford English dictionary defines the term as: \cite{oed_profiling}
+Before beginning, we will define what profiling means. First, Oxford English dictionary defines the term as: \cite{oed_profiling}
 
 \begin{quotation}
 The recording, itemization, or analysis of a person's known psychological, intellectual, and behavioural characteristics, esp. as documentation used (in schools, businesses, etc.) in the assessment of an individual's capabilities; (also) the compilation of databases which store such information and that can be used to identify any particular subgroup of people.
 \end{quotation}
 
-A little more relevant definition for this study could be one written by Hilberdant \cite{hildebrandt2008}:
+A little more relevant definition for this study could be one written by Hilberdant: \cite{hildebrandt2008}
 
 \begin{quotation}
 The process of ``discovering'' correlations between data in databases that can be used to identify and represent a human or nonhuman subject (individual or group), and/or the application of profiles (sets of correlated data) to individuate and represent a subject or to identify a subject as a member of a group or category.
@@ -588,7 +588,7 @@ However, things are obviously not that simple. In real-life situations, coverage
 
 Distance from a node to an AP can be estimated by using strength of radio signal. This can not give an exact distance, as transmitting power varies between devices, and we do not know the initial power. However, this problem does not prevent us from using it as an estimate, because we are interested in relative distances. Continuing the simple way, we can select an AP that recieved the strongest signal; for a little more accurate result, a triangular-based calculation could be done with simple trigonometry, if at least three APs received the signal.
 
-Luckily, lots of research has been done for creating WLAN-based positioning systems, and that research includes more and more sophisticated methods for determining the location. Xiang et al. \cite{xiang2004} constructed a model of signal propagation, Roos et al. \cite{roos2002} used probablistics and machine learning, and so on. Most of this research tries to determine mobile phone's own location based on the signal from APs, but exactly same approach can be used other way around, as we would like to. 
+Luckily, lots of research has been done for creating WLAN-based positioning systems, and that research includes more and more sophisticated methods for determining the location. Xiang et al. \cite{xiang2004} constructed a model of signal propagation, Roos et al. \cite{roos2002} used probablistics and machine learning, and so on. Most of this research tries to let mobile phone determine its own location based on the signal from APs, but exactly same approach can be used other way around, as we would like to: to let AP find out mobile node's position by node's signals.
 
 --
 
@@ -700,6 +700,12 @@ modifying the protocol using cryptographic techniques \cite{lindqvist2009privacy
 location-assisted: probe only networks nearby \cite{kimposter}
 
 \section{Securing against active attacks}
+
+do not query for ssids
+
+how about rogue AP guessing most used SSIDs?
+
+save BSSID, ask for confirmation if SSID is the same, but BSSID is not? Windows Phone? 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
