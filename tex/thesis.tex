@@ -622,8 +622,16 @@ Another interesting factor is to determine how much a user has travelled: people
 
 We can develop this approach furhter by trying to identify concrete places user has visited, for example hotels, restaurants, and universities. Categorizing places is possible with combining data from multiple sources and datasets, for example Expedia Hotel Database~\cite{expedia_hotel_db} and Google Places~\cite{google_places}. Even more, Expedia provides some information of quality and price range of a hotel, which can also be used to characterize a user: does he tend to use high-quality services or likes to prefer low-price alternatives?
 
-\subsection{Commons}
+\subsection{Discovering relationships based on common SSIDs}
 \label{subsec:ssid_commons}
+
+After collecting much of SSIDs from lots of devices, it is possible to discover friendships based on which SSIDs people share with each others. A paper on this approach has been written by Cunche et al.~\cite{cunche2014linking}
+
+In the paper, they have two datasets: one collected from small number of volunteers with known friendships, and another from the wild, which has been collected over six-month period in Sydney, Australia. The dataset of volunteers contained strong relationships, such as close friends and family members. Authors created a model based on observations of the known dataset and applied it to unknown data from the public.
+
+Finding strongly-connceted nodes in two datasets has been studied well in computer science, so there are numerous mathematical models developed for this particular problem. Cunche et al. measure performance for many of those and develop them forward to match the specific charasteristic of SSIDs. These include a long tail of popularity, which means that some SSIDs are extremely popular, but there are a lot of those with only a couple of hits. In the paper, they argue that finding common SSIDs which appear rarely in the whole dataset is a strong signal of relationship. 
+
+Probably the biggest problem for finding relationships in dataset is that it is computationally heavy. Complexity is $O(N^2)$ where $N$ is the number of devices in a dataset, so it may be impractical to try to find all the links in a large dataset. Nonetheless, if we are limited to small population, for example people visiting a specific place, store, or airport during a day, it would be perfectly possible to calculate all the possible combinations. 
 
 \subsection{Social media networks}
 \label{subsec:social_media}
