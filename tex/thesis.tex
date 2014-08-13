@@ -602,12 +602,21 @@ Whereas previous section discussed on possibilities to track a device based on M
 \subsection{Geolocation}
 \label{subsec:ssid_geo}
 
+SSIDs do not necessarily leak any information about their location. In some cases the opposite may be true: for example, an open network in Aalto University is called ``Aalto open'', but in general no such connection can be drawn.
+
+Numerous applications would benefit from ability to connect wirless network APs to physical geolocation. For example, this could serve as a backup solution in lack of GPS signal for positioning. Also it would be possible for mobile phone users to find a nearby open WLAN instead of consuming expensive cellular data transfer.
+
+The solution for this problem is simple and straightforward. A collecting device goes around the world, capturing all the SSIDs and MAC addresses of WLANs it finds. Then, using GPS, it gets the location of network and stores data into simple database. This has already been done by numerous companies: the best-known case might be Google, who did it with its Street View cars \cite{google_wifi_collection}.
+
+Also both of above-explained use cases have been implemented. Google uses WLAN locations with its Android operating system to provide location data based on networks it finds around \cite{google_wifi_collection}. Nokia and Microsoft use same kind of data in Windows Phone in order to locate open WLANs near the user's own location \cite{nokia_datasense}.
+
+In addition to proprietary databases, there exists an open one called Wigle \cite{wigle}. Wigle has operated since 2001, and it provides almost 150 million unique wifi networks with location data (as in August 2014). Wigle gets locations from users' submissions and gives data access for free. 
+
+--
+
 analyze: 
 * most of ssids are from specific area
 * one has travelled a lot
-
-\cite{wigle}
-
 
 \subsection{Commons}
 \label{subsec:ssid_commons}
@@ -618,7 +627,7 @@ analyze:
 \subsection{Semantic SSID analysis}
 * semantic analysis: schools (eduroam), airports, ...
 
-\section{Other information from probe requests}
+\section{Other information obtained from probe requests}
 \label{sec:other_info}
 
 * some kind of phone name was leaked in some cases, what's that?
