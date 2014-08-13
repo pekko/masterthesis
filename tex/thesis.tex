@@ -388,7 +388,7 @@ Thank you, and keep up the good work!
 \chapter{Introduction}
 \label{chapter:intro}
 
-Wireless technology has been established well in everyday life. Most of people have nowadays their own wireless network at home and they use another at school or work. When travelling, hotels and airports almost always offer Wi-Fis, in many cases for free. Wireless networks can also be found in shopping malls, even in buses and trains -- and the number of networks is only growing.
+Wireless technology has been established well in everyday life. Most of people have nowadays their own wireless network at home and they use another at school or work. When traveling, hotels and airports almost always offer Wi-Fis, in many cases for free. Wireless networks can also be found in shopping malls, even in buses and trains -- and the number of networks is only growing.
 
 From the very nature of wireless networks, transferred data is always visible to everyone who is inside the range of the network. Compared to traditional on-wire networking, this creates worries for information security. Lots of work has been done in order to make sure that actual transferred data, for example the content of web pages browsed, remains confident and is not visible for eavesdroppers. Such work include, for example, standards for wireless network encryption.
 
@@ -398,7 +398,7 @@ However, we are interested in the data exchange that happens before a device joi
 
 In this thesis, we try to examine what information can be extracted for said part of data transmission, and how it can be used. For this part, we conduct a practical experiment. We will also examine legal and ethical consequences of doing so, and are not limited to techincal part of the issue. In addition, we will look for techincal countermeasures for found privacy threats: how our techniques can be circumvented, if wanted.
 
-The thesis is organized as follows. In chapter~\ref{chapter:protocol}, we tell how the 802.11 protocol, also known as Wi-Fi, works. In chapter~\ref{chapter:profiling} we will examine how and why parts of wireless network protocols can be used for tracking and profiling users. We will also briefly study the legal side of tracking and profiling. Further, in chapter~\ref{chapter:attacks} we will see how these features can be used in conducting active attacks and not only passive monitoring of devices. Practical experiment of above-mentioned techniques is conducted in chapter~\ref{chapter:practical}, and in chapter~\ref{chapter:countermeasures} we will see how privacy-concerned users could be protected from the actions we have studied. Finally, in chapter~\ref{chapter:conclusion} we conclude the thesis.
+The thesis is organized as follows. In Chapter~\ref{chapter:protocol}, we tell how the 802.11 protocol, also known as Wi-Fi, works. In Chapter~\ref{chapter:profiling} we will examine how and why parts of wireless network protocols can be used for tracking and profiling users. We will also briefly study the legal side of tracking and profiling. Further, in Chapter~\ref{chapter:attacks} we will see how these features can be used in conducting active attacks and not only passive monitoring of devices. Practical experiment of above-mentioned techniques is conducted in Chapter~\ref{chapter:practical}, and in Chapter~\ref{chapter:countermeasures} we will see how privacy-concerned users could be protected from the actions we have studied. Finally, in Chapter~\ref{chapter:conclusion} we conclude the thesis.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -445,7 +445,7 @@ The second 24-bit part can be freely chosen by the manufacturer, but it should b
 
 The real address space of OUI, the organization part of address, is 22 bits, because one of the 24 bits (the least significant) depends on application, and another (next to LSB) is always set zero. Therefore there is space for $2^{22}$ organizations, which is a bit over four million. Each organization can produce $2^{24}$ devices, which is more than 16 million. If this limit is exceeded, IEEE can give the organization another OUI. For example, Apple has more than 300 OUIs assigned.~\cite{oui_listing} However, IEEE states that it will not do so without proper reasons, and says that, ``in no way should these addresses be used for purposes that would lead to skipping large numbers of them''.~\cite{802_overview} 
 
-MAC addresses are presented in hexadecimal notation consisting of six octects, seperated by a colon or a dash, for example ``54:26:96:d0:2c:b1''. Graphical representation of a MAC address is shown in figure~\ref{fig:mac}, where the first row is a raw binary representation, and the second row shows hexadecimal values. The last row shows seperation between Organizationally Unique Identifier and the part that remains to be determined by the manufacturer.
+MAC addresses are presented in hexadecimal notation consisting of six octects, seperated by a colon or a dash, for example ``54:26:96:d0:2c:b1''. Graphical representation of a MAC address is shown in Figure~\ref{fig:mac}, where the first row is a raw binary representation, and the second row shows hexadecimal values. The last row shows seperation between Organizationally Unique Identifier and the part that remains to be determined by the manufacturer.
 
 \begin{figure}
 \label{fig:mac}
@@ -488,7 +488,7 @@ So far we have characterized different elements of a wireless network. In this s
 
 In passive scanning, a node does not send anything by itself in order to find the network it wants to join. Instead, a node listens the transmissions and scans for beacon frames sent by APs. Beacon frames are large and contain lots of information, total of 55 different fields, most of which are related to radio transmission parameters.
 
-However, while doing passive scanning, a node is only interested in one particular field, SSID. As we have learnt previously in section~\ref{sec:SSID}, SSID identifies particular network and acts as a human-understandable network name. Therefore node can display the networks it found to end-user, who makes the decision which network to join. Alternatively, node can compare its findings to previously-generated list of known networks, and join one it finds interesting.
+However, while doing passive scanning, a node is only interested in one particular field, SSID. As we have learnt previously in Section~\ref{sec:SSID}, SSID identifies particular network and acts as a human-understandable network name. Therefore node can display the networks it found to end-user, who makes the decision which network to join. Alternatively, node can compare its findings to previously-generated list of known networks, and join one it finds interesting.
 
 Passive scanning has some drawbacks. First, it might be relatively slow, as a node needs to wait for APs to broadcast their beacons. Secondly, it is possible to configure AP so that it does not broadcast its SSID: this feature is called \emph{Hidden SSID}. Therefore, a node using passive scanning never sees APs using Hidden SSIDs.
 
@@ -499,7 +499,7 @@ In active scanning, the situation is different. This time a node knows beforehan
 
 Probe requests are smaller than previously-mentioned beacon frames, having only 13 standard fields. The most important field for our study is the first one, SSID. In this field a node tells which network it would like to join, if possible. 
 
-If a node knows lots of different networks and is trying to join all of them, it needs to send a lot of probe request frames. In order to reduce the amount of network traffic, there is a field calles ``SSID List'', 10th in probe request frame. Using this field, a node can combine several requests into a single one. The length of the list is variable, and is limited only by the fact that the actual ``length'' field of SSID List element has size of one octet. Therefore the maximum number of SSIDs in a single SSID List element is 256.
+If a node knows lots of different networks and is trying to join all of them, it needs to send a lot of probe request frames. In order to reduce the amount of network traffic, there is a field called ``SSID List'', 10th in probe request frame. Using this field, a node can combine several requests into a single one. The length of the list is variable, and is limited only by the fact that the actual ``length'' field of SSID List element has size of one octet. Therefore the maximum number of SSIDs in a single SSID List element is 256.
 
 \subsection{Active scanning with a wildcard SSID}
 \label{subsec:active_wildcard}
@@ -556,12 +556,12 @@ already using with CCTV cameras~\cite{Newman2002253}
 
 To see where a user has been and how he has moved, tracking system needs to be able to perform two operations. First, it needs to be able to determine the location of the device in question. Second, all the location data needs to be linked together, which means that a device needs to be assigned some form of a unique ID.
 
-Wireless nodes send their MAC address with every probe request, as we learnt in section~\ref{subsec:active_scanning}. This is also globally unique; see section~\ref{sec:MAC}. MAC address seems to be a good candidate for an ID, so we can continue for a much harder problem, locating nodes.
+Wireless nodes send their MAC address with every probe request, as we learnt in Section~\ref{subsec:active_scanning}. This is also globally unique; see Section~\ref{sec:MAC}. MAC address seems to be a good candidate for an ID, so we can continue for a much harder problem, locating nodes.
 
 \subsection{Determining the location of a node}
 \label{sec:location}
 
-A naive yet robust way to determine user's location would be to look which AP received node's probe request. In picture~\ref{fig:position_1} an oversimplified situation is presented: there is a rectangular-shaped building with a room, a few shelves, and four access points, labeled with letters from A to D. The building is divided into four sections, and the position of a mobile device is determined by looking which AP received a request from it. For example, it might be assumed that only AP D recieves a signal from the mobile device in the picture, and therefore the user is somewhere in the lower-right section of the building.
+A naive yet robust way to determine user's location would be to look which AP received node's probe request. In Picture~\ref{fig:position_1} an oversimplified situation is presented: there is a rectangular-shaped building with a room, a few shelves, and four access points, labeled with letters from A to D. The building is divided into four sections, and the position of a mobile device is determined by looking which AP received a request from it. For example, it might be assumed that only AP D recieves a signal from the mobile device in the picture, and therefore the user is somewhere in the lower-right section of the building.
 
 \begin{figure}
     \label{fig:position_1}
@@ -569,7 +569,7 @@ A naive yet robust way to determine user's location would be to look which AP re
     \caption{Simplest way to achieve positioning}
 \end{figure}
 
-However, things are obviously not that simple. In real-life situations, coverage of a single AP can be large and easily overlap with others, and signal from the mobile device in picture~\ref{fig:position_1} could also be in the ranges of APs B and C. A real-life example from~\cite{xiang2004} is presented in picture~\ref{fig:ibm_coverage}, where in~\ref{subfig:ibm_layout} the layout of building is presented, and in~\ref{subfig:ibm_strength} the strength of a signal from a single AP is shown. Note that the whole floor is covered by the AP at least in some amount, but there are still four more APs. This suggests that at least in this case, a device can always catch more than one signal.
+However, things are obviously not that simple. In real-life situations, coverage of a single AP can be large and easily overlap with others, and signal from the mobile device in Picture~\ref{fig:position_1} could also be in the ranges of APs B and C. A real-life example from~\cite{xiang2004} is presented in Picture~\ref{fig:ibm_coverage}, where in Figure~\ref{subfig:ibm_layout} the layout of building is presented, and in Figure~\ref{subfig:ibm_strength} the strength of a signal from a single AP is shown. Note that the whole floor is covered by the AP at least in some amount, but there are still four more APs. This suggests that at least in this case, a device can always catch more than one signal.
 
 \begin{figure}
 \begin{center}
@@ -597,7 +597,7 @@ track location inside a building; helsinki-vantaa airport, stores and shopping m
 \section{Profiling users using SSIDs from active scanning}
 \label{sec:ssid_profiling}
 
-Whereas previous section discussed on possibilities to track a device based on MAC address, in this chapter we will see how it is possible to profile users who have left active scanning running on their devices. Later we conduct a practical study based on techniques presented in this chapter; this is done in chapter~\ref{chapter:practical}. 
+Whereas previous section discussed on possibilities to track a device based on MAC address, in this chapter we will see how it is possible to profile users who have left active scanning running on their devices. Later we conduct a practical study based on techniques presented in this chapter; this is done in Chapter~\ref{chapter:practical}. 
 
 \subsection{Geolocation}
 \label{subsec:ssid_geo}
