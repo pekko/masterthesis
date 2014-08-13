@@ -72,9 +72,9 @@
 % The second example uses author-year citations.
 % If you use author-year citations, change the bibliography style (below); 
 % acm style does not work with author-year citations.
-% Also, you should use \citet (cite in text) when you wish to refer
+% Also, you should use~\citet (cite in text) when you wish to refer
 % to the author directly (\citet{blaablaa} said blaa blaa), and 
-% \citep when you wish to refer similarly than with numbered citations
+%~\citep when you wish to refer similarly than with numbered citations
 % (It has been said that blaa blaa~\citep{blaablaa}).
 % \usepackage[square]{natbib}
 
@@ -398,7 +398,7 @@ However, we are interested in the data exchange that happens before a device joi
 
 In this thesis, we try to examine what information can be extracted for said part of data transmission, and how it can be used. For this part, we conduct a practical experiment. We will also examine legal and ethical consequences of doing so, and are not limited to techincal part of the issue. In addition, we will look for techincal countermeasures for found privacy threats: how our techniques can be circumvented, if wanted.
 
-The thesis is organized as follows. In chapter \ref{chapter:protocol}, we tell how the 802.11 protocol, also known as Wi-Fi, works. In chapter \ref{chapter:profiling} we will examine how and why parts of wireless network protocols can be used for tracking and profiling users. We will also briefly study the legal side of tracking and profiling. Further, in chapter \ref{chapter:attacks} we will see how these features can be used in conducting active attacks and not only passive monitoring of devices. Practical experiment of above-mentioned techniques is conducted in chapter \ref{chapter:practical}, and in chapter \ref{chapter:countermeasures} we will see how privacy-concerned users could be protected from the actions we have studied. Finally, in chapter \ref{chapter:conclusion} we conclude the thesis.
+The thesis is organized as follows. In chapter~\ref{chapter:protocol}, we tell how the 802.11 protocol, also known as Wi-Fi, works. In chapter~\ref{chapter:profiling} we will examine how and why parts of wireless network protocols can be used for tracking and profiling users. We will also briefly study the legal side of tracking and profiling. Further, in chapter~\ref{chapter:attacks} we will see how these features can be used in conducting active attacks and not only passive monitoring of devices. Practical experiment of above-mentioned techniques is conducted in chapter~\ref{chapter:practical}, and in chapter~\ref{chapter:countermeasures} we will see how privacy-concerned users could be protected from the actions we have studied. Finally, in chapter~\ref{chapter:conclusion} we conclude the thesis.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -415,7 +415,7 @@ Wireless connections can be divided into two categories. First, we have cell-bas
 
 We will examine the protocols and data transmissions used inside local area networks (LAN). Traditionally, those networks have been made connecting cables between computers and a hub, a switch or a router. Recently these local networks have been built with wireless connections, as they obviously allow users great mobility. Also, as smartphones have developed and require more and more bandwidth, local area networks are easier and cheaper to build and used than mobile networks.
 
-The protocol for wireless LAN (WLAN) is maintained the IEEE LAN/MAN Standards Committee, also known as IEEE 802. The family of protocols covering WLAN is called 802.11 family, and it includes many different versions of the standard, denoted by letters. For example, widely implemented standards are 802.11b, 802.11g, and 802.11n. \cite{IEEE802.11}
+The protocol for wireless LAN (WLAN) is maintained the IEEE LAN/MAN Standards Committee, also known as IEEE 802. The family of protocols covering WLAN is called 802.11 family, and it includes many different versions of the standard, denoted by letters. For example, widely implemented standards are 802.11b, 802.11g, and 802.11n.~\cite{IEEE802.11}
 
 
 \section{Wireless networks terminolgy}
@@ -437,15 +437,15 @@ Nodes can also work in \emph{ad-hoc} mode, where they act simultaneously as an a
 \section{MAC Address}
 \label{sec:MAC}
 
-Every device in the network, wired and wireless, has a media access control (MAC) address. A MAC address is bound to a specific device and does not change while connecting to different networks, being reconfigured, restarted, or anything else. It should also be globally unique: the idea is that any two devices could join the same network without problems, and since the network needs to be able to differentiate between devices, every device must have a unique identifier. \cite{802_overview}
+Every device in the network, wired and wireless, has a media access control (MAC) address. A MAC address is bound to a specific device and does not change while connecting to different networks, being reconfigured, restarted, or anything else. It should also be globally unique: the idea is that any two devices could join the same network without problems, and since the network needs to be able to differentiate between devices, every device must have a unique identifier.~\cite{802_overview}
 
 A MAC address is 48 bit long and consists of two independent 24-bit parts. The first part is the same for all the devices made by the same manufacturer, and that part is assigned by IEEE. This first part is called Organizationally Unique Identifier, or OUI. 
 
 The second 24-bit part can be freely chosen by the manufacturer, but it should be unique for each device. 
 
-The real address space of OUI, the organization part of address, is 22 bits, because one of the 24 bits (the least significant) depends on application, and another (next to LSB) is always set zero. Therefore there is space for $2^{22}$ organizations, which is a bit over four million. Each organization can produce $2^{24}$ devices, which is more than 16 million. If this limit is exceeded, IEEE can give the organization another OUI. For example, Apple has more than 300 OUIs assigned. \cite{oui_listing} However, IEEE states that it will not do so without proper reasons, and says that, ``in no way should these addresses be used for purposes that would lead to skipping large numbers of them''. \cite{802_overview} 
+The real address space of OUI, the organization part of address, is 22 bits, because one of the 24 bits (the least significant) depends on application, and another (next to LSB) is always set zero. Therefore there is space for $2^{22}$ organizations, which is a bit over four million. Each organization can produce $2^{24}$ devices, which is more than 16 million. If this limit is exceeded, IEEE can give the organization another OUI. For example, Apple has more than 300 OUIs assigned.~\cite{oui_listing} However, IEEE states that it will not do so without proper reasons, and says that, ``in no way should these addresses be used for purposes that would lead to skipping large numbers of them''.~\cite{802_overview} 
 
-MAC addresses are presented in hexadecimal notation consisting of six octects, seperated by a colon or a dash, for example ``54:26:96:d0:2c:b1''. Graphical representation of a MAC address is shown in figure \ref{fig:mac}, where the first row is a raw binary representation, and the second row shows hexadecimal values. The last row shows seperation between Organizationally Unique Identifier and the part that remains to be determined by the manufacturer.
+MAC addresses are presented in hexadecimal notation consisting of six octects, seperated by a colon or a dash, for example ``54:26:96:d0:2c:b1''. Graphical representation of a MAC address is shown in figure~\ref{fig:mac}, where the first row is a raw binary representation, and the second row shows hexadecimal values. The last row shows seperation between Organizationally Unique Identifier and the part that remains to be determined by the manufacturer.
 
 \begin{figure}
 \label{fig:mac}
@@ -475,20 +475,20 @@ To solve the problem, there is a concept of SSID, \emph{Service Set Identifier}.
 
 With SSID there is an abstraction of logical network over a physical one. Using the same example as before, if the university's wireless network keeps the same SSID, its APs can be updated without any problems: nodes will still find the correct network, even if the hardware is completely different and MAC addresses do not match anymore.
 
-Network can also consist of more than one APs sharing the same SSID. This way, a wireless network can cover a huge building or even a larger area. When configured in such way, the network is said to be an \emph{Extended Service Set} (ESS). \cite{IEEE802.11}
+Network can also consist of more than one APs sharing the same SSID. This way, a wireless network can cover a huge building or even a larger area. When configured in such way, the network is said to be an \emph{Extended Service Set} (ESS).~\cite{IEEE802.11}
 
 
 \section{Joining a network}
 \label{sec:joining}
 
-So far we have characterized different elements of a wireless network. In this section, we will discuss how a node can find a existing wireless network. This can be achieved using either (1) active scanning or (2) passive scanning, which both are defined in IEEE standard. \cite{IEEE802.11_scanning}
+So far we have characterized different elements of a wireless network. In this section, we will discuss how a node can find a existing wireless network. This can be achieved using either (1) active scanning or (2) passive scanning, which both are defined in IEEE standard.~\cite{IEEE802.11_scanning}
 
 \subsection{Passive scanning}
 \label{subsec:passive_scanning}
 
 In passive scanning, a node does not send anything by itself in order to find the network it wants to join. Instead, a node listens the transmissions and scans for beacon frames sent by APs. Beacon frames are large and contain lots of information, total of 55 different fields, most of which are related to radio transmission parameters.
 
-However, while doing passive scanning, a node is only interested in one particular field, SSID. As we have learnt previously in section \ref{sec:SSID}, SSID identifies particular network and acts as a human-understandable network name. Therefore node can display the networks it found to end-user, who makes the decision which network to join. Alternatively, node can compare its findings to previously-generated list of known networks, and join one it finds interesting.
+However, while doing passive scanning, a node is only interested in one particular field, SSID. As we have learnt previously in section~\ref{sec:SSID}, SSID identifies particular network and acts as a human-understandable network name. Therefore node can display the networks it found to end-user, who makes the decision which network to join. Alternatively, node can compare its findings to previously-generated list of known networks, and join one it finds interesting.
 
 Passive scanning has some drawbacks. First, it might be relatively slow, as a node needs to wait for APs to broadcast their beacons. Secondly, it is possible to configure AP so that it does not broadcast its SSID: this feature is called \emph{Hidden SSID}. Therefore, a node using passive scanning never sees APs using Hidden SSIDs.
 
@@ -518,13 +518,13 @@ IEEE Standard states wildcard SSID to be the one with all bits set to zero.
 \section{Customer profiling and tracking}
 \label{sec:profiling}
 
-Before beginning, we will define what profiling means. First, Oxford English dictionary defines the term as: \cite{oed_profiling}
+Before beginning, we will define what profiling means. First, Oxford English dictionary defines the term as:~\cite{oed_profiling}
 
 \begin{quotation}
 The recording, itemization, or analysis of a person's known psychological, intellectual, and behavioural characteristics, esp. as documentation used (in schools, businesses, etc.) in the assessment of an individual's capabilities; (also) the compilation of databases which store such information and that can be used to identify any particular subgroup of people.
 \end{quotation}
 
-A little more relevant definition for this study could be one written by Hilberdant: \cite{hildebrandt2008}
+A little more relevant definition for this study could be one written by Hilberdant:~\cite{hildebrandt2008}
 
 \begin{quotation}
 The process of ``discovering'' correlations between data in databases that can be used to identify and represent a human or nonhuman subject (individual or group), and/or the application of profiles (sets of correlated data) to individuate and represent a subject or to identify a subject as a member of a group or category.
@@ -538,30 +538,30 @@ For example, it might be useful to know how old the customers are on average or 
 
 Tracking and profiling in themselves do not produce any value. However, information generated by them can be used to design new marketing campaigns and strategies, adjust prices, or otherwise promote sales.
 
-An example of price variation based on customer profiling can be found in experiment made by Deck and Wilson (2006) \cite{Deck2006}. In the research, they divided customers into two categories based on their search history. The first group is called ``informed customers'', who have been searching for prices also from other stores. On the other hand, the second group of users is called ``uninformed'', who do not know about the general prices of a product. The results of experiment shows that with tracking, informed customers are given lower prices, whereas ignorance of uninformed customers can be exploited with higher prices.
+An example of price variation based on customer profiling can be found in experiment made by Deck and Wilson (2006)~\cite{Deck2006}. In the research, they divided customers into two categories based on their search history. The first group is called ``informed customers'', who have been searching for prices also from other stores. On the other hand, the second group of users is called ``uninformed'', who do not know about the general prices of a product. The results of experiment shows that with tracking, informed customers are given lower prices, whereas ignorance of uninformed customers can be exploited with higher prices.
 
-On internet it is easy to profile users of a webpage. In a study by Pekkala et al. \cite{Pakkala2012504} researchers try to analyze what kind of people are using food composition websites in three different countries. They used Google Analytics \cite{googleanalytics}, a free and available-to-everyone tool to gather visitor statistics (also other similiar tools are available, with or without a charge). By looking referential websites, usage patterns, and search terms they were able to conduct that, for example, most of the users were not food or nutrition professionals, but average people looking for basic information about nutrition. In the study, researchers conclude that ``web analytics should be routine for every website [..] making user behaviour clearer so that developers can produce better websites for users.''
+On internet it is easy to profile users of a webpage. In a study by Pekkala et al.~\cite{Pakkala2012504} researchers try to analyze what kind of people are using food composition websites in three different countries. They used Google Analytics~\cite{googleanalytics}, a free and available-to-everyone tool to gather visitor statistics (also other similiar tools are available, with or without a charge). By looking referential websites, usage patterns, and search terms they were able to conduct that, for example, most of the users were not food or nutrition professionals, but average people looking for basic information about nutrition. In the study, researchers conclude that ``web analytics should be routine for every website [..] making user behaviour clearer so that developers can produce better websites for users.''
 
-For the physical, brick-and-mortar type of stores, achieving this kind of information is much more diffcult. They can conduct customer studies by using surveys, but such a study requires lots of resources and might not be trustworthy because of reponse bias \cite{Furnham1986385}: it may be totally different what people say than how they really act. Also, where it is extremely easy to track all the actions customers take while shopping on an online store, gathering the same data in traditional store using traditional methods can be close to impossible. Therefore it is easy to see that online stores have a clear competitive advantage over brick-and-mortar ones -- and the latters are interested in to neglect that.
+For the physical, brick-and-mortar type of stores, achieving this kind of information is much more diffcult. They can conduct customer studies by using surveys, but such a study requires lots of resources and might not be trustworthy because of reponse bias~\cite{Furnham1986385}: it may be totally different what people say than how they really act. Also, where it is extremely easy to track all the actions customers take while shopping on an online store, gathering the same data in traditional store using traditional methods can be close to impossible. Therefore it is easy to see that online stores have a clear competitive advantage over brick-and-mortar ones -- and the latters are interested in to neglect that.
 
 --
 
 customer analytics
 
 
-already using with CCTV cameras \cite{Newman2002253}
+already using with CCTV cameras~\cite{Newman2002253}
 
 \section{Tracking using MAC address}
 \label{sec:mac_tracking}
 
 To see where a user has been and how he has moved, tracking system needs to be able to perform two operations. First, it needs to be able to determine the location of the device in question. Second, all the location data needs to be linked together, which means that a device needs to be assigned some form of a unique ID.
 
-Wireless nodes send their MAC address with every probe request, as we learnt in section \ref{subsec:active_scanning}. This is also globally unique; see section \ref{sec:MAC}. MAC address seems to be a good candidate for an ID, so we can continue for a much harder problem, locating nodes.
+Wireless nodes send their MAC address with every probe request, as we learnt in section~\ref{subsec:active_scanning}. This is also globally unique; see section~\ref{sec:MAC}. MAC address seems to be a good candidate for an ID, so we can continue for a much harder problem, locating nodes.
 
 \subsection{Determining the location of a node}
 \label{sec:location}
 
-A naive yet robust way to determine user's location would be to look which AP received node's probe request. In picture \ref{fig:position_1} an oversimplified situation is presented: there is a rectangular-shaped building with a room, a few shelves, and four access points, labeled with letters from A to D. The building is divided into four sections, and the position of a mobile device is determined by looking which AP received a request from it. For example, it might be assumed that only AP D recieves a signal from the mobile device in the picture, and therefore the user is somewhere in the lower-right section of the building.
+A naive yet robust way to determine user's location would be to look which AP received node's probe request. In picture~\ref{fig:position_1} an oversimplified situation is presented: there is a rectangular-shaped building with a room, a few shelves, and four access points, labeled with letters from A to D. The building is divided into four sections, and the position of a mobile device is determined by looking which AP received a request from it. For example, it might be assumed that only AP D recieves a signal from the mobile device in the picture, and therefore the user is somewhere in the lower-right section of the building.
 
 \begin{figure}
     \label{fig:position_1}
@@ -569,7 +569,7 @@ A naive yet robust way to determine user's location would be to look which AP re
     \caption{Simplest way to achieve positioning}
 \end{figure}
 
-However, things are obviously not that simple. In real-life situations, coverage of a single AP can be large and easily overlap with others, and signal from the mobile device in picture \ref{fig:position_1} could also be in the ranges of APs B and C. A real-life example from \cite{xiang2004} is presented in picture \ref{fig:ibm_coverage}, where in \ref{subfig:ibm_layout} the layout of building is presented, and in \ref{subfig:ibm_strength} the strength of a signal from a single AP is shown. Note that the whole floor is covered by the AP at least in some amount, but there are still four more APs. This suggests that at least in this case, a device can always catch more than one signal.
+However, things are obviously not that simple. In real-life situations, coverage of a single AP can be large and easily overlap with others, and signal from the mobile device in picture~\ref{fig:position_1} could also be in the ranges of APs B and C. A real-life example from~\cite{xiang2004} is presented in picture~\ref{fig:ibm_coverage}, where in~\ref{subfig:ibm_layout} the layout of building is presented, and in~\ref{subfig:ibm_strength} the strength of a signal from a single AP is shown. Note that the whole floor is covered by the AP at least in some amount, but there are still four more APs. This suggests that at least in this case, a device can always catch more than one signal.
 
 \begin{figure}
 \begin{center}
@@ -581,14 +581,14 @@ However, things are obviously not that simple. In real-life situations, coverage
   \includegraphics[scale=0.34]{images/ibm_wlan_strength.png}
   \label{subfig:ibm_strength}
 }
-\caption{A real-life example of WLAN coverage. Taken from \cite{xiang2004}.}
+\caption{A real-life example of WLAN coverage. Taken from~\cite{xiang2004}.}
 \label{fig:ibm_coverage}
 \end{center}
 \end{figure}
 
 Distance from a node to an AP can be estimated by using strength of radio signal. This can not give an exact distance, as transmitting power varies between devices, and we do not know the initial power. However, this problem does not prevent us from using it as an estimate, because we are interested in relative distances. Continuing the simple way, we can select an AP that recieved the strongest signal; for a little more accurate result, a triangular-based calculation could be done with simple trigonometry, if at least three APs received the signal.
 
-Luckily, lots of research has been done for creating WLAN-based positioning systems, and that research includes more and more sophisticated methods for determining the location. Xiang et al. \cite{xiang2004} constructed a model of signal propagation, Roos et al. \cite{roos2002} used probablistics and machine learning, and so on. Most of this research tries to let mobile phone determine its own location based on the signal from APs, but exactly same approach can be used other way around, as we would like to: to let AP find out mobile node's position by node's signals.
+Luckily, lots of research has been done for creating WLAN-based positioning systems, and that research includes more and more sophisticated methods for determining the location. Xiang et al.~\cite{xiang2004} constructed a model of signal propagation, Roos et al.~\cite{roos2002} used probablistics and machine learning, and so on. Most of this research tries to let mobile phone determine its own location based on the signal from APs, but exactly same approach can be used other way around, as we would like to: to let AP find out mobile node's position by node's signals.
 
 --
 
@@ -597,7 +597,7 @@ track location inside a building; helsinki-vantaa airport, stores and shopping m
 \section{Profiling users using SSIDs from active scanning}
 \label{sec:ssid_profiling}
 
-Whereas previous section discussed on possibilities to track a device based on MAC address, in this chapter we will see how it is possible to profile users who have left active scanning running on their devices. Later we conduct a practical study based on techniques presented in this chapter; this is done in chapter \ref{chapter:practical}. 
+Whereas previous section discussed on possibilities to track a device based on MAC address, in this chapter we will see how it is possible to profile users who have left active scanning running on their devices. Later we conduct a practical study based on techniques presented in this chapter; this is done in chapter~\ref{chapter:practical}. 
 
 \subsection{Geolocation}
 \label{subsec:ssid_geo}
@@ -606,11 +606,11 @@ SSIDs do not necessarily leak any information about their location. In some case
 
 Numerous applications would benefit from ability to connect wirless network APs to physical geolocation. For example, this could serve as a backup solution in lack of GPS signal for positioning. Also it would be possible for mobile phone users to find a nearby open WLAN instead of consuming expensive cellular data transfer.
 
-The solution for this problem is simple and straightforward. A collecting device goes around the world, capturing all the SSIDs and MAC addresses of WLANs it finds. Then, using GPS, it gets the location of network and stores data into simple database. This has already been done by numerous companies: the best-known case might be Google, who did it with its Street View cars \cite{google_wifi_collection}.
+The solution for this problem is simple and straightforward. A collecting device goes around the world, capturing all the SSIDs and MAC addresses of WLANs it finds. Then, using GPS, it gets the location of network and stores data into simple database. This has already been done by numerous companies: the best-known case might be Google, who did it with its Street View cars~\cite{google_wifi_collection}.
 
-Also both of above-explained use cases have been implemented. Google uses WLAN locations with its Android operating system to provide location data based on networks it finds around \cite{google_wifi_collection}. Nokia and Microsoft use same kind of data in Windows Phone in order to locate open WLANs near the user's own location \cite{nokia_datasense}.
+Also both of above-explained use cases have been implemented. Google uses WLAN locations with its Android operating system to provide location data based on networks it finds around~\cite{google_wifi_collection}. Nokia and Microsoft use same kind of data in Windows Phone in order to locate open WLANs near the user's own location~\cite{nokia_datasense}.
 
-In addition to proprietary databases, there exists an open one called Wigle, Wireless Geographic Logging Engine \cite{wigle}. Wigle has operated since 2001, and it provides almost 150 million unique wifi networks with location data (as in August 2014). Wigle gets locations from users' submissions and gives data access for free. 
+In addition to proprietary databases, there exists an open one called Wigle, Wireless Geographic Logging Engine~\cite{wigle}. Wigle has operated since 2001, and it provides almost 150 million unique wifi networks with location data (as in August 2014). Wigle gets locations from users' submissions and gives data access for free. 
 
 It is important to note that the mapping from SSID to location is not one-to-one: multiple wireless networks around the world may share the same SSID. In fact, this is quite common, since many WLAN owners do not change the default SSID of their AP. In Wigle, most common SSIDs are ``linksys'', ``NETGEAR'', and ``dlink'', which all are default SSIDs of different AP manufacturers.
 
@@ -618,7 +618,7 @@ Some useful information can be obtained from geolocated SSIDs. The easiest one i
 
 Another interesting factor is to determine how much a user has travelled: people with SSIDs around the world might behave in a different way than ones with SSIDs from only one country. 
 
-We can develop this approach furhter by trying to identify concrete places user has visited, for example hotels, restaurants, and universities. Categorizing places is possible with combining data from multiple sources and datasets, for example Expedia Hotel Database \cite{expedia_hotel_db} and Google Places \cite{google_places}. Even more, Expedia provides some information of quality and price range of a hotel, which can also be used to characterize a user: does he tend to use high-quality services or likes to prefer low-price alternatives?
+We can develop this approach furhter by trying to identify concrete places user has visited, for example hotels, restaurants, and universities. Categorizing places is possible with combining data from multiple sources and datasets, for example Expedia Hotel Database~\cite{expedia_hotel_db} and Google Places~\cite{google_places}. Even more, Expedia provides some information of quality and price range of a hotel, which can also be used to characterize a user: does he tend to use high-quality services or likes to prefer low-price alternatives?
 
 \subsection{Commons}
 \label{subsec:ssid_commons}
@@ -713,9 +713,9 @@ which one is more valuable, privacy or speed?
 
 settings, defaults
 
-modifying the protocol using cryptographic techniques \cite{lindqvist2009privacy}
+modifying the protocol using cryptographic techniques~\cite{lindqvist2009privacy}
 
-location-assisted: probe only networks nearby \cite{kimposter}
+location-assisted: probe only networks nearby~\cite{kimposter}
 
 \section{Securing against active attacks}
 
