@@ -396,7 +396,7 @@ However, we are interested in the data exchange that happens before a device joi
 
 % Say something about always-on scanning?
 
-In this thesis, we try to examine what information can be extracted for said part of data transmission, and how it can be used. For this part, we conduct a practical experiment. We will also examine legal and ethical consequences of doing so, and are not limited to techincal part of the issue. In addition, we will look for techincal countermeasures for found privacy threats: how our techniques can be circumvented, if wanted.
+In this thesis, we try to examine what information can be extracted for said part of data transmission, and how it can be used. For this part, we conduct a practical experiment. We will also examine legal position of doing so, and are not limited to techincal part of the issue. In addition, we will look for techincal countermeasures for found privacy threats: how our techniques can be circumvented, if wanted.
 
 The thesis is organized as follows. In Chapter~\ref{chapter:protocol}, we tell how the 802.11 protocol, also known as Wi-Fi, works. In Chapter~\ref{chapter:profiling} we will examine how and why parts of wireless network protocols can be used for tracking and profiling users. We will also briefly study the legal side of tracking and profiling. Further, in Chapter~\ref{chapter:attacks} we will see how these features can be used in conducting active attacks and not only passive monitoring of devices. Practical experiment of above-mentioned techniques is conducted in Chapter~\ref{chapter:practical}, and in Chapter~\ref{chapter:countermeasures} we will see how privacy-concerned users could be protected from the actions we have studied. Finally, in Chapter~\ref{chapter:conclusion} we conclude the thesis.
 
@@ -606,7 +606,7 @@ Whereas previous section discussed on possibilities to track a device based on M
 
 SSIDs do not necessarily leak any information about their location. In some cases the opposite may be true: for example, an open network in Aalto University is called ``Aalto open'', but in general no such connection can be drawn.
 
-Numerous applications would benefit from ability to connect wirless network APs to physical geolocation. For example, this could serve as a backup solution in lack of GPS signal for positioning. Also it would be possible for mobile phone users to find a nearby open WLAN instead of consuming expensive cellular data transfer.
+Numerous applications would benefit from ability to connect wirless network APs to physical geolocation. For example, this could serve as a backup solution in lack of GPS signal for positioning, which is the case when user is inside a building. Also it would be possible for mobile phone users to find a nearby open WLAN instead of consuming expensive cellular data transfer.
 
 The solution for this problem is simple and straightforward. A collecting device goes around the world, capturing all the SSIDs and MAC addresses of WLANs it finds. Then, using GPS, it gets the location of network and stores data into simple database. This has already been done by numerous companies: the best-known case might be Google, who did it with its Street View cars~\cite{google_wifi_collection}.
 
@@ -622,7 +622,7 @@ Another interesting factor is to determine how much a user has travelled: people
 
 We can develop this approach furhter by trying to identify concrete places user has visited, for example hotels, restaurants, and universities. Categorizing places is possible with combining data from multiple sources and datasets, for example Expedia Hotel Database~\cite{expedia_hotel_db} and Google Places~\cite{google_places}. Even more, Expedia provides some information of quality and price range of a hotel, which can also be used to characterize a user: does he tend to use high-quality services or likes to prefer low-price alternatives?
 
-\subsection{Discovering real-life relationships based on common SSIDs}
+\subsection{Discovering real-life relationships from common SSIDs}
 \label{subsec:ssid_commons}
 
 After collecting much of SSIDs from lots of devices, it is possible to discover friendships based on which SSIDs people share with each others. A paper on this approach has been written by Cunche et al.~\cite{cunche2014linking}
