@@ -20,3 +20,6 @@ Google street view
 http://nakedsecurity.sophos.com/2014/01/16/businesses-are-building-shopper-profiles-based-on-sniffing-phones-wifi/
 http://techcrunch.com/2013/10/22/senator-charles-schumer-location-analytics-firms-unveil-code-of-conduct-for-tracking-consumers-by-cellphones/
 http://www.washingtonpost.com/blogs/the-switch/wp/2013/10/19/how-stores-use-your-phones-wifi-to-track-your-shopping-habits/
+
+Smart phones always under control? (German law)
+    http://www.bfdi.bund.de/EN/PublicRelations/SpeechesAndInterviews/blog/SmartPhonesUnterKontrolle20100709.html?nn=1269676
