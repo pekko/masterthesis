@@ -644,8 +644,50 @@ Probably the biggest problem for finding relationships in dataset is that it is 
 \section{Other information obtained from probe requests}
 \label{sec:other_info}
 
-* some kind of phone name was leaked in some cases, what's that?
-* determine device manufacturer based on MAC's OUI and do analysis: how iphone-owners behave, compared to others?
+We are able to find even more information from probe requests than discovered so far. As discussed in section \ref{sec:MAC}, first half of a MAC address, Organizationally Unique Identifier (OUI), is determined by manufacturing company. When comparing that to a database containing all the OUIs assigned, we will be able to discover the manufacturer of a node.
+
+Another exploitable feature is Wi-Fi Protected Setup (WPS). The technology is used to ease the setup of secure, consumer-grade wireless network. Using WPS, users do not need to know about technical details or enter complex passwords to gain access to WLAN, but instead can push a button on both AP and their mobile device. There are also another ways to implement the standard, including entering PIN code or using NFC-cabable device. \cite{alliance2007wi}
+
+The actual standard for WPS is freely available only for Wi-Fi Alliance members \cite{alliance2007wi}, but we do not consider that as a constructive way to develop technical standards. Therefore we resort to reverse engineering the standard using packet analyzing tool called Wireshark \cite{wireshark}, which has implemented WPS. Wireshark is open source software, so the protocol can be analyzed with an effort low enough by reading source code and running analysis on captured packets. Also, there are other documents freely available to gather information about the protocol, such as Microsoft's techinical specification for WPS inside their own document \cite{microsoftWCN}.
+
+In the protocol there are three actors: enrollee, AP and registrar. Enrollee is simply user willing to join WLAN using WPS. Registrar is the authority who will gain or deny access. AP is the same access point as previously, but this time it is specified to act as a link between enrollee and registrar. In practice, and in especially in consumer-grade devices, registrar's functionality is included in AP. 
+
+Because joining a WPS-enabled network has been wanted to make easy but secure for end-users, it is somewhat complex in technical side. Simplified version of protocol is shown in figure \ref{tab:wps}. Basically, first enrollee sends its nonce, its own description and its public key to registrar, and registrar replays with same kind of message with its own information. Then, in messages 3 and 4, parties make precommitments that they know the password by sending it in hashed form. In messages 4-7, parties send their own secret, encrypted hashes, that can be used with previously-sent hashes to make sure that the password was correct. Finally, in message 8, registrar sents WLAN configuration data including credentials to join the WLAN.
+
+\begin{figure}
+\label{tab:wps}
+\begin{tabular}{c|c p{10cm}}
+    \hline \\
+
+    E $\rightarrow$ R & M1 = & N$_E$, Description, PK$_E$ \\\\
+
+    &  & Below this every mesasge includes a HMAC of current and previous messages \\
+    \hline \\
+
+    E $\leftarrow$ R & M2 = & N$_E$, N$_R$, Description, PK$_R$ \\\\
+
+    &  & Below this every mesasge includes other party's nonce \\
+    \hline \\
+
+    E $\rightarrow$ R & M3 = & Password hashed \\\\
+
+    E $\leftarrow$ R & M4 = & Password hashed, 1st half of secret nonce encrypted \\\\
+
+    E $\rightarrow$ R & M5 = & 1st half of secret nonce encrypted \\\\
+
+    E $\leftarrow$ R & M6 = & 2nd half of secret nonce encrypted \\\\
+
+    E $\rightarrow$ R & M7 = & 2nd half of secret nonce encrypted, encrypted configuration data \\\\
+
+    E $\leftarrow$ R & M8 = & Encrypted configuration data \\
+    \hline
+\end{tabular}
+\caption{Protocol for joining WPS-enabled WLAN. Simplified from \cite{microsoftWCN}}
+\end{figure}
+
+Using our analysis, it is clear that there is a field containing interesting information for identifying user and his device. Some mobile devices are actively searching for WPS-enabled devices, and are sending WPS probes for that purpose.
+
+TODO: mac protocol fields?
 
 \section{Evaluation of current mobile devices}
 \label{subsec:evaluation}
