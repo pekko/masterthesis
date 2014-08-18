@@ -685,7 +685,9 @@ Because joining a WPS-enabled network has been wanted to make easy but secure fo
 \caption{Protocol for joining WPS-enabled WLAN. Simplified from \cite{microsoftWCN}}
 \end{figure}
 
-Using our analysis, it is clear that there is a field containing interesting information for identifying user and his device. Some mobile devices are actively searching for WPS-enabled devices, and are sending WPS probes for that purpose.
+The most important and interesting part is in the very beginning, since we are looking for probe requests. We found that some devices are actively sending WPS requests hoping that an AP would reply. This request is the same as message 1 in the protocol.
+
+In message 1, there is a broadly-named field ``Description''. The data it includes makes it worth to look closer. Microsoft's document says that it is ``[a] human-readable description of the sending device (UUID, manufacturer, model number, MAC address, and so on) and device capabilities such as supported algorithms, I/O channels, and Registration Protocol role.'', and Wireshark confirms exactly that. This is huge amount of information to be obtained from a probe request, as we get a new Universally Unique Identifier (UUID) in addition to MAC address, and manufacturer and even exact model of the device. Also, there is a field ``DEVICE\_NAME'', which is the name user has given to the device, for example ``Pekko's iPhone''.
 
 TODO: mac protocol fields?
 
