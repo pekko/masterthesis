@@ -722,7 +722,29 @@ order? SEE THE SOURCE CODE!
 \chapter{Active attacks}
 \label{chapter:attacks}
 
-MITM, Wifi pineapple
+In addition to passive surveillance, there is possibility for performing active attacks against users. In active attacks, the attacker does not only monitor user's behavior, but instead sends malicious packets to perform desired activities.
+
+\section{Unencrypted access point}
+
+The easiest attack is to set up an unencrypted access point and monitor all the traffic that goes through it. Obviously this is not very sophisticated, but at least some users are likely to be tricked into this one.
+
+First, they do not know or care about wireless network security but only see a free connection to internet to use. No technical security measure can save users, if they want to use a open connection with unknown administrator.
+
+Second, multiple versions of Windows has a feature to join any unsecured wireless network in the range. Therefore, user's computer can join an open network without user being aware of that. Even worse, with some versions of Intel wireless drivers, the setting to disable the automatically-connecting feature is hidden elsewhere than in unusual settings dialog.~\cite{windows_wifi_answers}
+
+An unwanted connection can be damaging, even if the user realizes the mistake relatively fast and disconnects his computer from open network. Quite a many services want to syncronize their data right after connected; for example, an e-mail client would like to get new messages immediately when the computer becomes online. Therefore it is certainly possible that user's crendetials are sent during first moments in a new network.
+
+\section{Man in the middle}
+
+If there are multiple alternatives available, nodes have a couple of methods to decide which network they join.
+
+\section{Evil twin}
+
+\section{Existing software and devices}
+
+Karma
+Wifi pineapple
+SSLStrip
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
