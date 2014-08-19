@@ -740,8 +740,6 @@ If there are multiple alternatives available, nodes have a couple of methods to 
 
 If there is no preferred networks available, a node may choose the one which has strongest signal strength -- or if not choose, at least present it as a first alternative to user. Another methods has also been proposed, such as testing networks for their bandwidth and choosing the best~\cite{Nicholson:2006:APselection}. However, these kind of advanced methods has not been implemented, so previously-selected networks and physical-layer signal strength are the most common criteria used nowadays.
 
-The idea of Evil twin attack is presented in Figure~\ref{fig:evil_twin}. First, there is a normal scenario. A user is having a coffee in his favorite cafe, and joins cafe's open network with an SSID \texttt{NiceCafe}. Everything goes well. The next time, the same user is visiting the cafe again, but this time there is an malicious access point with the same SSID, \texttt{NiceCafe}. Remember, SSID is not a unique identifier, and it can be chosen freely. The malicious one is located closer to the user or has more powerful antenna, so its signal is much stronger than the original AP's. Therefore, the user connects to malicious access point, and all the traffic is suddenly vulnerable.
-
 \begin{figure}
     \begin{center}
     \subfigure[Normal scenario]{
@@ -756,6 +754,8 @@ The idea of Evil twin attack is presented in Figure~\ref{fig:evil_twin}. First, 
     \label{fig:evil_twin}
     \end{center}
 \end{figure}
+
+The idea of Evil twin attack is presented in Figure~\ref{fig:evil_twin}. First, there is a normal scenario. A user is having a coffee in his favorite cafe, and joins cafe's open network with an SSID \texttt{NiceCafe}. Everything goes well. The next time, the same user is visiting the cafe again, but this time there is an malicious access point with the same SSID, \texttt{NiceCafe}. Remember, SSID is not a unique identifier, and it can be chosen freely. The malicious one is located closer to the user or has more powerful antenna, so its signal is much stronger than the original AP's. Therefore, the user connects to malicious access point, and all the traffic is suddenly vulnerable.
 
 \section{Existing software and devices}
 
