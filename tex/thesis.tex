@@ -759,19 +759,19 @@ If there is no preferred networks available, a node may choose the one which has
 
 The idea of Evil twin attack is presented in Figure~\ref{fig:evil_twin}. First, there is a normal scenario. A user is having a coffee in his favorite cafe, and joins cafe's open network with an SSID \texttt{NiceCafe}. Everything goes well. The next time, the same user is visiting the cafe again, but this time there is an malicious access point with the same SSID, \texttt{NiceCafe}. Remember, SSID is not a unique identifier, and it can be chosen freely. The malicious one is located closer to the user or has more powerful antenna, so its signal is much stronger than the original AP's. Therefore, the user connects to malicious access point, and all the traffic is suddenly vulnerable.
 
-
 \section{Man in the middle exploiting WLAN probes}
 
+In previous section, an attacker knew beforehand that there was a specific network available and chose his SSID based on that. This is not necessary, and opens room for a more powerful attack.
 
+A rogue access point can be listening for all the probes in the air. When it sees something, for example a node probing for a network \texttt{NiceCafe}, the AP can change its SSID to \texttt{NiceCafe} and let the node to connect.
 
-normal: 
-    client: join nicecafe
-    ap: i'm not nicecafe, i'm foobarnetwork
-evil:
-    client: join (anything)
-    ap: i'm (the same anything), welcome
+If a node is not probing any specific SSID but asking all the nodes to broadcast theirs, the basic version of this attack will not obviously work. Still, there exists an opportunity: quite a many device has at one time connected to a network with an unchanged, manufacturer-default SSID, such as \texttt{Linksys} or \texttt{dlink}. According to Wigle \cite{wigle}, five most common SSIDs account for 4.2~\% of total SSIDs seen. An attacker could try all the common ones and hope that at least one of them is in node's SSID list.
 
-broadcasting? try the most common ssids
+\section{Encryption}
+
+A particular problem for attackers is encryption. Wireless networks may be secured using techinques such as WPA2 (Wi-Fi Protected Access 2), which is based on pre-shared secret -- a passphrase. Since an attacker doesn't know the passphrase and it is not included in any probe requests, WPA2 renders this attack useless.
+
+Another possible piece of encryption is Transport Layer Security, TLS (predecessor known as SSL, Secure Sockets Layer, and often these two are mixed). With a bit confusion with the name, it can be said that TLS is implemted between transport layer and application layer. As this layer is above link-layer, on which attacker operates, it should be a safe alternative. However, there is a technique called sslstrip \cite{marlinspike2009new}, which is designed specifically to redirect badly-implemented TLS/SSL conenctions to unencrypted ones. At this time, using TLS can be considered only a partial solution against MITM attacks.
 
 \section{Existing software and devices}
 
