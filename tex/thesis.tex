@@ -724,7 +724,7 @@ order? SEE THE SOURCE CODE!
 
 In addition to passive surveillance, there is possibility for performing active attacks against users. In active attacks, the attacker does not only monitor user's behavior, but instead sends malicious packets to perform desired activities. 
 
-All the following attacks are some variants of man-in-the-middle (MITM) scheme. In MITM attack, the attacker positions himself between user and the service user is connecting to. This way, attacker is able to read and alter all unencrypted communication. The following attacks differ by how an attacker gains such an position.
+All the following attacks are some variants of man-in-the-middle (MITM) scheme. In MITM attack, the attacker positions himself between user and the service user is connecting to. This way, an attacker is able to read and alter all unencrypted communication while remaining transparent for the victim. The following attacks differ by how an attacker gains such an position.
 
 \section{Unencrypted access point}
 
@@ -777,10 +777,13 @@ However, there is a technique called sslstrip \cite{marlinspike2009new}, which i
 
 \section{Existing software and devices}
 
-Karma
-Wifi pineapple
-SSLStrip
+Concepts discussed here are not new, and for them there are specific tools implemented.
 
+In previous section we mentioned technique called sslstrip; to prove its efficiency, authors decided to publish fully-working tool that implements the full attack. \cite{marlinspike2009new}
+
+Most comprehensive and most easy-to-obtain toolkit is WiFi Pineapple \cite{wifipineapple}. It includes numerous tools for MITM and other attacks and sells for as low as \$~100 (as in August 2014).
+
+With this kind of ready-made tools, performing man-in-the-middle attacks are totally feasible with only a little knowledge, and they must to be taken seriously.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
