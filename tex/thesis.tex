@@ -771,7 +771,9 @@ If a node is not probing any specific SSID but asking all the nodes to broadcast
 
 A particular problem for attackers is encryption. Wireless networks may be secured using techinques such as WPA2 (Wi-Fi Protected Access 2), which is based on pre-shared secret -- a passphrase. Since an attacker doesn't know the passphrase and it is not included in any probe requests, WPA2 renders this attack useless.
 
-Another possible piece of encryption is Transport Layer Security, TLS (predecessor known as SSL, Secure Sockets Layer, and often these two are mixed). With a bit confusion with the name, it can be said that TLS is implemted between transport layer and application layer. As this layer is above link-layer, on which attacker operates, it should be a safe alternative. However, there is a technique called sslstrip \cite{marlinspike2009new}, which is designed specifically to redirect badly-implemented TLS/SSL conenctions to unencrypted ones. At this time, using TLS can be considered only a partial solution against MITM attacks.
+Another possible piece of encryption is Transport Layer Security, TLS (predecessor known as SSL, Secure Sockets Layer, and often these two are mixed). With a bit confusion with the name, it can be said that TLS is implemted between transport layer and application layer. As this layer is above link-layer, on which attacker operates, it should be a safe alternative.
+
+However, there is a technique called sslstrip \cite{marlinspike2009new}, which is designed specifically to redirect badly-implemented TLS/SSL conenctions to unencrypted ones. At this time, using TLS can be considered only a partial solution against MITM attacks.
 
 \section{Existing software and devices}
 
