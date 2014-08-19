@@ -734,11 +734,28 @@ Second, multiple versions of Windows has a feature to join any unsecured wireles
 
 An unwanted connection can be damaging, even if the user realizes the mistake relatively fast and disconnects his computer from open network. Quite a many services want to syncronize their data right after connected; for example, an e-mail client would like to get new messages immediately when the computer becomes online. Therefore it is certainly possible that user's crendetials are sent during first moments in a new network.
 
-\section{Man in the middle}
-
-If there are multiple alternatives available, nodes have a couple of methods to decide which network they join.
-
 \section{Evil twin}
+
+If there are multiple alternatives available, nodes have a couple of methods to decide which network they join. In Windows, there is preferred wireless networks list, which specifies the order in which computer should connect to networks~\cite{windows_wifi_preferred}. 
+
+If there is no preferred networks available, a node may choose the one which has strongest signal strength -- or if not choose, at least present it as a first alternative to user. Another methods has also been proposed, such as testing networks for their bandwidth and choosing the best~\cite{Nicholson:2006:APselection}. However, these kind of advanced methods has not been implemented, so previously-selected networks and physical-layer signal strength are the most common criteria used nowadays.
+
+The idea of Evil twin attack is presented in Figure~\ref{fig:evil_twin}. First, there is a normal scenario. A user is having a coffee in his favorite cafe, and joins cafe's open network with an SSID \texttt{NiceCafe}. Everything goes well. The next time, the same user is visiting the cafe again, but this time there is an malicious access point with the same SSID, \texttt{NiceCafe}. Remember, SSID is not a unique identifier, and it can be chosen freely. The malicious one is located closer to the user or has more powerful antenna, so its signal is much stronger than the original AP's. Therefore, the user connects to malicious access point, and all the traffic is suddenly vulnerable.
+
+\begin{figure}
+    \begin{center}
+    \subfigure[Normal scenario]{
+      \includegraphics{images/evil_twin_normal.pdf}
+      \label{subfig:evil_twin_normal}
+    }
+    \subfigure[Evil twin steals the connection with the same SSID]{
+      \includegraphics{images/evil_twin_mitm.pdf}
+      \label{subfig:evil_twin_mitm}
+    }
+    \caption{Evil twin attack}
+    \label{fig:evil_twin}
+    \end{center}
+\end{figure}
 
 \section{Existing software and devices}
 
