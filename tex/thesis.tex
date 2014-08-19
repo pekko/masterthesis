@@ -719,10 +719,12 @@ order? SEE THE SOURCE CODE!
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-\chapter{Active attacks}
+\chapter{Active man-in-the-middle attacks}
 \label{chapter:attacks}
 
-In addition to passive surveillance, there is possibility for performing active attacks against users. In active attacks, the attacker does not only monitor user's behavior, but instead sends malicious packets to perform desired activities.
+In addition to passive surveillance, there is possibility for performing active attacks against users. In active attacks, the attacker does not only monitor user's behavior, but instead sends malicious packets to perform desired activities. 
+
+All the following attacks are some variants of man-in-the-middle (MITM) scheme. In MITM attack, the attacker positions himself between user and the service user is connecting to. This way, attacker is able to read and alter all unencrypted communication. The following attacks differ by how an attacker gains such an position.
 
 \section{Unencrypted access point}
 
@@ -756,6 +758,20 @@ If there is no preferred networks available, a node may choose the one which has
 \end{figure}
 
 The idea of Evil twin attack is presented in Figure~\ref{fig:evil_twin}. First, there is a normal scenario. A user is having a coffee in his favorite cafe, and joins cafe's open network with an SSID \texttt{NiceCafe}. Everything goes well. The next time, the same user is visiting the cafe again, but this time there is an malicious access point with the same SSID, \texttt{NiceCafe}. Remember, SSID is not a unique identifier, and it can be chosen freely. The malicious one is located closer to the user or has more powerful antenna, so its signal is much stronger than the original AP's. Therefore, the user connects to malicious access point, and all the traffic is suddenly vulnerable.
+
+
+\section{Man in the middle exploiting WLAN probes}
+
+
+
+normal: 
+    client: join nicecafe
+    ap: i'm not nicecafe, i'm foobarnetwork
+evil:
+    client: join (anything)
+    ap: i'm (the same anything), welcome
+
+broadcasting? try the most common ssids
 
 \section{Existing software and devices}
 
