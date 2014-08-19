@@ -648,7 +648,7 @@ We are able to find even more information from probe requests than discovered so
 
 In~\cite{pang2007802}, Pang et al. have been trying to fingerprint WLAN users by different traffic charasteristics. The methods they used were (1) network destinations, (2) SSID probes, (3) broadcast packet sizes, and (4) MAC protocol fields. 
 
-However, their approach was different from ours, as they study a scenario where analyzer can monitor all the traffic, i.e. the user has connected to wireless network run by analyzer. In our work, we limit to probing phase, before any connection has been made. This limitation rules the first method, examining network destinations, out. Also, SSID probes are already covered elsewhere in this work.
+However, their approach was different from ours, as they study a scenario where analyzer can monitor all the traffic: the user has connected to wireless network run by analyzer. In our work, we limit to probing phase, before any connection has been made. This limitation rules the first method, examining network destinations, out. Also, SSID probes are already covered elsewhere in this work.
 
 Broadcast packet sizes are a possible approach. Some services and applications broadcast information or advertisements about themselves. For example, Dropbox, a cloud-storage service provider, has a deskto app that tries to find linked computers in local network. If they are found, transferring data between them would be a lot faster and cheaper than via public internet.~\cite{dropboxlan} All the content of broadcasts are encrypted in secure WLANs, but broadcasted packets can still be found, because they are sent in a known MAC address \texttt{ff:ff:ff:ff:ff:ff}. MAC address is always sent in plaintext. The size of packets is also unencrypted, which leaves the possibility to retrieve information in encrypted networks.
 
@@ -704,7 +704,7 @@ With all this information, we may be able to
 \begin{enumerate}
     \item categorize users by their phone manufacturer and model,
     \item identify a node with UUID in addition to MAC address, and
-    \item possibly extract private information from user, e.g. user's real name from device's name
+    \item possibly extract private information from user, for example user's real name from device's name
 \end{enumerate}
 
 TODO: mac protocol fields?
@@ -765,23 +765,23 @@ In previous section, an attacker knew beforehand that there was a specific netwo
 
 A rogue access point can be listening for all the probes in the air. When it sees something, for example a node probing for a network \texttt{NiceCafe}, the AP can change its SSID to \texttt{NiceCafe} and let the node to connect.
 
-If a node is not probing any specific SSID but asking all the nodes to broadcast theirs, the basic version of this attack will not obviously work. Still, there exists an opportunity: quite a many device has at one time connected to a network with an unchanged, manufacturer-default SSID, such as \texttt{Linksys} or \texttt{dlink}. According to Wigle \cite{wigle}, five most common SSIDs account for 4.2~\% of total SSIDs seen. An attacker could try all the common ones and hope that at least one of them is in node's SSID list.
+If a node is not probing any specific SSID but asking all the nodes to broadcast theirs, the basic version of this attack will not obviously work. Still, there exists an opportunity: quite a many device has at one time connected to a network with an unchanged, manufacturer-default SSID, such as \texttt{Linksys} or \texttt{dlink}. According to Wigle~\cite{wigle}, five most common SSIDs account for 4.2~\% of total SSIDs seen. An attacker could try all the common ones and hope that at least one of them is in node's SSID list.
 
 \section{Encryption}
 
-A particular problem for attackers is encryption. Wireless networks may be secured using techinques such as WPA2 (Wi-Fi Protected Access 2), which is based on pre-shared secret -- a passphrase. Since an attacker doesn't know the passphrase and it is not included in any probe requests, WPA2 renders this attack useless.
+A particular problem for attackers is encryption. Wireless networks may be secured using techinques such as WPA2 (Wi-Fi Protected Access 2), which is based on pre-shared secret -- a passphrase. Since an attacker does not know the passphrase and it is not included in any probe requests, WPA2 renders this attack useless.
 
 Another possible piece of encryption is Transport Layer Security, TLS (predecessor known as SSL, Secure Sockets Layer, and often these two are mixed). With a bit confusion with the name, it can be said that TLS is implemted between transport layer and application layer. As this layer is above link-layer, on which attacker operates, it should be a safe alternative.
 
-However, there is a technique called sslstrip \cite{marlinspike2009new}, which is designed specifically to redirect badly-implemented TLS/SSL conenctions to unencrypted ones. At this time, using TLS can be considered only a partial solution against MITM attacks.
+However, there is a technique called sslstrip~\cite{marlinspike2009new}, which is designed specifically to redirect badly-implemented TLS/SSL conenctions to unencrypted ones. At this time, using TLS can be considered only a partial solution against MITM attacks.
 
 \section{Existing software and devices}
 
 Concepts discussed here are not new, and for them there are specific tools implemented.
 
-In previous section we mentioned technique called sslstrip; to prove its efficiency, authors decided to publish fully-working tool that implements the full attack. \cite{marlinspike2009new}
+In previous section we mentioned technique called sslstrip; to prove its efficiency, authors decided to publish fully-working tool that implements the full attack.~\cite{marlinspike2009new}
 
-Most comprehensive and most easy-to-obtain toolkit is WiFi Pineapple \cite{wifipineapple}. It includes numerous tools for MITM and other attacks and sells for as low as \$~100 (as in August 2014).
+Most comprehensive and most easy-to-obtain toolkit is WiFi Pineapple~\cite{wifipineapple}. It includes numerous tools for MITM and other attacks and sells for as low as \$~100 (as in August 2014).
 
 With this kind of ready-made tools, performing man-in-the-middle attacks are totally feasible with only a little knowledge, and they must to be taken seriously.
 
