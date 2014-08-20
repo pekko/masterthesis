@@ -843,9 +843,13 @@ As iOS 8 is not yet released, we cannot study its behavior in detail. However, r
 
 We should look if there is enough space for randomizing new MAC address for every probe request without collisions. Suppose that an average device has $N = 15$ (TODO CHECK) SSIDs on their preferred network list. By randomizing only organizationally-controlled part of MAC address -- leaving OUI untouched, respecting its purpose -- a single OUI block can provide about 16 million different addresses, and give enough space for $M \approx 10^6$ simultaneous devices. Due to birthday paradox, this number needs to be decreased down to $\sqrt{10^6} = 1000$ devices, which should still be enough for one network. Also, in reality Apple has multiple OUI blocks, not only one.
 
-Randomization can be more stealthy if the whole address is being randomized, also OUI part of it. TODO consequences?
+A device with randomized MAC address needs to also save all the previous addresses in order to be able to get replies. Because number of different networks is really small, this will not be a problem.
 
-Implementing MAC address randomization seems to be a promising countermeasure against tracking, if implemented correctly.
+Randomization can be more stealthy if the whole address is being randomized, including the OUI part. This way, tracker could not determine straight from MAC address which device it is. Spoofing such a field can be a double-edged sword: some services might rely on manufacturer identification and stop working after such a spoof. However, this is pretty unlikely. Randomization should happen only in scanning phase, and after joining a network, it will not change anymore.
+
+A direct consequence of previous is that after joining a network, a device can be tracked again, since it sends packets with a non-volatile MAC address. The MAC is not secured against eavesdropping in encrypted wireless networks.
+
+Implementing MAC address randomization seems to be a promising countermeasure against tracking during the scanning phase, if implemented correctly. Joining a network removes the advantage of randomization.
 
 \section{Countermeasures for SSID profiling}
 \label{sec:countermeasures_ssid}
