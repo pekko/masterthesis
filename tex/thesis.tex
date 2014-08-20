@@ -837,19 +837,21 @@ Not everyone is happy or confident with an idea that someone is trakcing their m
 
 Tracking customers' movements based on MAC address is relatively simply technique, as we have already seen. Only effective countermeasure is to not broadcast MAC address or other information that uniquelly identifies single device.
 
-WLAN standard offers no help, so there is a need for new solutions. Apple announced in June 2014 that in iOS 8, it will be randomizing the MAC address during wireless network scanning~\cite{FredericJacobs2014,apple_wwdc_privacy}.
+WLAN standard offers no help, so there is a need for new solutions. Apple announced in June 2014 that in iOS 8, it will be randomizing the MAC address during wireless network scanning~\cite{FredericJacobs2014,apple_wwdc_privacy}. Randomized address would work as a \emph{pseudonym}, which identifies device for a specific request, but not universally.
 
 As iOS 8 is not yet released, we cannot study its behavior in detail. However, randomization presents a couple of interesting questions. Normally, a device sends a bunch of probe requests almost at once and then sleeps for some period of time, usually between 30 to 60 seconds. A proper implementation requires that the MAC address is randomized after \emph{every} single probe request, not only between different cycles. Otherwise, tracker could identify device based on the broadcasted SSID list and completely ignore the MAC address.
 
 We should look if there is enough space for randomizing new MAC address for every probe request without collisions. Suppose that an average device has $N = 15$ (TODO CHECK) SSIDs on their preferred network list. By randomizing only organizationally-controlled part of MAC address -- leaving OUI untouched, respecting its purpose -- a single OUI block can provide about 16 million different addresses, and give enough space for $M \approx 10^6$ simultaneous devices. Due to birthday paradox, this number needs to be decreased down to $\sqrt{10^6} = 1000$ devices, which should still be enough for one network. Also, in reality Apple has multiple OUI blocks, not only one.
 
-A device with randomized MAC address needs to also save all the previous addresses in order to be able to get replies. Because number of different networks is really small, this will not be a problem.
+A device with randomized MAC address needs to also save all the previous addresses in order to be able to get replies. Because number of different networks is really small, this will not be a problem. Also, after a succesfull connection or relatively short timeout (measured in seconds), a pseudonym can be forgotten.
 
 Randomization can be more stealthy if the whole address is being randomized, including the OUI part. This way, tracker could not determine straight from MAC address which device it is. Spoofing such a field can be a double-edged sword: some services might rely on manufacturer identification and stop working after such a spoof. However, this is pretty unlikely. Randomization should happen only in scanning phase, and after joining a network, it will not change anymore.
 
-A direct consequence of previous is that after joining a network, a device can be tracked again, since it sends packets with a non-volatile MAC address. The MAC is not secured against eavesdropping in encrypted wireless networks.
+A direct consequence of previous is that after joining a network, a device can be tracked again, since it sends packets with a non-volatile MAC address. The MAC is not secured against eavesdropping in encrypted wireless networks. The question that remains open is whether the device uses a fixed MAC for every session or continues with the last randomized one. Obviously, a randomized address for every session would be better for privacy.
 
 Implementing MAC address randomization seems to be a promising countermeasure against tracking during the scanning phase, if implemented correctly. Joining a network removes the advantage of randomization.
+
+TODO: pseudonymes are used somewhere in GMS standard
 
 \section{Countermeasures for SSID profiling}
 \label{sec:countermeasures_ssid}
