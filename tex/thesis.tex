@@ -837,7 +837,7 @@ Not everyone is happy or confident with an idea that someone is trakcing their m
 
 Tracking customers' movements based on MAC address is relatively simply technique, as we have already seen. Only effective countermeasure is to not broadcast MAC address or other information that uniquelly identifies single device.
 
-WLAN standard offers no help, so there is a need for new solutions. Apple announced in June 2014 that in iOS 8, it will be randomizing the MAC address during wireless network scanning~\cite{FredericJacobs2014}.
+WLAN standard offers no help, so there is a need for new solutions. Apple announced in June 2014 that in iOS 8, it will be randomizing the MAC address during wireless network scanning~\cite{FredericJacobs2014,apple_wwdc_privacy}.
 
 As iOS 8 is not yet released, we cannot study its behavior in detail. However, randomization presents a couple of interesting questions. Normally, a device sends a bunch of probe requests almost at once and then sleeps for some period of time, usually between 30 to 60 seconds. A proper implementation requires that the MAC address is randomized after \emph{every} single probe request, not only between different cycles. Otherwise, tracker could identify device based on the broadcasted SSID list and completely ignore the MAC address.
 
