@@ -833,7 +833,26 @@ In this chapter, we will conduct a practical experiment of previously discussed 
 \section{Methodology}
 \label{sec:methods}
 
+Data was captured from various locations using a single laptop with an internal wireless antenna. No special or expensive equipment was used.
 
+Location data was obtained from WiGLE~\cite{wigle}, where we had higher query limits than original users. For the other services we used, Google Places and Expedia, we had exactly the same privileges than normal user, and nothing was purchased for our purpose. Therefore the same kind of research can be done by anyone, and with commercial resources, its quality can probably be raised significantly.
+
+Twitter was a special case, since its API is pretty limited for rate. We collected Twitter's feed to our own servers and built our own database, so that we gate an unlimited access to data. Unfortunately, because Twitter's feed is so huge, we were able to collect only 10~\% of it. Therefore, private access to Twitter's full database would give better results.
+
+\section{Overview of data}
+\label{sec:data_overview}
+
+$a$ probe requests, a1 with only broadcast
+
+$b$ unique MAC addresses
+
+$c$ SSIDs
+
+on average $d$ ssids/probe req
+
+$e$ WPS leaks
+
+Twitter, a lot of everything...
 
 \section{Commons}
 \label{sec:practical_commons}
