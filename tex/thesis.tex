@@ -386,15 +386,15 @@ aalto, eurecom s3/nops, ucsb, speksi, wigle, everyone
 \chapter{Introduction}
 \label{chapter:intro}
 
-Wireless technology has been established well in everyday life. Most of people have nowadays their own wireless network at home and they use another at school or work. When traveling, hotels and airports almost always offer Wi-Fis, in many cases for free. Wireless networks can also be found in shopping malls, even in buses and trains -- and the number of networks is only growing.
+Wireless technology has been established well in everyday life. Most of the people have nowadays their own wireless network at home and they use another at school or work. When traveling, hotels and airports almost always offer Wi-Fis, in many cases for free. Wireless networks can also be found in shopping malls, even in buses and trains -- and the number of networks is only growing.
 
-From the very nature of wireless networks, transferred data is always visible to everyone who is inside the range of the network. Compared to traditional on-wire networking, this creates worries for information security. Lots of work has been done in order to make sure that actual transferred data, for example the content of web pages browsed, remains confident and is not visible for eavesdroppers. Such work include, for example, standards for wireless network encryption.
+From the very nature of wireless networks, transferred data is always visible to everyone who is inside the range of the network. Compared to traditional on-wire networking, this creates worries for information security. Lots of work has been done in order to make sure that actual transferred data, for example the content of web pages browsed, remains confident and is not visible for eavesdroppers. Such work includes, for example, standards for wireless network encryption.
 
 However, we are interested in the data exchange that happens before a device joins a wireless network. The device has not established any connections yet, so all the information must be sent in plaintext, unencrypted, in public. This information includes at least the identifier of the device trying to connect to the network, and the network name it is trying to connect. Or, alternatively, the device can ask information about all networks in the range.
 
 % Say something about always-on scanning?
 
-In this thesis, we try to examine what information can be extracted for said part of data transmission, and how it can be used. For this part, we conduct a practical experiment. We will also examine legal position of doing so, and are not limited to techincal part of the issue. In addition, we will look for techincal countermeasures for found privacy threats: how our techniques can be circumvented, if wanted.
+In this thesis, we try to examine what information can be extracted for said part of data transmission, and how it can be used. For this part, we conduct a practical experiment. We will also examine legal position of doing so, and are not limited to technical part of the issue. In addition, we will look for technical countermeasures for found privacy threats: how our techniques can be circumvented, if wanted.
 
 The thesis is organized as follows. In Chapter~\ref{chapter:protocol}, we tell how the 802.11 protocol, also known as Wi-Fi, works. In Chapter~\ref{chapter:profiling} we will examine how and why parts of wireless network protocols can be used for tracking and profiling users. We will also briefly study the legal side of tracking and profiling. Further, in Chapter~\ref{chapter:attacks} we will see how these features can be used in conducting active attacks and not only passive monitoring of devices. Practical experiment of above-mentioned techniques is conducted in Chapter~\ref{chapter:practical}, and in Chapter~\ref{chapter:countermeasures} we will see how privacy-concerned users could be protected from the actions we have studied. Finally, in Chapter~\ref{chapter:conclusion} we conclude the thesis.
 
@@ -413,10 +413,10 @@ Wireless connections can be divided into two categories. First, we have cell-bas
 
 We will examine the protocols and data transmissions used inside local area networks (LAN). Traditionally, those networks have been made connecting cables between computers and a hub, a switch or a router. Recently these local networks have been built with wireless connections, as they obviously allow users great mobility. Also, as smartphones have developed and require more and more bandwidth, local area networks are easier and cheaper to build and used than mobile networks.
 
-The protocol for wireless LAN (WLAN) is maintained the IEEE LAN/MAN Standards Committee, also known as IEEE 802. The family of protocols covering WLAN is called 802.11 family, and it includes many different versions of the standard, denoted by letters. For example, widely implemented standards are 802.11b, 802.11g, and 802.11n.~\cite{IEEE802.11}
+The protocol for wireless LAN (WLAN) is maintained the IEEE LAN/MAN Standards Committee, also known as IEEE 802. The family of protocols covering WLAN is called the 802.11 family, and it includes many different versions of the standard, denoted by letters. For example, widely implemented standards are 802.11b, 802.11g, and 802.11n.~\cite{IEEE802.11}
 
 
-\section{Wireless networks terminolgy}
+\section{Wireless networks terminology}
 \label{sec:terminology}
 
 Inside a wireless network there can be found several different devices. In the following, we will put them into different categories.
@@ -437,13 +437,13 @@ Nodes can also work in \emph{ad-hoc} mode, where they act simultaneously as an a
 
 Every device in the network, wired and wireless, has a media access control (MAC) address. A MAC address is bound to a specific device and does not change while connecting to different networks, being reconfigured, restarted, or anything else. It should also be globally unique: the idea is that any two devices could join the same network without problems, and since the network needs to be able to differentiate between devices, every device must have a unique identifier.~\cite{802_overview}
 
-A MAC address is 48 bit long and consists of two independent 24-bit parts. The first part is the same for all the devices made by the same manufacturer, and that part is assigned by IEEE. This first part is called Organizationally Unique Identifier, or OUI. 
+A MAC address is 48 bits long and consists of two independent 24-bit parts. The first part is the same for all the devices made by the same manufacturer, and that part is assigned by IEEE. This first part is called Organizationally Unique Identifier, or OUI. 
 
 The second 24-bit part can be freely chosen by the manufacturer, but it should be unique for each device. 
 
 The real address space of OUI, the organization part of address, is 22 bits, because one of the 24 bits (the least significant) depends on application, and another (next to LSB) is always set zero. Therefore there is space for $2^{22}$ organizations, which is a bit over four million. Each organization can produce $2^{24}$ devices, which is more than 16 million. If this limit is exceeded, IEEE can give the organization another OUI. For example, Apple has more than 300 OUIs assigned.~\cite{oui_listing} However, IEEE states that it will not do so without proper reasons, and says that, ``in no way should these addresses be used for purposes that would lead to skipping large numbers of them''.~\cite{802_overview} 
 
-MAC addresses are presented in hexadecimal notation consisting of six octects, seperated by a colon or a dash, for example \texttt{54:26:96:d0:2c:b1}. Graphical representation of a MAC address is shown in Figure~\ref{fig:mac}, where the first row is a raw binary representation, and the second row shows hexadecimal values. The last row shows seperation between Organizationally Unique Identifier and the part that remains to be determined by the manufacturer.
+MAC addresses are presented in hexadecimal notation consisting of six octets, separated by a colon or a dash, for example \texttt{54:26:96:d0:2c:b1}. Graphical representation of a MAC address is shown in Figure~\ref{fig:mac}, where the first row is a raw binary representation, and the second row shows hexadecimal values. The last row shows separation between Organizationally Unique Identifier and the part that remains to be determined by the manufacturer.
 
 \begin{figure}
 \label{fig:mac}
@@ -456,7 +456,7 @@ MAC addresses are presented in hexadecimal notation consisting of six octects, s
   \multicolumn{3}{|c|}{Organizationally Unique Identifier} & \multicolumn{3}{c|}{Organization-controlled part} \\
   \hline
 \end{tabular}
-\caption{Strucutre of MAC address \texttt{54:26:96:d0:2c:b1}}
+\caption{Structure of MAC address \texttt{54:26:96:d0:2c:b1}}
 \end{figure}
 
 
@@ -465,7 +465,7 @@ MAC addresses are presented in hexadecimal notation consisting of six octects, s
 
 As we found in the last section, each device in a network has a unique identifier, a MAC address. If there are multiple APs available for a node to connect to, the node can recognize and select the one by AP's MAC address.
 
-However, such action usually requires human interaction: someone has to tell the node which one of the APs is the correct one. Using only MAC address is not convinient, since twelwe-character hexadecimal representation does not resemble anything familiar or memorizable.
+However, such action usually requires human interaction: someone has to tell the node which one of the APs is the correct one. Using only MAC address is not convenient, since twelve-character hexadecimal representation does not resemble anything familiar or memorizable.
 
 Also, physical network devices do not necessarily correspond to logical networks. There can be a wireless network in a university, where APs are being upgraded to new ones. Therefore the logical network is still the same in the same building with the same purpose, but all the MAC addresses of the APs have been changed: remember, every MAC address is globally unique.
 
@@ -479,14 +479,14 @@ Network can also consist of more than one APs sharing the same SSID. This way, a
 \section{Joining a network}
 \label{sec:joining}
 
-So far we have characterized different elements of a wireless network. In this section, we will discuss how a node can find a existing wireless network. This can be achieved using either (1) active scanning or (2) passive scanning, which both are defined in IEEE standard.~\cite{IEEE802.11_scanning}
+So far we have characterized different elements of a wireless network. In this section, we will discuss how a node can find an existing wireless network. This can be achieved using either (1) active scanning or (2) passive scanning, which both are defined in IEEE standard.~\cite{IEEE802.11_scanning}
 
 \subsection{Passive scanning}
 \label{subsec:passive_scanning}
 
 In passive scanning, a node does not send anything by itself in order to find the network it wants to join. Instead, a node listens the transmissions and scans for beacon frames sent by APs. Beacon frames are large and contain lots of information, total of 55 different fields, most of which are related to radio transmission parameters.
 
-However, while doing passive scanning, a node is only interested in one particular field, SSID. As we have learnt previously in Section~\ref{sec:SSID}, SSID identifies particular network and acts as a human-understandable network name. Therefore node can display the networks it found to end-user, who makes the decision which network to join. Alternatively, node can compare its findings to previously-generated list of known networks, and join one it finds interesting.
+However, while doing passive scanning, a node is only interested in one particular field, SSID. As we have learnt previously in Section~\ref{sec:SSID}, SSID identifies particular network and acts as a human-understandable network name. Therefore node can display the networks it found to end-user, who makes the decision which network to join. Alternatively, node can compare its findings to previously generated list of known networks, and join one it finds interesting.
 
 Passive scanning has some drawbacks. First, it might be relatively slow, as a node needs to wait for APs to broadcast their beacons. Secondly, it is possible to configure AP so that it does not broadcast its SSID: this feature is called \emph{Hidden SSID}. Therefore, a node using passive scanning never sees APs using Hidden SSIDs.
 
@@ -495,7 +495,7 @@ Passive scanning has some drawbacks. First, it might be relatively slow, as a no
 
 In active scanning, the situation is different. This time a node knows beforehand which network it would like to join, and sends \emph{probe request frames} into the air. 
 
-Probe requests are smaller than previously-mentioned beacon frames, having only 13 standard fields. The most important field for our study is the first one, SSID. In this field a node tells which network it would like to join, if possible. 
+Probe requests are smaller than previously mentioned beacon frames, having only 13 standard fields. The most important field for our study is the first one, SSID. In this field a node tells which network it would like to join, if possible. 
 
 If a node knows lots of different networks and is trying to join all of them, it needs to send a lot of probe request frames. In order to reduce the amount of network traffic, there is a field called ``SSID List'', 10th in probe request frame. Using this field, a node can combine several requests into a single one. The length of the list is variable, and is limited only by the fact that the actual ``length'' field of SSID List element has size of one octet. Therefore the maximum number of SSIDs in a single SSID List element is 256.
 
@@ -519,7 +519,7 @@ IEEE Standard states wildcard SSID to be the one with all bits set to zero.
 Before beginning, we will define what profiling means. First, Oxford English dictionary defines the term as:~\cite{oed_profiling}
 
 \begin{quotation}
-The recording, itemization, or analysis of a person's known psychological, intellectual, and behavioural characteristics, esp. as documentation used (in schools, businesses, etc.) in the assessment of an individual's capabilities; (also) the compilation of databases which store such information and that can be used to identify any particular subgroup of people.
+The recording, itemization, or analysis of a person's known psychological, intellectual, and behavioral characteristics, esp. as documentation used (in schools, businesses, etc.) in the assessment of an individual's capabilities; (also) the compilation of databases which store such information and that can be used to identify any particular subgroup of people.
 \end{quotation}
 
 A little more relevant definition for this study could be one written by Hilberdant:~\cite{hildebrandt2008}
@@ -528,9 +528,9 @@ A little more relevant definition for this study could be one written by Hilberd
 The process of ``discovering'' correlations between data in databases that can be used to identify and represent a human or nonhuman subject (individual or group), and/or the application of profiles (sets of correlated data) to individuate and represent a subject or to identify a subject as a member of a group or category.
 \end{quotation}
 
-In this thesis, we are interestered in profiling in a sense of discovering some charasteristics of a person from collected data. As mentioned in both of definitions above, we are not limited to profiling single persons, but may also look for particular groups of people, if they have interesting properties in common.
+In this thesis, we are interested in profiling in a sense of discovering some characteristics of a person from collected data. As mentioned in both of definitions above, we are not limited to profiling single persons, but may also look for particular groups of people, if they have interesting properties in common.
 
-For example, it might be useful to know how old the customers are on average or if they are interested in different product ranges or visit a store different times of a day. An interesting - yet difficult to provide - property would be customer's wealth or willingess to pay more. If seller could detect these kind of people, it could easily gain its revenue by promoting more expensive deals to these kind of people.
+For example, it might be useful to know how old the customers are on average or if they are interested in different product ranges or visit a store different times of a day. An interesting - yet difficult to provide - property would be customer's wealth or willingness to pay more. If seller could detect this kind of people, it could easily gain its revenue by promoting more expensive deals to those ones.
 
 \textbf{Tracking} is easier to define. We use it to mean situation where one follows another person's movements or actions, directly or by following a device owned by tracked person. 
 
@@ -538,9 +538,9 @@ Tracking and profiling in themselves do not produce any value. However, informat
 
 An example of price variation based on customer profiling can be found in experiment made by Deck and Wilson (2006)~\cite{Deck2006}. In the research, they divided customers into two categories based on their search history. The first group is called ``informed customers'', who have been searching for prices also from other stores. On the other hand, the second group of users is called ``uninformed'', who do not know about the general prices of a product. The results of experiment shows that with tracking, informed customers are given lower prices, whereas ignorance of uninformed customers can be exploited with higher prices.
 
-On internet it is easy to profile users of a webpage. In a study by Pakkala et al.~\cite{Pakkala2012504} researchers try to analyze what kind of people are using food composition websites in three different countries. They used Google Analytics~\cite{googleanalytics}, a free and available-to-everyone tool to gather visitor statistics (also other similiar tools are available, with or without a charge). By looking referential websites, usage patterns, and search terms they were able to conduct that, for example, most of the users were not food or nutrition professionals, but average people looking for basic information about nutrition. In the study, researchers conclude that ``web analytics should be routine for every website [..] making user behaviour clearer so that developers can produce better websites for users.''
+On internet it is easy to profile users of a webpage. In a study by Pakkala et al.~\cite{Pakkala2012504} researchers try to analyze what kind of people are using food composition websites in three different countries. They used Google Analytics~\cite{googleanalytics}, a free and available-to-everyone tool to gather visitor statistics (also other similar tools are available, with or without a charge). By looking referential websites, usage patterns, and search terms they were able to conduct that, for example, most of the users were not food or nutrition professionals, but average people looking for basic information about nutrition. In the study, researchers conclude that ``web analytics should be routine for every website [..] making user behaviour clearer so that developers can produce better websites for users.''
 
-For the physical, brick-and-mortar type of stores, achieving this kind of information is much more diffcult. They can conduct customer studies by using surveys, but such a study requires lots of resources and might not be trustworthy because of reponse bias~\cite{Furnham1986385}: it may be totally different what people say than how they really act. Also, where it is extremely easy to track all the actions customers take while shopping on an online store, gathering the same data in traditional store using traditional methods can be close to impossible. Therefore it is easy to see that online stores have a clear competitive advantage over brick-and-mortar ones -- and the latters are interested in to neglect that.
+For the physical, brick-and-mortar type of stores, achieving this kind of information is much more difficult. They can conduct customer studies by using surveys, but such a study requires lots of resources and might not be trustworthy because of response bias~\cite{Furnham1986385}: it may be totally different what people say than how they really act. Also, where it is extremely easy to track all the actions customers take while shopping on an online store, gathering the same data in traditional store using traditional methods can be close to impossible. Therefore it is easy to see that online stores have a clear competitive advantage over brick-and-mortar ones -- and the latters are interested in to neglect that.
 
 Some solutions before establishment of WLAN devices have been proposed. An interesting one is work done by Newman, Yu and Oulton (2002) in~\cite{Newman2002253}, where they use existing CCTV surveillance cameras in a store. An example of their system is presented on Picture~\ref{fig:cctv_tracking}. Same kind of work is done by Senior et al.~\cite{senior2007video}, and in recent years there have been commercial solutions available~\cite{retailcctv}.
 
@@ -561,7 +561,7 @@ Wireless nodes send their MAC address with every probe request, as we learnt in 
 \subsection{Determining the location of a node}
 \label{sec:location}
 
-A naive yet robust way to determine user's location would be to look which AP received node's probe request. In Picture~\ref{fig:position_1} an oversimplified situation is presented: there is a rectangular-shaped building with a room, a few shelves, and four access points, labeled with letters from A to D. The building is divided into four sections, and the position of a mobile device is determined by looking which AP received a request from it. For example, it might be assumed that only AP D recieves a signal from the mobile device in the picture, and therefore the user is somewhere in the lower-right section of the building.
+A naive yet robust way to determine user's location would be to look which AP received node's probe request. In Picture~\ref{fig:position_1} an oversimplified situation is presented: there is a rectangular-shaped building with a room, a few shelves, and four access points, labeled with letters from A to D. The building is divided into four sections, and the position of a mobile device is determined by looking which AP received a request from it. For example, it might be assumed that only AP D receives a signal from the mobile device in the picture, and therefore the user is somewhere in the lower-right section of the building.
 
 \begin{figure}
     \label{fig:position_1}
@@ -586,7 +586,7 @@ However, things are obviously not that simple. In real-life situations, coverage
 \end{center}
 \end{figure}
 
-Distance from a node to an AP can be estimated by using strength of radio signal. This can not give an exact distance, as transmitting power varies between devices, and we do not know the initial power. However, this problem does not prevent us from using it as an estimate, because we are interested in relative distances. Continuing the simple way, we can select an AP that recieved the strongest signal; for a little more accurate result, a triangular-based calculation could be done with simple trigonometry, if at least three APs received the signal.
+Distance from a node to an AP can be estimated by using strength of radio signal. This cannot give an exact distance, as transmitting power varies between devices, and we do not know the initial power. However, this problem does not prevent us from using it as an estimate, because we are interested in relative distances. Continuing the simple way, we can select an AP that received the strongest signal; for a little more accurate result, a triangular-based calculation could be done with simple trigonometry, if at least three APs received the signal.
 
 Luckily, lots of research has been done for creating WLAN-based positioning systems, and that research includes more and more sophisticated methods for determining the location. Xiang et al.~\cite{xiang2004} constructed a model of signal propagation, Roos et al.~\cite{roos2002} used probablistics and machine learning, and so on. Most of this research tries to let mobile phone determine its own location based on the signal from APs, but exactly same approach can be used other way around, as we would like to: to let AP find out mobile node's position by node's signals.
 
@@ -600,15 +600,15 @@ Whereas previous section discussed on possibilities to track a device based on M
 
 SSIDs do not necessarily leak any information about their location. In some cases the opposite may be true: for example, an open network in Aalto University is called ``Aalto open'', but in general no such connection can be drawn.
 
-Numerous applications would benefit from ability to connect wirless network APs to physical geolocation. For example, this could serve as a backup solution in lack of GPS signal for positioning, which is the case when user is inside a building. Also it would be possible for mobile phone users to find a nearby open WLAN instead of consuming expensive cellular data transfer.
+Numerous applications would benefit from ability to connect wireless network APs to physical geolocation. For example, this could serve as a backup solution in lack of GPS signal for positioning, which is the case when user is inside a building. Also it would be possible for mobile phone users to find a nearby open WLAN instead of consuming expensive cellular data transfer.
 
-The solution for this problem is simple and straightforward. A collecting device goes around the world, capturing all the SSIDs and MAC addresses of WLANs it finds. Then, using GPS, it gets the location of network and stores data into simple database. This has already been done by numerous companies: the best-known case might be Google, who did it with its Street View cars~\cite{google_wifi_collection}. 
+The solution for this problem is simple and straightforward. A collecting device goes around the world, capturing all the SSIDs and MAC addresses of WLANs it finds. Then, using GPS, it gets the location of network and stores data into simple database. Numerous companies have already done this: the best-known case might be Google, who did it with its Street View cars~\cite{google_wifi_collection}. 
 
 Another way to get the data is to use crowdsourcing -- in other words, to let users do it themselves. In this way, every time a user connects to a new network, exact geolocation is saved with phone's GPS receiver. The location, SSID of the network, and probably more information such as signal strength are then saved into a database. Using this approach, data-collecting company can gather lots of data relatively cheaply, and may be able to achieve higher accuracy compared to smaller dataset.
 
 Both of above-explained applications for geolocation data of wireless networks have been implemented. Google uses WLAN locations with its Android operating system to provide location data based on networks it finds around~\cite{google_wifi_collection}. Nokia and Microsoft use same kind of data in Windows Phone in order to locate open WLANs near the user's own location~\cite{nokia_datasense}.
 
-In addition to proprietary databases, there exists an open one called Wigle, Wireless Geographic Logging Engine~\cite{wigle}. Wigle has operated since 2001, and it provides almost 150 million unique wifi networks with location data (as in August 2014). Wigle gets locations from users' submissions and gives data access for free. In itself, Wigle is not suitable for large-scale analysis, because it does not provide full data dump and limits amount of queries one is able to perform daily. For this research, we have been temporarily granted higher limits.
+In addition to proprietary databases, there exists an open one called Wigle, Wireless Geographic Logging Engine~\cite{wigle}. Wigle has operated since 2001, and it provides almost 150 million unique Wi-Fi networks with location data (as in August 2014). Wigle gets locations from users' submissions and gives data access for free. In itself, Wigle is not suitable for large-scale analysis, because it does not provide full data dump and limits amount of queries one is able to perform daily. For this research, we have been temporarily granted higher limits.
 
 It is important to note that the mapping from SSID to location is not one-to-one: multiple wireless networks around the world may share the same SSID. In fact, this is quite common, since many WLAN owners do not change the default SSID of their AP. In Wigle, most common SSIDs are ``linksys'', ``NETGEAR'', and ``dlink'', which all are default SSIDs of different AP manufacturers.
 
@@ -616,18 +616,18 @@ Some useful information can be obtained from geolocated SSIDs. The easiest one i
 
 Another interesting factor is to determine how much a user has travelled: people with SSIDs around the world might behave in a different way than ones with SSIDs from only one country. 
 
-We can develop this approach furhter by trying to identify concrete places user has visited, for example hotels, restaurants, and universities. Categorizing places is possible with combining data from multiple sources and datasets, for example Expedia Hotel Database~\cite{expedia_hotel_db} and Google Places~\cite{google_places}. Even more, Expedia provides some information of quality and price range of a hotel, which can also be used to characterize a user: does he tend to use high-quality services or likes to prefer low-price alternatives?
+We can develop this approach further by trying to identify concrete places user has visited, for example hotels, restaurants, and universities. Categorizing places is possible with combining data from multiple sources and datasets, for example Expedia Hotel Database~\cite{expedia_hotel_db} and Google Places~\cite{google_places}. Even more, Expedia provides some information of quality and price range of a hotel, which can also be used to characterize a user: does he tend to use high-quality services or likes to prefer low-price alternatives?
 
 \subsection{Discovering real-life relationships from common SSIDs}
 \label{subsec:ssid_commons}
 
-After collecting much of SSIDs from lots of devices, it is possible to discover friendships based on which SSIDs people share with each others. A paper on this approach has been written by Cunche et al.~\cite{cunche2014linking}
+After collecting much of SSIDs from lots of devices, it is possible to discover friendships based on which SSIDs people share with each other. A paper on this approach has been written by Cunche et al.~\cite{cunche2014linking}
 
 In the paper, they have two datasets: one collected from small number of volunteers with known friendships, and another from the wild, which has been collected over six-month period in Sydney, Australia. The dataset of volunteers contained strong relationships, such as close friends and family members. Authors created a model based on observations of the known dataset and applied it to unknown data from the public.
 
-Finding strongly-connceted nodes in two datasets has been studied well in computer science, so there are numerous mathematical models developed for this particular problem. Cunche et al. measure performance for many of those and develop them forward to match the specific charasteristic of SSIDs. These include a long tail of popularity, which means that some SSIDs are extremely popular, but there are a lot of those with only a couple of hits. In the paper, they argue that finding common SSIDs which appear rarely in the whole dataset is a strong signal of relationship. 
+Finding strongly connected nodes in two datasets has been studied well in computer science, so there are numerous mathematical models developed for this particular problem. Cunche et al. measure performance for many of those and develop them forward to match the specific characteristic of SSIDs. These include a long tail of popularity, which means that some SSIDs are extremely popular, but there are a lot of those with only a couple of hits. In the paper, they argue that finding common SSIDs that appear rarely in the whole dataset is a strong signal of relationship. 
 
-Probably the biggest problem for finding relationships in dataset is that it is computationally heavy. Complexity is $O(N^2)$ where $N$ is the number of devices in a dataset, so it may be impractical to try to find all the links in a large dataset, such as Cunche's six month long range of data. Nonetheless, if we are limited to small population, for example people visiting a specific place, a store, or an airport during a day, it might be perfectly feasible to calculate all the possible combinations.
+Probably the biggest problem for finding relationships in dataset is that it is computationally heavy. Complexity is $O(N^2)$ where $N$ is the number of devices in a dataset, so it may be impractical to try to find all the links in a large dataset, such as Cunche's six months long range of data. Nonetheless, if we are limited to small population, for example people visiting a specific place, a store, or an airport during a day, it might be perfectly feasible to calculate all the possible combinations.
 
 \subsection{Social media networks}
 \label{subsec:social_media}
@@ -640,26 +640,26 @@ Probably the biggest problem for finding relationships in dataset is that it is 
 
 We are able to find even more information from probe requests than discovered so far. As discussed in Section~\ref{sec:MAC}, first half of a MAC address, Organizationally Unique Identifier (OUI), is determined by manufacturing company. When comparing that to a database containing all the OUIs assigned, we will be able to discover the manufacturer of a node.
 
-In~\cite{pang2007802}, Pang et al. have been trying to fingerprint WLAN users by different traffic charasteristics. The methods they used were (1) network destinations, (2) SSID probes, (3) broadcast packet sizes, and (4) MAC protocol fields. 
+In~\cite{pang2007802}, Pang et al. have been trying to fingerprint WLAN users by different traffic characteristics. The methods they used were (1) network destinations, (2) SSID probes, (3) broadcast packet sizes, and (4) MAC protocol fields. 
 
 However, their approach was different from ours, as they study a scenario where analyzer can monitor all the traffic: the user has connected to wireless network run by analyzer. In our work, we limit to probing phase, before any connection has been made. This limitation rules the first method, examining network destinations, out. Also, SSID probes are already covered elsewhere in this work.
 
-Broadcast packet sizes are a possible approach. Some services and applications broadcast information or advertisements about themselves. For example, Dropbox, a cloud-storage service provider, has a deskto app that tries to find linked computers in local network. If they are found, transferring data between them would be a lot faster and cheaper than via public internet.~\cite{dropboxlan} All the content of broadcasts are encrypted in secure WLANs, but broadcasted packets can still be found, because they are sent in a known MAC address \texttt{ff:ff:ff:ff:ff:ff}. MAC address is always sent in plaintext. The size of packets is also unencrypted, which leaves the possibility to retrieve information from encrypted networks.
+Broadcast packet sizes are a possible approach. Some services and applications broadcast information or advertisements about themselves. For example, Dropbox, a cloud-storage service provider, has a desktop app that tries to find linked computers in local network. If they were found, transferring data between them would be a lot faster and cheaper than via public internet.~\cite{dropboxlan} All the content of broadcasts are encrypted in secure WLANs, but broadcasted packets can still be found, because they are sent in a known MAC address \texttt{ff:ff:ff:ff:ff:ff}. MAC address is always sent in plaintext. The size of packets is also unencrypted, which leaves the possibility to retrieve information from encrypted networks.
 
-The last method, MAC protocol fields, tries to exploit the fact that MAC header includes flags and fields that vary between different manufacturers and configurations. As Pang et al. themselves note, this is usually not enough to distuingish users uniquely, because quite a many people use exactly the same model of a device. However, this method can be used in addition to others, if necessary.
+The last method, MAC protocol fields, tries to exploit the fact that MAC header includes flags and fields that vary between different manufacturers and configurations. As Pang et al. themselves note, this is usually not enough to distinguish users uniquely, because quite a many people use exactly the same model of a device. However, this method can be used in addition to others, if necessary.
 
 It should be noted that both of these methods are not likely to work in our case. Broadcast packets are sent only when user has already joined a network, and we are studying the situation where user is still probing for available alternatives. MAC protocol fields are only a small piece of information, and those fields do not differentiate devices enough.
 
 \subsection{Wi-Fi Protected Setup}
 \label{sec:wps}
 
-Another exploitable feature is Wi-Fi Protected Setup (WPS). The technology is used to ease the setup of secure, consumer-grade wireless network. Using WPS, users do not need to know about technical details or enter complex passwords to gain access to WLAN, but instead can push a button on both AP and their mobile device. There are also another ways to implement the standard, including entering PIN code or using NFC-cabable device.~\cite{alliance2007wi}
+Another exploitable feature is Wi-Fi Protected Setup (WPS). The technology is used to ease the setup of secure, consumer-grade wireless network. Using WPS, users do not need to know about technical details or enter complex passwords to gain access to WLAN, but instead can push a button on both AP and their mobile device. There are also another ways to implement the standard, including entering PIN code or using NFC-capable device.~\cite{alliance2007wi}
 
-The actual standard for WPS is freely available only for Wi-Fi Alliance members~\cite{alliance2007wi}, but we do not consider that as a constructive way to develop technical standards. Therefore we resort to reverse engineering the standard using packet analyzing tool called Wireshark~\cite{wireshark}, which has implemented WPS. Wireshark is open source software, so the protocol can be analyzed with an effort low enough by reading source code and running analysis on captured packets. Also, there are other documents freely available to gather information about the protocol, such as Microsoft's techinical specification for WPS inside their own document~\cite{microsoftWCN}.
+The actual standard for WPS is freely available only for Wi-Fi Alliance members~\cite{alliance2007wi}, but we do not consider that as a constructive way to develop technical standards. Therefore we resort to reverse engineering the standard using packet analyzing tool called Wireshark~\cite{wireshark}, which has implemented WPS. Wireshark is open source software, so the protocol can be analyzed with an effort low enough by reading source code and running analysis on captured packets. Also, there are other documents freely available to gather information about the protocol, such as Microsoft's technical specification for WPS inside their own document~\cite{microsoftWCN}.
 
 In the protocol there are three actors: enrollee, AP and registrar. Enrollee is simply user willing to join WLAN using WPS. Registrar is the authority who will gain or deny access. AP is the same access point as previously, but this time it is specified to act as a link between enrollee and registrar. In practice, and in especially in consumer-grade devices, registrar's functionality is included in AP. 
 
-Because joining a WPS-enabled network has been wanted to make easy but secure for end-users, it is somewhat complex in technical side. Simplified version of protocol is shown in Figure~\ref{tab:wps}. Basically, first enrollee sends its nonce, its own description and its public key to registrar, and registrar replays with same kind of message with its own information. Then, in messages 3 and 4, parties make precommitments that they know the password by sending it in hashed form. In messages 4-7, parties send their own secret, encrypted hashes, that can be used with previously-sent hashes to make sure that the password was correct. Finally, in message 8, registrar sents WLAN configuration data including credentials to join the WLAN.
+Because joining a WPS-enabled network has been wanted to make easy but secure for end-users, it is somewhat complex in technical side. Simplified version of protocol is shown in Figure~\ref{tab:wps}. Basically, first enrollee sends its nonce, its own description and its public key to registrar, and registrar replays with same kind of message with its own information. Then, in messages 3 and 4, parties make precommitments that they know the password by sending it in hashed form. In messages 4-7, parties send their own secret, encrypted hashes, which can be used with previously-sent hashes to make sure that the password was correct. Finally, in message 8, registrar sends WLAN configuration data including credentials to join the WLAN.
 
 \begin{figure}
 \label{tab:wps}
@@ -668,12 +668,12 @@ Because joining a WPS-enabled network has been wanted to make easy but secure fo
 
     E $\rightarrow$ R & M1 = & N$_E$, Description, PK$_E$ \\\\
 
-    &  & Below this every mesasge includes a HMAC of current and previous messages \\
+    &  & Below this every message includes a HMAC of current and previous messages \\
     \hline \\
 
     E $\leftarrow$ R & M2 = & N$_E$, N$_R$, Description, PK$_R$ \\\\
 
-    &  & Below this every mesasge includes other party's nonce \\
+    &  & Below this every message includes other party's nonce \\
     \hline \\
 
     E $\rightarrow$ R & M3 = & Password hashed \\\\
@@ -720,25 +720,25 @@ order? SEE THE SOURCE CODE!
 
 In addition to passive surveillance, there is possibility for performing active attacks against users. In active attacks, the attacker does not only monitor user's behavior, but instead sends malicious packets to perform desired activities. 
 
-All the following attacks are some variants of man-in-the-middle (MITM) scheme. In MITM attack, the attacker positions himself between user and the service user is connecting to. This way, an attacker is able to read and alter all unencrypted communication while remaining transparent for the victim. The following attacks differ by how an attacker gains such an position.
+All the following attacks are some variants of man-in-the-middle (MITM) scheme. In MITM attack, the attacker positions himself between user and the service user is connecting to. This way, an attacker is able to read and alter all unencrypted communication while remaining transparent for the victim. The following attacks differ by how an attacker gains such a position.
 
 \section{Unencrypted access point}
 \label{sec:attack_unencrypted}
 
 The easiest attack is to set up an unencrypted access point and monitor all the traffic that goes through it. Obviously this is not very sophisticated, but at least some users are likely to be tricked into this one.
 
-First, they do not know or care about wireless network security but only see a free connection to internet to use. No technical security measure can save users, if they want to use a open connection with unknown administrator.
+First, they do not know or care about wireless network security but only see a free connection to internet to use. No technical security measure can save users, if they want to use an open connection with unknown administrator.
 
 Second, multiple versions of Windows has a feature to join any unsecured wireless network in the range. Therefore, user's computer can join an open network without user being aware of that. Even worse, with some versions of Intel wireless drivers, the setting to disable the automatically-connecting feature is hidden elsewhere than in unusual settings dialog.~\cite{windows_wifi_answers}
 
-An unwanted connection can be damaging, even if the user realizes the mistake relatively fast and disconnects his computer from open network. Quite a many services want to syncronize their data right after connected; for example, an e-mail client would like to get new messages immediately when the computer becomes online. Therefore it is certainly possible that user's crendetials are sent during first moments in a new network.
+An unwanted connection can be damaging, even if the user realizes the mistake relatively fast and disconnects his computer from open network. Quite a many services want to synchronize their data right after connected; for example, an e-mail client would like to get new messages immediately when the computer becomes online. Therefore it is certainly possible that user's credentials are sent during first moments in a new network.
 
 \section{Evil twin}
 \label{sec:evil_twin}
 
-If there are multiple alternatives available, nodes have a couple of methods to decide which network they join. In Windows, there is preferred wireless networks list, which specifies the order in which computer should connect to networks~\cite{windows_wifi_preferred}. 
+If there are multiple alternatives available, nodes have a couple of methods to decide which network they join. In Windows, there is a preferred wireless networks list, which specifies the order in which computer should connect to networks~\cite{windows_wifi_preferred}. 
 
-If there is no preferred networks available, a node may choose the one which has strongest signal strength -- or if not choose, at least present it as a first alternative to user. Another methods has also been proposed, such as testing networks for their bandwidth and choosing the best~\cite{Nicholson:2006:APselection}. However, these kind of advanced methods has not been implemented, so previously-selected networks and physical-layer signal strength are the most common criteria used nowadays.
+If there is no preferred networks available, a node may choose the one which has strongest signal strength -- or if not choose, at least present it as a first alternative to user. Another methods have also been proposed, such as testing networks for their bandwidth and choosing the best~\cite{Nicholson:2006:APselection}. However, these kinds of advanced methods have not been implemented, so previously-selected networks and physical-layer signal strength are the most common criteria used nowadays.
 
 \begin{figure}
     \begin{center}
@@ -755,7 +755,7 @@ If there is no preferred networks available, a node may choose the one which has
     \end{center}
 \end{figure}
 
-The idea of Evil twin attack is presented in Figure~\ref{fig:evil_twin}. First, there is a normal scenario. A user is having a coffee in his favorite cafe, and joins cafe's open network with an SSID \texttt{NiceCafe}. Everything goes well. The next time, the same user is visiting the cafe again, but this time there is an malicious access point with the same SSID, \texttt{NiceCafe}. Remember, SSID is not a unique identifier, and it can be chosen freely. The malicious one is located closer to the user or has more powerful antenna, so its signal is much stronger than the original AP's. Therefore, the user connects to malicious access point, and all the traffic is suddenly vulnerable.
+The idea of Evil twin attack is presented in Figure~\ref{fig:evil_twin}. First, there is a normal scenario. A user is having a coffee in his favorite cafe, and joins cafe's open network with an SSID \texttt{NiceCafe}. Everything goes well. The next time, the same user is visiting the cafe again, but this time there is a malicious access point with the same SSID, \texttt{NiceCafe}. Remember, SSID is not a unique identifier, and it can be chosen freely. The malicious one is located closer to the user or has more powerful antenna, so its signal is much stronger than the original AP's. Therefore, the user connects to malicious access point, and all the traffic is suddenly vulnerable.
 
 \section{Man in the middle exploiting WLAN probes}
 \label{sec:mitm_probes}
@@ -769,11 +769,11 @@ If a node is not probing any specific SSID but asking all the nodes to broadcast
 \section{Encryption}
 \label{sec:attack_encryption}
 
-A particular problem for attackers is encryption. Wireless networks may be secured using techinques such as WPA2 (Wi-Fi Protected Access 2), which is based on pre-shared secret -- a passphrase. Since an attacker does not know the passphrase and it is not included in any probe requests, WPA2 renders this attack useless.
+A particular problem for attackers is encryption. Wireless networks may be secured using techniques such as WPA2 (Wi-Fi Protected Access 2), which is based on pre-shared secret -- a passphrase. Since an attacker does not know the passphrase and it is not included in any probe requests, WPA2 renders this attack useless.
 
-Another possible piece of encryption is Transport Layer Security, TLS (predecessor known as SSL, Secure Sockets Layer, and often these two are mixed). With a bit confusion with the name, it can be said that TLS is implemted between transport layer and application layer. As this layer is above link-layer, on which attacker operates, it should be a safe alternative.
+Another possible piece of encryption is Transport Layer Security, TLS (predecessor known as SSL, Secure Sockets Layer, and often these two are mixed). With a bit confusion with the name, it can be said that TLS is implemented between transport layer and application layer. As this layer is above link-layer, on which attacker operates, it should be a safe alternative.
 
-However, there is a technique called sslstrip~\cite{marlinspike2009new}, which is designed specifically to redirect badly-implemented TLS/SSL conenctions to unencrypted ones. At this time, using TLS can be considered only a partial solution against MITM attacks.
+However, there is a technique called sslstrip~\cite{marlinspike2009new}, which is designed specifically to redirect badly implemented TLS/SSL connections to unencrypted ones. At this time, using TLS can be considered only a partial solution against MITM attacks.
 
 \section{Existing software and devices}
 
@@ -831,31 +831,31 @@ test in the wild, cover:
 \chapter{Countermeasures}
 \label{chapter:countermeasures}
 
-Not everyone is happy or confident with an idea that someone is trakcing their measures, or profiling their behavior. Together with legal view presented in Chapter~\ref{chapter:legal}, we will study techinical countermeasures to prevent techniques discussed in this paper. 
+Not everyone is happy or confident with an idea that someone is tracking their measures, or profiling their behavior. Together with legal view presented in Chapter~\ref{chapter:legal}, we will study technical countermeasures to prevent techniques discussed in this paper. 
 
 \section{Countermeasures for MAC address tracking}
 
 Tracking customers' movements based on MAC address is relatively simply technique, as we have already seen. Tracker needs to be able to (1) locate a device, and (2) determine which location point is from which device. 
 
-We cannot prevent anyone from locating a device that transmits signal on radio frequencies, so the only possible countermeasure is to negate possibility to match location points to a signle device. Therefore a device must not broadcast MAC address or other information that uniquelly identifies it.
+We cannot prevent anyone from locating a device that transmits signal on radio frequencies, so the only possible countermeasure is to negate possibility to match location points to a single device. Therefore a device must not broadcast MAC address or other information that uniquely identifies it.
 
 WLAN standard offers no help, so there is a need for new solutions. Apple announced in June 2014 that in iOS 8, it will be randomizing the MAC address during wireless network scanning~\cite{FredericJacobs2014,apple_wwdc_privacy}. Randomized address would work as a \emph{pseudonym}, which identifies device for a specific request or for a limited time, but not universally.
 
 As iOS 8 is not yet released, we cannot study its behavior in detail. However, randomization presents a couple of interesting questions. Normally, a device sends a bunch of probe requests almost at once and then sleeps for some period of time, usually between 30 to 60 seconds. A proper implementation requires that the MAC address is randomized after \emph{every} single probe request, not only between different cycles. Otherwise, tracker could identify device based on the broadcasted SSID list and completely ignore the MAC address.
 
-We should look if there is enough space for randomizing new MAC address for every probe request without collisions. Suppose that an average device has $N = 15$ (TODO CHECK) SSIDs on their preferred network list. By randomizing only organizationally-controlled part of MAC address -- leaving OUI untouched, respecting its purpose -- a single OUI block can provide about 16 million different addresses, and give enough space for $M \approx 10^6$ simultaneous devices. Due to birthday paradox, this number needs to be decreased down to $\sqrt{10^6} = 1000$ devices, which should still be enough for one network. Also, in reality Apple has multiple OUI blocks, not only one.
+We should look if there is enough space for randomizing a new MAC address for every probe request without collisions. Suppose that an average device has $N = 15$ (TODO CHECK) SSIDs on their preferred network list. By randomizing only organizationally-controlled part of MAC address -- leaving OUI untouched, respecting its purpose -- a single OUI block can provide about 16 million different addresses, and give enough space for $M \approx 10^6$ simultaneous devices. Due to birthday paradox, this number needs to be decreased down to $\sqrt{10^6} = 1000$ devices, which should still be enough for one network. Also, in reality Apple has multiple OUI blocks, not only one.
 
-To be a working solution, it must not use too much resources. A device with randomized MAC address needs to also save all the previous addresses in order to be able to get replies. Because number of different networks is really small, this will not be a problem. Also, after a succesfull connection or relatively short timeout (measured in seconds), a pseudonym can be forgotten. Some computational overhead will be generated from randomizing process, but that should be really small -- after all, we are only generating 24 or 48 bits.
+To be a working solution, it must not use too much resources. A device with randomized MAC address needs to also save all the previous addresses in order to be able to get replies. Because number of different networks is really small, this will not be a problem. Also, after a succesful connection or relatively short timeout (measured in seconds), a pseudonym can be forgotten. Some computational overhead will be generated from randomizing process, but that should be really small -- after all, we are only generating 24 or 48 bits.
 
 Randomization can be more stealthy if the whole address is being randomized, including the OUI part. This way, tracker could not determine straight from MAC address which device it is. Spoofing such a field can be a double-edged sword: some services might rely on manufacturer identification and stop working after such a spoof. However, this is pretty unlikely. Randomization should happen only in scanning phase, and after joining a network, it will not change anymore.
 
 A direct consequence of previous is that after joining a network, a device can be tracked again, since it sends packets with a non-volatile MAC address. The MAC is not secured against eavesdropping in encrypted wireless networks. The question that remains open is whether the device uses a fixed MAC for every session or continues with the last randomized one. Obviously, a randomized address for every session would be better for privacy.
 
-A possible problem may be that the device is leaking other information where it can be identified from. For example, the WPS protcol presented in Section~\ref{sec:wps} might leak new unique user identifier, which renders the whole defence meaningless.
+A possible problem may be that the device is leaking other information where it can be identified. For example, the WPS protocol presented in Section~\ref{sec:wps} might leak new unique user identifier, which renders the whole defense meaningless.
 
 Implementing MAC address randomization seems to be a promising countermeasure against tracking during the scanning phase, if implemented correctly. Joining a network removes the advantage of randomization.
 
-TODO: pseudonymes are used somewhere in GMS standard
+TODO: pseudonyms are used somewhere in GMS standard
 
 \section{Countermeasures for SSID profiling}
 \label{sec:countermeasures_ssid}
@@ -868,31 +868,31 @@ SSID profiling depends on few factors. A profiler has to be able to \begin{enume
 
 If we want to prevent an attacker from recording SSID probes, we must not send them at all. This can be done using passive scanning, specified in Section~\ref{subsec:passive_scanning}, or with active scanning with a wildcard SSID, discussed in Section~\ref{subsec:active_wildcard}.
 
-Passive scanning may have performance problems, since a node needs to wait for APs to advertise themselves, instead of probing them. As manufacturers would like to give customers best possible user experience, and significant dealys joining a network could result in worse experience, this may not be a feasible solution. Manufacturers could make this as a setting in the device to give users a fast experience initially, with option for privacy-concerned users to turn their device into passive scanning or wildcard mode.
+Passive scanning may have performance problems, since a node needs to wait for APs to advertise themselves, instead of probing them. As manufacturers would like to give customers best possible user experience, and significant delays joining a network could result in worse experience, this may not be a feasible solution. Manufacturers could make this as a setting in the device to give users a fast experience initially, with option for privacy-concerned users to turn their device into passive scanning or wildcard mode.
 
-With active scanning using wildcard SSID, an attacker can not anymore eavesdrop SSIDs exchanged. However, it might be possible for a determined one to probe the client with many different alternative SSIDs and see which ones a node is willing to join. The scale of data transmission required will render this attack useless for profiling cases, but man-in-the-middle attack presented in Section~\ref{sec:mitm_probes} could probe a node with most common SSIDs --- it needs to match only one of them to perform attack.
+With active scanning using wildcard SSID, an attacker cannot anymore eavesdrop SSIDs exchanged. However, it might be possible for a determined one to probe the client with many different alternative SSIDs and see which ones a node is willing to join. The scale of data transmission required will render this attack useless for profiling cases, but man-in-the-middle attack presented in Section~\ref{sec:mitm_probes} could probe a node with most common SSIDs --- it needs to match only one of them to perform attack.
 
-Third way to limit exposure is to probe only networks that are physically near user. This approach is briefly introduced in work by Kim et al.~\cite{kimposter}, where a node knows its own location and the location of APs it has connect previously. Therefore, it can try to actively probe only APs that should be available, and passively listen for others' probes. 
+Third way to limit exposure is to probe only networks that are physically near the node. This approach is briefly introduced in work by Kim et al.~\cite{kimposter}, where a node knows its own location and the location of APs it has connected previously. Therefore, the node can try to actively probe only APs that should be available, and passively listen for others' probes. 
 
-This approach suffers from a couple of issues. First, it requires node to know its own location, which may take some time to resolve resulting worse user experience. Second, the requirement for location data forces user to keep his GPS on, which consumes battery -- an important constraint on mobile devices. Third, storing previous AP's location data on mobile device might cause new privacy issues for stolen device: an SSID-to-geolocation mapping is not anymore requried, but a thief can easily see where user has visited. Fourth, if GPS is not available, which is the case indoors, they propose that node could determine its location by neighboring APs' signatures. This is not a very reliable way, and may lead to worse user experience, which prevents any manufacturer to implement the feature.
+This approach suffers from a couple of issues. First, it requires node to know its own location, which may take some time to resolve resulting worse user experience. Second, the requirement for location data forces user to keep his GPS on, which consumes battery -- an important constraint on mobile devices. Third, storing previous AP's location data on mobile device might cause new privacy issues for stolen device: an SSID-to-geolocation mapping is not anymore required, but a thief can easily see where user has visited. Fourth, if GPS is not available, which is the case indoors, they propose that node could determine its location by neighboring APs' signatures. This is not a very reliable way, and may lead to worse user experience, which prevents any manufacturer to implement the feature.
 
 We can allow devices to transmit data but render it useless for eavesdroppers using cryptographic techniques. Research by Lindqvist et al.~\cite{lindqvist2009privacy} proposes a method for that by modifying protocol to join a wireless network. In their work, a client includes its nonce $N_{client}$ in a probe request. Then AP sends back client's nonce, its own nonce $N_{AP}$, and a random identifier that acts as an SSID for the connection, called R-SSID. The R-SSID is encrypted using shared key, and the key is generated from shared secret, network passphrase.
 
 To negate the second requirement, identifying which probes are sent from the same device, we can use the same technique as in previous section, MAC address randomization. If the MAC address is randomized for every probe, the only thing a profiler sees is single requests from different MAC addresses. It would need to identify devices in some other way, so we need to be sure that no additional information is leaked --- just as discussed in previous section.
 
-The third option, preventing analyzing, can not be done in technical measures. TODO legal.
+The third option, preventing analyzing, cannot be done in technical measures. TODO legal.
 
 
 \section{Securing against active attacks}
 
-\subsection{Passive defences}
+\subsection{Passive defenses}
 do not query for ssids
 
 how about rogue AP guessing most used SSIDs?
 
 save BSSID, ask for confirmation if SSID is the same, but BSSID is not? Windows Phone? 
 
-\subsection{Active defences}
+\subsection{Active defenses}
 
 Lots of paper with different solutions
 
