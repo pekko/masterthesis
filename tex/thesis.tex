@@ -644,12 +644,14 @@ In~\cite{pang2007802}, Pang et al. have been trying to fingerprint WLAN users by
 
 However, their approach was different from ours, as they study a scenario where analyzer can monitor all the traffic: the user has connected to wireless network run by analyzer. In our work, we limit to probing phase, before any connection has been made. This limitation rules the first method, examining network destinations, out. Also, SSID probes are already covered elsewhere in this work.
 
-Broadcast packet sizes are a possible approach. Some services and applications broadcast information or advertisements about themselves. For example, Dropbox, a cloud-storage service provider, has a deskto app that tries to find linked computers in local network. If they are found, transferring data between them would be a lot faster and cheaper than via public internet.~\cite{dropboxlan} All the content of broadcasts are encrypted in secure WLANs, but broadcasted packets can still be found, because they are sent in a known MAC address \texttt{ff:ff:ff:ff:ff:ff}. MAC address is always sent in plaintext. The size of packets is also unencrypted, which leaves the possibility to retrieve information in encrypted networks.
+Broadcast packet sizes are a possible approach. Some services and applications broadcast information or advertisements about themselves. For example, Dropbox, a cloud-storage service provider, has a deskto app that tries to find linked computers in local network. If they are found, transferring data between them would be a lot faster and cheaper than via public internet.~\cite{dropboxlan} All the content of broadcasts are encrypted in secure WLANs, but broadcasted packets can still be found, because they are sent in a known MAC address \texttt{ff:ff:ff:ff:ff:ff}. MAC address is always sent in plaintext. The size of packets is also unencrypted, which leaves the possibility to retrieve information from encrypted networks.
 
 The last method, MAC protocol fields, tries to exploit the fact that MAC header includes flags and fields that vary between different manufacturers and configurations. As Pang et al. themselves note, this is usually not enough to distuingish users uniquely, because quite a many people use exactly the same model of a device. However, this method can be used in addition to others, if necessary.
 
+It should be noted that both of these methods are not likely to work in our case. Broadcast packets are sent only when user has already joined a network, and we are studying the situation where user is still probing for available alternatives. MAC protocol fields are only a small piece of information, and those fields do not differentiate devices enough.
 
 \subsection{Wi-Fi Protected Setup}
+\label{sec:wps}
 
 Another exploitable feature is Wi-Fi Protected Setup (WPS). The technology is used to ease the setup of secure, consumer-grade wireless network. Using WPS, users do not need to know about technical details or enter complex passwords to gain access to WLAN, but instead can push a button on both AP and their mobile device. There are also another ways to implement the standard, including entering PIN code or using NFC-cabable device.~\cite{alliance2007wi}
 
@@ -721,6 +723,7 @@ In addition to passive surveillance, there is possibility for performing active 
 All the following attacks are some variants of man-in-the-middle (MITM) scheme. In MITM attack, the attacker positions himself between user and the service user is connecting to. This way, an attacker is able to read and alter all unencrypted communication while remaining transparent for the victim. The following attacks differ by how an attacker gains such an position.
 
 \section{Unencrypted access point}
+\label{sec:attack_unencrypted}
 
 The easiest attack is to set up an unencrypted access point and monitor all the traffic that goes through it. Obviously this is not very sophisticated, but at least some users are likely to be tricked into this one.
 
@@ -731,6 +734,7 @@ Second, multiple versions of Windows has a feature to join any unsecured wireles
 An unwanted connection can be damaging, even if the user realizes the mistake relatively fast and disconnects his computer from open network. Quite a many services want to syncronize their data right after connected; for example, an e-mail client would like to get new messages immediately when the computer becomes online. Therefore it is certainly possible that user's crendetials are sent during first moments in a new network.
 
 \section{Evil twin}
+\label{sec:evil_twin}
 
 If there are multiple alternatives available, nodes have a couple of methods to decide which network they join. In Windows, there is preferred wireless networks list, which specifies the order in which computer should connect to networks~\cite{windows_wifi_preferred}. 
 
@@ -754,6 +758,7 @@ If there is no preferred networks available, a node may choose the one which has
 The idea of Evil twin attack is presented in Figure~\ref{fig:evil_twin}. First, there is a normal scenario. A user is having a coffee in his favorite cafe, and joins cafe's open network with an SSID \texttt{NiceCafe}. Everything goes well. The next time, the same user is visiting the cafe again, but this time there is an malicious access point with the same SSID, \texttt{NiceCafe}. Remember, SSID is not a unique identifier, and it can be chosen freely. The malicious one is located closer to the user or has more powerful antenna, so its signal is much stronger than the original AP's. Therefore, the user connects to malicious access point, and all the traffic is suddenly vulnerable.
 
 \section{Man in the middle exploiting WLAN probes}
+\label{sec:mitm_probes}
 
 In previous section, an attacker knew beforehand that there was a specific network available and chose his SSID based on that. This is not necessary, and opens room for a more powerful attack.
 
@@ -762,6 +767,7 @@ A rogue access point can be listening for all the probes in the air. When it see
 If a node is not probing any specific SSID but asking all the nodes to broadcast theirs, the basic version of this attack will not obviously work. Still, there exists an opportunity: quite a many device has at one time connected to a network with an unchanged, manufacturer-default SSID, such as \texttt{Linksys} or \texttt{dlink}. According to Wigle~\cite{wigle}, five most common SSIDs account for 4.2~\% of total SSIDs seen. An attacker could try all the common ones and hope that at least one of them is in node's SSID list.
 
 \section{Encryption}
+\label{sec:attack_encryption}
 
 A particular problem for attackers is encryption. Wireless networks may be secured using techinques such as WPA2 (Wi-Fi Protected Access 2), which is based on pre-shared secret -- a passphrase. Since an attacker does not know the passphrase and it is not included in any probe requests, WPA2 renders this attack useless.
 
@@ -829,19 +835,23 @@ Not everyone is happy or confident with an idea that someone is trakcing their m
 
 \section{Countermeasures for MAC address tracking}
 
-Tracking customers' movements based on MAC address is relatively simply technique, as we have already seen. Only effective countermeasure is to not broadcast MAC address or other information that uniquelly identifies single device.
+Tracking customers' movements based on MAC address is relatively simply technique, as we have already seen. Tracker needs to be able to (1) locate a device, and (2) determine which location point is from which device. 
 
-WLAN standard offers no help, so there is a need for new solutions. Apple announced in June 2014 that in iOS 8, it will be randomizing the MAC address during wireless network scanning~\cite{FredericJacobs2014,apple_wwdc_privacy}. Randomized address would work as a \emph{pseudonym}, which identifies device for a specific request, but not universally.
+We cannot prevent anyone from locating a device that transmits signal on radio frequencies, so the only possible countermeasure is to negate possibility to match location points to a signle device. Therefore a device must not broadcast MAC address or other information that uniquelly identifies it.
+
+WLAN standard offers no help, so there is a need for new solutions. Apple announced in June 2014 that in iOS 8, it will be randomizing the MAC address during wireless network scanning~\cite{FredericJacobs2014,apple_wwdc_privacy}. Randomized address would work as a \emph{pseudonym}, which identifies device for a specific request or for a limited time, but not universally.
 
 As iOS 8 is not yet released, we cannot study its behavior in detail. However, randomization presents a couple of interesting questions. Normally, a device sends a bunch of probe requests almost at once and then sleeps for some period of time, usually between 30 to 60 seconds. A proper implementation requires that the MAC address is randomized after \emph{every} single probe request, not only between different cycles. Otherwise, tracker could identify device based on the broadcasted SSID list and completely ignore the MAC address.
 
 We should look if there is enough space for randomizing new MAC address for every probe request without collisions. Suppose that an average device has $N = 15$ (TODO CHECK) SSIDs on their preferred network list. By randomizing only organizationally-controlled part of MAC address -- leaving OUI untouched, respecting its purpose -- a single OUI block can provide about 16 million different addresses, and give enough space for $M \approx 10^6$ simultaneous devices. Due to birthday paradox, this number needs to be decreased down to $\sqrt{10^6} = 1000$ devices, which should still be enough for one network. Also, in reality Apple has multiple OUI blocks, not only one.
 
-A device with randomized MAC address needs to also save all the previous addresses in order to be able to get replies. Because number of different networks is really small, this will not be a problem. Also, after a succesfull connection or relatively short timeout (measured in seconds), a pseudonym can be forgotten.
+To be a working solution, it must not use too much resources. A device with randomized MAC address needs to also save all the previous addresses in order to be able to get replies. Because number of different networks is really small, this will not be a problem. Also, after a succesfull connection or relatively short timeout (measured in seconds), a pseudonym can be forgotten. Some computational overhead will be generated from randomizing process, but that should be really small -- after all, we are only generating 24 or 48 bits.
 
 Randomization can be more stealthy if the whole address is being randomized, including the OUI part. This way, tracker could not determine straight from MAC address which device it is. Spoofing such a field can be a double-edged sword: some services might rely on manufacturer identification and stop working after such a spoof. However, this is pretty unlikely. Randomization should happen only in scanning phase, and after joining a network, it will not change anymore.
 
 A direct consequence of previous is that after joining a network, a device can be tracked again, since it sends packets with a non-volatile MAC address. The MAC is not secured against eavesdropping in encrypted wireless networks. The question that remains open is whether the device uses a fixed MAC for every session or continues with the last randomized one. Obviously, a randomized address for every session would be better for privacy.
+
+A possible problem may be that the device is leaking other information where it can be identified from. For example, the WPS protcol presented in Section~\ref{sec:wps} might leak new unique user identifier, which renders the whole defence meaningless.
 
 Implementing MAC address randomization seems to be a promising countermeasure against tracking during the scanning phase, if implemented correctly. Joining a network removes the advantage of randomization.
 
@@ -849,17 +859,29 @@ TODO: pseudonymes are used somewhere in GMS standard
 
 \section{Countermeasures for SSID profiling}
 \label{sec:countermeasures_ssid}
-broadcast
 
-randomize mac for every probe request?
+SSID profiling depends on few factors. A profiler has to be able to \begin{enumerate}
+    \item Record SSID probes,
+    \item Identify which probes are sent from the same device, and
+    \item Analyze them using various data sources.
+\end{enumerate}
 
-which one is more valuable, privacy or speed?
+If we want to prevent an attacker from recording SSID probes, we must not send them at all. This can be done using passive scanning, specified in Section~\ref{subsec:passive_scanning}, or with active scanning with a wildcard SSID, discussed in Section~\ref{subsec:active_wildcard}.
 
-settings, defaults
+Passive scanning may have performance problems, since a node needs to wait for APs to advertise themselves, instead of probing them. As manufacturers would like to give customers best possible user experience, and significant dealys joining a network could result in worse experience, this may not be a feasible solution. Manufacturers could make this as a setting in the device to give users a fast experience initially, with option for privacy-concerned users to turn their device into passive scanning or wildcard mode.
 
-modifying the protocol using cryptographic techniques~\cite{lindqvist2009privacy}
+With active scanning using wildcard SSID, an attacker can not anymore eavesdrop SSIDs exchanged. However, it might be possible for a determined one to probe the client with many different alternative SSIDs and see which ones a node is willing to join. The scale of data transmission required will render this attack useless for profiling cases, but man-in-the-middle attack presented in Section~\ref{sec:mitm_probes} could probe a node with most common SSIDs --- it needs to match only one of them to perform attack.
 
-location-assisted: probe only networks nearby~\cite{kimposter}
+Third way to limit exposure is to probe only networks that are physically near user. This approach is briefly introduced in work by Kim et al.~\cite{kimposter}, where a node knows its own location and the location of APs it has connect previously. Therefore, it can try to actively probe only APs that should be available, and passively listen for others' probes. 
+
+This approach suffers from a couple of issues. First, it requires node to know its own location, which may take some time to resolve resulting worse user experience. Second, the requirement for location data forces user to keep his GPS on, which consumes battery -- an important constraint on mobile devices. Third, storing previous AP's location data on mobile device might cause new privacy issues for stolen device: an SSID-to-geolocation mapping is not anymore requried, but a thief can easily see where user has visited. Fourth, if GPS is not available, which is the case indoors, they propose that node could determine its location by neighboring APs' signatures. This is not a very reliable way, and may lead to worse user experience, which prevents any manufacturer to implement the feature.
+
+We can allow devices to transmit data but render it useless for eavesdroppers using cryptographic techniques. Research by Lindqvist et al.~\cite{lindqvist2009privacy} proposes a method for that by modifying protocol to join a wireless network. In their work, a client includes its nonce $N_{client}$ in a probe request. Then AP sends back client's nonce, its own nonce $N_{AP}$, and a random identifier that acts as an SSID for the connection, called R-SSID. The R-SSID is encrypted using shared key, and the key is generated from shared secret, network passphrase.
+
+To negate the second requirement, identifying which probes are sent from the same device, we can use the same technique as in previous section, MAC address randomization. If the MAC address is randomized for every probe, the only thing a profiler sees is single requests from different MAC addresses. It would need to identify devices in some other way, so we need to be sure that no additional information is leaked --- just as discussed in previous section.
+
+The third option, preventing analyzing, can not be done in technical measures. TODO legal.
+
 
 \section{Securing against active attacks}
 
