@@ -325,7 +325,7 @@
 % show up in the TOC
 \chapter*{Acknowledgements}
 
-aalto, eurecom s3/nops, ucsb, speksi, wigle, everyone
+aalto, eurecom s3/nops, ucsb, speksi, WiGLE, everyone
 
 \vskip 10mm
 
@@ -400,7 +400,7 @@ Manufacturers want to provide best possible user experience to their customers. 
 
 In this thesis, we try to examine what information can be extracted from the said part of data transmission, and how it can be used. Particular use cases include gathering information from passive monitoring and combining it with other dataset, for which we conduct a practical experiment. Together with that, we look for theoretical possibilities for active attacks exploiting mobile device's features.
 
-We will also examine legal position of doing abovementioned acts, and we are not limited to technical side of the issue. In addition, we will look for technical countermeasures for found privacy and security threats: how the techniques we found can be circumvented, if someone wants to. 
+We will also examine legal position of doing above-mentioned acts, and we are not limited to technical side of the issue. In addition, we will look for technical countermeasures for found privacy and security threats: how the techniques we found can be circumvented, if someone wants to. 
 
 In the thesis, we do not take into account any other parts of data transmission. Especially outside the scope is traffic after connecting to network, such as user visiting web pages or reading his email.
 
@@ -757,9 +757,9 @@ Another way to get the data is to use crowdsourcing -- in other words, to let us
 
 Both of above-explained applications for geolocation data of wireless networks have been implemented. Google uses WLAN locations with its Android operating system to provide location data based on networks it finds around~\cite{google_wifi_collection}. Nokia and Microsoft use same kind of data in Windows Phone in order to locate open WLANs near the user's own location~\cite{nokia_datasense}.
 
-In addition to proprietary databases, there exists an open one called Wigle, Wireless Geographic Logging Engine~\cite{wigle}. Wigle has operated since 2001, and it provides almost 150 million unique Wi-Fi networks with location data (as in August 2014). Wigle gets locations from users' submissions and gives data access for free. In itself, Wigle is not suitable for large-scale analysis, because it does not provide full data dump and limits amount of queries one is able to perform daily. For this research, we have been temporarily granted higher limits.
+In addition to proprietary databases, there exists an open one called WiGLE, Wireless Geographic Logging Engine~\cite{WiGLE}. WiGLE has operated since 2001, and it provides almost 150 million unique Wi-Fi networks with location data (as in August 2014). WiGLE gets locations from users' submissions and gives data access for free. In itself, WiGLE is not suitable for large-scale analysis, because it does not provide full data dump and limits amount of queries one is able to perform daily. For this research, we have been temporarily granted higher limits.
 
-It is important to note that the mapping from SSID to location is not one-to-one: multiple wireless networks around the world may share the same SSID. In fact, this is quite common, since many WLAN owners do not change the default SSID of their AP. In Wigle, most common SSIDs are ``linksys'', ``NETGEAR'', and ``dlink'', which all are default SSIDs of different AP manufacturers.
+It is important to note that the mapping from SSID to location is not one-to-one: multiple wireless networks around the world may share the same SSID. In fact, this is quite common, since many WLAN owners do not change the default SSID of their AP. In WiGLE, most common SSIDs are ``linksys'', ``NETGEAR'', and ``dlink'', which all are default SSIDs of different AP manufacturers.
 
 Some useful information can be obtained from geolocated SSIDs. The easiest one is to try to guess where the users might live by figuring out where the majority of SSIDs are located. Not exact results can be got with this approach, but city-wide accuracy should be possible.
 
@@ -877,11 +877,12 @@ With all this information, we may be able to
 \end{enumerate}
 
 
-\section{Evaluation of current mobile devices}
-\label{subsec:evaluation}
-iphone, android, WP
-do they broadcast all the ssids or just a wildcard?
-order? SEE THE SOURCE CODE!
+% this may be left out
+% \section{Evaluation of current mobile devices}
+% \label{subsec:evaluation}
+% iphone, android, WP
+% do they broadcast all the ssids or just a wildcard?
+% order? SEE THE SOURCE CODE!
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -903,7 +904,7 @@ First, they do not know or care about wireless network security but only see a f
 
 Second, multiple versions of Windows has a feature to join any unsecured wireless network in the range~\cite{dai2005attacking,windows_wifi_answers}. Therefore, user's computer can join an open network without user being aware of that. Even worse, with some versions of Intel wireless drivers, the setting to disable the automatically-connecting feature is hidden elsewhere than in unusual settings dialog.~\cite{windows_wifi_answers}
 
-An unwanted connection can be damaging, even if the user realizes the mistake relatively fast and disconnects his computer from open network. Quite a many services want to synchronize their data right after connected; for example, an e-mail client would like to get new messages immediately when the computer becomes online. Therefore it is certainly possible that user's credentials are sent during first moments in a new network.
+An unwanted connection can be damaging, even if the user realizes the mistake relatively fast and disconnects his computer from open network. Quite a many services want to synchronize their data right after connected; for example, an email client would like to get new messages immediately when the computer becomes online. Therefore it is certainly possible that user's credentials are sent during first moments in a new network.
 
 \section{Evil twin}
 \label{sec:evil_twin}
@@ -936,7 +937,7 @@ In previous section, an attacker knew beforehand that there was a specific netwo
 
 A rogue access point can be listening for all the probes in the air. When it sees something, for example a node probing for a network \texttt{NiceCafe}, the AP can change its SSID to \texttt{NiceCafe} and let the node to connect.
 
-If a node is not probing any specific SSID but asking all the nodes to broadcast theirs, the basic version of this attack will not obviously work. Still, there exists an opportunity: quite a many device has at one time connected to a network with an unchanged, manufacturer-default SSID, such as \texttt{Linksys} or \texttt{dlink}. According to Wigle~\cite{wigle}, five most common SSIDs account for 4.2~\% of total SSIDs seen. An attacker could try all the common ones and hope that at least one of them is in node's SSID list.
+If a node is not probing any specific SSID but asking all the nodes to broadcast theirs, the basic version of this attack will not obviously work. Still, there exists an opportunity: quite a many device has at one time connected to a network with an unchanged, manufacturer-default SSID, such as \texttt{Linksys} or \texttt{dlink}. According to WiGLE~\cite{wigle}, five most common SSIDs account for 4.2~\% of total SSIDs seen. An attacker could try all the common ones and hope that at least one of them is in node's SSID list.
 
 \section{Encryption}
 \label{sec:attack_encryption}
@@ -968,7 +969,7 @@ is there any legislation? terms and conditions -- can't apply, if the user hasn'
 approaches to get an ``I agree'' from customers: 
 (1) put a physical sign (case Nordstrom, Inc) 
 (2) use a specific app (case Helsinki-vantaa)
-    -> if an app requires wifi permissions (on android), it can look easily for all previous networks (there was a paper on that) \cite{2014_WISEC_Achara}
+    -> if an app requires Wi-Fi permissions (on android), it can look easily for all previous networks (there was a paper on that) \cite{2014_WISEC_Achara}
 
 \section{Europe}
 
@@ -990,7 +991,7 @@ In this chapter, we will conduct a practical experiment of previously discussed 
 
 SSID probe data was captured from various public locations in a range of 25 kilometeres (15 miles). We used a single Apple laptop with an internal wireless antenna. No special or expensive equipment was used, so anybody is able to perform same kind of data collection.
 
-Location data was obtained from WiGLE~\cite{wigle}, where we had higher query limits than original users. For the other services we used, Google Places and Expedia, we had exactly the same privileges than normal user, and nothing was purchased for our purpose. Therefore the same kind of research can be done by anyone, and with commercial resources, its quality can probably be raised significantly.
+Location data was obtained from WiGLE~\cite{WiGLE}, where we had higher query limits than original users. For the other services we used, Google Places and Expedia, we had exactly the same privileges than normal user, and nothing was purchased for our purpose. Therefore the same kind of research can be done by anyone, and with commercial resources, its quality can probably be raised significantly.
 
 \subsection{Twitter}
 
