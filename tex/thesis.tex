@@ -444,13 +444,13 @@ MAC addresses are presented in a hexadecimal notation consisting of six octets, 
 
 \begin{figure}
 \label{fig:mac}
-\begin{tabular}{ | c|c|c | c|c|c | }
+\begin{tabular}{ | p{1cm}|p{1cm}|c | p{1cm}|p{1cm}|c | }
   \hline
   1010100 & 100110 & 10010110 & 11010000 & 101100 & 10110001 \\
   \hline
   54 & 26 & 96 & d0 & 2c & b1 \\
   \hline
-  \multicolumn{3}{|c|}{Organizationally Unique Identifier} & \multicolumn{3}{c|}{Organization-controlled part} \\
+  \multicolumn{3}{|p{1cm}|}{Organizationally Unique Identifier} & \multicolumn{3}{p{1cm}|}{Organization-controlled part} \\
   \hline
 \end{tabular}
 \caption{Structure of MAC address \texttt{54:26:96:d0:2c:b1}}
@@ -476,7 +476,58 @@ Network can also consist of more than one APs sharing the same SSID. This way, a
 \section{Joining a network}
 \label{sec:joining}
 
-So far we have characterized different elements of a wireless network. In this section, we will discuss how a node can find an existing wireless network. This can be achieved using either (1) active scanning or (2) passive scanning, which both are defined in IEEE standard.~\cite{IEEE802.11_scanning}
+So far we have characterized different elements of a wireless network. In this section, we will study the packet formats in detail, and discuss how a node can find an existing wireless network. This can be achieved using either (1) active scanning or (2) passive scanning, which both are defined in IEEE standard.~\cite{IEEE802.11_scanning}
+
+\subsection{Packets}
+\label{subsec:packet_formats}
+
+In IEEE 802.11 standard, there are many different packets, frames and fields for different purposes. In this study, we will look for the ones used when trying to join a network. We will not study physical layer requirements and specifications.
+
+The standard calls a single entity of different data as a \emph{frame}. Each MAC frame -- which we are interested in -- contains
+
+\begin{enumerate}
+    \item A MAC header, containing metadata of the frame;
+    \item A frame body, including the actual payload; and
+    \item A checksum, called FCS.
+\end{enumerate}
+
+\subsubsection{General MAC frame format}
+
+General format for MAC frames is presented on Figure~\ref{fig:general_mac_frame}. The frame consists of minimum of four and maximum of eleven fields, which are marked as ``mandatory'' or ``optional''. Decision of whtether or not optional fields are included is not left for implementation: it depends on which type of frame it actually is. MAC header includes all the fields except frame body and checksum.
+
+Frame begins with a frame control field, which includes protocol version, type and subtype of the actual frame and specific flags for data transmission. The flags specify, for example, whether the data transmitted has been split into fragments, or if this frame has already tried to be sent but failed, and this one is a retransmission of a failed one.
+
+As much as four different address fields are included can be included in a MAC frame. Their purpose depends on frame type, and can include source address, destination address, or routing-type of information in ad-hoc network.
+
+Another fields in MAC frame include sequence control, quality of service (QoS), and high-throughput (HT) control fields. These we will not study more.
+
+\begin{figure}
+    \label{fig:general_mac_frame}
+    \begin{tabular}{|p{1cm}|p{1cm}|p{1cm}|p{1cm}|p{1cm}|p{1cm}|p{1cm}|p{1cm}|p{1cm}|p{1cm}|p{0.8cm}|}
+    
+        \multicolumn{9}{|c|}{MAC header} &
+        \multicolumn{2}{c|}{} &
+    \hline 
+        Frame Control &
+        Dura-tion/ ID &
+        Addr. 1 &
+        Addr. 2 &
+        Addr. 3 &
+        Seq. Control &
+        Addr. 4 &
+        QoS Control &
+        HT Control &
+        Frame Body &
+        FCS \\
+    \hline 
+        \multicolumn{3}{|c|}{Mandatory} &
+        \multicolumn{7}{c|}{Optional} &
+        Man. \\
+
+    \end{tabular}
+
+    \caption{General MAC frame format}
+\end{figure}
 
 \subsection{Passive scanning}
 \label{subsec:passive_scanning}
@@ -684,7 +735,7 @@ Because joining a WPS-enabled network has been wanted to make easy but secure fo
 
 \begin{figure}
 \label{tab:wps}
-\begin{tabular}{c|c p{10cm}}
+\begin{tabular}{p{1cm}|c p{10cm}}
     \hline \\
 
     E $\rightarrow$ R & M1 = & N$_E$, Description, PK$_E$ \\\\
@@ -998,7 +1049,7 @@ The full protocol for Wi-Fi Protected Setup (WPS) is presented on Figure~\ref{ta
 
 \begin{figure}
 \label{tab:wps_full}
-\begin{tabular}{c|c p{10cm}}
+\begin{tabular}{p{1cm}|c p{10cm}}
 
 E $\rightarrow$ R & M1 = & Version $\|$ N$_E$ $\|$ Description $\|$ PK$_E$ 
 \\\\
