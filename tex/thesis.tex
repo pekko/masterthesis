@@ -1080,14 +1080,27 @@ The third option, preventing analyzing, cannot be done in technical measures. TO
 
 \section{Securing against active attacks}
 
-\subsection{Passive defenses}
-do not query for ssids
+In the following, we will look at how to secure against active man-in-the-middle attacks presented in Chapter~\ref{chapter:attacks}. 
 
-how about rogue AP guessing most used SSIDs?
+Defense mechanisms can be categorized into two groups. In client-side defenses, mobile nodes take new security precautions to avoid connecting to rogue access point. In network administrator's defenses, the administrator of WLAN is trying to actively locate rogue access points in his own network. After detecting one, other non-techincal methods can be taken in order to remove the access point.
 
-save BSSID, ask for confirmation if SSID is the same, but BSSID is not? Windows Phone? 
+\subsection{Client-side defenses}
 
-\subsection{Active defenses}
+Man-in-the-middle attacks presented here require that user connects to a rogue access point. In the first case, an access point was open, which means that some operating systems will connect to it without user's consent. Obviously, this threat can be negated by turning such a feature off. 
+
+In evil twin attack, the attacker has learnt a SSID of an existing access point and presents himself as with the same SSID. For this, a node could save each SSID with a BSSID, AP's MAC address. Therefore the node would detect that there is a different physical device with a different MAC address, and present two alternative ways to proceed:
+\begin{enumerate}
+    \item Try to search harder, wait a moment: maybe there is a legitimate AP available. If so, connect to it.
+    \item If not, it is possible that network equipment has been upgraded, or the network spans over a larger physical area with lots of access points. In that case, a mobile device could present confirmation dialog to the user, asking if he really wants to connect to that network. This approach is present at least on Windows Mobile 8.
+\end{enumerate}
+
+Unfortunately even the same MAC address does not guarantee that AP is legitimate: MAC address can be spoofed. It is possible to construct two identical probe requests from two separate devices, and in that case no algorithm can help on client's side. As a remainder, this is still only the case for unencrypted networks, where no cryptographic defenses are deployed.
+
+When attacker is exploiting user's probe requests to guess a name of network user would be willing to connect to, the defense is straightforward: do not send probe requests with SSIDs, but resort to wildcard probing or passive scanning. A problem with passive scanning is that it may reduce performance, which manufacturers do not like to see. However, active scanning with wildcard SSID should be fast enough.
+
+An attack for previous defense would be to guess few most used SSIDs and try to connect with them. Here saving a BSSID with an SSID would help: guessing a SSID from, say, out of twenty most common used ones is trivial, but going through the MAC address is not. Even if attacker would be limited to a couple of OUIs by guessing correctly the manufacturer, it has still 24-bit keyspace to discover, which is more than 16 million possibilities.
+
+\subsection{Network administrator's defenses}
 
 Lots of paper with different solutions
 
