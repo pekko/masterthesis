@@ -495,18 +495,20 @@ The standard calls a single entity of different data as a \emph{frame}. Each MAC
 
 General format for MAC frames is presented on Figure~\ref{fig:general_mac_frame}. The frame consists of minimum of four and maximum of eleven fields, which are marked as ``mandatory'' or ``optional''. Decision of whtether or not optional fields are included is not left for implementation: it depends on which type of frame it actually is. MAC header includes all the fields except frame body and checksum.
 
-Frame begins with a frame control field, which includes protocol version, type and subtype of the actual frame and specific flags for data transmission. The flags specify, for example, whether the data transmitted has been split into fragments, or if this frame has already tried to be sent but failed, and this one is a retransmission of a failed one.
+Frame begins with a frame control field, which includes protocol version, type and subtype of the actual frame and specific flags for data transmission. The protocol version is currently zero. Type can be zero for management frames, one for control frames, or two for data frames. Value three is reserver for future use. Management frames will be studied in Section~\ref{subsubsec:management_frames}, control and data frames are left outside of this thesis. basically, management frames are higher-level frames that set up and maintain the connection. Control frames help handling delivery of data, and data frames include the data.
+
+The flags in the frame control field specify, for example, whether the data transmitted has been split into fragments, or if this frame has already tried to be sent but failed, and this one is a retransmission of a failed one.
 
 As much as four different address fields are included can be included in a MAC frame. Their purpose depends on frame type, and can include source address, destination address, or routing-type of information in ad-hoc network.
 
-Another fields in MAC frame include sequence control, quality of service (QoS), and high-throughput (HT) control fields. These we will not study more.
+Another fields in MAC frame include sequence control, quality of service (QoS), and high-throughput (HT) control fields. We will not study these fields more.
 
 \begin{figure}
     \label{fig:general_mac_frame}
     \begin{tabular}{|p{1cm}|p{1cm}|p{1cm}|p{1cm}|p{1cm}|p{1cm}|p{1cm}|p{1cm}|p{1cm}|p{1cm}|p{0.8cm}|}
     
         \multicolumn{9}{|c|}{MAC header} &
-        \multicolumn{2}{c|}{} &
+        \multicolumn{2}{c|}{ } \\
     \hline 
         Frame Control &
         Dura-tion/ ID &
@@ -528,6 +530,9 @@ Another fields in MAC frame include sequence control, quality of service (QoS), 
 
     \caption{General MAC frame format}
 \end{figure}
+
+\subsubsection{Management frames}
+\label{subsubsec:management_frames}
 
 \subsection{Passive scanning}
 \label{subsec:passive_scanning}
