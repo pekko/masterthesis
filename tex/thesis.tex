@@ -394,9 +394,22 @@ However, we are interested in data exchange that happens before a device joins a
 
 Manufacturers want to provide best possible user experience to their customers. A part of the experience is the ability to find a wireless network in the device's range, and to join fast to the network. Because of this, many devices scan continuosly the airspace and try to find out if there are networks to join. An understandable goal means that devices might leak out data about users: the names of networks user would like to join.
 
-In this thesis, we try to examine what information can be extracted from the said part of data transmission, and how it can be used. For this part, we conduct a practical experiment. We will also examine legal position of doing so, and are not limited to technical side of the issue. In addition, we will look for technical countermeasures for found privacy threats: how our techniques can be circumvented, if someone wants to. We do not take into account any other parts of data transmission, such as traffic to web pages.
 
-The thesis is organized as follows. In Chapter~\ref{chapter:protocol}, we tell how the 802.11 protocol, also known as Wi-Fi, works. In Chapter~\ref{chapter:profiling} we will examine how and why parts of wireless network protocols can be used for tracking and profiling users. Further, in Chapter~\ref{chapter:attacks} we will see how these features can be used in conducting active attacks and not only passive monitoring of devices. In Chapter~\ref{chapter:legal} we study the legal status of discussed methods. Practical experiment of above-mentioned techniques is conducted in Chapter~\ref{chapter:practical}, and in Chapter~\ref{chapter:countermeasures} we will see how privacy-concerned users could be protected from the actions we have studied. Finally, in Chapter~\ref{chapter:conclusion} we conclude the thesis.
+\section{Scope}
+\label{sec:scope}
+
+In this thesis, we try to examine what information can be extracted from the said part of data transmission, and how it can be used. Particular use cases include gathering information from passive monitoring and combining it with other dataset, for which we conduct a practical experiment. Together with that, we look for theoretical possibilities for active attacks exploiting mobile device's features.
+
+We will also examine legal position of doing abovementioned acts, and we are not limited to technical side of the issue. In addition, we will look for technical countermeasures for found privacy and security threats: how the techniques we found can be circumvented, if someone wants to. 
+
+In the thesis, we do not take into account any other parts of data transmission. Especially outside the scope is traffic after connecting to network, such as user visiting web pages or reading his email.
+
+
+\section{Organization of thesis}
+
+The thesis is organized as follows. In Chapter~\ref{chapter:protocol}, we tell how the 802.11 protocol, also known as Wi-Fi, works. We will see some importatnt parts of protocol in detail. In Chapter~\ref{chapter:profiling} we will examine how and why parts of wireless network protocols can be used for tracking and profiling users. Further, in Chapter~\ref{chapter:attacks} we will see how these features can be used in conducting active attacks and not only passive monitoring of devices. 
+
+In Chapter~\ref{chapter:legal} we study the legal status of discussed methods. Practical experiment of above-mentioned techniques is conducted in Chapter~\ref{chapter:practical}, and in Chapter~\ref{chapter:countermeasures} we will see how privacy-concerned users could be protected from the actions we have studied. Finally, in Chapter~\ref{chapter:conclusion} we conclude the thesis.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
