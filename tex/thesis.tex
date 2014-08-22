@@ -611,7 +611,7 @@ It is important to note that the mapping from SSID to location is not one-to-one
 
 Some useful information can be obtained from geolocated SSIDs. The easiest one is to try to guess where the users might live by figuring out where the majority of SSIDs are located. Not exact results can be got with this approach, but city-wide accuracy should be possible.
 
-Another interesting factor is to determine how much a user has travelled: people with SSIDs around the world might behave in a different way than ones with SSIDs from only one country. 
+Another interesting factor is to determine how much a user has traveled: people with SSIDs around the world might behave in a different way than ones with SSIDs from only one country. 
 
 We can develop this approach further by trying to identify concrete places user has visited, for example hotels, restaurants, and universities. Categorizing places is possible with combining data from multiple sources and datasets, for example Expedia Hotel Database~\cite{expedia_hotel_db} and Google Places~\cite{google_places}. Even more, Expedia provides some information of quality and price range of a hotel, which can also be used to characterize a user: does he tend to use high-quality services or likes to prefer low-price alternatives?
 
@@ -650,7 +650,9 @@ We see at least the following possibilities:\\
 
 \textbf{Identify students and other academic people.} Universities usually have their own wireless networks, individual ones or common \emph{eduroam} in Europe, so they are easy to spot.
 
-\textbf{How much is a user travelling?} Identify airports and hotels. Categorize user to different price categories based on hotel's average price level.
+\textbf{How much is a user traveling?} Identify airports and hotels. Categorize user to different price categories based on hotel's average price level. Probably same kind of information can be extracted from restaurants' and cafes' names.
+
+\textbf{}
 
 
 
@@ -722,7 +724,6 @@ With all this information, we may be able to
     \item possibly extract private information from user, for example user's real name from device's name
 \end{enumerate}
 
-TODO: mac protocol fields?
 
 \section{Evaluation of current mobile devices}
 \label{subsec:evaluation}
@@ -828,16 +829,26 @@ approaches to get an ``I agree'' from customers:
 \chapter{Practical study}
 \label{chapter:practical}
 
-In this chapter, we will conduct a practical experiment of previously discussed techniques and methods. TODO more.
+In this chapter, we will conduct a practical experiment of previously discussed techniques and methods. We will look for general patterns in data, compare manufacuturers, and apply different profiling techniques to the data. 
 
 \section{Methodology}
 \label{sec:methods}
 
-Data was captured from various locations using a single laptop with an internal wireless antenna. No special or expensive equipment was used.
+\subsection{Collecting SSID data}
+
+SSID probe data was captured from various public locations in a range of 25 kilometeres (15 miles). We used a single Apple laptop with an internal wireless antenna. No special or expensive equipment was used, so anybody is able to perform same kind of data collection.
 
 Location data was obtained from WiGLE~\cite{wigle}, where we had higher query limits than original users. For the other services we used, Google Places and Expedia, we had exactly the same privileges than normal user, and nothing was purchased for our purpose. Therefore the same kind of research can be done by anyone, and with commercial resources, its quality can probably be raised significantly.
 
-Twitter was a special case, since its API is pretty limited for rate. We collected Twitter's feed to our own servers and built our own database, so that we gate an unlimited access to data. Unfortunately, because Twitter's feed is so huge, we were able to collect only 10~\% of it. Therefore, private access to Twitter's full database would give better results.
+\subsection{Twitter}
+
+Twitter was a special case, since its API is pretty limited for rate. We collected Twitter's feed to our own servers and built our own database, so that we get an unlimited access to data, simulating private access. 
+
+Twitter's API return results in JSON (JavaScript Object Notation) format. We preprocessed the data by removing all the tweets without location information; this was done with a simple \texttt{grep} filtering. After that, the data was imported into the database.
+
+Our choice for database software was MongoDB \cite{mongodb}, which is a high-performance NoSQL database. MongoDB is specifically designed to work with JSON format, so importing data was painless. 
+
+The biggest problem with Twitter's data was its huge size. We were able to collect only 10~\% of continuous feed, which must have affected the results. Private access to Twitter's full database would probably have given better outcome.
 
 \section{Overview of data}
 \label{sec:data_overview}
@@ -846,11 +857,13 @@ $a$ probe requests, a1 with only broadcast
 
 $b$ unique MAC addresses
 
-$c$ SSIDs
+$c$ SSIDs, popularity: most common ones found almost in every $n$th device, but $m \%$ were only in one (graph! long tail!)
 
 on average $d$ ssids/probe req
 
 $e$ WPS leaks
+
+Everything by manufacturers (use OUIs); who leaked the most?
 
 Twitter, a lot of everything...
 
