@@ -566,7 +566,7 @@ Management frames can be further divided into different frames depending of \tex
 
 APs sent Beacon frames to advertise their own existence. They are defined to be a management frame with \texttt{subtype} of value 8, so identifying rule is \texttt{type == 0 and subtype == 8}.
 
-The body of Beacon frame is huge, containing total of 55 different field plus vendor-specific ones. We do not list them all here. The most important is the fourth field, \texttt{SSID}, which was presented in Section~\ref{sec:SSID}. Another important is the second field in frame body, \texttt{Beacon interval}, which represents the number of time units between beacon tramissions.
+The body of a Beacon frame is huge, containing total of 55 different field plus vendor-specific ones. We do not list them all here. The most important is the fourth field, \texttt{SSID}, which was presented in Section~\ref{sec:SSID}. Another important is the second field in frame body, \texttt{Beacon interval}, which represents the number of time units between beacon tramissions.
 
 
 \subsubsection{Probe Request frame format}
@@ -842,7 +842,7 @@ Because joining a WPS-enabled network has been wanted to make easy but secure fo
     E $\leftarrow$ R & M8 = & Encrypted configuration data \\
     \hline
 \end{tabular}
-\caption{Protocol for joining WPS-enabled WLAN. Simplified from~\cite{microsoftWCN}}, detailed version in Appendix~\ref{chapter:appendix:wps}
+\caption{Protocol for joining a WPS-enabled WLAN. Simplified from~\cite{microsoftWCN}}, detailed version in Appendix~\ref{chapter:appendix:wps}
 \end{figure}
 
 The most important and interesting part is in the very beginning, since we are looking for probe requests. We found that some devices are actively sending WPS requests hoping that an AP would reply. This request is the same as message 1 in the protocol.
