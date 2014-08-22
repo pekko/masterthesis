@@ -897,11 +897,11 @@ All the following attacks are some variants of man-in-the-middle (MITM) scheme. 
 \section{Unencrypted access point}
 \label{sec:attack_unencrypted}
 
-The easiest attack is to set up an unencrypted access point and monitor all the traffic that goes through it. Obviously this is not very sophisticated, but at least some users are likely to be tricked into this one.
+The easiest attack is to set up an unencrypted access point and monitor all the traffic that goes through it. Obviously this is not very sophisticated, but at least some users are likely to be tricked into this one for various reasons.
 
 First, they do not know or care about wireless network security but only see a free connection to internet to use. No technical security measure can save users, if they want to use an open connection with unknown administrator.
 
-Second, multiple versions of Windows has a feature to join any unsecured wireless network in the range. Therefore, user's computer can join an open network without user being aware of that. Even worse, with some versions of Intel wireless drivers, the setting to disable the automatically-connecting feature is hidden elsewhere than in unusual settings dialog.~\cite{windows_wifi_answers}
+Second, multiple versions of Windows has a feature to join any unsecured wireless network in the range~\cite{dai2005attacking,windows_wifi_answers}. Therefore, user's computer can join an open network without user being aware of that. Even worse, with some versions of Intel wireless drivers, the setting to disable the automatically-connecting feature is hidden elsewhere than in unusual settings dialog.~\cite{windows_wifi_answers}
 
 An unwanted connection can be damaging, even if the user realizes the mistake relatively fast and disconnects his computer from open network. Quite a many services want to synchronize their data right after connected; for example, an e-mail client would like to get new messages immediately when the computer becomes online. Therefore it is certainly possible that user's credentials are sent during first moments in a new network.
 
@@ -927,7 +927,7 @@ If there is no preferred networks available, a node may choose the one which has
     \end{center}
 \end{figure}
 
-The idea of Evil twin attack is presented in Figure~\ref{fig:evil_twin}. First, there is a normal scenario. A user is having a coffee in his favorite cafe, and joins cafe's open network with an SSID \texttt{NiceCafe}. Everything goes well. The next time, the same user is visiting the cafe again, but this time there is a malicious access point with the same SSID, \texttt{NiceCafe}. Remember, SSID is not a unique identifier, and it can be chosen freely. The malicious one is located closer to the user or has more powerful antenna, so its signal is much stronger than the original AP's. Therefore, the user connects to malicious access point, and all the traffic is suddenly vulnerable.
+The idea of Evil twin attack is presented in Figure~\ref{fig:evil_twin}. First, there is a normal scenario. A user is having a coffee in his favorite cafe, and joins cafe's open, unencrypted network which has an SSID \texttt{NiceCafe}. Everything goes well. The next time, the same user is visiting the cafe again, but this time there is a malicious access point with the same SSID, \texttt{NiceCafe}. Remember, SSID is not a unique identifier, and it can be chosen freely. The malicious one is located closer to the user or has more powerful antenna, so its signal is much stronger than the original AP's. Therefore, the user connects to malicious access point, and all the traffic is suddenly vulnerable.
 
 \section{Man in the middle exploiting WLAN probes}
 \label{sec:mitm_probes}
@@ -941,7 +941,7 @@ If a node is not probing any specific SSID but asking all the nodes to broadcast
 \section{Encryption}
 \label{sec:attack_encryption}
 
-A particular problem for attackers is encryption. Wireless networks may be secured using techniques such as WPA2 (Wi-Fi Protected Access 2), which is based on pre-shared secret -- a passphrase. Since an attacker does not know the passphrase and it is not included in any probe requests, WPA2 renders this attack useless.
+A particular problem for attackers is encryption. Wireless networks may be secured using techniques such as WPA2 (Wi-Fi Protected Access 2), which is based on pre-shared secret -- a passphrase. Since an attacker does not know the passphrase and it is not included in any probe requests, WPA2 renders previous attack useless.
 
 Another possible piece of encryption is Transport Layer Security, TLS (predecessor known as SSL, Secure Sockets Layer, and often these two are mixed). With a bit confusion with the name, it can be said that TLS is implemented between transport layer and application layer. As this layer is above link-layer, on which attacker operates, it should be a safe alternative.
 
@@ -968,7 +968,7 @@ is there any legislation? terms and conditions -- can't apply, if the user hasn'
 approaches to get an ``I agree'' from customers: 
 (1) put a physical sign (case Nordstrom, Inc) 
 (2) use a specific app (case Helsinki-vantaa)
-    -> if an app requires wifi permissions (on android), it can look easily for all previous networks (there was a paper on that)
+    -> if an app requires wifi permissions (on android), it can look easily for all previous networks (there was a paper on that) \cite{2014_WISEC_Achara}
 
 \section{Europe}
 
