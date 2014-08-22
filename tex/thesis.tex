@@ -999,7 +999,7 @@ Twitter was a special case, since its API is pretty limited for rate. We collect
 
 Twitter's API return results in JSON (JavaScript Object Notation) format. We preprocessed the data by removing all the tweets without location information; this was done with a simple \texttt{grep} filtering. After that, the data was imported into the database.
 
-Our choice for database software was MongoDB \cite{mongodb}, which is a high-performance NoSQL database. MongoDB is specifically designed to work with JSON format, so importing data was painless. 
+Our choice for database software was MongoDB~\cite{mongodb}, which is a high-performance NoSQL database. MongoDB is specifically designed to work with JSON format, so importing data was painless. 
 
 The biggest problem with Twitter's data was its huge size. We were able to collect only 10~\% of continuous feed, which must have affected the results. Private access to Twitter's full database would probably have given better outcome.
 
