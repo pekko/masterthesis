@@ -472,6 +472,13 @@ With SSID there is an abstraction of logical network over a physical one. Using 
 
 Network can also consist of more than one APs sharing the same SSID. This way, a wireless network can cover a huge building or even a larger area. When configured in such way, the network is said to be an \emph{Extended Service Set} (ESS).~\cite{IEEE802.11}
 
+\subsection{Basic Service Set Identifier (BSSID)}
+
+As we learnt previously, a network is called officially as Basic Service Set (BSS). To identify that uniquely, a Basic Service Set Identifier (BSSID) is used. 
+
+If there is only single access point in the network, BSSID is the same as AP's MAC address. 
+
+In ESS mode with multiple access points, every AP has still its own BSSID, but the whole network under a SSID needs a unique identifier. This is called ESSID, Extended Service Set Identifier.
 
 
 \section{Packets}
@@ -845,7 +852,7 @@ Because joining a WPS-enabled network has been wanted to make easy but secure fo
 \caption{Protocol for joining a WPS-enabled WLAN. Simplified from~\cite{microsoftWCN}}, detailed version in Appendix~\ref{chapter:appendix:wps}
 \end{figure}
 
-The most important and interesting part is in the very beginning, since we are looking for probe requests. We found that some devices are actively sending WPS requests hoping that an AP would reply. This request is the same as message 1 in the protocol.
+The most important and interesting part is in the very beginning, since we are looking for probe requests. We found that some devices are actively sending WPS requests hoping that an AP would reply. This request is the same as message 1 in the protocol, and it is sent in a probe request frame's last field, targeted for vendor-specific information.
 
 In message 1, there is a broadly-named field ``Description''. The data it includes makes it worth to look closer. Microsoft's document says that it is ``[a] human-readable description of the sending device (UUID, manufacturer, model number, MAC address, and so on) and device capabilities such as supported algorithms, I/O channels, and Registration Protocol role.'', and Wireshark confirms exactly that. Also, there is a field called ``DEVICE\_NAME'', which is the name user has given to the device, for example ``Pekko's iPhone''.
 
