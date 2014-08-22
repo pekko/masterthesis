@@ -477,7 +477,7 @@ Network can also consist of more than one APs sharing the same SSID. This way, a
 \section{Packets}
 \label{sec:packets_format}
 
-In IEEE 802.11 standard, there are many different packets, frames and fields for different purposes. In this study, we will look for the ones used when trying to join a network. We will not study physical layer requirements and specifications.
+In IEEE 802.11 standard~\cite{IEEE802.11}, there are many different packets, frames and fields for different purposes. In this study, we will look for the ones used when trying to join a network. We will not study physical layer requirements and specifications.
 
 The standard calls a single entity of different data as a \emph{frame}. Each MAC frame -- which we are interested in -- contains
 
@@ -491,7 +491,7 @@ The standard calls a single entity of different data as a \emph{frame}. Each MAC
 
 General format for MAC frames is presented on Figure~\ref{fig:general_mac_frame}. The frame consists of minimum of four and maximum of eleven fields, which are marked as ``mandatory'' or ``optional''. Decision of whtether or not optional fields are included is not left for implementation: it depends on which type of frame it actually is. MAC header includes all the fields except frame body and checksum.
 
-Frame begins with a frame control field, which includes protocol version, type and subtype of the actual frame and specific flags for data transmission. The protocol version is currently zero. Type can be zero for management frames, one for control frames, or two for data frames. Value three is reserver for future use. Management frames will be studied in Section~\ref{subsec:management_frames}, control and data frames are left outside of this thesis. basically, management frames are higher-level frames that set up and maintain the connection. Control frames help handling delivery of data, and data frames include the data.
+The frame begins with a frame control field, which includes protocol version, type and subtype of the actual frame and specific flags for data transmission. The protocol version is currently zero. Type can be zero for management frames, one for control frames, or two for data frames. Value three is reserved for future use. Management frames will be studied in Section~\ref{subsec:management_frames}, but control frames and data frames are left outside of this thesis. Basically, management frames are higher-level frames that set up and maintain the connection. Control frames help handling delivery of data, and data frames include the data.
 
 The flags in the frame control field specify, for example, whether the data transmitted has been split into fragments, or if this frame has already tried to be sent but failed, and this one is a retransmission of a failed one.
 
@@ -527,18 +527,23 @@ Another fields in MAC frame include sequence control, quality of service (QoS), 
     \caption{General MAC frame format}
 \end{figure}
 
+
 \subsection{Management frames}
 \label{subsec:management_frames}
 
+Management frames help to set up and maintain connection, that is, they carry metadata. A general view of management frame format is shown in Figure~\ref{fig:management_frame}, which resembles closely general MAC frame format from Figure~\ref{fig:general_mac_frame}. This is not an accident, because management frames are one type of MAC frames: they have \texttt{type} subfield in frame control field set as zero.
+
+Management frames can be further divided into different frames depending of \texttt{subtype} field in frame control field. There are 15 different possibilities, and we will look for two of them: beacon frame and probe request frames.
+
 \begin{figure}
     \label{fig:management_frame}
-    \begin{tabular}{|p{1cm}|p{1cm}|p{1cm}|p{1cm}|p{1cm}|p{1cm}|p{1cm}|p{1cm}|p{1cm}|p{1cm}|p{0.8cm}|}
+    \begin{tabular}{|p{1cm}|p{1cm}|p{1cm}|p{1cm}|p{1cm}|p{1cm}|p{1cm}|p{1cm}|p{1cm}|p{1cm}|}
     
-        \multicolumn{9}{|c|}{MAC header} &
+        \multicolumn{7}{|c|}{MAC header} &
         \multicolumn{2}{c|}{ } \\
     \hline 
         Frame Control &
-        Duration &
+        Dura-tion &
         Addr. 1 &
         Addr. 2 &
         Addr. 3 &
@@ -553,32 +558,75 @@ Another fields in MAC frame include sequence control, quality of service (QoS), 
 
     \end{tabular}
 
-    \caption{General MAC frame format}
+    \caption{Management frame format}
 \end{figure}
 
+\subsubsection{Beacon frame format}
+\label{subsubsec:beacon_frame}
+
+APs sent Beacon frames to advertise their own existence. They are defined to be a management frame with \texttt{subtype} of value 8, so identifying rule is \texttt{type == 0 and subtype == 8}.
+
+The body of Beacon frame is huge, containing total of 55 different field plus vendor-specific ones. We do not list them all here. The most important is the fourth field, \texttt{SSID}, which was presented in Section~\ref{sec:SSID}. Another important is the second field in frame body, \texttt{Beacon interval}, which represents the number of time units between beacon tramissions.
+
+
+\subsubsection{Probe Request frame format}
+\label{subsubsec:probe_request}
+
+Probe Request frames are used to join a network as specified in the next section, in Section~\ref{sec:joining}.
+
+Probe Request frame is a management frame with \texttt{subtype == 4}. Therefore it can be identified from all MAC frames by specifying criteria \texttt{type == 0 and subtype == 4}. 
+
+All the fields in Probe Request frame are shown in Figure~\ref{fig:probe_request}. For us, the most important one is the first one, \texttt{SSID}, which was studied in detail in Section~\ref{sec:SSID}. Here we note that the maximum length of SSID is 32 bytes, and it can contain UTF-8-encoded characters, if Extended Capabilities field (9th in Probe Request frame body) contains specific UTF-8 flag set to one.
+
+In addition to single SSID field, there is a field called \texttt{SSID List}, tenth in order, where one can specify multiple SSIDs it is interested in. The field includes a subfield to note the length of the list. The length subfield has a size of one octet, so there can be at most 255 different SSIDs.
+
+In the last field, vendor can specify its own extensions.
+
+\begin{figure}
+\center
+\label{fig:probe_request}
+\begin{tabular}{|c|l|}
+    \hline
+    Order & Field \\ \hline
+    \hline
+    1 & SSID \\ \hline
+    2 & Supported rates \\ \hline
+    3 & Request information \\ \hline
+    4 & Extended Support Rates \\ \hline
+    5 & DSSS Parameter Set \\ \hline
+    6 & Supported Operating Classes \\ \hline
+    7 & HT Capabilities \\ \hline
+    8 & 20/40 BSS coexistence \\ \hline
+    9 & Extended Capabilities \\ \hline
+    10 & SSID List \\ \hline
+    11 & Channel Usage \\ \hline
+    12 & Interworking \\ \hline
+    13 & Mesh ID \\ \hline
+    Last & Vendor-specific extensions \\ \hline
+\end{tabular}
+\caption{Probe Request frame body}
+\end{figure}
 
 \section{Joining a network}
 \label{sec:joining}
 
-So far we have characterized different elements of a wireless network. In this section, we will discuss how a node can find an existing wireless network. This can be achieved using either (1) active scanning or (2) passive scanning, which both are defined in IEEE standard.~\cite{IEEE802.11_scanning}
+So far we have characterized different elements of a wireless network. In this section, we will discuss how a node can find an existing wireless network. This can be achieved using either (1) active scanning or (2) passive scanning, which both are defined in the IEEE standard.~\cite{IEEE802.11_scanning}
 
 \subsection{Passive scanning}
 \label{subsec:passive_scanning}
 
-In passive scanning, a node does not send anything by itself in order to find the network it wants to join. Instead, a node listens the transmissions, and scans for beacon frames sent by APs. Beacon frames are large and contain lots of information, total of 55 different fields, most of which are related to radio transmission parameters.
+In passive scanning, a node does not send anything by itself in order to find the network it wants to join. Instead, a node listens the transmissions, and scans for beacon frames sent by APs.
 
-However, while doing passive scanning, one particular field is really important, the SSID. As we have learnt previously in Section~\ref{sec:SSID}, SSID identifies particular network and acts as a human-understandable network name. Therefore the node can display the networks it found to end-user, who makes the decision which network to join. Alternatively, node can compare its findings to previously generated list of known networks, and join one it finds interesting.
+As we have learnt previously in Section~\ref{subsubsec:beacon_frame}, beacon frames include an SSID, and in Section~\ref{sec:SSID}, SSID identifies particular network and acts as a human-understandable network name. Therefore the node can display the networks it found to end-user, who makes the decision which network to join. Alternatively, node can compare its findings to previously generated list of known networks, and join one it finds familiar.
 
 Passive scanning has some drawbacks. First, it might be relatively slow, as a node needs to wait for APs to broadcast their beacons. Second, it is possible to configure AP so that it does not broadcast its SSID: this feature is called \emph{Hidden SSID}. Therefore, a node using passive scanning does not see APs using Hidden SSIDs --- it can only join them by using AP's MAC address.
 
 \subsection{Active scanning}
 \label{subsec:active_scanning}
 
-In active scanning, the situation is different. This time a node knows beforehand which network it would like to join, and sends \emph{probe request frames} into the air. 
+In active scanning, the situation is different. This time a node knows beforehand which network it would like to join, and sends \emph{probe request frames} into the air. Construction of probe request frames was discussed in Section~\ref{subsubsec:probe_request}.
 
-Probe requests are smaller than previously mentioned beacon frames, having only 13 standardized fields. The most important field for our study is the first one, the SSID. In this field a node tells which network it would like to join, if possible. 
-
-If a node knows lots of different networks and is trying to join all of them, it needs to send a lot of probe request frames. In order to reduce the amount of network traffic, there is a field called ``SSID List'', 10th in the probe request frame. Using this field, a node can combine several requests into a single one. The length of the list is variable, and is limited only by the fact that the actual ``length'' field of SSID List element has size of one octet. Therefore the maximum number of SSIDs in a single SSID List element is 256.
+The standard does not specify time interval between scanning of different rounds of scanning, and every manufacturer can decide that on their own.  
 
 \subsection{Active scanning with a wildcard SSID}
 \label{subsec:active_wildcard}
