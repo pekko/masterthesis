@@ -421,7 +421,7 @@ In Chapter~\ref{chapter:legal} we study the legal status of discussed methods. P
 
 Wireless connections can be divided into two categories. First, we have cell-based technologies, which are used between mobile network operator (such as Verizon, T-Mobile) and a mobile device. Such technologies include but are not limited to GPS, GPRS, EDGE, and UMTS. This thesis does not study these protocols.
 
-We will examine the protocols and data transmissions used inside local area networks (LAN). Traditionally, those networks have been made connecting cables between computers and a hub, a switch, or a router. Recently these local networks have been built with wireless connections, as they obviously allow users a great mobility. Also, as smartphones have developed with new mobile apps requiring more and more bandwidth, local area networks are easier and cheaper to build and use than mobile networks.
+We will examine the protocols and data transmissions used inside local area networks (LAN). Traditionally, those networks have been created by connecting cables between computers and a hub, a switch, or a router. Recently these local networks have been built with wireless connections, as they obviously allow users a great mobility. Also, as smartphones have developed with new mobile apps requiring more and more bandwidth, local area networks are easier and cheaper to build and use than mobile networks.
 
 The protocol for wireless LAN (WLAN) is maintained by the IEEE LAN/MAN Standards Committee, also known as IEEE 802. The family of protocols covering WLAN is called the 802.11 family, and it includes many different versions of the standard, denoted by letters. Widely implemented standards of the family are 802.11b, 802.11g, and 802.11n.~\cite{IEEE802.11}
 
@@ -433,7 +433,7 @@ Inside a wireless network there can be found several different devices. In the f
 
 IEEE, a standards organization maintaining the wireless standard, defines all the devices capable to connect wireless network as \emph{stations} (STA). However, this definition is a bit too broad, so we will split it further.
 
-First there can be found devices only connecting to network, which we will call \emph{nodes}. A node can be any kind of device, and most common and most relevant ones for this study are laptops and smartphones. Other possible terms for node can be \emph{client} or \emph{terminal}.
+First there can be found devices only connecting to an existing network, which we will call \emph{nodes}. A node can be any kind of device, and most common and most relevant ones for this study are laptops and smartphones. Other possible terms for node can be \emph{client} or \emph{terminal}.
 
 Second, the devices building the wireless network and allowing nodes to connect to it are called \emph{Access points} (AP). A wireless network can consist of one or more APs.
 
@@ -789,13 +789,13 @@ A novel and interesting approach is to combine SSID data with social media. In t
 
 The key idea and goal of our research is to find the owner of a device from social media based on SSID findings. Possible social media platforms include Facebook, Twitter, Foursquare, Google+ and others. These include --- or at least provide a possibility to include --- a location data into a posting. 
 
-If we are able to get the locations where a person has been from the SSID data and query the social media database with these locations, it might be possible to retrieve the real identity of a person.
+Thus, we have three datasets. First, we have collection of SSIDs from target's device. Second, we have a mapping from SSID to geolocation. Third, we have a database of people's social media postings with their locations. By combining all of them, we may be able to reveal the social media profile used by the device user.
 
 From the social media service list above, Twitter can be considered the most public. By default, every \emph{tweet}, a post to Twitter, is visible to everyone, whereas in Facebook the default audience is limited to user's friend network. For this reason, we will study primarly Twitter, but other networks share the same idea, if private access to the database is granted.
 
 Twitter provides a free-of-charge Application programming interface (API) to its data.~\cite{twitterapi} Using the API, one can fetch tweets with or without specific search criteria. One possible method to limit the results is by location coordinates.
 
-As a drawback, searching by geolocation is limited to 180 requests in an hour. Also, only recent tweets are available. Nevertheless, the idea does not suffer from these limitations, as we should assume that private API or future development will allow access to larger amount of data.
+As a drawback, searching by geolocation is limited to 180 requests in an hour. Also, only recent tweets are available. Nevertheless, the idea does not suffer from these limitations, as we should assume that a private API or future development will allow access to larger amount of data.
 
 
 \subsection{Semantic SSID analysis}
