@@ -975,14 +975,12 @@ Most of the cases have basis on privacy legislation. Privacy is recognized inter
 
 We will divide our study in three parts:
 \begin{enumerate}
-    \item Is collecting SSID data legal, or how is it regulated?
-    \begin{enumerate}
-        \item Collecting SSIDs from access points and mapping them
-        \item Collecting SSIDs from mobile devices
-    \end{enumerate}
-    \item Is interpreting SSID data legal, or how is it regulated?
-    \item Is performing active man-in-the-middle attacks legal?
+    \item Is collecting SSIDs from access points and mapping them legal, or how it is regulated?
+    \item Is collecting SSIDs from mobile devices legal, or how it is regulated?
+    \item Is analyzing the SSID data legal, or how is it regulated?
 \end{enumerate}
+
+Active man-in-the-middle attacks are illegal by well-established laws on wiretapping, secrecy of letters, and secrecy of communications, and they will not be studied in this chapter in detail.
 
 The best-known and best-documented legal case for two first questions is Google's Street view, on which we give small background information before beginning. After the study of current regulations, we will look for the ongoing development in the field.
 
@@ -1048,6 +1046,12 @@ If the data is considered as personal data, there are numerous regulations that 
     \item the controller must name a person who is responsible for ensuring data protection legislation in the organization
     \item in some cases the controller must notify local data protection authority
 \end{itemize}
+
+These requrirements would increase the costs, reduce effectivity, and sometimes render data collection almost impossible. For example, it would be extremely difficult for Google to get consent from everyone to collect their network's SSID. Also, requiring users to turn off wireless connectivity if they do not want to participate would not be enough, as the Working Party notes~\cite{wp29_185}:
+\begin{quote}
+    If the default settings of an operating system would allow for the transmission of location data, a lack of intervention by its users should not be mistaken for freely given consent.
+\end{quote}
+
 
 \subsection{Collecting access point data}
 \label{subsec:eu_collect}
