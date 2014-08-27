@@ -1019,20 +1019,10 @@ Legislation is created by the European Parliament, the Council of the European U
 
 For privacy issues, there is European Data Protection Supervisor (EDPS), who works together with each state's Data Protection Authorities (DPA). With the European Commission, these institutions form \emph{Article 29 Working Party},~\cite{wp29_rules} which we will refer as \emph{Working Party}. The Working Party has only advisory status~\cite{wp29_rules}, but its opinions must be taken seriously, as it is in direct interaction with law-making institutes of the EU.
 
-\subsection{Collecting the data}
-\label{subsec:eu_collect}
+\subsection{Personal data}
+\label{subsec:eu:personal_data}
 
-To manage the problem, we face it in parts. First we look for the legal status of mapping WLAN access points.
-
-A possible directive for the case, the e-privacy directive (2002/58/EC), is not relevant. First, in the opinion of the Working Party, it is said to apply only to location data processed by telecom operators~\cite{wp29_185}. That can be read from the directive, where ``location data'' is defined in Article 2(c) as
-
-\begin{quotation}
-    location data means any data processed in an electronic communications network or by an electronic communications service, indicating the geographic position [..]
-\end{quotation} 
-
-SSID data from nodes or access points is not processed in electronic communications network or service, as they refer to telecom operators. This directive is therefore designed to protect privacy of cell-location data from mobile phones.
-
-According to the official opinion of the Working Party~\cite{wp29_185}, the really relevant piece of legistation is the data protection directive (1995/46/EC)~\cite{data_protection}. It states in the first article for its object that
+According to the official opinion of the Working Party~\cite{wp29_185}, the relevant piece of legistation is the data protection directive (1995/46/EC)~\cite{data_protection}. It states in the first article for its object that
 
 \begin{quotation}
     In accordance with this Directive, Member States shall protect the fundamental rights and freedoms of natural persons, and in particular their right to privacy with respect to the processing of personal data.
@@ -1048,8 +1038,41 @@ Thus, the first requirement of personal data is that a person can be identified 
 
 To recognize only a possible group of people is not enough.~\cite{wp29_136} For example, only the last name of an individual is not personal data when talking about the whole population of a country, but within a school class, the last name is enough to identify a single person, and therefore personal data.
 
+Together with previous observation, we can note that identifying a group from big mass is not personal data, but multiple such identifications in a combination can result in personal data. Using the same example, one cannot identify a people when given a class he studies in nor when given his last name, but in a combination, identification is possible.
 
+\subsection{Collecting the data}
+\label{subsec:eu_collect}
 
+To manage the problem, we face it in parts. First we look for the legal status of mapping WLAN access points. We assume that a service is collecting two different pieces of data: SSID and location.
+
+To make it easier, we first examine only the SSID data. SSIDs are names for networks, decided by network administrators. Clearly SSIDs of public networks, such as in buses or schools, are not personal data. In private home networks they are difficult to categorize as personal data: in most of the cases, the SSID is the default (\texttt{linksys}) or arbitary name (\texttt{My little network}). Also, SSIDs are not unique, and there are lots of networks with the same name. The only possibility would be if someone named his network after his own name (\texttt{John Doe's network}). Therefore collecting only SSIDs should not be treated as personal data.
+
+Combining the SSIDs with location data raises more questions. If we know the location of an access point, can we link it to specific individual? The first thing to note is that location data is only an approximation. The location of a collecting device is not the same as the location of access point, and in fact, even the location data of a collecting device may have errors. In rural areas where spaces between houses are large, it is possible to map a single access point to a specific house; in dense areas such as cities, this causes problems and at least requires significant amount of work.
+
+However, there are a couple of cases where precise identification could be possible. We have examined that some SSIDs include the first name of a person, such as \texttt{John's home network}. Given with an approximate location, it might be possible to say ``within this building, there is only one John, so the network is his''. 
+
+The question whether SSID-location-combination of data is personal data is therefore a question of reasonability of an event described above, and amount of work that is required to discover an individual: if identifying is theoretically possible, is it enough? The phrasign in the directive is the following~\cite{data_protection}:
+
+\begin{quotation}
+    to determine whether a person is identifiable, account should be taken of all the means likely reasonably to be used either by the controller or by any other person to identify the said person
+\end{quotation}
+
+This is a difficult question. The Working Party notes that not only today's situation is enough to consider, but that also future development should be taken into account, if data is to be stored for a longer period.~\cite{wp29_136} Because there have been no legal cases for the issue, we cannot answer this question reliably.
+
+The Working Party has said in a different opinion~\cite{wp29_185} that 
+\begin{quotation}
+    the combination of a MAC address of a WiFi access point with its calculated location, should be treated as personal data.
+\end{quotation}
+
+However, in our case we had only a MAC address and an SSID, not the BSSID that would uniquely identify the access point uniquely. In an article written by Watts, Brunger, and Shires~\cite{watts2011european} argue that the practical likelihood of mapping an access point to an individual is extremily low, and therefore mapping of access points should not be treated as personal data, even when BSSID is collected. It is worth to note that the writers of previous article were assisting Google on its Street View case, so their opinion is likely to be in favor of Google and against regulation of such databases.
+
+Together with data protection directive, there is another possible directive for the case, the e-privacy directive (2002/58/EC). However, it is not relevant for the case. First, in the opinion of the Working Party, it is said to apply only to location data processed by telecom operators~\cite{wp29_185}. That can be read from the directive, where ``location data'' is defined in Article 2(c) as
+
+\begin{quotation}
+    location data means any data processed in an electronic communications network or by an electronic communications service, indicating the geographic position [..]
+\end{quotation} 
+
+SSID data from nodes or access points is not processed in electronic communications network or service, as they refer to telecom operators. This directive is therefore designed to protect privacy of cell-location data from mobile phones.
 
 \subsection{Analyzing the data}
 
