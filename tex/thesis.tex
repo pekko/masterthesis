@@ -977,8 +977,8 @@ We will divide our study in three parts:
 \begin{enumerate}
     \item Is collecting SSID data legal, or how is it regulated?
     \begin{enumerate}
-        \item Collecting SSIDs from mobile devices
         \item Collecting SSIDs from access points and mapping them
+        \item Collecting SSIDs from mobile devices
     \end{enumerate}
     \item Is interpreting SSID data legal, or how is it regulated?
     \item Is performing active man-in-the-middle attacks legal?
@@ -1020,6 +1020,34 @@ Legislation is created by the European Parliament, the Council of the European U
 For privacy issues, there is European Data Protection Supervisor (EDPS), who works together with each state's Data Protection Authorities (DPA). With the European Commission, these institutions form \emph{Article 29 Working Party},~\cite{wp29_rules} which we will refer as \emph{Working Party}. The Working Party has only advisory status~\cite{wp29_rules}, but its opinions must be taken seriously, as it is in direct interaction with law-making institutes of the EU.
 
 \subsection{Collecting the data}
+\label{subsec:eu_collect}
+
+To manage the problem, we face it in parts. First we look for the legal status of mapping WLAN access points.
+
+A possible directive for the case, the e-privacy directive (2002/58/EC), is not relevant. First, in the opinion of the Working Party, it is said to apply only to location data processed by telecom operators~\cite{wp29_185}. That can be read from the directive, where ``location data'' is defined in Article 2(c) as
+
+\begin{quotation}
+    location data means any data processed in an electronic communications network or by an electronic communications service, indicating the geographic position [..]
+\end{quotation} 
+
+SSID data from nodes or access points is not processed in electronic communications network or service, as they refer to telecom operators. This directive is therefore designed to protect privacy of cell-location data from mobile phones.
+
+According to the official opinion of the Working Party~\cite{wp29_185}, the really relevant piece of legistation is the data protection directive (1995/46/EC)~\cite{data_protection}. It states in the first article for its object that
+
+\begin{quotation}
+    In accordance with this Directive, Member States shall protect the fundamental rights and freedoms of natural persons, and in particular their right to privacy with respect to the processing of personal data.
+\end{quotation}
+
+The question therefore is (1) is mapping of WLAN access points ``personal data'', and if yes, (2) what consequences does it have? Personal data is defined in Article 2(a) as
+
+\begin{quotation}
+    any information relating to an identified or identifiable natural person ('data subject'); an identifiable person is one who can be identified, directly or indirectly, in particular by reference to an identification number or to one or more factors specific to his physical, physiological, mental, economic, cultural or social identity;
+\end{quotation}
+
+Thus, the first requirement of personal data is that a person can be identified from the data. This interpreation is backed by opinion on personal data by the Working Party~\cite{wp29_136}. In the opinion, there is an example saying that ``Images of individuals captured by a video surveillance system can be personal data \textbf{to the extent that the individuals are recognizable}.'' (emphasis added)
+
+To recognize only a possible group of people is not enough.~\cite{wp29_136} For example, only the last name of an individual is not personal data when talking about the whole population of a country, but within a school class, the last name is enough to identify a single person, and therefore personal data.
+
 
 
 
