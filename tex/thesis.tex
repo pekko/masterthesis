@@ -404,6 +404,7 @@ We will also examine legal position of doing above-mentioned acts, and we are no
 
 In the thesis, we do not take into account any other parts of data transmission. Especially outside the scope is traffic after connecting to network, such as user visiting web pages or reading his email.
 
+For legal side, we do not try to give a worldwide detailed view. Instead, we focus on two major players, the United States and the European Union.
 
 \section{Organization of thesis}
 
@@ -970,7 +971,7 @@ With this kind of ready-made tools, performing man-in-the-middle attacks are tot
 
 So far we have seen how it is possible to collect data from mobile devices, how to interpret the collected data, and how to perform active attacks exploiting features of said devices. In this chapter, we study the legal framework of the issue.
 
-Most of the cases have basis on privacy legislation. Privacy is recognized internationally on the Universal Declaration of Human Rights \cite{udhr}, but actual laws are not universal but vary greatly between countries. Thus, we concentrate on two major players in the field, the United States and Europe.
+Most of the cases have basis on privacy legislation. Privacy is recognized internationally on the Universal Declaration of Human Rights \cite{udhr}, but actual laws are not universal but vary greatly between countries. Thus, we concentrate on two major players in the field, the United States and the European Union.
 
 We will divide our study in three parts:
 \begin{enumerate}
@@ -992,7 +993,7 @@ The best-known and best-documented legal case for two first questions is Google'
 % (2) use a specific app (case Helsinki-vantaa)
 %     -> if an app requires Wi-Fi permissions (on android), it can look easily for all previous networks (there was a paper on that) \cite{2014_WISEC_Achara}
 
-\section{Background of Google's Street View case}
+\section{Background of Google Street View case}
 \label{sec:streetview}
 
 The case with Google's Street View data collection has been a major case in regards of regulation of the topic, so we will first look on that. 
@@ -1001,12 +1002,28 @@ Steet View~\cite{googlestreetview} is Google's service built on their Maps platf
 
 Cars were collecting more information than only pictures of the streets. Google first told that they were collecting photos, WLAN network information including only access points' SSID and MAC address, and 3-D geometry data with lasers, all of them to help Google build location services. Google stated explicitly that it does not collect any payload information from wireless networks. \cite{fleischer_datacollected} However, that was proved false when German Data Protection Authority (DPA) wanted to audit the data, and Google admitted that it ``had mistakenly included code in our software that collected samples of payload data from WiFi networks''~\cite{eustace_datacollected}.
 
-\section{Europe}
+\section{European Union}
 \label{sec:legal_europe}
+
+Europe is a complex legal entity, as traditionally diverse countries are trying to harmonize their legislation inside the European Union. We concentrate on current status and forthcoming efforts of the EU and do not study minor differences or historical laws in European countries.
+
+The EU can impose four different types of legislation:~\cite{lisbon_288}
+\begin{description}
+     \item[Regulation] becomes a law in every EU country without alterations.
+     \item[Directive] is binding to every member state, but each of them will consider how to adopt it in the best way, taking into account the current laws.
+     \item[Decisions] are binding but only to whom they are addressed.
+     \item[Recommendations] are, as the name suggests, only opinions without binding force.
+\end{description}
+
+Legislation is created by the European Parliament, the Council of the European Union and the European Commission.~\cite{eu_institutions}
+
+For privacy issues, there is European Data Protection Supervisor (EDPS), who works together with each state's Data Protection Authorities (DPA). With the European Commission, these institutions form \emph{Article 29 Working Party},~\cite{wp29_rules} which we will refer as \emph{Working Party}. The Working Party has only advisory status~\cite{wp29_rules}, but its opinions must be taken seriously, as it is in direct interaction with law-making institutes of the EU.
 
 \subsection{Collecting the data}
 
 
+
+\subsection{Analyzing the data}
 
 % case 1)
 %     - wp29_opinion_185_en vs International Data Privacy Law-2011-Watts-149-60
