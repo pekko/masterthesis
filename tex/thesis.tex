@@ -783,15 +783,15 @@ A simple metric for comparing two samples is the Jaccard Index. It is defined as
 
 $$J(X,Y) = \left| \frac{X \cup Y}{X \cap Y} \right| $$
 
-However, the Jaccard Index takes into account only size of intersection, and not the fact how popular an element was in the dataset. It does not matter whether the two nodes had the most popular SSID in common, or if they were the only two nodes that had the SSID. In the paper, Cunche et al. argue that having a rare SSID should yield for stronger possibility of relationship. That is a reasonable argument, especially when we take into account the long tail of SSID frequency: a few SSIDs are extremely common, but huge majority of them appear only in a few devices.
+However, the Jaccard Index takes into account only the size of intersection, and not the fact how popular an element was in the dataset. It does not matter whether the two nodes had the most popular SSID, for example \texttt{linksys}, in common, or if they were the only two nodes that had the SSID \texttt{Super-Private-XYZ123-Network}. In the paper, Cunche et al. argue that having a rare SSID should yield for stronger possibility of relationship. That is a reasonable argument, especially when we consider the long tail of SSID frequency: a few SSIDs are extremely common, but huge majority of SSIDs appear only in one or two devices.
 
 To take these charasterics of SSIDs into account, Cunche et al. develop a new metric, which is defined as 
 
 $$\text{Psim-}q(X,Y) = \sum_{z \in X \cap Y} \frac{1}{f_z^q}$$
 
-where q is a parameter and $f_z$ is the frequency of the element $q$. The authors obtained best results when $q=3$.~\cite{cunche2014linking}
+where q is a parameter and $f_z$ is the frequency of element $z$. The authors obtained best results when $q=3$.~\cite{cunche2014linking}
 
-Probably the biggest problem for finding relationships in dataset is that it is computationally heavy. Complexity is $O(N^2)$ where $N$ is the number of devices in a dataset, so it may be impractical to try to find all the links in a large dataset, such as Cunche's six months long range of data. Nonetheless, if we are limited to small population, for example people visiting a specific place, a store, or an airport during a day, it might be perfectly feasible to calculate all the possible combinations.
+Probably the biggest problem for finding relationships in dataset is that it is computationally heavy. Complexity is $O(N^2)$ where $N$ is the number of devices in a dataset, so it may be impractical to try to find all the links in a large dataset, such as Cunche's six months long range of data. Nonetheless, if we are limited to small population, for example people visiting a specific place, a store, or an airport during a day, it might be perfectly feasible to calculate all possible combinations.
 
 Real-life use cases to benefit from such a findings can also be found. If we are not limited only to strong connections, such as family members, weaker connections can suggest that users share some charasteristics. After having categorized users in different clusters, one could try to look if the clusters are distinguishable from each others. For example, does the one group look like younger people, and do they visit the store on specific time of the day, or spend notably more or less time in the shop?
 
@@ -1189,6 +1189,9 @@ Twitter, a lot of everything...
 
 \section{Commons}
 \label{sec:practical_commons}
+
+\section{Clustering}
+\label{sec:practical_clustering}
 
 \section{Geolocation}
 \label{sec:practical_geo}
