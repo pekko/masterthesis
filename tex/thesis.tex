@@ -1132,6 +1132,47 @@ However, if the data is not considered as personal data, no EU-wide legislation 
 
 \section{The United States}
 
+The legal system in the United States is somewhat different from Europe. American Common Law is based on previous cases, and we will study Google's Street View case in detail, since it fits best in our topic.
+
+\subsection{Collecting SSID data}
+
+The relevant legislation for examining SSID data collection is the Wiretap Act~\cite{wiretap_act}. In \textsection 2511(1)(a) is clearly stated that
+
+\begin{quote}
+    any person who intentionally intercepts, endeavors to intercept, or procures any other person to intercept or endeavor to intercept, any wire, oral, or electronic communication [..] shall be punished [..]
+\end{quote}
+
+First question is on which parts of WLAN conncetion are included in ``electronic communication''. Visiting web pages or reading emails is definetely electornic communication, but SSID broadcasts are more problematic. In a case U.S. v. Forrester~\cite{us_forrester} the government had monitored Forrester's internet activity. In the decision of Court of Appeals, 9th Circuit, is made a specific distinction between content and metadata:
+
+\begin{quote}
+    e-mail and Internet users have no expectation of privacy in the to/from addresses of their messages or the IP addresses of the websites they visit
+\end{quote}
+
+Using this and a couple of more cases, Mason~\cite{mason2014aligning} concludes that non-content data in general does not have reasonable expectation of privacy: it is the message which is protected. 
+
+Kerr~\cite{kerr2009applying} ends up to same result, when he tries to compare pre-internet world to today's environment. Previously there was a distinction between outside-inside: people are permitted to walk on public streets and see and hear what people are talking, but going inside one's house is forbidden. Kerr proposes that this should be converted to content/non-content distinction on the Internet. Non-content information would be allowed to look, but content would be protected. Same method applies to traditional mail service: Recipient's address is visible on top of envelope, but the actual letter is private.
+
+In Google's Street View case, Google tried to appeal using an exception in the Wiretap Act~\cite{google_joffe}, in \textsection 2511(2)(g)(i):
+
+\begin{quote}
+    It shall not be unlawful [..] \\
+    (i) to intercept or access an [..] electronic communication [that] is readily accessible to the general public
+\end{quote}
+
+where ``readily accessible to general public'' includes radio communication that is not ``scrambled or encrypted'' (\textsection 2510(16)). 
+
+The appeal was not succesful. The key part is that we must not interpret radio communication in a techincal sense, including all the communication that happens using radio waves; instead, it means traditional public radio broadcasts. The court also explicitly says that Wi-Fi network is not readily accessible to the general public.
+
+The important piece for our study is that in Google's case, the court notes that~\cite{google_joffe} (emphasis added)
+
+\begin{quote}
+    We hold that the phrase ``radio communication'' in 18 U.S.C. \textsection 2510(16) excludes \textbf{payload data} transmitted over a Wi-Fi network.
+\end{quote}
+
+Only payload data is exlucded, metadata is not mentioned, addressed or even questioned in the whole lawsuit.
+
+In a conclusion, we may say that U.S. laws allow recording metadata, but not content of the WLAN communication, even if it would unencrypted and happens over radio waves. SSID and MAC address are part of metadata, thus recording them is legal.
+
 % case 1)
 %     - wiretapping act
 %     - google vs joffe
