@@ -777,11 +777,37 @@ After collecting much of SSIDs from lots of devices, it is possible to discover 
 
 In the paper, they have two datasets: one collected from small number of volunteers with known friendships, and another from the wild, which has been collected over a six-month period in Sydney, Australia. The dataset of volunteers contained strong relationships, such as close friends and family members. Authors created a model based on observations of the known dataset and applied it to unknown data from the public.
 
-Finding strongly connected nodes in two datasets has been studied well in computer science, so there are numerous mathematical models developed for this particular problem. Cunche et al. measure performance for many of those and develop them forward to match the specific characteristic of SSIDs. These include a long tail of popularity, which means that some SSIDs are extremely popular, but there are a lot of those with only a couple of hits. In the paper, they argue that finding common SSIDs that appear rarely in the whole dataset is a strong signal of relationship. 
+Finding strongly connected nodes in two datasets has been studied well in computer science, so there are numerous mathematical methods developed for this particular problem. These methods are called similarity metrics, and the idea is to measure how similiar two nodes are based on their feature set (here, list of SSIDs). 
+
+A simple metric for comparing two samples is the Jaccard Index. It is defined as follows, where $X$ and $Y$ are two sets of SSIDs.
+
+$$J(X,Y) = \left| \frac{X \cup Y}{X \cap Y} \right| $$
+
+However, the Jaccard Index takes into account only size of intersection, and not the fact how popular an element was in the dataset. It does not matter whether the two nodes had the most popular SSID in common, or if they were the only two nodes that had the SSID. In the paper, Cunche et al. argue that having a rare SSID should yield for stronger possibility of relationship. That is a reasonable argument, especially when we take into account the long tail of SSID frequency: a few SSIDs are extremely common, but huge majority of them appear only in a few devices.
+
+To take these charasterics of SSIDs into account, Cunche et al. develop a new metric, which is defined as 
+
+$$\text{Psim-}q(X,Y) = \sum_{z \in X \cap Y} \frac{1}{f_z^q}$$
+
+where q is a parameter and $f_z$ is the frequency of the element $q$. The authors obtained best results when $q=3$.~\cite{cunche2014linking}
 
 Probably the biggest problem for finding relationships in dataset is that it is computationally heavy. Complexity is $O(N^2)$ where $N$ is the number of devices in a dataset, so it may be impractical to try to find all the links in a large dataset, such as Cunche's six months long range of data. Nonetheless, if we are limited to small population, for example people visiting a specific place, a store, or an airport during a day, it might be perfectly feasible to calculate all the possible combinations.
 
 Real-life use cases to benefit from such a findings can also be found. If we are not limited only to strong connections, such as family members, weaker connections can suggest that users share some charasteristics. After having categorized users in different clusters, one could try to look if the clusters are distinguishable from each others. For example, does the one group look like younger people, and do they visit the store on specific time of the day, or spend notably more or less time in the shop?
+
+\subsection{Clustering}
+\label{subsec:clustering}
+
+To generalize previous idea, we can see the situation as a weighted graph. In the graph, mobile devices are nodes, and they are linked together by the similiarity of the SSID lists. Once again, the simplest method to create similarity function are calculating the size of intersection of SSID lists or the Jaccard index. We can also use advanced algorithms, such as Psim-q.
+
+When we have formed a graph, we can search try to search for clusters. Finding clusters can be defined as ``recognizing natural groups within a class of entities''~\cite{van2000graph}, or partitioning the graph in groups in a way that difference inside a cluster is low and difference between clusters is high. Therefore, we are trying to look for groups of nodes that have common charasterics. The difference to previous section is that there we searched for strong connections between two nodes; now the size of group is larger than two.
+
+Find the clusters in the graph is therefore our actual problem. Luckily, we do not need to invent our own algorithm, since this is a general graph problem, and it has been studied in computer science before. 
+
+One promising approach could be \emph{Markov Cluster Process} (MCL Process), introduced by van Dongen's PhD dissertion~\cite{van2000graph} and taught nowadays in university classes~\cite{mlc_macropol}. The algorithm converts first a graph into transition matrix, where element $(x,y)$ denotes the weight from $x$ to $y$. Columns are normalized so that each sums to one. After that, there are two operations: expansion and inflation. Expansion simply raises the matrix to power of $e$, which is a paramter. Inflation consist of squaring every column and them normalizing it again; this way, inflation strenghtens already strong connections and weakens already weak ones. In other words, expansion allows flow to connect new parts of the graph and inflation grows the range of values. Inflation and expansion are repeated until the algorithm convergences. Resulting matrix gives the clusters.
+
+MLC has some problems. First, its time complexity is $O(N^3)$, where $N$ is number of edges, which may become a problem with very large graphs. Second, it cannot find overlapping clusters -- each node belongs only to one cluster. However, by providing different initial parameters for multiple runs, we may be able to retrieve different clustering results.
+
 
 \subsection{Social media networks}
 \label{subsec:social_media}
@@ -998,7 +1024,7 @@ The case with Google's Street View data collection has been a major case in rega
 
 Steet View~\cite{googlestreetview} is Google's service built on their Maps platform. In Street View, one can view panorama photos taken from the streets. Google has collected the images by driving on streets with a car equipped with multiple cameras and a GPS device~\cite{streetview_behindscenes}.
 
-Cars were collecting more information than only pictures of the streets. Google first told that they were collecting photos, WLAN network information including only access points' SSID and MAC address, and 3-D geometry data with lasers, all of them to help Google build location services. Google stated explicitly that it does not collect any payload information from wireless networks. \cite{fleischer_datacollected} However, that was proved false when German Data Protection Authority (DPA) wanted to audit the data, and Google admitted that it ``had mistakenly included code in our software that collected samples of payload data from WiFi networks''~\cite{eustace_datacollected}.
+Cars were collecting more information than only pictures of the streets. Google first told that they were collecting photos, WLAN network information including only access points' SSID and MAC address, and 3-D geometry data with lasers, all of them to help Google build location services. Google stated explicitly that it does not collect any payload information from wireless networks. \cite{fleischer_datacollected,google_wifi_collection} However, that was proved false when German Data Protection Authority (DPA) wanted to audit the data, and Google admitted that it ``had mistakenly included code in our software that collected samples of payload data from WiFi networks''~\cite{eustace_datacollected}.
 
 \section{European Union}
 \label{sec:legal_europe}
@@ -1020,7 +1046,7 @@ For privacy issues, there is European Data Protection Supervisor (EDPS), who wor
 \subsection{Personal data}
 \label{subsec:eu:personal_data}
 
-According to the official opinion of the Working Party~\cite{wp29_185}, the relevant piece of legistation is the data protection directive (1995/46/EC)~\cite{data_protection}. It states in the first article for its object that
+According to the official opinion of the Working Party~\cite{wp29_185}, the relevant piece of legistation is the Data Protection Directive (1995/46/EC)~\cite{data_protection}. It states in the first article for its object that
 
 \begin{quote}
     In accordance with this Directive, Member States shall protect the fundamental rights and freedoms of natural persons, and in particular their right to privacy with respect to the processing of personal data.
@@ -1079,7 +1105,7 @@ The Working Party has said in a different opinion~\cite{wp29_185} that
 
 However, in our case we had only a MAC address and an SSID, not the BSSID that would uniquely identify the access point uniquely. In an article written by Watts, Brunger, and Shires~\cite{watts2011european} argue that the practical likelihood of mapping an access point to an individual is extremily low, and therefore mapping of access points should not be treated as personal data, even when BSSID is collected. It is worth to note that the writers of previous article were assisting Google on its Street View case, so their opinion is likely to be in favor of Google and against regulation of such databases.
 
-Together with data protection directive, there is another possible directive for the case, the e-privacy directive (2002/58/EC). However, it is not relevant for the case. First, in the opinion of the Working Party, it is said to apply only to location data processed by telecom operators~\cite{wp29_185}. That can be read from the directive, where ``location data'' is defined in Article 2(c) as
+Together with the Data Protection Directive, there is another possible directive for the case, the E-Privacy Directive (2002/58/EC). However, it is not relevant for the case. First, in the opinion of the Working Party, it is said to apply only to location data processed by telecom operators~\cite{wp29_185}. That can be read from the directive, where ``location data'' is defined in Article 2(c) as
 
 \begin{quote}
     location data means any data processed in an electronic communications network or by an electronic communications service, indicating the geographic position [..]
@@ -1099,7 +1125,7 @@ Collecting SSID data is more difficult. In fact, our experiment in Chapter~\ref{
 
 The analyzing phase depends greatly on the decision whether data collected is considered as personal data or not. 
 
-If it is, then all purposes of where data is used must have been told to the data subject -- that is, the target of collection -- beforehand, and his constent must be obtained. Also, there is so-called ``right to be forgotten'', which includes a possibility for everyone to see their personal data and ask for its deletion~\cite{data_protection}. 
+If it is, then all purposes of where data is used must have been told to the data subject -- that is, the target of collection -- beforehand, and his constent must be obtained. Also, there is so-called ``right to be forgotten'', which includes a possibility for everyone to see their personal data and ask for its deletion in the Data Protection Directive, Article 12~\cite{data_protection}. 
 
 However, if the data is not considered as personal data, no EU-wide legislation applies. 
 
