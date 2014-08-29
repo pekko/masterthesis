@@ -1143,6 +1143,7 @@ However, if the data is not considered as personal data, no EU-wide legislation 
 The legal system in the United States is somewhat different from Europe. American Common Law is based on previous cases, and we will study Google's Street View case in detail, since it fits best in our topic.
 
 \subsection{Collecting SSID data}
+\label{subsec:us_collecting}
 
 The relevant legislation for examining SSID data collection is the Wiretap Act~\cite{wiretap_act}. In \textsection 2511(1)(a) is clearly stated that
 
@@ -1182,13 +1183,27 @@ Only payload data is exlucded, metadata is not mentioned, addressed or even ques
 In a conclusion, we may say that U.S. laws allow recording metadata, but not content of the WLAN communication, even if it was unencrypted and happens over radio waves, which could techinically be recorded. SSID and MAC address are part of metadata for both clients and APs, thus recording them is legal.
 
 \subsection{Analyzing data}
-% case 2)
-%     - ongoing: currently legal, but Consumer Privacy Bill of Rights will change
-%     - Jennings_protect_consumer_privacy
 
+Generally speaking, analyzing the collected data and conducting behavioral profiling in the U.S. is legal~\cite{jennings2012track}, and there is no single privacy law for commercial information~\cite{yeatesprivacy,jennings2012track}. Instead, there are a few laws that makes exceptions to that basic rule, but they are for only for special purposes: for example, data handled in healthcare is regulated and protected by Health Insurance Portability and Accountability Act (``HIPAA'').~\cite{jennings2012track}
+
+The authority for overlook companies' actions is the Federal Trade Commission (FTC). However, its power is limited: Jennings notes that FTC can only act if company's acts are ``unfair or deceptive'', and that ``typical Internet privacy case does not fit neatly within this unfairness jurisdiction''. One and probably the only case where FTC can act under this regulation is where a company gives specific promises on customer's data protection, for example that it will not sell it to third parties, but does not follow its promise. If there is no promise made, FTC is unable to act.~\cite{jennings2012track}
+
+Privacy violation can also be thought as a tort. Tort is an act where the victic suffers damage, and the actor or \emph{tortfeasor} is responsible to cover the damages. Torts are different from criminal acts. The concept of privacy torts was introduced by Prosser in 1960~\cite{prosser196048calif}, and he divided them into four categories:
+
+\begin{enumerate}
+    \item Intrusion upon seclusion or private affairs
+    \item Public disclosure of embarrassing private facts
+    \item Publicity with false claims
+    \item Using victim's name to tortfeasor's advantage withous consent
+\end{enumerate}
+
+Only the first one is possible for our case: we assume that analysis of the data is not made public. Thus, cases 2.-4. are not valid. On the first case, intrusion requires reasonable expectation of privacy~\cite{yeatesprivacy}, which communication metadata does not have, as we saw in Section~\ref{subsec:us_collecting}. Also, intrusion upon seclusion protects only sensitive material, not semi-public details such as person's unlisted phone number, or individual's past insurance history.~\cite{evans2012s} SSIDs or MAC addresses may not be categorized as sensitive material, even though publishing one's location history might be.
+
+In a conclusion, analyzing SSID data in the United States is legal under current legislation. Publishing the analysis may be illegal, depending on the information discovered in the analysis.
 
 \subsection{Ongoing development}
 
+U.S. privacy laws have been stagnant for last fifty fifty years~\cite{richards2010prosser}, but in recent years, there have been multiple proposals to modernize privacy.
 
 \section{Conclusion of legal status}
 
