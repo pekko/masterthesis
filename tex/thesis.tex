@@ -814,6 +814,8 @@ Another promising approach could be \emph{Markov Cluster Process} (MCL Process),
 
 MLC has same kind of problems than hierarchical clustering. First, MLC's time complexity is $O(N^3)$, where $N$ is number of edges, which may become a problem with very large graphs. However, for our use it most likely is managable, as numbers of nodes is closer to thousands than millions. Second, it cannot find overlapping clusters -- each node belongs only to one cluster. However, by providing different initial parameters for multiple runs, we may be able to retrieve different clustering results.
 
+As we have seen, both algorithms suffer from inability to deal with overlapping clusters. Finding clusters that can overlap is an open research question, with some algortihms proposed in last years, for example OClustR~\cite{PerezSuarez2013234} and DClustR~\cite{PerezSuarez20133040} from P\`{e}rez-Su\'{a}rez et al., and another link clustering based method by Shi et al~\cite{Shi2013394}. Development of efficient algorithms is still ongoing.
+
 
 \subsection{Social media networks}
 \label{subsec:social_media}
