@@ -1203,10 +1203,49 @@ In a conclusion, analyzing SSID data in the United States is legal under current
 
 \subsection{Ongoing development}
 
-U.S. privacy laws have been stagnant for last fifty fifty years~\cite{richards2010prosser}, but in recent years, there have been multiple proposals to modernize privacy.
+U.S. privacy laws have been stagnant for last fifty fifty years~\cite{richards2010prosser}, but in recent years, there have been a few proposals to modernize privacy. Two of them, Commercial Privacy Bill of Rights, and Do Not Track Online Act, were proposed by senators. Obama administrator also has proposed its Consumer Privacy Bill of Rights.
 
-\section{Conclusion of legal status}
+Commercial Privacy Bill of Rights~\cite{com_pbr} was proposed by senators John Kerry and John McCain. The bill introduces protections for personal data, and  many of them are similiar to EU's current legislation. The major parts of the proposal include
 
+\begin{itemize}
+    \item Defining \emph{personally identifiable information} in \textsection~3(5), which is close to EU's \emph{personal data}, altough in more detail
+    \item Requiring data collectors to notify individuals of data they have collected (\textsection~201(a))
+    \item Requiring an opt-in mechanism for sensitive parts of data (\textsection~202(a)(3)) and an opt-out for other personally identifiable information
+    \item Right to see own personal data (\textsection~202(a)(4))
+    \item Data minimization, which means that companies must collect only the necessary information (\textsection~301(1)(A))
+\end{itemize}
+
+However, the bill failed to get support from consumer groups, because it did not implement a ``do not track'' mechanism.~\cite{jennings2012track} The mechanism would allow consumers to opt-out of online tracking with a single click. The Do Not Track Online Act~\cite{donottrack_act} includes such a mechanism, where it is defined as
+
+\begin{quote}
+    a mechanism by which an individual can simply and easily indicate whether the individual prefers to have personal information collected by providers of online service
+\end{quote}
+
+Neither of the proposals were passed forward, thus they did not became laws.
+
+In addition to Senate's work, Obama administration announced a new framework to maintain privacy in a networked world~\cite{con_pbr}. The framework includes a Consumer Privacy Bill of Rights, which declares a set of rights. These rights are
+
+\begin{itemize}
+    \item to have control over their personal data
+    \item to easily understand information about privacy
+    \item to expect that companies use data in ways that are consistent in which consumer provide the data
+    \item to have secure handling of personal data
+    \item to access and correct the collected personal data
+    \item to have reasonable limits on personal data collected
+    \item to see the personal data collected from them
+\end{itemize}
+
+Once again, these include similiar charasteristics than European legislation and previous proposals. The proposal has not taken significant steps for two years, and consumer groups have been pushing Obama administration to make progress.~\cite{law360_groups}
+
+\section{Discussion on legal status}
+
+As we have seen, legislation varies between Europe and the U.S. Collecting personal data and analyzing it is regulated within EU, but the United States still is pretty open for everything as long as it does not target actual message, or is not made public.
+
+Farah and Higby see the situation as U.S. relying on market forces: if the business is handling data in a inappropriate way, customers would not want to go there. Europe, on the other hand, has trusted in legislation.~\cite{farah2001commerce} We can question the reasonability of said U.S. approach: how would a customer know, how the data is handled, if companies are not obliged to tell it? Perfect market theory requires perfect knowledge.
+
+A big problem with lawmaking is that the process is slow, but technical knowledge evolves rapidly. The legislation that seems to be appropriate today may cause unforeseen problems in following years. Therefore, we strongly suggest that new legislation should be as techinically-independent as possible. Laws should rely on general concepts instead of addressing a single, techinical problem. European privacy laws include good examples, where personal data is not defined in technical terms, but on what is possible to do with it -- to identify an individual.
+
+However, today's threats are different from yesterday's. Thus, we hope that U.S. will update its privacy legislation to match today's environment instead of fifty-years-old. Last, we note that lawmakers should be aware of the fact, that the laws they decided may last for decades.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -1304,7 +1343,7 @@ TODO: pseudonyms are used somewhere in GMS standard
 \section{Countermeasures for SSID profiling}
 \label{sec:countermeasures_ssid}
 
-SSID profiling depends on few factors. A profiler has to be able to \begin{enumerate}
+SSID profiling depends on a few factors. A profiler has to be able to \begin{enumerate}
     \item Record SSID probes,
     \item Identify which probes are sent from the same device, and
     \item Analyze them using various data sources.
