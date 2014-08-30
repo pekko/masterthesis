@@ -386,21 +386,21 @@ aalto, eurecom s3/nops, ucsb, speksi, WiGLE, everyone
 \chapter{Introduction}
 \label{chapter:intro}
 
-Wireless technology has been established well in everyday life. Most of the people have nowadays their own wireless network at home, and they use another at school or at work. When traveling, hotels and airports almost always offer Wi-Fis, in many cases for free of charge. Wireless networks can also be found in shopping malls, restaurants, and even in buses and trains -- and the number of networks is only growing.
+Wireless technology has been established well in everyday life. Most of the people have nowadays their own wireless network at home, and they use another one at school or at work. When traveling, hotels and airports almost always offer Wi-Fis, in many cases for free of charge. Wireless networks can also be found in shopping malls, restaurants, and even in airplanes, buses, and trains -- and the number of networks is only growing.
 
-From the very nature of wireless networks, transferred data is always visible to everyone who is inside the range of the network. Compared to traditional on-wire networking, this creates worries for information security. Lots of work has been done in order to make sure that actual transferred information, for example the content of web pages browsed, remains confident and is not visible for eavesdroppers. Such work includes, for example, standards for wireless network encryption.
+From the very nature of wireless networks, transferred data is always visible on the physical layer to everyone who is inside the range of the network. Compared to traditional on-wire networking, this creates worries for information security -- eavesdropping the cable is much harder. Lots of work has been done in order to make sure that actual transferred information, for example the content of web pages browsed, remains confident and is not visible for eavesdroppers. Such work includes, for example, standards for wireless network encryption.
 
-However, we are interested in data exchange that happens before a device joins a wireless network. The device has not established any connections yet, so all the information is sent in plaintext, unencrypted, in public. This information includes at least the identifier of the device trying to connect to a network, and the network name it is trying to connect. Or, alternatively, the device can ask for information about all the networks in the range.
+However, we are interested in data exchange that happens before a device joins a wireless network. The device has not established any connections yet, so all the information is sent in plaintext, unencrypted, in public. This information includes at least the identifier of the device that is trying to connect to a network, and the network name it is trying to connect. Or, alternatively, the device can ask for information about all the networks in the range.
 
-Manufacturers want to provide best possible user experience to their customers. A part of the experience is the ability to find a wireless network in the device's range, and to join fast to the network. Because of this, many devices scan continuosly the airspace and try to find out if there are networks to join. An understandable goal means that devices might leak out data about users: the names of networks user would like to join.
+Manufacturers want to provide best possible user experience to their customers. A part of the experience is the ability to find a wireless network in the device's range, and to join fast to the network. Because of this, many devices scan continuously the airspace and try to find out if there are networks to join. An understandable goal means that devices might leak out data about users: the names of networks the device, or the user, would like to join.
 
 
 \section{Scope}
 \label{sec:scope}
 
-In this thesis, we try to examine what information can be extracted from the said part of data transmission, and how it can be used. Particular use cases include gathering information from passive monitoring and combining it with other dataset, for which we conduct a practical experiment. Together with that, we look for theoretical possibilities for active attacks exploiting mobile device's features.
+In this thesis, we try to examine what information can be extracted from the pre-connection part of data transmission, and how the information can be used. Particular use cases include gathering information from passive monitoring and combining it with other dataset, for which we conduct a practical experiment. Together with that, we look for theoretical possibilities for active attacks exploiting mobile device's features.
 
-We will also examine legal position of doing above-mentioned acts, and we are not limited to technical side of the issue. In addition, we will look for technical countermeasures for found privacy and security threats: how the techniques we found can be circumvented, if someone wants to. 
+The thesis is multidisciplinary: in addition to technical study, we will also examine the legal position of doing above-mentioned acts, and we are not limited to the technical side of the issue. In addition, we will look for technical countermeasures for found privacy and security threats: how the techniques we found can be circumvented, if someone wants to.
 
 In the thesis, we do not take into account any other parts of data transmission. Especially outside the scope is traffic after connecting to network, such as user visiting web pages or reading his email.
 
@@ -408,9 +408,7 @@ For legal side, we do not try to give a worldwide detailed view. Instead, we foc
 
 \section{Organization of thesis}
 
-The thesis is organized as follows. In Chapter~\ref{chapter:protocol}, we tell how the 802.11 protocol, also known as Wi-Fi, works. We will see some importatnt parts of protocol in detail. In Chapter~\ref{chapter:profiling} we will examine how and why parts of wireless network protocols can be used for tracking and profiling users. Further, in Chapter~\ref{chapter:attacks} we will see how these features can be used in conducting active attacks and not only passive monitoring of devices. 
-
-In Chapter~\ref{chapter:legal} we study the legal status of discussed methods. Practical experiment of above-mentioned techniques is conducted in Chapter~\ref{chapter:practical}, and in Chapter~\ref{chapter:countermeasures} we will see how privacy-concerned users could be protected from the actions we have studied. Finally, in Chapter~\ref{chapter:conclusion} we conclude the thesis.
+The thesis is organized as follows. In Chapter~\ref{chapter:protocol}, we tell how the 802.11 protocol, also known as Wi-Fi, works. We will see some important parts of the protocol in detail. In Chapter~\ref{chapter:profiling} we will examine how and why parts of wireless network protocols can be used for tracking and profiling users. Further, in Chapter~\ref{chapter:attacks} we will see how these features can be used in conducting active attacks and not only passive monitoring of devices.  In Chapter~\ref{chapter:legal} we study the legal status of discussed methods. Practical experiment of above-mentioned techniques is conducted in Chapter~\ref{chapter:practical}, and in Chapter~\ref{chapter:countermeasures} we will see how privacy-concerned users could be protected from the actions we have studied. Finally, in Chapter~\ref{chapter:conclusion} we conclude the thesis.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -419,12 +417,9 @@ In Chapter~\ref{chapter:legal} we study the legal status of discussed methods. P
 \chapter{The 802.11 wireless network protocol}
 \label{chapter:protocol}
 
+We will examine the protocols and data transmissions used inside wireless local area networks (WLAN). Before the wireless connectivity, these local area networks (LANs) have been created by connecting cables between computers and a hub, a switch, or a router. During last decade, the wireless networks have gained lots of popularity, as they obviously allow users a great mobility. Also, as smartphones have developed with new mobile apps requiring more and more bandwidth, local area networks are easier and cheaper to build and use than mobile networks.
 
-Wireless connections can be divided into two categories. First, we have cell-based technologies, which are used between mobile network operator (such as Verizon, T-Mobile) and a mobile device. Such technologies include but are not limited to GPS, GPRS, EDGE, and UMTS. This thesis does not study these protocols.
-
-We will examine the protocols and data transmissions used inside local area networks (LAN). Traditionally, those networks have been created by connecting cables between computers and a hub, a switch, or a router. Recently these local networks have been built with wireless connections, as they obviously allow users a great mobility. Also, as smartphones have developed with new mobile apps requiring more and more bandwidth, local area networks are easier and cheaper to build and use than mobile networks.
-
-The protocol for wireless LAN (WLAN) is maintained by the IEEE LAN/MAN Standards Committee, also known as IEEE 802. The family of protocols covering WLAN is called the 802.11 family, and it includes many different versions of the standard, denoted by letters. Widely implemented standards of the family are 802.11b, 802.11g, and 802.11n.~\cite{IEEE802.11}
+IEEE LAN/MAN Standards Committee, also known as IEEE 802, maintains the protocol for wireless LAN. The family of protocols covering WLAN is called the 802.11 family, and it includes many different versions of the standard, denoted by letters. Widely implemented standards of the family are 802.11b, 802.11g, and 802.11n.~\cite{IEEE802.11}
 
 
 \section{Wireless networks terminology}
@@ -434,7 +429,7 @@ Inside a wireless network there can be found several different devices. In the f
 
 IEEE, a standards organization maintaining the wireless standard, defines all the devices capable to connect wireless network as \emph{stations} (STA). However, this definition is a bit too broad, so we will split it further.
 
-First there can be found devices only connecting to an existing network, which we will call \emph{nodes}. A node can be any kind of device, and most common and most relevant ones for this study are laptops and smartphones. Other possible terms for node can be \emph{client} or \emph{terminal}.
+First there are devices only connecting to an existing network, which we will call \emph{nodes}. A node can be any kind of device, and most common and most relevant ones for this study are laptops and smartphones. Other possible terms for node are \emph{client} or \emph{terminal}.
 
 Second, the devices building the wireless network and allowing nodes to connect to it are called \emph{Access points} (AP). A wireless network can consist of one or more APs.
 
@@ -446,7 +441,7 @@ Nodes can also work in \emph{ad-hoc} mode, where they act simultaneously as an a
 \section{MAC Address}
 \label{sec:MAC}
 
-Every device in the network, wired and wireless, has a media access control (MAC) address. A MAC address is bound to a specific device and does not change while connecting to different networks, being reconfigured, restarted, or anything else. It should also be globally unique: the idea is that any two devices could join the same network without problems, and since the network needs to be able to differentiate between devices, every device must have a unique identifier.~\cite{802_overview}
+Every device in the network, wired and wireless, has a media access control (MAC) address. A MAC address is a layer 2 address, is bound to a specific device, and does not change while connecting to different networks, reconfiguring the device, restarting the device, or anything else. It should also be globally unique: the idea is that any two devices could join the same network without problems, and since the network needs to be able to differentiate between devices, every device must have a unique identifier.~\cite{802_overview}
 
 A MAC address is 48 bits long and consists of two independent 24-bit parts. The first part specifies the manufacturer of the device, and that part is assigned by IEEE. This first part is called Organizationally Unique Identifier, or OUI.
 
@@ -457,7 +452,6 @@ The real address space of OUI, the organization part of address, is 22 bits, bec
 MAC addresses are presented in a hexadecimal notation consisting of six octets, separated by a colon or a dash, for example \texttt{54:26:96:d0:2c:b1}. A graphical representation of a MAC address is shown in Figure~\ref{fig:mac}, where the first row is a raw binary representation, and the second row shows hexadecimal values. The last row shows separation between Organizationally Unique Identifier and the part that remains to be determined by the manufacturer.
 
 \begin{figure}
-\label{fig:mac}
 \begin{tabular}{ |c|c|c | c|c|c | }
   \hline
   1010100 & 100110 & 10010110 & 11010000 & 101100 & 10110001 \\
@@ -468,6 +462,7 @@ MAC addresses are presented in a hexadecimal notation consisting of six octets, 
   \hline
 \end{tabular}
 \caption{Structure of MAC address \texttt{54:26:96:d0:2c:b1}}
+\label{fig:mac}
 \end{figure}
 
 
@@ -476,11 +471,11 @@ MAC addresses are presented in a hexadecimal notation consisting of six octets, 
 
 As we found in the last section, each device in a network has a unique identifier, a MAC address. If there are multiple APs available for a node to connect to, the node can identify and select the one by AP's MAC address.
 
-However, such action usually requires human interaction: someone has to tell the node which one of the APs is the correct one. Using only MAC address is not convenient, since twelve-character hexadecimal representation does not resemble anything familiar or memorizable.
+However, such action usually requires human interaction: someone has to tell the node which one of the APs is the correct one. Using only MAC address is not convenient, since twelve-character hexadecimal representation does not resemble anything familiar or memorable.
 
 Also, physical network devices do not necessarily correspond to logical networks. There can be a wireless network in a university, where APs are being upgraded to new ones. Therefore the logical network is still the same in the same building for the same purpose, but all the MAC addresses of the APs have been changed: remember, every MAC address is globally unique.
 
-To solve the problem, there is a concept of SSID, \emph{Service Set Identifier}. APs are given a human-readable string, the SSID, which has maximum length of 32 characters. This can be thought as a name of the network.
+To solve the problem, there is a concept of SSID, \emph{Service Set Identifier}. Each AP is given a human-readable string, the SSID, which has the maximum length of 32 characters. This can be thought as a name of the network.
 
 With SSID there is an abstraction of logical network over a physical one. Using the same example as before, if the university's wireless network keeps the same SSID, its APs can be updated without any problems: nodes will still find the correct network, even if the hardware is completely different and MAC addresses do not match anymore.
 
@@ -498,25 +493,25 @@ In ESS mode with multiple access points, every AP has still its own BSSID, but t
 \section{Packets}
 \label{sec:packets_format}
 
-In IEEE 802.11 standard~\cite{IEEE802.11}, there are many different packets, frames and fields for different purposes. In this study, we will look for the ones used when trying to join a network. We will not study physical layer requirements and specifications.
+In IEEE 802.11 standard~\cite{IEEE802.11}, there are many different packets, frames, and fields for different purposes. In this study, we will look for the ones used when trying to join a network. We will not study physical layer requirements and specifications.
 
 The standard calls a single entity of different data as a \emph{frame}. Each MAC frame -- which we are interested in -- contains
 
 \begin{enumerate}
     \item A MAC header, containing metadata of the frame;
     \item A frame body, including the actual payload; and
-    \item A checksum, called FCS.
+    \item A checksum, called FCS, a frame check sequence.
 \end{enumerate}
 
 \subsection{General MAC frame format}
 
-General format for MAC frames is presented on Figure~\ref{fig:general_mac_frame}. The frame consists of minimum of four and maximum of eleven fields, which are marked as ``mandatory'' or ``optional''. Decision of whtether or not optional fields are included is not left for implementation: it depends on which type of frame it actually is. MAC header includes all the fields except frame body and checksum.
+General format for MAC frames is presented on Figure~\ref{fig:general_mac_frame}. The frame consists of minimum of four and maximum of eleven fields, which are marked as ``mandatory'' or ``optional''. Decision of whether or not optional fields are included is not left for implementation: it depends on which type of frame it actually is. MAC header includes all the fields except frame body and checksum.
 
-The frame begins with a frame control field, which includes protocol version, type and subtype of the actual frame and specific flags for data transmission. The protocol version is currently zero. Type can be zero for management frames, one for control frames, or two for data frames. Value three is reserved for future use. Management frames will be studied in Section~\ref{subsec:management_frames}, but control frames and data frames are left outside of this thesis. Basically, management frames are higher-level frames that set up and maintain the connection. Control frames help handling delivery of data, and data frames include the data.
+The frame begins with a frame control field, which includes protocol version, type and subtype of the actual frame and specific flags for data transmission. The protocol version is currently zero. Type can be zero for management frames, one for control frames, or two for data frames. Value three is reserved for future use. Management frames will be studied in Section~\ref{subsec:management_frames}, but control frames and data frames are left outside of this thesis. Basically, management frames are higher-level frames that set up and maintain the connection. Control frames help handling delivery of data, and data frames contain the payload.
 
 The flags in the frame control field specify, for example, whether the data transmitted has been split into fragments, or if this frame has already tried to be sent but failed, and this one is a retransmission of a failed one.
 
-As much as four different address fields are included can be included in a MAC frame. Their purpose depends on frame type, and can include source address, destination address, or routing-type of information in ad-hoc network.
+As much as four different address fields are included can be included in a MAC frame. Their purpose depends on frame type, and can include source address, destination address, or routing-related information in ad-hoc network.
 
 Another fields in MAC frame include sequence control, quality of service (QoS), and high-throughput (HT) control fields. We will not study these fields more.
 
@@ -528,7 +523,7 @@ Another fields in MAC frame include sequence control, quality of service (QoS), 
         \multicolumn{2}{c|}{ } \\
     \hline 
         Frame Control &
-        Dura-tion/ ID &
+        Dura\-tion/ ID &
         Addr. 1 &
         Addr. 2 &
         Addr. 3 &
@@ -552,9 +547,9 @@ Another fields in MAC frame include sequence control, quality of service (QoS), 
 \subsection{Management frames}
 \label{subsec:management_frames}
 
-Management frames help to set up and maintain connection, that is, they carry metadata. A general view of management frame format is shown in Figure~\ref{fig:management_frame}, which resembles closely general MAC frame format from Figure~\ref{fig:general_mac_frame}. This is not an accident, because management frames are one type of MAC frames: they have \texttt{type} subfield in frame control field set as zero.
+Management frames help to set up and maintain connection, that is, they carry metadata. A general view of management frame format is shown in Figure~\ref{fig:management_frame}, which resembles closely general MAC frame format from Figure~\ref{fig:general_mac_frame}. This is not an accident, because management frames are one type of MAC frames: they have \texttt{type} subfield in the frame control field set as zero.
 
-Management frames can be further divided into different frames depending of \texttt{subtype} field in frame control field. There are 15 different possibilities, and we will look for two of them: beacon frame and probe request frames.
+Management frames can be further divided into different frames depending of the \texttt{subtype} field in the frame control field. There are 15 different possibilities, and we will look for two of them: beacon frame and probe request frames.
 
 \begin{figure}
     \label{fig:management_frame}
@@ -564,7 +559,7 @@ Management frames can be further divided into different frames depending of \tex
         \multicolumn{2}{c|}{ } \\
     \hline 
         Frame Control &
-        Dura-tion &
+        Dura\-tion &
         Addr. 1 &
         Addr. 2 &
         Addr. 3 &
@@ -587,7 +582,7 @@ Management frames can be further divided into different frames depending of \tex
 
 APs sent Beacon frames to advertise their own existence. They are defined to be a management frame with \texttt{subtype} of value 8, so identifying rule is \texttt{type == 0 and subtype == 8}.
 
-The body of a Beacon frame is huge, containing total of 55 different field plus vendor-specific ones. We do not list them all here. The most important is the fourth field, \texttt{SSID}, which was presented in Section~\ref{sec:SSID}. Another important is the second field in frame body, \texttt{Beacon interval}, which represents the number of time units between beacon tramissions.
+The body of a Beacon frame is huge, containing total of 55 different field plus vendor-specific ones. We do not list them all here. The most important is the fourth field, \texttt{SSID}, which was presented in Section~\ref{sec:SSID}. Another important field is the second field in frame body, \texttt{Beacon interval}, which represents the number of time units between beacon transmissions.
 
 
 \subsubsection{Probe Request frame format}
@@ -597,9 +592,9 @@ Probe Request frames are used to join a network as specified in the next section
 
 Probe Request frame is a management frame with \texttt{subtype == 4}. Therefore it can be identified from all MAC frames by specifying criteria \texttt{type == 0 and subtype == 4}. 
 
-All the fields in Probe Request frame are shown in Figure~\ref{fig:probe_request}. For us, the most important one is the first one, \texttt{SSID}, which was studied in detail in Section~\ref{sec:SSID}. Here we note that the maximum length of SSID is 32 bytes, and it can contain UTF-8-encoded characters, if Extended Capabilities field (9th in Probe Request frame body) contains specific UTF-8 flag set to one.
+All the fields in a Probe Request frame are shown in Figure~\ref{fig:probe_request}. For us, the most important one is the first one, \texttt{SSID}, which was studied in detail in Section~\ref{sec:SSID}. Here we note that the maximum length of SSID is 32 bytes, and it can contain UTF-8-encoded characters, if Extended Capabilities field (9th in Probe Request frame body) contains specific UTF-8 flag set to one.
 
-In addition to single SSID field, there is a field called \texttt{SSID List}, tenth in order, where one can specify multiple SSIDs it is interested in. The field includes a subfield to note the length of the list. The length subfield has a size of one octet, so there can be at most 255 different SSIDs.
+In addition to single SSID field, there is a field called \texttt{SSID List}, tenth in order, where one can specify multiple SSIDs it is interested in. The field includes a subfield to note the length of the list. The length subfield has a size of one octet, so there can be at most 255 different SSIDs. However, we found that devices do not use this feature.
 
 In the last field, vendor can specify its own extensions.
 
@@ -645,14 +640,14 @@ Passive scanning has some drawbacks. First, it might be relatively slow, as a no
 \subsection{Active scanning}
 \label{subsec:active_scanning}
 
-In active scanning, the situation is different. This time a node knows beforehand which network it would like to join, and sends \emph{probe request frames} into the air. Construction of probe request frames was discussed in Section~\ref{subsubsec:probe_request}.
+In active scanning, the situation is different. This time a node knows beforehand which networks it would like to join, and sends \emph{probe request frames} into the air, one for each network in its preference list. Construction of probe request frames was discussed in Section~\ref{subsubsec:probe_request}.
 
-The standard does not specify time interval between scanning of different rounds of scanning, and every manufacturer can decide that on their own.  
+The standard does not specify time interval between two probe requests or two rounds of scanning, and every manufacturer can decide those on their own.
 
 \subsection{Active scanning with a wildcard SSID}
 \label{subsec:active_wildcard}
 
-There exists also a combination of active and passive scanning. A node can request information of all present wireless networks by sending a probe request frame with wildcard SSID. When an AP sees a wildcard probe request, it replies to the node with its own SSID. This way, the node does not state which networks it knows or want to join, but it also does not need to wait APs to advertise themselves by beacon frames. 
+There exists also a combination of active and passive scanning. A node can request information of all present wireless networks by sending a probe request frame with wildcard SSID. When an AP sees a wildcard probe request, it replies to the node with its own SSID. This way, the node does not state which networks it knows or wants to join, but it also does not need to wait for APs to advertise themselves by beacon frames. As a downside, this may increase unnecessary network traffic.
 
 IEEE Standard states wildcard SSID to be the one with all bits set to zero. 
 
@@ -680,38 +675,38 @@ The process of ``discovering'' correlations between data in databases that can b
 
 In this thesis, we are interested in profiling in a sense of discovering some characteristics of a person from collected data. As mentioned in both of definitions above, we are not limited to profiling single persons, but may also look for particular groups of people, if they have interesting properties in common.
 
-For example, it might be useful to know how old the customers are on average or if they are interested in different product ranges or visit a store different times of a day. An interesting - yet difficult to provide - property would be customer's wealth or willingness to pay more. If seller could detect this kind of people, it could easily improve its revenue and profits by promoting more expensive deals to those ones.
+For example, it might be useful to know how old the customers are on average or if they are interested in different product ranges or visit a store different times of a day. An interesting - yet difficult to provide - property would be customer's wealth or willingness to spend a lot of money. If seller could detect this kind of people, it could easily improve its revenue and profits by promoting more expensive deals to those ones.
 
-\textbf{Tracking} is easier to define. We use it to mean situation where one follows another person's movements or actions, directly or by following a device owned by tracked person. 
+\textbf{Tracking} is easier to define. We use it to mean situation where one follows another person's movements or actions, directly or by following a device owned by the tracked person. 
 
-Tracking and profiling in themselves do not produce any income. However, information generated by them can be used to design new marketing campaigns and strategies, adjust prices, or otherwise promote sales.
+Tracking and profiling in themselves do not produce any revenue or profit. However, information generated by them can be used to design new marketing campaigns and strategies, adjust prices, or otherwise promote sales.
 
-An example of price variation based on customer profiling can be found in experiment made by Deck and Wilson (2006)~\cite{Deck2006}. In the research, they divided customers into two categories based on their search history. The first group is called ``informed customers'', who have been searching for prices also from other stores. On the other hand, the second group of users is called ``uninformed'', who do not know about the general prices of a product. The results of experiment shows that with tracking, informed customers are given lower prices, whereas ignorance of uninformed customers can be exploited with higher prices.
+An example of price variation based on customer profiling can be found in an experiment made by Deck and Wilson (2006)~\cite{Deck2006}. In the research, they divided customers into two categories based on their search history. The first group is called ``informed customers'', who have been searching for prices also from other stores. On the other hand, the second group of users is called ``uninformed'', who do not know about general prices of a product. The results of the experiment shows that with tracking, informed customers are given lower prices, whereas ignorance of uninformed customers can be exploited with higher prices.
 
-On the Internet it is easy to profile users of a webpage. In a study by Pakkala et al.~\cite{Pakkala2012504} researchers try to analyze what kind of people are using food composition websites in three different countries. They used Google Analytics~\cite{googleanalytics}, a free tool available to everyone, to collect visitor statistics (also other similar tools are available, with or without a charge). By looking referential websites, usage patterns, and search terms they were able to conduct that, for example, most of the users were not food or nutrition professionals, but average people looking for basic information about nutrition. In the study, researchers conclude that ``web analytics should be routine for every website [..] making user behaviour clearer so that developers can produce better websites for users.''
+On the Internet it is easy to profile users of a webpage. In a study by Pakkala et al.~\cite{Pakkala2012504} researchers try to analyze what kind of people are using food composition websites in three different countries. They used Google Analytics~\cite{googleanalytics}, a free tool available to everyone, to collect visitor statistics. Other similar tools are also available, with or without a charge. By looking referential websites, usage patterns, and search terms they were able to conduct that, for example, most of the users were not food or nutrition professionals, but average people looking for basic information about nutrition. In the study, researchers conclude that ``web analytics should be routine for every website [..] making user behaviour clearer so that developers can produce better websites for users.''
 
 For the physical, brick-and-mortar type of stores, achieving this kind of information is much more difficult. They can conduct customer studies by using surveys, but such a study requires lots of resources and might not be trustworthy because of response bias~\cite{Furnham1986385}: it may be totally different what people say than how they really act. Also, where it is extremely easy to track all the actions customers take while shopping on an online store, gathering the same data in traditional store using traditional methods can be close to impossible. Therefore it is easy to see that online stores have a clear competitive advantage over brick-and-mortar ones -- and the latters are interested in to neglect that.
 
-Some solutions before the establishment of WLAN devices have been proposed. An interesting one is work done by Newman, Yu and Oulton (2002) in~\cite{Newman2002253}, where they use existing CCTV surveillance cameras in a store to automatically track customers' movements. An example of their system is presented on Picture~\ref{fig:cctv_tracking}, where on the left one can see paths that customers have walked. Same kind of work is done by Senior et al.~\cite{senior2007video}, and in recent years there have been commercial solutions available~\cite{retailcctv}.
+Some solutions before the establishment of WLAN devices have been proposed. An interesting one is work done by Newman, Yu and Oulton (2002) in~\cite{Newman2002253}, where they use existing CCTV surveillance cameras in a store to automatically track customers' movements. An example of their system is presented on Figure~\ref{fig:cctv_tracking}, where on the left one can see paths that customers have walked. Same kind of work is done by Senior et al.~\cite{senior2007video}, and in recent years there have been commercial solutions available~\cite{retailcctv}.
 
 \begin{figure}
-    \label{fig:cctv_tracking}
     \includegraphics[width=\textwidth]{images/cctv_tracking_newman_pic1}
     \caption{Example of CCTV-based customer tracking from work by Newman et al~\cite{Newman2002253}}
+    \label{fig:cctv_tracking}
 \end{figure}
 
 
 \section{Tracking using MAC address}
 \label{sec:mac_tracking}
 
-To see where a user has been and how he has moved, tracking system needs to be able to perform two operations. First, it needs to be able to determine the location of the device in question. Second, as the data is not continous but comes with single, discrete points, all the location data needs to be linked together. That is, a device needs to be assigned some form of a unique ID.
+To see where a user has been and how he has moved, tracking system needs to be able to perform two operations. First, it needs to be able to determine the location of the device in question. Second, as the data is not continuous but comes with single, discrete points, all the location data needs to be linked together. That is, a device needs to be assigned some form of a unique ID.
 
 Wireless nodes send their MAC address with every probe request, as we learnt in Section~\ref{subsec:active_scanning}. The MAC address is also globally unique; see Section~\ref{sec:MAC}. Therefore the MAC address seems to be a good candidate for an ID, so we can continue towards a much harder problem, actually locating the nodes.
 
 \subsection{Determining the location of a node}
 \label{sec:location}
 
-A na{\"i}ve yet robust way to approximate user's location would be to look which AP received node's probe request. In Picture~\ref{fig:position_1} an oversimplified situation is presented: there is a rectangular-shaped building with a room, a few shelves, and four access points. The APs are labeled with letters from A to D. The building is divided into four sections, and the position of a mobile device is determined by looking which AP received a request from it. For example, it might be assumed that only AP D receives a signal from the mobile device in the picture, and therefore the user is somewhere in the lower-right section of the building.
+A na{\"i}ve yet robust way to approximate user's location would be to look which AP received node's probe request. In Figure~\ref{fig:position_1} an oversimplified situation is presented: there is a rectangular-shaped building with a room, a few shelves, and four access points. The APs are labeled with letters from A to D. The building is divided into four sections, and the position of a mobile device is determined by looking which AP received a request from it. For example, it might be assumed that only AP D receives a signal from the mobile device in the picture, and therefore the user is somewhere in the lower-right section of the building.
 
 \begin{figure}
     \label{fig:position_1}
@@ -719,7 +714,7 @@ A na{\"i}ve yet robust way to approximate user's location would be to look which
     \caption{Simplest way to achieve positioning}
 \end{figure}
 
-However, things are obviously not that simple. In real-life situations, coverage of a single AP can be large and easily overlap with others, and signal from the mobile device in Picture~\ref{fig:position_1} could also be in the ranges of APs B and C. A real-life example from~\cite{xiang2004} is presented in Picture~\ref{fig:ibm_coverage}, where in Picture~\ref{subfig:ibm_layout} the layout of building is presented, and in Picture~\ref{subfig:ibm_strength} the strength of a signal from a single AP is shown. Note that the whole floor is covered by the AP at least in some amount, but there are still four more APs. This suggests that at least in this case, a device can always catch more than one signal.
+However, things are obviously not that simple. In real-life situations, coverage of a single AP can be large and easily overlap with others, and signal from the mobile device in Figure~\ref{fig:position_1} could also be in the ranges of APs B and C. A real-life example from~\cite{xiang2004} is presented in Figure~\ref{fig:ibm_coverage}, where in Figure~\ref{subfig:ibm_layout} the layout of building is presented, and in Figure~\ref{subfig:ibm_strength} the strength of a signal from a single AP is shown. Note that the whole floor is covered by the AP at least in some amount, but there are still four more APs. This suggests that at least in this case, a device can always catch more than one signal.
 
 \begin{figure}
 \begin{center}
@@ -736,9 +731,9 @@ However, things are obviously not that simple. In real-life situations, coverage
 \end{center}
 \end{figure}
 
-Distance from a node to an AP can be estimated by using strength of radio signal. This cannot give the exact distance, as transmitting power varies between devices, and we do not know the initial power. However, this problem does not prevent us from using it as an estimate, because we are interested in relative distances. Continuing the simple way, we can select an AP that received the strongest signal; for a little more accurate result, a triangular-based calculation could be done with simple trigonometry, if at least three APs received the signal.
+Distance from a node to an AP can be estimated by using strength of received radio signal (RSSI, Received signal strength indication). This cannot give the exact distance, as transmitting power varies between devices, and we do not know the initial power. However, this problem does not prevent us from using it as an estimate, because we are interested in relative distances. Continuing the simple way, we can select an AP that received the strongest signal; for a little more accurate result, a triangular-based calculation could be done with simple trigonometry, if at least three APs received the signal.
 
-Luckily, lots of research has been done for creating WLAN-based positioning systems, and that research includes more and more sophisticated methods for determining the location. Xiang et al.~\cite{xiang2004} constructed a model of signal propagation, Roos et al.~\cite{roos2002} used probablistics and machine learning, and so on. Most of this research tries to let mobile phone determine its own location based on the signal from APs, but exactly the same approach can be used other way around, as we would like to: to let AP find out mobile node's position by node's signals.
+We should keep in mind that all kinds of obstacles, such as walls, will reduce the accuracy of measurements. To obtain higher accuracy, lots of research has been done for creating WLAN-based positioning systems. This research includes more and more sophisticated methods for determining the location. Xiang et al.~\cite{xiang2004} constructed a model of signal propagation, Roos et al.~\cite{roos2002} used probablistics and machine learning, and so on. Most of this research tries to let mobile phone determine its own location based on the signal from APs, but exactly the same approach can be used other way around, as we would like to: to let AP find out mobile node's position by node's signals.
 
 \section{Profiling users using SSIDs from active scanning}
 \label{sec:ssid_profiling}
@@ -752,11 +747,11 @@ First we assume that a profiler has set up a device that collects all the probe 
 
 SSIDs do not necessarily leak any information about their location. In some cases that may be true: for example, an open network in Aalto University is called ``Aalto open'', or a public network at Los Angeles airport as ``LAX-WiFi'', but in general no such connection can be drawn.
 
-Numerous applications would benefit from ability to connect wireless network APs to physical geolocation. For example, this could serve as a backup solution in lack of GPS signal for positioning, which is the case when user is inside a building. The same mapping other way around, mapping location to wireless access points, would allow mobile phone users to find a nearby open WLAN instead of consuming expensive cellular data transfer.
+Numerous applications would benefit from ability to connect wireless network APs to their physical geolocation, or vice versa. For example, this could serve as a backup solution in lack of GPS signal for positioning, which is the case when user is inside a building. The same mapping other way around, mapping location to wireless access points, would allow mobile phone users to find a nearby open WLAN instead of consuming expensive cellular data transfer.
 
-The solution for this problem is quite simple and straightforward. A collecting device goes around the world, capturing all the SSIDs and MAC addresses of WLANs it finds. Then, using GPS, it gets the location of network and stores data into simple database. Numerous companies have already done this: the best-known case might be Google, who did it with its Street View cars~\cite{google_wifi_collection}. 
+The solution for this problem is quite simple and straightforward. A collecting device goes around the world, capturing all the SSIDs and MAC addresses of WLANs it finds. Then, using GPS, it gets its own location, which serves as an estimate for the network location, and stores the data into a simple database. Numerous companies have already done this: the best-known case might be Google, who did it with its Street View cars~\cite{google_wifi_collection}. 
 
-Another way to get the data is to use crowdsourcing -- in other words, to let users do it themselves. In this way, every time a user connects to a new network, exact geolocation is saved with phone's GPS receiver. The location, SSID of the network, and probably more information such as signal strength are then saved into a database. Using this approach, data-collecting company can gather lots of data with relatively low expenses, and may be able to achieve higher accuracy compared to smaller dataset.
+Another way to get the data is to use crowdsourcing -- in other words, to let users do it themselves. In this way, every time a user connects to a new network, exact geolocation is saved with phone's GPS receiver. The location, the SSID of the network, and probably more information such as signal strength are then saved into a database. Using this approach, data-collecting company can gather lots of data with relatively low expenses, and may be able to achieve higher accuracy compared to smaller dataset.
 
 Both of above-explained applications for geolocation data of wireless networks have been implemented. Google uses WLAN locations with its Android operating system to provide location data based on networks it finds around~\cite{google_wifi_collection}. Nokia and Microsoft use same kind of data in Windows Phone in order to locate open WLANs near the user's own location~\cite{nokia_datasense}.
 
@@ -764,7 +759,7 @@ In addition to proprietary databases, there exists an open one called WiGLE, Wir
 
 It is important to note that the mapping from SSID to location is not one-to-one: multiple wireless networks around the world may share the same SSID. In fact, this is quite common, since many WLAN owners do not change the default SSID of their AP. In WiGLE, most common SSIDs are ``linksys'', ``NETGEAR'', and ``dlink'', which all are default SSIDs of different AP manufacturers.
 
-Some useful information can be obtained from geolocated SSIDs. The easiest one is to try to guess where the users might live by figuring out where the majority of SSIDs are located. Not exact results can be got with this approach, but city-wide accuracy should be possible.
+Some useful information can be obtained from geolocated SSIDs. The easiest one is to try to guess where the users might live by figuring out where the majority of SSIDs are located. Not exact results can be got with this approach, but city-wide accuracy should be possible in many cases.
 
 Another interesting factor is to determine how much a user has traveled: people with SSIDs around the world might behave in a different way than ones with SSIDs from only one country. 
 
@@ -773,48 +768,51 @@ We can develop this approach further by trying to identify concrete places user 
 \subsection{Discovering real-life relationships from common SSIDs}
 \label{subsec:ssid_commons}
 
-After collecting much of SSIDs from lots of devices, it is possible to discover friendships based on which SSIDs people share with each other. A paper on this approach has been written by Cunche et al.~\cite{cunche2014linking}
+After collecting much of SSIDs from lots of devices, it is possible to discover friendships based on which SSIDs people share with each other. A paper on this approach has been written by Cunche et al. (2014)~\cite{cunche2014linking}
 
 In the paper, they have two datasets: one collected from small number of volunteers with known friendships, and another from the wild, which has been collected over a six-month period in Sydney, Australia. The dataset of volunteers contained strong relationships, such as close friends and family members. Authors created a model based on observations of the known dataset and applied it to unknown data from the public.
 
-Finding strongly connected nodes in two datasets has been studied well in computer science, so there are numerous mathematical methods developed for this particular problem. These methods are called similarity metrics, and the idea is to measure how similiar two nodes are based on their feature set (here, list of SSIDs). 
+Finding strongly connected nodes in two datasets has been studied well in computer science, so there are numerous mathematical methods developed for this particular problem. These methods are called similarity metrics, and the idea is to measure how similar two nodes are based on their feature set (here, list of SSIDs). 
 
 A simple metric for comparing two samples is the Jaccard Index. It is defined as follows, where $X$ and $Y$ are two sets of SSIDs.
 
 $$J(X,Y) = \left| \frac{X \cup Y}{X \cap Y} \right| $$
 
-However, the Jaccard Index takes into account only the size of intersection, and not the fact how popular an element was in the dataset. It does not matter whether the two nodes had the most popular SSID, for example \texttt{linksys}, in common, or if they were the only two nodes that had the SSID \texttt{Super-Private-XYZ123-Network}. In the paper, Cunche et al. argue that having a rare SSID should yield for stronger possibility of relationship. That is a reasonable argument, especially when we consider the long tail of SSID frequency: a few SSIDs are extremely common, but huge majority of SSIDs appear only in one or two devices.
+However, the Jaccard Index takes into account only the size of intersection, and not the fact how popular an element was in the dataset. It does not matter whether the two nodes had the most popular SSID, for example \texttt{linksys}, in common, or if they were the only two nodes that had the SSID \texttt{Super-Private-XYZ123-Network}. In the paper, Cunche et al. argue that having a rare SSID in common should yield for stronger possibility of relationship. That is a reasonable argument, especially when we consider the long tail of SSID frequency: a few SSIDs are extremely common, but huge majority of SSIDs appear only in one or two devices.
 
-To take these charasterics of SSIDs into account, Cunche et al. develop a new metric, which is defined as 
+To take these characteristics of SSIDs into account, Cunche et al. develop a new metric, which is defined as 
 
 $$\text{Psim-}q(X,Y) = \sum_{z \in X \cap Y} \frac{1}{f_z^q}$$
 
 where q is a parameter and $f_z$ is the frequency of element $z$. The authors obtained best results when $q=3$.~\cite{cunche2014linking}
 
-Probably the biggest problem for finding relationships in dataset is that it is computationally heavy. Complexity is $O(N^2)$ where $N$ is the number of devices in a dataset, so it may be impractical to try to find all the links in a large dataset, such as Cunche's six months long range of data. Nonetheless, if we are limited to small population, for example people visiting a specific place, a store, or an airport during a day, it might be perfectly feasible to calculate all possible combinations.
+Probably the biggest problem for finding relationships in dataset is that it is computationally somewhat heavy. Complexity is $O(N^2)$ where $N$ is the number of devices in a dataset, so it may be impractical to try to find all the links in a very large dataset, such as Cunche's six months long range of data. Nonetheless, if we are limited to small population, for example people visiting a specific place, a store, or an airport during a day or week, it most likely is perfectly feasible to calculate all possible combinations.
 
-Real-life use cases to benefit from such a findings can also be found. If we are not limited only to strong connections, such as family members, weaker connections can suggest that users share some charasteristics. After having categorized users in different clusters, one could try to look if the clusters are distinguishable from each others. For example, does the one group look like younger people, and do they visit the store on specific time of the day, or spend notably more or less time in the shop?
+% this is more for the next section
+% Real-life use cases to benefit from such a findings can also be found. If we are not limited only to strong connections, such as family members, weaker connections can suggest that users share some charasteristics. After having categorized users in different clusters, one could try to look if the clusters are distinguishable from each others. For example, does the one group look like younger people, and do they visit the store on specific time of the day, or spend notably more or less time in the shop?
 
 \subsection{Clustering}
 \label{subsec:clustering}
 
-To generalize previous idea, we can see the situation as a weighted graph. In the graph, mobile devices are nodes, and they are linked together by the similiarity of the SSID lists. Once again, the simplest method to create similarity function are calculating the size of intersection of SSID lists or the Jaccard index. We can also use advanced algorithms, such as Psim-q.
+To generalize previous idea, we can see the situation as a weighted graph. In the graph, mobile devices are nodes, and the edges represent the similarity of two nodes. More similiar nodes have an edge with greated weight; if two nodes have nothing in common, there is no edge between them.
 
-When we have formed a graph, we can search try to search for clusters. There is no single, widely-accepted definition for a cluster in graph~\cite{schaeffer2007graph} , but we will define in informally as ``recognizing natural groups within a class of entities''~\cite{van2000graph}, or partitioning the graph in groups in a way that difference inside a cluster is low and difference between clusters is high. Therefore, we are trying to look for groups of nodes that have common charasterics. The difference to previous section is that there we searched for strong connections between two nodes; now the size of group is larger than two.
+Once again, the simplest method to create similarity function are calculating the size of intersection of SSID lists or the Jaccard index. We can also use advanced algorithms, such as Psim-q.
 
-Find the clusters in the graph is therefore our actual problem. Luckily, we do not need to invent our own algorithm, since this is a general graph problem, and it has been studied in computer science before.
+When we have formed a graph, we can search try to search for clusters. There is no single, widely-accepted definition for a cluster in graph~\cite{schaeffer2007graph} , but we will define it informally as ``recognizing natural groups within a class of entities''~\cite{van2000graph}, or partitioning the graph in groups in a way that distance inside a cluster is low and distance between clusters is high. Therefore, we are trying to look for groups of nodes that have common charasterics. The difference to previous section is that there we searched for strong connections between two nodes; now the size of group is larger than two.
 
-A possible algorithm could be \emph{hierachial clustering}~\cite{schaeffer2007graph}. Here, the idea is to build a tree of hierarchy. Depending of particular algortihm, the process can start from top or bottom. In top-down (``divisive'') algorithms, initially every node belongs to a single cluster, and in every step clusters may be splitted into two new clusters. In bottom-up approach (``agglomerative''), every node is initially its own cluster, and in every step they may be merged with others. When specific stopping condition is met, the algorithm terminates, or it can build the whole tree and select the state where there were highest difference between clusters and smallest inside clusters.
+Finding the clusters in the graph is therefore our actual problem. Luckily, we do not need to invent our own algorithm, since this is a general graph problem, and it has been studied in computer science before.
 
-Generic hierachial clustering has time complexity of $O(N^3)$~\cite{manning2008introduction}, which may be problematic for very large datasets, but most likely usable for us. There are better algorithms for specific cases, such as single-link and complete-link graphs~\cite{manning2008introduction}, but those are no use for us. 
+A possible algorithm could be \emph{hierarchial clustering}~\cite{schaeffer2007graph}. Here, the idea is to build a tree of hierarchy. Depending of particular algorithm, the process can start from top or bottom of hierarchy. In top-down (``divisive'') algorithms, initially every node belongs to a single cluster, and in every step clusters may be split into two new clusters. In bottom-up approach (``agglomerative''), every node is initially its own cluster, and in every step they may be merged with others. When specific stopping condition is met, the algorithm terminates, or it can build the whole tree and select the state where there were highest difference between clusters and smallest inside clusters.
 
-The algorithm does not require us to provide number of clusters beforehand, which is an useful feature. It is also easy to understand and simple to implement, and may reveal interesting facts about the structure of data.
+Generic hierarchial clustering has time complexity of $O(N^3)$~\cite{manning2008introduction}, which may be problematic for very large datasets, but most likely usable for us. There are better algorithms for specific cases, such as single-link and complete-link graphs~\cite{manning2008introduction}, but our use case does not belong to those. 
 
-Another promising approach could be \emph{Markov Cluster Process} (MCL Process), introduced by van Dongen's PhD dissertion~\cite{van2000graph} and taught nowadays in university classes~\cite{mlc_macropol}. The algorithm converts first a graph into transition matrix, where element $(x,y)$ denotes the weight from $x$ to $y$. Columns are normalized so that each sums to one. After that, there are two operations: expansion and inflation. Expansion simply raises the matrix to power of $e$, which is a paramter. Inflation consist of squaring every column and then normalizing it again to sum to one; this way, inflation strenghtens already strong connections and weakens already weak ones. In other words, expansion allows flow to connect new parts of the graph and inflation grows the range of values. Inflation and expansion are repeated until the algorithm convergences. Resulting matrix gives the clusters.
+The algorithm does not require us to provide number of clusters beforehand, which is a useful feature. It is also easy to understand and simple to implement, and may reveal interesting facts about the structure of data.
 
-MLC has same kind of problems than hierarchical clustering. First, MLC's time complexity is $O(N^3)$, where $N$ is number of edges, which may become a problem with very large graphs. However, for our use it most likely is managable, as numbers of nodes is closer to thousands than millions. Second, it cannot find overlapping clusters -- each node belongs only to one cluster. However, by providing different initial parameters for multiple runs, we may be able to retrieve different clustering results.
+Another promising approach could be \emph{Markov Cluster Process} (MCL Process), introduced in van Dongen's PhD dissertation (2000)~\cite{van2000graph} and taught nowadays in university classes~\cite{mlc_macropol}. The algorithm first transforms a graph into a transition matrix, where element $(x,y)$ denotes the weight from $x$ to $y$. Columns are normalized so that each sums to one. After that, there are two operations: expansion and inflation. Expansion simply raises the matrix to power of $e$, which is a parameter. Inflation consists of squaring every column and then normalizing it again to sum to one; this way, inflation strengthens already strong connections and weakens already weak ones. In other words, expansion allows flow to connect new parts of the graph and inflation grows the range of values. Inflation and expansion are repeated until the algorithm convergences. Resulting matrix gives the clusters.
 
-As we have seen, both algorithms suffer from inability to deal with overlapping clusters. Finding clusters that can overlap is an open research question, with some algortihms proposed in last years, for example OClustR~\cite{PerezSuarez2013234} and DClustR~\cite{PerezSuarez20133040} from P\`{e}rez-Su\'{a}rez et al., and another link clustering based method by Shi et al~\cite{Shi2013394}. Development of efficient algorithms is still ongoing.
+MLC has same kind of problems than hierarchical clustering. First, MLC's time complexity is $O(N^3)$, where $N$ is number of edges, which may become a problem with very large graphs. However, for our use it most likely is manageable, as numbers of nodes is closer to thousands than millions. Second, it cannot find overlapping clusters -- each node belongs only to one cluster. However, by providing different initial parameters for multiple runs, we may be able to retrieve different clustering results.
+
+As we have seen, both algorithms suffer from inability to deal with overlapping clusters. Finding clusters that can overlap is an open research question, with some algorithms proposed in last years, for example OClustR~\cite{PerezSuarez2013234} and DClustR~\cite{PerezSuarez20133040} from P\`{e}rez-Su\'{a}rez et al., and another link clustering based method by Shi et al.~\cite{Shi2013394}. Development of efficient algorithms is still ongoing.
 
 
 \subsection{Social media networks}
@@ -826,16 +824,18 @@ The key idea and goal of our research is to find the owner of a device from soci
 
 Thus, we have three datasets. First, we have collection of SSIDs from target's device. Second, we have a mapping from SSID to geolocation. Third, we have a database of people's social media postings with their locations. By combining all of them, we may be able to reveal the social media profile used by the device user.
 
-From the social media service list above, Twitter can be considered the most public. By default, every \emph{tweet}, a post to Twitter, is visible to everyone, whereas in Facebook the default audience is limited to user's friend network. For this reason, we will study primarly Twitter, but other networks share the same idea, if private access to the database is granted.
+From the social media service list above, Twitter can be considered the most public. By default, every \emph{tweet}, a post to Twitter, is visible to everyone, whereas in Facebook the default audience is limited to user's friend network. For this reason, we will study primarily Twitter, but other networks share the same idea, if private access to the database is granted.
 
-Twitter provides a free-of-charge Application programming interface (API) to its data.~\cite{twitterapi} Using the API, one can fetch tweets with or without specific search criteria. One possible method to limit the results is by location coordinates.
+Twitter provides a free-of-charge application programming interface (API) to its data.~\cite{twitterapi} Using the API, one can fetch tweets with or without specific search criteria. One possible method to filter the results is by location coordinates.
 
-As a drawback, searching by geolocation is limited to 180 requests in an hour. Also, only recent tweets are available. Nevertheless, the idea does not suffer from these limitations, as we should assume that a private API or future development will allow access to larger amount of data.
+As a drawback, searching by geolocation is limited to 180 requests in an hour. Also, only recent tweets are available. Nevertheless, the idea does not suffer from these limitations, as we should assume that a private API or future development will allow access to larger amount of data. Possible problems may also arise from the fact that not every posting contain location information.
 
 
 \subsection{Semantic SSID analysis}
 
-Semantic SSID analysis is a technique where we try to profile a user based on the content of information retrieved from SSIDs. This is a technique that is obviously possible to some extent, but to our knowledge no studies have acutally tried to implement it.
+Semantic SSID analysis is a technique where we try to profile a user based on the content of information retrieved from SSIDs. This is a technique that is obviously possible to some extent, but to our knowledge no studies have actually tried to implement it.
+
+In semantic analysis, we know beforehand what we are looking for. In graph-based clustering explained previously, we have only data and try to find anomalies within it.
 
 We see at least the following possibilities:\\
 
@@ -843,7 +843,7 @@ We see at least the following possibilities:\\
 
 \textbf{How much is a user traveling?} Identify airports and hotels. Categorize user to different price categories based on hotel's average price level. Probably same kind of information can be extracted from restaurants' and cafes' names.
 
-\textbf{}
+\textbf{Distuingish between locals and foreigners.} If the user has locations only nearby, he is probably a local. If majority of locations is from somewhere else but within a reasonably small radius, that might be his home location. However, making reliable difference between someone's hometown and a place where he has visited might be difficult.
 
 
 
@@ -867,14 +867,14 @@ It should be noted that both of these methods are not likely to work in our case
 
 Another exploitable feature is Wi-Fi Protected Setup (WPS). The technology is used to ease the setup of a secure, consumer-grade wireless network. Using WPS, users do not need to know about technical details or enter complex passwords to gain access to WLAN, but instead can push a button on both AP and their mobile device. There are also another ways to implement the standard, including entering PIN code or using NFC-capable device.~\cite{alliance2007wi}
 
-The actual standard for WPS is available without a charge only for Wi-Fi Alliance members~\cite{alliance2007wi}, but we do not consider that as a constructive way to develop technical standards. Therefore we resort to reverse engineering the standard using packet analyzing tool called Wireshark~\cite{wireshark}, which has implemented the WPS protocol. Wireshark is open source software, so the protocol can be analyzed with an effort low enough by reading source code and running analysis on captured packets. Also, there are other documents freely available to gather information about the protocol, such as Microsoft's technical specification for WPS inside their own document~\cite{microsoftWCN}.
+The actual standard for WPS is available without a charge only for Wi-Fi Alliance members~\cite{alliance2007wi}, but we do not consider that as a constructive way to develop technical standards. Therefore we resort to reverse engineering the standard using packet analyzing tool called Wireshark~\cite{wireshark}, which has implemented the WPS protocol. Wireshark is open source software, so the protocol can be analyzed with a low enough effort by reading source code and running analysis on captured packets. Also, there are other documents freely available to gather information about the protocol, such as Microsoft's technical specification of WPS inside their own document~\cite{microsoftWCN}.
 
-In the protocol there are three actors: enrollee, AP and registrar. Enrollee is simply a user willing to join a wireless network using WPS. Registrar is the authority who will gain or deny access. AP is the same access point as previously, but this time it is specified to act as a link between enrollee and registrar. In practice, and in especially in consumer-grade devices, registrar's functionality is often included in AP. 
+In the protocol there are three actors: enrollee, AP and registrar. Enrollee is a user willing to join a wireless network using WPS. Registrar is the authority who will gain or deny access. AP is the same access point as previously, but this time it is specified to act as a link between enrollee and registrar. In practice, and especially in consumer-grade devices, registrar's functionality is often included in AP. 
 
 \begin{figure}
 \label{tab:wps}
 \begin{tabular}{c|c p{10cm}}
-    \hline
+    \hline \\
 
     E $\rightarrow$ R & M1 = & N$_E$, Description, PK$_E$ \\\\
 
@@ -899,14 +899,14 @@ In the protocol there are three actors: enrollee, AP and registrar. Enrollee is 
     E $\leftarrow$ R & M8 = & Encrypted configuration data \\
     \hline
 \end{tabular}
-\caption{Protocol for joining a WPS-enabled WLAN. Simplified from~\cite{microsoftWCN}}, detailed version in Appendix~\ref{chapter:appendix:wps}
+\caption{TODO Draw prettier one: Protocol for joining a WPS-enabled WLAN. Simplified from~\cite{microsoftWCN}}, detailed version in Appendix~\ref{chapter:appendix:wps}
 \end{figure}
 
 Because joining a WPS-enabled network has been wanted to make easy but secure for end-users, it is somewhat complex in technical side. Simplified version of protocol is shown in Figure~\ref{tab:wps}, and detailed version can be found in Appendix~\ref{chapter:appendix:wps}. Basically, first enrollee sends its nonce, its own description and its public key to registrar, and registrar replies with the same kind of message with its own information. Then, in messages 3 and 4, parties make precommitments that they know the password by sending it in hashed form. In messages 4-7, parties send their own secret, encrypted hashes, which can be used with previously-sent hashes to make sure that the password was correct. Finally, in message 8, registrar sends WLAN configuration data including credentials to join the WLAN.
 
 The most important and interesting part for us is in the very beginning, since we are interested in probe requests. We found that some devices are actively sending WPS requests hoping that an AP would reply. This request is the same as message 1 in the protocol, and it is sent in a probe request frame's last field, targeted for vendor-specific information.
 
-In message 1, there is a broadly-named field ``Description''. The data it includes makes it worth to look closer. Microsoft's document says that it is ``[a] human-readable description of the sending device (UUID, manufacturer, model number, MAC address, and so on) and device capabilities such as supported algorithms, I/O channels, and Registration Protocol role.'', and Wireshark confirms exactly that. Also, there is a field called ``DEVICE\_NAME'', which is the human-readable name user has given to his device, for example ``Pekko's iPhone''.
+In message 1, there is a broadly-named field ``Description''. The data it includes makes it worth to look closer. Microsoft's document says that it is ``[a] human-readable description of the sending device (UUID, manufacturer, model number, MAC address, and so on) and device capabilities such as supported algorithms, I/O channels, and Registration Protocol role.'', and Wireshark confirms exactly that. Also, there is a field called ``DEVICE\_NAME'', which is the human-readable name user has given to his device, for instance ``Pekko's iPhone''.
 
 With all this information, we may be able to
 \begin{enumerate}
@@ -930,27 +930,27 @@ With all this information, we may be able to
 \chapter{Active man-in-the-middle attacks}
 \label{chapter:attacks}
 
-In addition to passive surveillance, there is possibility for performing active attacks against users. In active attacks, the attacker does not only monitor user's behavior, but instead sends malicious packets to perform desired activities. 
+In addition to passive surveillance, there is a possibility for performing active attacks against users. In active attacks, the attacker does not only monitor user's behavior, but instead sends malicious packets to perform desired activities. 
 
-All the following attacks are some variants of man-in-the-middle (MITM) scheme. In MITM attack, the attacker positions himself between user and the service user is connecting to. This way, an attacker is able to read and alter all unencrypted communication while remaining transparent for the victim. The following attacks differ by how an attacker gains such a position.
+All the following attacks are some variants of man-in-the-middle (MITM) scheme. In MITM attack, the attacker positions himself between user and the service user is connecting to. This way, an attacker is able to read and alter all unencrypted communication while remaining transparent to the victim. The following attacks differ by how an attacker gains such a position.
 
 \section{Unencrypted access point}
 \label{sec:attack_unencrypted}
 
 The easiest attack is to set up an unencrypted access point and monitor all the traffic that goes through it. Obviously this is not very sophisticated, but at least some users are likely to be tricked into this one for various reasons.
 
-First, they do not know or care about wireless network security but only see a free connection to internet to use. No technical security measure can save users, if they want to use an open connection with unknown administrator.
+First, they do not know or care about wireless network security but only see a free connection to internet to use. No technical security measure on link layer can save users, if they want to use an open connection with unknown administrator.
 
-Second, multiple versions of Windows has a feature to join any unsecured wireless network in the range~\cite{dai2005attacking,windows_wifi_answers}. Therefore, user's computer can join an open network without user being aware of that. Even worse, with some versions of Intel wireless drivers, the setting to disable the automatically-connecting feature is hidden elsewhere than in unusual settings dialog.~\cite{windows_wifi_answers}
+Second, multiple versions of Windows have a feature to join any unsecured wireless network in the range~\cite{dai2005attacking,windows_wifi_answers}. Therefore, user's computer can join an open network without user being aware of that. Even worse, with some versions of Intel wireless drivers, the setting to disable the automatically-connecting feature is hidden elsewhere than in unusual settings dialog, making it difficult to disable even for little more experienced users.~\cite{windows_wifi_answers}
 
-An unwanted connection can be damaging, even if the user realizes the mistake relatively fast and disconnects his computer from open network. Quite a many services want to synchronize their data right after connected; for example, an email client would like to get new messages immediately when the computer becomes online. Therefore it is certainly possible that user's credentials are sent during first moments in a new network.
+An unwanted connection can be damaging, even if the user realizes the mistake relatively fast and disconnects his computer from the open network. Quite a many services want to synchronize their data right after connected; for example, an email client would like to get new messages immediately when the client device becomes online. Therefore it is certainly possible that user's credentials are sent and exposed during first moments in a new network.
 
 \section{Evil twin}
 \label{sec:evil_twin}
 
 If there are multiple alternatives available, nodes have a couple of methods to decide which network they join. In Windows, there is a preferred wireless networks list, which specifies the order in which computer should connect to networks~\cite{windows_wifi_preferred}. 
 
-If there is no preferred networks available, a node may choose the one which has strongest signal strength -- or if not choose, at least present it as a first alternative to user. Another methods have also been proposed, such as testing networks for their bandwidth and choosing the best~\cite{Nicholson:2006:APselection}. However, these kinds of advanced methods have not been implemented, so previously-selected networks and physical-layer signal strength are the most common criteria used nowadays.
+If there is no preferred networks available, a node may choose the one which has the strongest signal strength -- or if not choose, at least present it as a first alternative to user. Another methods have also been proposed, such as testing networks for their bandwidth and choosing the best~\cite{Nicholson:2006:APselection}. However, these kinds of advanced methods have not yet been implemented, so previously-selected networks and physical-layer signal strength are the most common criteria used nowadays.
 
 \begin{figure}
     \begin{center}
@@ -967,21 +967,23 @@ If there is no preferred networks available, a node may choose the one which has
     \end{center}
 \end{figure}
 
-The idea of Evil twin attack is presented in Figure~\ref{fig:evil_twin}. First, there is a normal scenario. A user is having a coffee in his favorite cafe, and joins cafe's open, unencrypted network which has an SSID \texttt{NiceCafe}. Everything goes well. The next time the same user is visiting the cafe again, but this time there is a malicious access point with the same SSID, \texttt{NiceCafe}. Remember, SSID is not a unique identifier, and it can be chosen freely. The malicious one is located closer to the user or has a more powerful antenna, so its signal is much stronger than the original AP's. Therefore, the user connects to malicious access point, and all the traffic is suddenly vulnerable.
+The idea of an evil twin attack is presented in Figure~\ref{fig:evil_twin}. First, there is a normal scenario. A user is having a coffee in his favorite cafe, and joins cafe's open, unencrypted network which has an SSID \texttt{NiceCafe}. Everything goes well. The next time the same user is visiting the cafe again, but this time there is a malicious access point with the same SSID, \texttt{NiceCafe}. Remember, SSID is not a unique identifier, and it can be chosen freely. The malicious AP is located closer to the user or has a more powerful antenna, so its signal is much stronger than the original AP's. Therefore, the user connects to the malicious access point, and all the traffic is suddenly exposed to the attacker.
+
+Evil twin can appear also in another place than original AP was. The attacker can set up an AP with SSID ``Starbucks'' even if there is no Starbucks nearby: the user may not notice the problem, if his computer connects automatically to the network.
 
 \section{Man in the middle exploiting WLAN probes}
 \label{sec:mitm_probes}
 
 In previous section, an attacker knew beforehand that there was a specific network available and chose his SSID based on that. This is not necessary, and opens room for a more powerful attack.
 
-A rogue access point can be listening for all the probes in the air. When it sees something, for example a node probing for a network \texttt{NiceCafe}, the AP can change its SSID to \texttt{NiceCafe} and let the node to connect.
+A rogue access point can be listening for all the probes in the air. When it sees something, for example a node probing for a network \texttt{NiceCafe}, the AP can pretend that its SSID is \texttt{NiceCafe} and let the node to connect.
 
 If a node is not probing any specific SSID but asking all the nodes to broadcast theirs, the basic version of this attack will not obviously work. Still, there exists an opportunity: quite a many device has at one time connected to a network with an unchanged, manufacturer-default SSID, such as \texttt{Linksys} or \texttt{dlink}. According to WiGLE~\cite{wigle}, five most common SSIDs account for 4.2~\% of total SSIDs seen, and 100 most common SSIDs for 12.7~\% of total. An attacker could try all the common ones and hope that at least one of them is in node's SSID list.
 
 \section{Encryption}
 \label{sec:attack_encryption}
 
-A particular problem for attackers is encryption. Wireless networks may be secured using techniques such as WPA2 (Wi-Fi Protected Access 2), which is based on a pre-shared secret -- a passphrase. Both parties of communication, client and AP, identify each other using four-way handshake, so the AP cannot only wait for client to send the correct passphrase. Since the attacker does not know the passphrase and it is not included anywhere in cleartext, WPA2 renders previous attack useless.
+A particular problem for attackers is encryption. Wireless networks may be secured using techniques such as WPA2 (Wi-Fi Protected Access 2), which is based on a pre-shared secret -- a passphrase. Both parties of communication, client and AP, identify each other using four-way handshake, so the AP cannot only wait for client to send a passphrase and record it. Since the attacker does not know the passphrase and it is not included anywhere in cleartext, WPA2 renders previous attack useless.
 
 Another possible piece of encryption is Transport Layer Security, TLS (predecessor known as SSL, Secure Sockets Layer, and often these two are mixed). With a bit confusion with the name, it can be said that TLS is implemented between transport layer and application layer. As this layer is above link-layer, on which attacker operates, it should be a safe alternative.
 
@@ -998,11 +1000,11 @@ However, there is a technique called sslstrip~\cite{marlinspike2009new}, which i
 
 Concepts discussed here are not new, and for them there are specific tools implemented.
 
-In previous section we mentioned technique called sslstrip; to prove its efficiency, authors decided to publish fully-working tool that implements the full attack.~\cite{marlinspike2009new}
+In previous section we mentioned technique called sslstrip; to prove its efficiency, authors decided to publish fully-working tool that implements the attack. The tool is available to everyone.~\cite{marlinspike2009new}
 
 Most comprehensive and most easy-to-obtain toolkit is WiFi Pineapple~\cite{wifipineapple}. It includes numerous tools for MITM and other attacks and sells for as low as \$~100 (as in August 2014). The device is shown in Figure~\ref{wifi_pineapple_pic}, where especially noteworthy is its small size, 10 x 8 x 3 cm. In the picture, there are RJ45 and USB ports visible, so that one can feel its small size.
 
-With these kinds of ready-made tools, performing MITM attacks are totally feasible with only a little knowledge, and they must be taken seriously.
+With these kinds of ready-made tools, performing MITM attacks are totally feasible with only a little knowledge and skills, and they must be taken seriously.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -1035,11 +1037,11 @@ The best-known and best-documented legal case for two first questions is Google'
 \section{Background of Google Street View case}
 \label{sec:streetview}
 
-The case with Google's Street View data collection has been a major case in regards of regulation of the topic, so we will first look on that. 
+The case with Google's Street View data collection has been a major case in terms of regulation of the topic, so we will first look on that. 
 
 Steet View~\cite{googlestreetview} is Google's service built on their Maps platform. In Street View, one can view panorama photos taken from the streets. Google has collected the images by driving on streets with a car equipped with multiple cameras and a GPS device~\cite{streetview_behindscenes}.
 
-Cars were collecting more information than only pictures of the streets. Google first told that they were collecting photos, WLAN network information including only access points' SSID and MAC address, and 3-D geometry data with lasers, all of them to help Google build location services. Google stated explicitly that it does not collect any payload information from wireless networks. \cite{fleischer_datacollected,google_wifi_collection} However, that was proved false when German Data Protection Authority (DPA) wanted to audit the data, and Google admitted that it ``had mistakenly included code in our software that collected samples of payload data from WiFi networks''~\cite{eustace_datacollected}.
+Cars were collecting more information than only pictures of the streets. Google first told that they were collecting photos, WLAN network information including only access points' SSID and MAC address, and 3-D geometry data with lasers, all of them to help Google build location services. Google stated explicitly that it does not collect any payload information from wireless networks.~\cite{fleischer_datacollected,google_wifi_collection} However, that was proved false when German Data Protection Authority (DPA) wanted to audit the data, and Google admitted that it ``had mistakenly included code in our software that collected samples of payload data from WiFi networks''~\cite{eustace_datacollected}.
 
 \section{European Union}
 \label{sec:legal_europe}
@@ -1049,7 +1051,7 @@ Europe is a complex legal entity, as traditionally diverse countries are trying 
 The EU can impose four different types of legislation:~\cite{lisbon_288}
 \begin{description}
      \item[Regulation] becomes a law in every EU country without alterations.
-     \item[Directive] is binding to every member state, but each of them will consider how to adopt it in the best way, taking into account the current laws.
+     \item[Directive] is binding to every member state, but each of them will consider how to adopt it in the best way, taking into account their current laws.
      \item[Decisions] are binding but only to whom they are addressed.
      \item[Recommendations] are, as the name suggests, only opinions without binding force.
 \end{description}
@@ -1073,7 +1075,7 @@ The question therefore is (1) is mapping of WLAN access points ``personal data''
     any information relating to an identified or identifiable natural person ('data subject'); an identifiable person is one who can be identified, directly or indirectly, in particular by reference to an identification number or to one or more factors specific to his physical, physiological, mental, economic, cultural or social identity;
 \end{quote}
 
-Thus, the first requirement of personal data is that a person can be identified from the data. This interpreation is backed by opinion on personal data by the Working Party~\cite{wp29_136}. In the opinion, there is an example saying that ``Images of individuals captured by a video surveillance system can be personal data \textbf{to the extent that the individuals are recognizable}.'' (emphasis added)
+Thus, the first requirement of personal data is that a person can be identified from the data. This interpreation is backed by an opinion on personal data by the Working Party~\cite{wp29_136}. In the opinion, there is an example saying that ``Images of individuals captured by a video surveillance system can be personal data \textbf{to the extent that the individuals are recognizable}.'' (emphasis added)
 
 To recognize only a possible group of people is not enough.~\cite{wp29_136} For example, only the last name of an individual is not personal data when talking about the whole population of a country, but within a school class, the last name is enough to identify a single person, and therefore personal data.
 
@@ -1081,7 +1083,7 @@ Together with previous observation, we can note that identifying a group from bi
 
 If the data is considered as personal data, there are numerous regulations that apply. Precise implementation is left for individual states, but they include at least
 \begin{itemize}
-    \item the data subject [target] has given his consent, or there is strong necessity such as legal obligation
+    \item the data subject [target] must have given his consent, or there is strong necessity such as legal obligation
     \item the data subject has to be given a permission to view or erase data about him
     \item the controller [collector of data] must implement measures to protect the personal data
     \item the controller must name a person who is responsible for ensuring data protection legislation in the organization
@@ -1099,26 +1101,26 @@ These requrirements would increase the costs, reduce effectivity, and sometimes 
 
 To manage the problem, we face it in parts. First we look for the legal status of mapping WLAN access points. We assume that a service is collecting two different pieces of data: SSID and location.
 
-To make it easier, we first examine only the SSID data. SSIDs are names for networks, decided by network administrators. Clearly SSIDs of public networks, such as in buses or schools, are not personal data. In private home networks they are difficult to categorize as personal data: in most of the cases, the SSID is the default (\texttt{linksys}) or arbitary name (\texttt{My little network}). Also, SSIDs are not unique, and there are lots of networks with the same name. The only possibility would be if someone named his network after his own name (\texttt{John Doe's network}). Therefore collecting only SSIDs should not be treated as personal data.
+To make it easier, we first examine only the SSID data. SSIDs are names for networks, decided by network administrators. Clearly SSIDs of public networks, such as the ones in buses or schools, are not personal data. In private home networks they are difficult to categorize as personal data: in most of the cases, the SSID is the default (\texttt{linksys}) or arbitary name (\texttt{My little network}). Also, SSIDs are not unique, and there are lots of networks with the same name. The only possibility would be if someone named his network after his own name (\texttt{John Doe's network}), but This happens really rarely. Therefore collecting only SSIDs should not be treated as personal data.
 
 Combining the SSIDs with location data raises more questions. If we know the location of an access point, can we link it to specific individual? The first thing to note is that location data is only an approximation. The location of a collecting device is not the same as the location of access point, and in fact, even the location data of a collecting device may have errors. In rural areas where spaces between houses are large, it is possible to map a single access point to a specific house; in dense areas such as cities, this causes problems and at least requires significant amount of work.
 
 However, there are a couple of cases where precise identification could be possible. We have examined that some SSIDs include the first name of a person, such as \texttt{John's home network}. Given with an approximate location, it might be possible to say ``within this building, there is only one John, so the network is his''. 
 
-The question whether SSID-location-combination of data is personal data is therefore a question of reasonability of an event described above, and amount of work that is required to discover an individual: if identifying is theoretically possible, is it enough? The phrasign in the directive is the following~\cite{data_protection}:
+The question whether SSID-location combination of data is personal data is therefore a question of reasonability of an event described above, and amount of work that is required to discover an individual: if identifying is theoretically possible, is it enough, or should it be easy enough for an average person to perform? The phrasing in the directive is the following~\cite{data_protection}:
 
 \begin{quote}
     to determine whether a person is identifiable, account should be taken of all the means likely reasonably to be used either by the controller or by any other person to identify the said person
 \end{quote}
 
-This is a difficult question. The Working Party notes that not only today's situation is enough to consider, but that also future development should be taken into account, if data is to be stored for a longer period.~\cite{wp29_136} Because there have been no legal cases for the issue, we cannot answer this question reliably.
+This is a difficult question: what are ``all the means likely reasonably to be used''?. The Working Party notes that not only today's situation is enough to consider, but that also future development should be taken into account, if data is to be stored for a longer period.~\cite{wp29_136} Because there have been no legal cases for the issue, we cannot answer this question reliably.
 
 The Working Party has said in a different opinion~\cite{wp29_185} that 
 \begin{quote}
     the combination of a MAC address of a WiFi access point with its calculated location, should be treated as personal data.
 \end{quote}
 
-However, in our case we had only a MAC address and an SSID, not the BSSID that would uniquely identify the access point uniquely. In an article written by Watts, Brunger, and Shires~\cite{watts2011european} argue that the practical likelihood of mapping an access point to an individual is extremily low, and therefore mapping of access points should not be treated as personal data, even when BSSID is collected. It is worth to note that the writers of previous article were assisting Google on its Street View case, so their opinion is likely to be in favor of Google and against regulation of such databases.
+However, in our case we had only a MAC address and an SSID, not the BSSID that would uniquely identify the access point. In an article written by Watts, Brunger, and Shires~\cite{watts2011european} authors argue that the practical likelihood of mapping an access point to an individual is extremily low, and therefore mapping of access points should not be treated as personal data, even when BSSID is collected. It is worth to note that the writers of the article were assisting Google on its Street View case, so their opinion is likely to be in favor of Google and against regulation of such databases.
 
 Together with the Data Protection Directive, there is another possible directive for the case, the E-Privacy Directive (2002/58/EC). However, it is not relevant for the case. First, in the opinion of the Working Party, it is said to apply only to location data processed by telecom operators~\cite{wp29_185}. That can be read from the directive, where ``location data'' is defined in Article 2(c) as
 
@@ -1246,7 +1248,23 @@ Once again, these include similiar charasteristics than European legislation and
 
 \section{Discussion on legal status}
 
-As we have seen, legislation varies between Europe and the U.S. Collecting personal data and analyzing it is regulated within EU, but the United States still is pretty open for everything as long as it does not target actual message, or is not made public.
+\begin{table}
+\center
+    \begin{tabular}{|l|c|c|}
+        \hline
+        Action performed & EU & USA \\ \hline
+        \hline
+        Collecting SSIDs from APs with location & Unclear & Legal \\ 
+        \hline
+        Collecting SSIDs from mobile devices & Restrictions apply & Legal \\ 
+        \hline
+        Analyzing the collected data & Restrictions apply & Legal \\ \hline
+    \end{tabular}
+    \caption{Conclusion of legal status of studied acts}
+    \label{table:conclusion}
+\end{table}
+
+As we have seen, legislation varies between Europe and the U.S. A conclusion is presented on Table~\ref{table:conclusion}. Collecting personal data and analyzing it is regulated within EU, but the United States still is pretty open for everything as long as it does not target actual message, or is not made public.
 
 Farah and Higby see the situation as U.S. relying on market forces: if the business is handling data in a inappropriate way, customers would not want to go there. Europe, on the other hand, has trusted in legislation.~\cite{farah2001commerce} We can question the reasonability of said U.S. approach: how would a customer know, how the data is handled, if companies are not obliged to tell it? Perfect market theory requires perfect knowledge.
 
