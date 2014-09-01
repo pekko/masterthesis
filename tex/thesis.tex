@@ -1287,13 +1287,13 @@ In this chapter, we will conduct a practical experiment of previously discussed 
 
 SSID probe data was captured from various public locations in a range of 25 kilometeres (15 miles). We used a single Apple laptop with an internal wireless antenna and open-source software. No special or expensive equipment nor propertiary software was used, so anybody is able to perform same kind of data collection.
 
-Location data was obtained from WiGLE~\cite{wigle}, where we were given higher query limits than for original users. For the other services we used, Google Places and Expedia, we had exactly the same privileges than normal user, and nothing was purchased for our research. Therefore the same kind of research can be done by anyone, and with commercial resources, its quality can probably be raised significantly.
+Location data was obtained from WiGLE~\cite{wigle}, where we were given higher query limits than for ordinary users. For the other services we used, Google Places and Expedia, we had exactly the same privileges than normal user, and nothing was purchased for our research. Therefore the same kind of research can be done by anyone, and with commercial resources, its quality can probably be raised significantly.
 
 \subsection{Twitter}
 
-Twitter was a special case, since its API is pretty limited for rate. We collected Twitter's feed to our own servers and built our own database, so that we get an unlimited access to data, simulating private access. 
+Twitter was a special case, since its API is pretty limited for rate and coverage. We collected Twitter's feed to our own servers and built our own database, so that we get an unlimited access to data, simulating private access. 
 
-Twitter's API return results in JSON (JavaScript Object Notation) format. We preprocessed the data by removing all the tweets without location information; this was done with a simple \texttt{grep} filtering. After that, the data was imported into the database.
+Twitter's API return results in JSON (JavaScript Object Notation) format. We preprocessed the data by removing all the tweets without location information. After that, the data was imported into the database.
 
 Our choice for database software was MongoDB~\cite{mongodb}, which is a high-performance NoSQL database. MongoDB is specifically designed to work with JSON format, so importing data was painless. 
 
@@ -1343,11 +1343,11 @@ Not everyone is happy or comfortable with an idea that someone is tracking their
 
 \section{Countermeasures for MAC address tracking}
 
-Tracking customers' movements based on MAC address is a relatively simply technique, as we have already seen. Tracker needs to be able to (1) locate a device, and (2) determine which location point is from which device. 
+Tracking customers' movements based on MAC address is a relatively simply technique, as we have already seen. Tracker needs to be able to (1) locate a device, and (2) combine togheter individual location points from the same device.
 
 We cannot prevent anyone from locating a device that transmits signal on radio frequencies, so the only possible countermeasure is to negate possibility to match location points to a single device. Therefore a device must not broadcast MAC address or other information that uniquely identifies it.
 
-WLAN standard offers no help, so there is a need for new solutions. Apple announced in June 2014 that in iOS 8, it will be randomizing the MAC address during wireless network scanning~\cite{FredericJacobs2014,apple_wwdc_privacy}. Randomized address would work as a \emph{pseudonym}, which identifies device for a specific request or for a limited time, but not universally.
+Current WLAN standard offer no help as they mandate sending a MAC address with every request, so there is a need for new solutions. Apple announced in June 2014 that in iOS 8, it will randomize the MAC address during wireless network scanning~\cite{FredericJacobs2014,apple_wwdc_privacy}. A randomized address would work as a \emph{pseudonym}, which identifies device for a specific request or for a limited time, but not universally.
 
 As iOS 8 is not yet released, we cannot study its behavior in detail. However, randomization presents a couple of interesting questions. Normally, a device sends a bunch of probe requests almost at once and then sleeps for some period of time, usually between 30 to 60 seconds. A proper implementation requires that the MAC address is randomized after \emph{every} single probe request, not only between different cycles. Otherwise, tracker could identify device based on the broadcasted SSID list and completely ignore the MAC address.
 
@@ -1362,8 +1362,6 @@ A direct consequence of previous is that after joining a network, a device can b
 A possible problem may be that the device is leaking other information where it can be identified. For example, the WPS protocol presented in Section~\ref{sec:wps} might leak new unique user identifier, which renders the whole defense meaningless.
 
 Implementing MAC address randomization seems to be a promising countermeasure against tracking during the scanning phase, if implemented correctly. Joining a network removes the advantage of randomization.
-
-TODO: pseudonyms are used somewhere in GMS standard
 
 \section{Countermeasures for SSID profiling}
 \label{sec:countermeasures_ssid}
