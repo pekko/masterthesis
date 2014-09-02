@@ -845,7 +845,7 @@ We see at least the following possibilities:\\
 
 \textbf{Distuingish between locals and foreigners.} If the user has locations only nearby, he is probably a local. If majority of locations is from somewhere else but within a reasonably small radius, that might be his home location. However, making reliable difference between someone's hometown and a place where he has visited might be difficult.
 
-
+\textbf{Monitoring behavior in a specific industry.} We can characterize user's behavior in some industries, where wireless networks are common. For example, many hotels offer a network. Hotel owner could look for his customers history: have they visited a lot competitor's hotels, or is this even the first hotel visit they have? 
 
 \section{Other information obtained from probe requests}
 \label{sec:other_info}
@@ -856,7 +856,7 @@ In~\cite{pang2007802}, Pang et al. have been trying to fingerprint WLAN users by
 
 However, their approach was different from ours, as they study a scenario where analyzer can monitor all the traffic: the user has connected to a wireless network run by analyzer. In our work, we are limited to the probing phase, which happens before any connection has been made. This limitation rules the first method, examining network destinations, out. Also, SSID probes are already covered elsewhere in this work.
 
-Broadcast packet sizes are a possible approach. Some services and applications broadcast information or advertisements about themselves. For example, Dropbox, a cloud-storage service provider, has a desktop app that tries to find computers with linked Dropbox accounts in the local network. If they were found, transferring data between them would be a lot faster and cheaper than via public internet.~\cite{dropboxlan} All the content of broadcasts are encrypted in secure WLANs, but broadcasted packets can still be found, because they are sent to a known broadcast MAC address \texttt{ff:ff:ff:ff:ff:ff}. MAC address is always sent in plaintext. The size of the packets is also unencrypted, which leaves the possibility to retrieve information even from encrypted networks.
+Broadcast packet sizes are a possible approach. Some services and applications broadcast information or advertisements about themselves. For example, Dropbox, a cloud-storage service provider, has a desktop app that tries to find computers with linked Dropbox accounts in the local network. If they were found, transferring data between them would be a lot faster and cheaper than via public internet.~\cite{dropboxlan} All the content of broadcasts are encrypted in secure WLANs, but broadcasted packets can still be found, because they are sent to a known broadcast MAC address \texttt{ff:ff:ff:ff:ff:ff}, and the MAC address is always sent in plaintext. The size of the packets is also unencrypted, which leaves the possibility to retrieve information even from encrypted networks.
 
 The last method, MAC protocol fields, tries to exploit the fact that MAC header includes flags and fields that vary between different manufacturers and configurations. As Pang et al. themselves note, this is usually not enough to distinguish users uniquely, because quite a many people use exactly the same model of a device. However, this method can be used in addition to others, if necessary.
 
