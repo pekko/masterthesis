@@ -212,11 +212,11 @@
 \newcommand{\SUPERVISOR}{Professor Tuomas Aura}
 \newcommand{\FSUPERVISOR}{Professori Tuomas Aura}
 
-\newcommand{\INSTRUCTOR}{Professor Christopher Kruegel\\ Professor Giovanni Vigna}
-\newcommand{\FINSTRUCTOR}{Professori Christopher Kruegel\\Professori Giovanni Vigna}
+\newcommand{\INSTRUCTOR}{}
+\newcommand{\FINSTRUCTOR}{}
 
 \newcommand{\COVERSUPERVISOR}{Professor Tuomas Aura, Aalto University}
-\newcommand{\COVERINSTRUCTOR}{Professor Christopher Kruegel, University of California, Santa Barbara\\Professor Giovanni Vigna, University of California, Santa Barbara}
+\newcommand{\COVERINSTRUCTOR}{}
 
 
 % Other stuff
@@ -1302,19 +1302,25 @@ The biggest problem with Twitter's data was its huge size. We were able to colle
 \section{Overview of data}
 \label{sec:data_overview}
 
-$a$ probe requests, $a_1$ with only broadcast
+We collected total of 315,451 probe requests from 15,124 different devices. Here, we assume that devices are following the standard and have an unique and permanent MAC address. 11,215 devices (74.2~\%) probed only wildcard SSID, and these were excluded from later analysis. Therefore, we have 3,909 unique devices left.
 
-$b$ unique MAC addresses
+We saw 9,181 unique SSIDs. Distribution of nodes per SSID is shown on Figure~\ref{fig:nodes_per_ssid}. We see that huge majority of SSIDs, 7,927 or 86~\%, were found only on a single device. This will make it harder to find clusters, but allows to differentiate users more.
 
-$c$ SSIDs, popularity: most common ones found almost in every $n$th device, but $m \%$ were only in one (graph! long tail!)
+\begin{figure}
+    \center
+    \includegraphics{images/nodes_per_ssid}
+    \caption{From how many nodes a SSID was found. Note logarithmic scale.}
+    \label{fig:nodes_per_ssid}
+\end{figure}
 
-on average $d$ ssids/probe req
+In Figure~\ref{fig:ssids_per_node} we see how many SSIDs a node probed. There is a bias on one ssid per node, since in many cases it may be result of joining a network. Since we did not collect any other data than probe requests, this hypothesis is impossible to verify. After that, most of the clients probed at most 17 SSIDs.
 
-$e$ WPS leaks
-
-Everything by manufacturers (use OUIs); who leaked the most? Compare to market shares.
-
-Twitter, a lot of everything... only 10\% of feed. How many has used geolocation? Any trend over time?
+\begin{figure}
+    \center
+    \includegraphics{images/ssids_per_node}
+    \caption{How many nodes did a client probe. Note logarithmic scale.}
+    \label{fig:ssids_per_node}
+\end{figure}
 
 \section{Commons}
 \label{sec:practical_commons}
