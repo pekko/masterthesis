@@ -1333,19 +1333,54 @@ Manufacturer distribution is shown in Figure~\ref{fig:manufacturers}. Today's sm
     \label{fig:manufacturers}
 \end{figure}
 
-\section{Commons}
+\section{Comparing devices with each others}
+
+\subsection{Commons}
 \label{sec:practical_commons}
 
-\section{Clustering}
+\subsection{Clustering}
 \label{sec:practical_clustering}
 
-\section{Geolocation}
+\section{Combining data with third party services}
 \label{sec:practical_geo}
 
-\section{Semantic analysis}
+For the rest parts of the experiment, geolocation data played crucial role. Our workflow was the following:
+
+\begin{enumerate}
+    \item Get location data from WiGLE by SSID
+    
+    \item Calculate score for uncertainity of the location data:
+        $$ u_{Loc} = \ln a + d^2 $$
+        where $a$ is number of different locations for the SSID, and $d$ is the average distance between locations.
+    
+    \item By location data and SSID, query Google Places to find out what place this is. SSID was splitted into different words by different delimiters, such as `-', `\_', whitespace, and case changes. For example, SSID \texttt{FourSeasons\_Guests} splits into search terms \texttt{Four}, \texttt{Seasons} and \texttt{Guests}.
+
+    \item If the SSID or data from Google suggested it to be a hotel, query Expedia database to get more details.
+
+    \item Last, manually assign uncertainty score for Google Places result.
+\end{enumerate}
+
+In Table~\ref{tab:stage_counts} there are count of SSIDs processed in every phase. We see from the table, that even though we were able to get location infromation for almost two-thirds of SSIDs, only one third of the locations were considered accurate enough. This is due to ambiguous SSIDs: they appear more than once and in various locations.
+
+\begin{table}[h]
+    \center
+    \begin{tabular}{|l|c|c|}
+        \hline
+        Unique SSIDs                            & 8454 & 100~\% \\ \hline
+        Location point for SSID                 & 5451 & 64~\%  \\ \hline
+        Reasonable low uncertainty for location & 2283 & 27~\%  \\ \hline
+        Google Places data                      & 1543 & 18~\%  \\ \hline
+        Trustworthy Google Places data          & 1016 & 12~\%  \\ \hline
+        Detailed hotel information              & 389  & 5~\%   \\ \hline
+    \end{tabular}
+    \caption{SSID count for specific phses of analysis}
+    \label{tab:stage_counts}
+\end{table}
+
+\subsection{Semantic analysis}
 \label{sec:practical_semantic}
 
-\section{Social networks}
+\subsection{Social networks}
 \label{sec:practical_social}
 
 
