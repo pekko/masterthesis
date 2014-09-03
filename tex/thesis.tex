@@ -1302,9 +1302,9 @@ The biggest problem with Twitter's data was its huge size. We were able to colle
 \section{Overview of data}
 \label{sec:data_overview}
 
-We collected total of 315,451 probe requests from 15,124 different devices. Here, we assume that devices are following the standard and have an unique and permanent MAC address. 11,215 devices (74.2~\%) probed only wildcard SSID, and these were excluded from later analysis. Therefore, we have 3,909 unique devices left.
+We collected total of 279,950 valid probe requests from 12,856 different devices. Here, we assume that devices are following the standard and have an unique and permanent MAC address. 9,872 devices (76.8~\%) probed only wildcard SSID, and these were excluded from later analysis. Therefore, we have 2,984 unique devices left.
 
-We saw 9,181 unique SSIDs. Distribution of nodes per SSID is shown on Figure~\ref{fig:nodes_per_ssid}. We see that huge majority of SSIDs, 7,927 or 86~\%, were found only on a single device. This will make it harder to find clusters, but allows to differentiate users more.
+We saw 8,454 unique SSIDs. Distribution of nodes per SSID is shown on Figure~\ref{fig:nodes_per_ssid}. We see that huge majority of SSIDs, 7,927 or 86~\%, were found only on a single device. This will make it harder to find clusters, but allows to differentiate users more.
 
 \begin{figure}
     \center
@@ -1320,6 +1320,17 @@ In Figure~\ref{fig:ssids_per_node} we see how many SSIDs a node probed. There is
     \includegraphics{images/ssids_per_node}
     \caption{How many nodes did a client probe. Note logarithmic scale.}
     \label{fig:ssids_per_node}
+\end{figure}
+
+We mapped devices also by manufacturer, since we can know it by the OUI part of the MAC address. We compared then our findings to the smart phone market share: this way, we could see if there were manufacturers with more insecure default settings than others. The market share was obtained from comScore's report for second quarter of 2014~\cite{comscore2014}
+
+Manufacturer distribution is shown in Figure~\ref{fig:manufacturers}. Today's smartphone market in the U.S. is dominated by two largest players, Apple and Samsung. In our data, we see far more Apple devices than we should have expected: 57~\% of MAC addresses compared to 42~\% of market share. Also, Samsung is strongly underpresented in our data, with 10~\% of probes to 28~\% of market share. This suggests that owners of Apple iPhone leave their Wi-Fi actively scanning more often, or that Samsung uses wildcard probing or passive scanning in many of its devices.
+
+\begin{figure}
+    \center
+    \includegraphics{images/manufacturers}
+    \caption{Distribution of MAC addresses we found by manufacturer, and U.S. smartphone market share\cite{comscore2014}}
+    \label{fig:manufacturers}
 \end{figure}
 
 \section{Commons}
