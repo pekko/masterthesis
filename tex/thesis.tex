@@ -906,7 +906,7 @@ Because joining a WPS-enabled network has been wanted to make easy but secure fo
 
 The most important and interesting part for us is in the very beginning, since we are interested in probe requests. We found that some devices are actively sending WPS requests hoping that an AP would reply. This request is the same as message 1 in the protocol, and it is sent in a probe request frame's last field, targeted for vendor-specific information.
 
-In message 1, there is a broadly-named field ``Description''. The data it includes makes it worth to look closer. Microsoft's document says that it is ``[a] human-readable description of the sending device (UUID, manufacturer, model number, MAC address, and so on) and device capabilities such as supported algorithms, I/O channels, and Registration Protocol role.'', and Wireshark confirms exactly that. Also, there is a field called ``DEVICE\_NAME'', which is the human-readable name user has given to his device, for instance ``Pekko's iPhone''.
+In message 1, there is a broadly-named field ``Description''. The data it includes makes it worth to look closer. Microsoft's document says that it is ``[a] human-readable description of the sending device (UUID, manufacturer, model number, MAC address, and so on) and device capabilities such as supported algorithms, I/O channels, and Registration Protocol role.'', and Wireshark confirms exactly that. Also, there is a field called ``DEVICE\_NAME'', which is the human-readable name user has given to his device, for instance ``Pekko's phone''.
 
 With all this information, we may be able to
 \begin{enumerate}
@@ -1101,7 +1101,7 @@ These requrirements would increase the costs, reduce effectivity, and sometimes 
 
 Next we will look for legal issues in collecting data from wireless access points in the European Union. We assume that a service is collecting two different pieces of data: SSID and location.
 
-To make it easier, we first examine the case of collecting only SSIDs. SSIDs are names of networks, decided by network administrators. Clearly SSIDs of public networks, such as the ones in buses or schools, are not personal data. In private home networks they are difficult to categorize as personal data: in many cases, the SSID is the default (for instance, \texttt{linksys}) or an arbitary name (\texttt{My little network}). Also, SSIDs are not unique, and there are lots of networks with the same name. The only possibility to render a SSID for personal data would be if someone named his network after his own name (\texttt{John Doe's network}), but this happens really rarely. Therefore collecting only SSIDs should not be treated as personal data.
+To make it easier, we first examine the case of collecting only SSIDs. SSIDs are names of networks, decided by network administrators. Clearly SSIDs of public networks, such as the ones in buses or schools, are not personal data. In private home networks they are difficult to categorize as personal data: in many cases, the SSID is the default (for instance, \texttt{linksys}) or an arbitary name (\texttt{My little network}). Also, SSIDs are not unique, and there are lots of networks with the same name. The only possibility to render a SSID for personal data would be if someone named his network after his own name (\texttt{John Doe's network}), but this happens really rarely --- in our study, we found 20 this kind of SSIDs out of 8,500, which is 0.2~\%. Also, this does not make any difference between owner and user of the network. Therefore collecting only SSIDs should not be treated as personal data.
 
 Combining the SSIDs with location data raises more questions. If we know the location of an access point, can we link it to a specific individual? The first thing to note is that location data is only an approximation. The location of a collecting device is not the same as the location of access point, and in fact, even the location data of a collecting device may have errors. In rural areas where spaces between houses are large, it is certainly possible to map a single access point to a specific house; in dense areas such as cities, this causes problems and at least requires significant amount of manual work.
 
@@ -1248,7 +1248,7 @@ Once again, these include similiar charasteristics than European legislation and
 
 \section{Discussion on legal status}
 
-\begin{table}
+\begin{table}[h]
 \center
     \begin{tabular}{|l|c|c|}
         \hline
@@ -1383,6 +1383,20 @@ In Table~\ref{tab:stage_counts} there are count of SSIDs processed in every phas
 \subsection{Social networks}
 \label{sec:practical_social}
 
+\section{Other findings}
+\label{sec:practical_other}
+
+\begin{itemize}
+    \item found 20 ssids of form \texttt{firstname lastname's [something]}
+    \begin{itemize}
+        \item .. three of them were \texttt{.. guest network}
+        \item owner != user
+    \end{itemize}
+    \item 33 WPS leaks
+    \begin{itemize}
+        \item sadly default names.. motorola, verizon!
+    \end{itemize}
+\end{itemize}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
