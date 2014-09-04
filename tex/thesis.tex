@@ -1380,8 +1380,22 @@ In Table~\ref{tab:stage_counts} there are count of SSIDs processed in every phas
 \subsection{Semantic analysis}
 \label{sec:practical_semantic}
 
-\subsection{Social networks}
+\subsection{Social media networks}
 \label{sec:practical_social}
+
+We tried to identify users from social media networks based on their SSID history and location data included in social media postings. We found that in general case this is not possible.
+
+To see why this is the case, consider first our data. We have three datasets: user's SSID history, SSID-location mapping, and social media database. For every dataset, let's consider possible errors they have and coverage of population.
+
+The first is considered error-free: we have succesfully captured possible SSID probes, and filtered erroneous out with the checksum field (FCS) of 802.11 standard. Coverage could be increased with time, better antennas, and better capture positions, such as larger cities.
+
+The second dataset, SSID-location mapping, is more problematic. As shown in Table~\ref{tab:stage_counts}, we got location data for about 64~\% of SSIDs. However, the accuracy and reliability of SSIDs shrink fast, and only 27~\% of them can be thought as reasonably trustworthy. Even in that part of data, there are small errors, for example GPS errors in the city or due to fact that location of measuring device is not the same as location of access point.
+
+The third dataset, social media database, can be considered pretty accurate. The location features of a smartphone are reasonably good, even though small errors from GPS can occur, as in previous case. The bigger problem is the coverage of data: we were able to obtain only 10~\% of total Twitter feed in 2014. Furhter, only about 1~\% of tweets included location data. Thus, we had only 0.1~\% of total tweets to analyze and try to find the user.
+
+Also, in dense areas such as in the center of a city, there are multiple wireless networks overlapping. Thus, a tweet from a specific location cannot be bound to a single wireless network, which yields higher amount of false positives.
+
+The identification might work, if special circumstances are met. The most important of these is to post to social media from a location where only small number of people has tweeted (sparsely populated area) --- but not too sparsely, so that the SSID database has its location.
 
 \section{Other findings}
 \label{sec:practical_other}
