@@ -1350,17 +1350,17 @@ For the rest parts of the experiment, geolocation data played crucial role. Our 
     \item Get location data from WiGLE by SSID
     
     \item Calculate score for uncertainity of the location data:
-        $$ u_{Loc} = \ln a + d^2 $$
-        where $a$ is number of different locations for the SSID, and $d$ is the average distance between locations.
+        $$ u_{Loc} = C_1 \cdot \ln n + C_2 \cdot d^2 $$
+        where $n$ is number of different locations for the SSID, $d$ is the average distance between locations, and $C_1$ and $C_2$ are constants. This way, there are small penalty for large number of networks with the same SSID, and larger penalty if they are far away from each others.
     
-    \item By location data and SSID, query Google Places to find out what place this is. SSID was splitted into different words by different delimiters, such as `-', `\_', whitespace, and case changes. For example, SSID \texttt{FourSeasons\_Guests} splits into search terms \texttt{Four}, \texttt{Seasons} and \texttt{Guests}.
+    \item By location data and SSID, query Google Places to find out if the location is a well-known place. SSID was splitted into different words by several delimiters, such as `-', `\_', whitespace, and case changes. For example, SSID \texttt{FourSeasons\_Guests} splits into three search terms, \texttt{Four}, \texttt{Seasons}, and \texttt{Guests}.
 
     \item If the SSID or data from Google suggested it to be a hotel, query Expedia database to get more details.
 
     \item Last, manually assign uncertainty score for Google Places result.
 \end{enumerate}
 
-In Table~\ref{tab:stage_counts} there are count of SSIDs processed in every phase. We see from the table, that even though we were able to get location infromation for almost two-thirds of SSIDs, only one third of the locations were considered accurate enough. This is due to ambiguous SSIDs: they appear more than once and in various locations.
+In Table~\ref{tab:stage_counts} there are count of SSIDs processed in every phase. We see from the table, that even though we were able to get location infromation for almost two-thirds of SSIDs, less than halfb of the locations were considered accurate enough. This is due to ambiguous SSIDs: they appear more than once and in various locations.
 
 \begin{table}[h]
     \center
@@ -1400,17 +1400,11 @@ The identification might work, if special circumstances are met. The most import
 \section{Other findings}
 \label{sec:practical_other}
 
-\begin{itemize}
-    \item found 20 ssids of form \texttt{firstname lastname's [something]}
-    \begin{itemize}
-        \item .. three of them were \texttt{.. guest network}
-        \item owner != user
-    \end{itemize}
-    \item 33 WPS leaks
-    \begin{itemize}
-        \item sadly default names.. motorola, verizon!
-    \end{itemize}
-\end{itemize}
+As noted while studying legal issues on Chapter~\ref{chapter:legal}, someone might name his network after his own name. We looked the data we had captured to find such networks. In fact, we found 24 SSIDs that were form of \texttt{[firstname] [lastname]'s [network|own network|etc]}, of which 22 were named after different individuals, one was duplicate, and one was after a family name.
+
+To further study these cases, we tried to identify these people by searching their name from various public sources and social media. As the names of people are not unique, we assumed that they were living in a reasonable distance from capture area. We believe that we found the correct individuals in 13 cases; in three cases we found too many results to uniquely identify a person; and six SSIDs did not result to a match.
+
+We found also 33 WPS leaks, specified in Section~\ref{sec:wps}. Sadly, the phone names in the leaks looked like default names, which the owner had not changed. Most of the leaks were from Motorola devices, bought from Verizon.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
