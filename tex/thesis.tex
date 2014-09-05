@@ -802,11 +802,9 @@ When we have formed a graph, we can search try to search for clusters. There is 
 
 Finding the clusters in the graph is therefore our actual problem. Luckily, we do not need to invent our own algorithm, since this is a general graph problem, and it has been studied in computer science before.
 
-A possible algorithm could be \emph{hierarchial clustering}~\cite{schaeffer2007graph}. Here, the idea is to build a tree of hierarchy. Depending of particular algorithm, the process can start from top or bottom of hierarchy. In top-down (``divisive'') algorithms, initially every node belongs to a single cluster, and in every step clusters may be split into two new clusters. In bottom-up approach (``agglomerative''), every node is initially its own cluster, and in every step they may be merged with others. When specific stopping condition is met, the algorithm terminates, or it can build the whole tree and select the state where there were highest difference between clusters and smallest inside clusters.
+A possible algorithm could be \emph{hierarchical clustering}~\cite{schaeffer2007graph}. Here, the idea is to build a tree of hierarchy. Depending of particular algorithm, the process can start from top or bottom of hierarchy. In top-down (``divisive'') algorithms, initially every node belongs to a single cluster, and in every step clusters may be split into two new clusters. In bottom-up approach (``agglomerative''), every node is initially its own cluster, and in every step they may be merged with others. When specific stopping condition is met, the algorithm terminates, or it can build the whole tree and select the best point to break dataset into clusters, so-called \emph{knee point}. For this, there are numerous methods available, including largest difference between two points, largest ratio between two points and so on~\cite{salvador2004determining}.
 
-Generic hierarchial clustering has time complexity of $O(N^3)$~\cite{manning2008introduction}, which may be problematic for very large datasets, but most likely usable for us. There are better algorithms for specific cases, such as single-link and complete-link graphs~\cite{manning2008introduction}, but our use case does not belong to those. 
-
-The algorithm does not require us to provide number of clusters beforehand, which is a useful feature. It is also easy to understand and simple to implement, and may reveal interesting facts about the structure of data.
+Generic hierarchical clustering has time complexity of $O(N^3)$~\cite{manning2008introduction}, which may be problematic for very large datasets, but most likely usable for us. The algorithm does not require us to provide number of clusters beforehand, which is a useful feature: we do not now the structure of data before finding clusters. It is also easy to understand and relatively simple to implement, and may reveal interesting facts about the structure of data.
 
 Another promising approach could be \emph{Markov Cluster Process} (MCL Process), introduced in van Dongen's PhD dissertation (2000)~\cite{van2000graph} and taught nowadays in university classes~\cite{mlc_macropol}. The algorithm first transforms a graph into a transition matrix, where element $(x,y)$ denotes the weight from $x$ to $y$. Columns are normalized so that each sums to one. After that, there are two operations: expansion and inflation. Expansion simply raises the matrix to power of $e$, which is a parameter. Inflation consists of squaring every column and then normalizing it again to sum to one; this way, inflation strengthens already strong connections and weakens already weak ones. In other words, expansion allows flow to connect new parts of the graph and inflation grows the range of values. Inflation and expansion are repeated until the algorithm convergences. Resulting matrix gives the clusters.
 
@@ -1341,6 +1339,17 @@ Manufacturer distribution is shown in Figure~\ref{fig:manufacturers}. Today's sm
 \subsection{Clustering}
 \label{sec:practical_clustering}
 
+We tried to find clusters from the data by using various methods.
+
+In one approach, we used Gephi~\cite{bastian2009gephi} to give graphical representation of the data. Showing all the edges was too heavy task, so we filtered the least important out. With Prism-3 similarity method and threshold$= 0.1$, we got the result shown in Figure~\ref{gephi_01}. The graph can be seen as having four rings. In the center are lots of nodes with no important connections to anywhere: every node is its own cluster. Around those, there are lots of two-node pairs, followed by three-node clusters. Outermost we have clusters with many nodes. In the graph, a couple of black areas show the strongest similarities.
+
+\begin{figure}
+    \center
+    \includegraphics[width=\textwidth]{images/gephi-01.png}
+    \caption{Graph created with Gephi. Nodes are client devices, edges are similarity between them calculated from SSIDs and using Psim-3 similarity metric with threshold $0.1$.}
+    \label{gephi_01}
+\end{figure}
+
 \section{Combining data with third party services}
 \label{sec:practical_geo}
 
@@ -1360,7 +1369,7 @@ For the rest parts of the experiment, geolocation data played crucial role. Our 
     \item Last, manually assign uncertainty score for Google Places result.
 \end{enumerate}
 
-In Table~\ref{tab:stage_counts} there are count of SSIDs processed in every phase. We see from the table, that even though we were able to get location infromation for almost two-thirds of SSIDs, less than halfb of the locations were considered accurate enough. This is due to ambiguous SSIDs: they appear more than once and in various locations.
+In Table~\ref{tab:stage_counts} there are count of SSIDs processed in every phase. We see from the table, that even though we were able to get location infromation for almost two-thirds of SSIDs, less than half of the locations were considered accurate enough. This is due to ambiguous SSIDs: they appear more than once and in various locations.
 
 \begin{table}[h]
     \center
