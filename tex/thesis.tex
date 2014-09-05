@@ -1300,9 +1300,9 @@ The biggest problem with Twitter's data was its huge size. We were able to colle
 \section{Overview of data}
 \label{sec:data_overview}
 
-We collected total of 279,950 valid probe requests from 12,856 different devices. Here, we assume that devices are following the standard and have an unique and permanent MAC address. 9,872 devices (76.8~\%) probed only wildcard SSID, and these were excluded from later analysis. Therefore, we have 2,984 unique devices left.
+We collected total of 279,950 valid probe requests from 12,856 different devices. Here, we assume that devices are following the standard and have an unique and permanent MAC address. 9,872 devices (76.8~\%) probed only wildcard SSID, and these were excluded from later analysis. Therefore, we have 2,984 unique devices left for further analysis.
 
-We saw 8,454 unique SSIDs. Distribution of nodes per SSID is shown on Figure~\ref{fig:nodes_per_ssid}. We see that huge majority of SSIDs, 7,927 or 86~\%, were found only on a single device. This will make it harder to find clusters, but allows to differentiate users more.
+From these unique devices, we saw 8,454 unique SSIDs. Distribution of nodes per SSID is shown on Figure~\ref{fig:nodes_per_ssid}. We see that huge majority of SSIDs, 7,927 or 86~\%, were found only on a single device. This will make it harder to find clusters, because most of the SSIDs are not shared at all between devices. On the other hand, it may allow to differentiate users more.
 
 \begin{figure}
     \center
@@ -1311,12 +1311,12 @@ We saw 8,454 unique SSIDs. Distribution of nodes per SSID is shown on Figure~\re
     \label{fig:nodes_per_ssid}
 \end{figure}
 
-In Figure~\ref{fig:ssids_per_node} we see how many SSIDs a node probed. There is a bias on one ssid per node, since in many cases it may be result of joining a network. Since we did not collect any other data than probe requests, this hypothesis is impossible to verify. After that, most of the clients probed at most 17 SSIDs.
+In Figure~\ref{fig:ssids_per_node} we see how many SSIDs a node probed. Almost half of the nodes, 48~\%, probed only one SSID and are exluded from the graph. This behavior may be result of joining a network. Since we did not collect any other data than probe requests, this hypothesis is impossible to verify. After that, we see various number of probes between two and 15, but on sixteen nodes there is a very significant raise. As $16 = 2^4$, we believe that this is hard-coded limit on some devices. However, no single device manufacturer stand up: Apple, Samsung, LG and others are all presented in expected way in nodes with SSID count of sixteen.
 
 \begin{figure}
     \center
     \includegraphics{images/ssids_per_node}
-    \caption{How many nodes did a client probe. Note logarithmic scale.}
+    \caption{How many nodes did a client probe. SSID count of one is excluded, having value of 1,174.  Also, 12 nodes had SSID count larger than 25, and are not visible in the graph.}
     \label{fig:ssids_per_node}
 \end{figure}
 
@@ -1331,17 +1331,14 @@ Manufacturer distribution is shown in Figure~\ref{fig:manufacturers}. Today's sm
     \label{fig:manufacturers}
 \end{figure}
 
-\section{Comparing devices with each others}
-
-\subsection{Commons}
-\label{sec:practical_commons}
-
-\subsection{Clustering}
+\section{Clustering}
 \label{sec:practical_clustering}
 
 We tried to find clusters from the data by using various methods.
 
-In one approach, we used Gephi~\cite{bastian2009gephi} to give graphical representation of the data. Showing all the edges was too heavy task, so we filtered the least important out. With Prism-3 similarity method and threshold$= 0.1$, we got the result shown in Figure~\ref{gephi_01}. The graph can be seen as having four rings. In the center are lots of nodes with no important connections to anywhere: every node is its own cluster. Around those, there are lots of two-node pairs, followed by three-node clusters. Outermost we have clusters with many nodes. In the graph, a couple of black areas show the strongest similarities.
+In one approach, we used Gephi and its \emph{Force Atlas} method~\cite{bastian2009gephi} to give graphical representation of the data. Showing all the edges was too heavy task, so we filtered the least important out. With Prism-3 similarity method and threshold$= 0.1$, we got the result shown in Figure~\ref{gephi_01}.
+
+The graph can be seen as having four rings. In the center are lots of nodes with no important connections to anywhere: every node is its own cluster. Around those, there are lots of two-node pairs, followed by three-node clusters. Outermost we have clusters with many nodes. In the graph, a couple of black areas show the strongest similarities.
 
 \begin{figure}
     \center
