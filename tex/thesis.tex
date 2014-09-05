@@ -808,7 +808,7 @@ Generic hierarchical clustering has time complexity of $O(N^3)$~\cite{manning200
 
 Another promising approach could be \emph{Markov Cluster Process} (MCL Process), introduced in van Dongen's PhD dissertation (2000)~\cite{van2000graph} and taught nowadays in university classes~\cite{mlc_macropol}. The algorithm first transforms a graph into a transition matrix, where element $(x,y)$ denotes the weight from $x$ to $y$. Columns are normalized so that each sums to one. After that, there are two operations: expansion and inflation. Expansion simply raises the matrix to power of $e$, which is a parameter. Inflation consists of squaring every column and then normalizing it again to sum to one; this way, inflation strengthens already strong connections and weakens already weak ones. In other words, expansion allows flow to connect new parts of the graph and inflation grows the range of values. Inflation and expansion are repeated until the algorithm convergences. Resulting matrix gives the clusters.
 
-MLC has same kind of problems than hierarchical clustering. First, MLC's time complexity is $O(N^3)$, where $N$ is number of edges, which may become a problem with very large graphs. However, for our use it most likely is manageable, as numbers of nodes is closer to thousands than millions. Second, it cannot find overlapping clusters -- each node belongs only to one cluster. However, by providing different initial parameters for multiple runs, we may be able to retrieve different clustering results.
+MCL has same kind of problems than hierarchical clustering. First, MCL's time complexity is $O(N^3)$, where $N$ is number of edges, which may become a problem with very large graphs. However, for our use it most likely is manageable, as numbers of nodes is closer to thousands than millions. Second, it cannot find overlapping clusters -- each node belongs only to one cluster. However, by providing different initial parameters for multiple runs, we may be able to retrieve different clustering results.
 
 As we have seen, both algorithms suffer from inability to deal with overlapping clusters. Finding clusters that can overlap is an open research question, with some algorithms proposed in last years, for example OClustR~\cite{PerezSuarez2013234} and DClustR~\cite{PerezSuarez20133040} from P\`{e}rez-Su\'{a}rez et al., and another link clustering based method by Shi et al.~\cite{Shi2013394}. Development of efficient algorithms is still ongoing.
 
@@ -1334,11 +1334,17 @@ Manufacturer distribution is shown in Figure~\ref{fig:manufacturers}. Today's sm
 \section{Clustering}
 \label{sec:practical_clustering}
 
-We tried to find clusters from the data by using various methods.
+We tried to find clusters from the data by using various methods. By finding clusters, we were looking if we could discover patterns. For example, do some SSIDs appear together often?
 
-In one approach, we used Gephi and its \emph{Force Atlas} method~\cite{bastian2009gephi} to give graphical representation of the data. Showing all the edges was too heavy task, so we filtered the least important out. With Prism-3 similarity method and threshold$= 0.1$, we got the result shown in Figure~\ref{gephi_01}.
+First, we calculated the similarity matrix of nodes by looping through all pairs. For similarity metric, we used Jaccard Index and Psim-3, as specified in Section~\ref{subsec:clustering}. After that, we run the actual clustering algorithm, and interpreted results by forming a visual representation or connecting clusters with raw data. Visualization gives us overview how the data looks like, whereas connecting with data gives exact information.
 
-The graph can be seen as having four rings. In the center are lots of nodes with no important connections to anywhere: every node is its own cluster. Around those, there are lots of two-node pairs, followed by three-node clusters. Outermost we have clusters with many nodes. In the graph, a couple of black areas show the strongest similarities.
+Hierarchical clustering does not work well for this type of data. Too many nodes had exactly zero similarity, which yield to maximum distance (in hierarchical clustering, we need to use distance instead of similarity).
+
+Markov Clustering (MCL) works better with the data. We first created clusters of client devices with MCL, and then looked at shared SSIDs in each cluster. SSIDs were scored and sorted based on the frequency they appeared in a cluster. 
+
+First there are seemingly obvious connections, such as people using differently named networks within the same university or another organization, such as \texttt{UCSB Secure} and \texttt{UCSB Wireless Web}. By these, we can verify that our algorithm works at least on some extent, and can continue for further results. We see that there are definetely links between companies: we identified at least a few different restaurants, ice cream bars, hair salons and retail stores. Once again, the problem is the long tail of SSIDs: most of them appeared only in a small number of devices.
+
+To obtain a graphical representation of the data, we used Gephi and its \emph{Force Atlas} method~\cite{bastian2009gephi} to give graphical representation of the data. Showing all the edges was too heavy task, so we filtered the least important out. With Prism-3 similarity method and threshold$= 0.1$, we got the result shown in Figure~\ref{gephi_01}.
 
 \begin{figure}
     \center
@@ -1346,6 +1352,10 @@ The graph can be seen as having four rings. In the center are lots of nodes with
     \caption{Graph created with Gephi. Nodes are client devices, edges are similarity between them calculated from SSIDs and using Psim-3 similarity metric with threshold $0.1$.}
     \label{gephi_01}
 \end{figure}
+
+The graph can be seen as having four rings. In the center are lots of nodes with no important connections to anywhere: every node is its own cluster. Around those, there are lots of two-node pairs, followed by three-node clusters. Outermost we have clusters with many nodes. In the graph, darker edge represents higher similarity: there are a couple of extremely similar pairs.
+
+
 
 \section{Combining data with third party services}
 \label{sec:practical_geo}
@@ -1363,7 +1373,7 @@ For the rest parts of the experiment, geolocation data played crucial role. Our 
 
     \item If the SSID or data from Google suggested it to be a hotel, query Expedia database to get more details.
 
-    \item Last, manually assign uncertainty score for Google Places result.
+    \item Last, manually assign uncertainty score for Google Places result and Expedia hotel result, if present. For example, if for SSID \texttt{BW PLUS VICTORIA PARK SUITES} our system gave a hotel called ``Best Western Plus Victoria Park Suites'' as a result, we can consider that trustworthy.
 \end{enumerate}
 
 In Table~\ref{tab:stage_counts} there are count of SSIDs processed in every phase. We see from the table, that even though we were able to get location infromation for almost two-thirds of SSIDs, less than half of the locations were considered accurate enough. This is due to ambiguous SSIDs: they appear more than once and in various locations.
@@ -1377,7 +1387,8 @@ In Table~\ref{tab:stage_counts} there are count of SSIDs processed in every phas
         Reasonable low uncertainty for location & 2283 & 27~\%  \\ \hline
         Google Places data                      & 1543 & 18~\%  \\ \hline
         Trustworthy Google Places data          & 1016 & 12~\%  \\ \hline
-        Detailed hotel information              & 389  & 5~\%   \\ \hline
+        Detailed hotel information              & 389  & 4.6~\%   \\ \hline
+        Trustworthy hotel information           & 222  & 2.6~\%   \\ \hline
     \end{tabular}
     \caption{SSID count for specific phses of analysis}
     \label{tab:stage_counts}
