@@ -1361,6 +1361,8 @@ The graph can be seen as having four rings. In the center are lots of nodes with
 For the rest parts of the experiments, we needed more details for our data. We developed an analysis framework, where our workflow was the following:
 
 \begin{enumerate}
+    \item Filter out devices with less than four probes; we do not believe to achieve anything by analyzing too small datasets.
+
     \item Get location data from WiGLE by SSID
     
     \item Calculate score for uncertainity of the location data:
@@ -1376,19 +1378,20 @@ For the rest parts of the experiments, we needed more details for our data. We d
     \item Last, manually assign uncertainty score for Google Places result and Expedia hotel result, if present. For example, if for SSID \texttt{BW PLUS VICTORIA PARK SUITES} our system gave a hotel called ``Best Western Plus Victoria Park Suites'' as a result, we can consider that really trustworthy.
 \end{enumerate}
 
-In Table~\ref{tab:stage_counts} there are count of SSIDs processed in every phase. We see from the table, that even though we were able to get location infromation for almost two-thirds of SSIDs, less than half of the locations were considered accurate enough. This is due to ambiguous SSIDs: they appear more than once and in various locations.
+In Table~\ref{tab:stage_counts} there are count of SSIDs processed in every phase. We see from the table, that even though we were able to get location infromation for three-quarters of SSIDs, less than half of the locations were considered accurate enough. This is due to ambiguous SSIDs: they appear more than once and in various locations.
 
 \begin{table}[h]
     \center
     \begin{tabular}{|l|c|c|}
         \hline
-        Unique SSIDs                            & 8454 & 100~\% \\ \hline
-        Location point for SSID                 & 5451 & 64~\%  \\ \hline
-        Reasonable low uncertainty for location & 2283 & 27~\%  \\ \hline
-        Google Places data                      & 1543 & 18~\%  \\ \hline
-        Trustworthy Google Places data          & 1016 & 12~\%  \\ \hline
-        Detailed hotel information              & 389  & 4.6~\%   \\ \hline
-        Trustworthy hotel information           & 222  & 2.6~\%   \\ \hline
+        Unique SSIDs                            & 8454 & --- \\ \hline
+        Unique SSIDs for devices with more than 3 probes                                  & 7271 & 100~\% \\ \hline
+        Location point for SSID                 & 5451 & 75~\%  \\ \hline
+        Reasonable low uncertainty for location & 2283 & 31~\%  \\ \hline
+        Google Places data                      & 1543 & 21~\%  \\ \hline
+        Trustworthy Google Places data          & 1016 & 14~\%  \\ \hline
+        Detailed hotel information              & 389  & 5.3~\%   \\ \hline
+        Trustworthy hotel information           & 222  & 3.1~\%   \\ \hline
     \end{tabular}
     \caption{SSID count for specific phses of analysis}
     \label{tab:stage_counts}
