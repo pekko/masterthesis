@@ -763,7 +763,7 @@ Some useful information can be obtained from geolocated SSIDs. The easiest one i
 
 Another interesting factor is to determine how much a user has traveled: people with SSIDs around the world might behave in a different way than ones with SSIDs from only one country. 
 
-We can develop this approach further by trying to identify concrete places user has visited, for example hotels, restaurants, and universities. Categorizing places is possible with combining data from multiple sources and datasets, for example Expedia Hotel Database~\cite{expedia_hotel_db} and Google Places~\cite{google_places}. Even more, Expedia provides some information of quality and price range of a hotel, which can also be used to characterize a user: does he tend to use high-quality services or likes to prefer low-price alternatives?
+We can develop this approach further by trying to identify concrete places user has visited, for example hotels, restaurants, and universities. Categorizing places is possible with combining data from multiple sources and datasets, for example Expedia Hotel Database~\cite{expedia_hotel_db}, Yelp~\cite{yelp}, and Google Places~\cite{google_places}. Even more, Expedia provides some information of quality and price range of a hotel, and Yelp pricing scale for services, which can also be used to characterize a user: does he tend to use high-quality services or likes to prefer low-price alternatives?
 
 \subsection{Discovering real-life relationships from common SSIDs}
 \label{subsec:ssid_commons}
@@ -836,6 +836,8 @@ Semantic SSID analysis is a technique where we try to profile a user based on th
 In semantic analysis, we know beforehand what we are looking for. In graph-based clustering explained previously, we have only data and try to find anomalies within it.
 
 We see at least the following possibilities:\\
+
+\textbf{Detect price scale of services used.} Yelp~\cite{yelp} provides price range in a scale from 1 to 4. Using it we might see if user tends to use low-price services or high-end ones.
 
 \textbf{Identify students and other academic people.} Universities usually have their own wireless networks, individual ones or common \emph{eduroam} in Europe, so they are easy to spot.
 
@@ -1281,13 +1283,9 @@ In this chapter, we will conduct a practical experiment of previously discussed 
 \section{Methodology}
 \label{sec:methods}
 
-\subsection{Collecting SSID data}
-
 SSID probe data was captured from various public locations in a range of 25 kilometeres (15 miles). We used a single Apple laptop with an internal wireless antenna and open-source software. No special or expensive equipment nor propertiary software was used, so anybody is able to perform same kind of data collection.
 
-Location data was obtained from WiGLE~\cite{wigle}, where we were given higher query limits than for ordinary users. For the other services we used, Google Places and Expedia, we had exactly the same privileges than normal user, and nothing was purchased for our research. Therefore the same kind of research can be done by anyone, and with commercial resources, its quality can probably be raised significantly.
-
-\subsection{Twitter}
+Location data was obtained from WiGLE~\cite{wigle}, where we were given higher query limits than for ordinary users. For the other services we used, Google Places, Yelp, and Expedia, we had exactly the same privileges than normal user, and nothing was purchased for our research. Therefore the same kind of research can be done by anyone, and with commercial resources, its quality can probably be raised significantly.
 
 Twitter was a special case, since its API is pretty limited for rate and coverage. We collected Twitter's feed to our own servers and built our own database, so that we get an unlimited access to data, simulating private access. 
 
@@ -1373,6 +1371,8 @@ For the rest parts of the experiments, we needed more details for our data. We d
 
     \item If the SSID or data from Google suggested it to be a hotel, query Expedia database to get more details.
 
+    \item Query Yelp database to get pricing information with same kind of parameters than Google Places.
+
     \item Last, manually assign uncertainty score for Google Places result and Expedia hotel result, if present. For example, if for SSID \texttt{BW PLUS VICTORIA PARK SUITES} our system gave a hotel called ``Best Western Plus Victoria Park Suites'' as a result, we can consider that really trustworthy.
 \end{enumerate}
 
@@ -1394,6 +1394,9 @@ In Table~\ref{tab:stage_counts} there are count of SSIDs processed in every phas
     \label{tab:stage_counts}
 \end{table}
 
+\subsection{Price ranges}
+\label{subsec:practical_prices}
+
 \subsection{Hometown}
 \label{sec:practical_geolocation}
 
@@ -1406,7 +1409,7 @@ To obtain results, we used the following method:
     \item Filter out location results with too large uncertainty.
     \item Filter out hotels: we assume that people do not go to hotels in their hometown.
     \item Calculate remaining locations grouped by country and state.
-    \item If one location appears often enough, consider that as user's hometown.
+    \item If large enough fraction of locations is from a specific place, consider that as user's hometown.
 \end{enumerate}
 
 We verified our results by manually evaluating SSID lists of users marked as foreigners. Generally, we have good reasons to believe that they were correct. In many cases, there had SSIDs that appear in WiGLE's database only once, or ones that are named after local business.
@@ -1551,6 +1554,17 @@ Having said that, we must note that leaving active probing on increases attack s
 \chapter{Conclusion}
 \label{chapter:conclusion}
 
+\begin{itemize}
+    \item 77~\% only with wildcard
+    \item does not affect MAC tracking
+    \item from SSID list it is possible to get charasteristics of user (student, restaurants, hotels, hometown)
+    \item but NOT possible to identify a single person, only in rare circumstances or with huge effort
+    \item $->$ we think that SSID list should not be personal data in EU, nor ssid-geolocation databases
+    \item but MAC address tracking should be, because of e.g. CCTV
+    \item legal in US, but may change in the future -- however, unclear if SSID list is part of regulations
+    \item again, 77~\% of users had wildcards $->$ SSID analysis by examining probes is not efficient, but the list can be obtained by other ways, e.g. android apps~\cite{2014_WISEC_Achara}
+    \item countermeasures should be implemented! MAC randomization, wildcard probing, long-term: protocol changes
+\end{itemize}
 
 % Load the bibliographic references
 % ------------------------------------------------------------------
