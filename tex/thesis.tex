@@ -1600,17 +1600,23 @@ Having said that, we must note that leaving active probing on increases attack s
 \chapter{Conclusion}
 \label{chapter:conclusion}
 
-\begin{itemize}
-    \item 77~\% only with wildcard
-    \item does not affect MAC tracking
-    \item from SSID list it is possible to get charasteristics of user (student, restaurants, hotels, hometown)
-    \item but NOT possible to identify a single person, only in rare circumstances or with huge effort
-    \item $->$ we think that SSID list should not be personal data in EU, nor ssid-geolocation databases
-    \item but MAC address tracking should be, because of e.g. CCTV
-    \item legal in US, but may change in the future -- however, unclear if SSID list is part of regulations
-    \item again, 77~\% of users had wildcards $->$ SSID analysis by examining probes is not efficient, but the list can be obtained by other ways, e.g. android apps~\cite{2014_WISEC_Achara}
-    \item countermeasures should be implemented! MAC randomization, wildcard probing, long-term: protocol changes
-\end{itemize}
+In the beginning of the thesis, in Chapter~\ref{chapter:protocol}, we described terminology and concepts of wireless networks. We identified a couple of important identifiers, the MAC address and the SSID. We also studied packet formats in detail, and saw how wireless devices find the network they want, and how they join it. We had three possibilities: passive scanning, active scanning, and active scanning with wildcard. Active scanning is the same as active probing.
+
+In Chapter~\ref{chapter:profiling}, we discussed how and why someone could track and profile users based on probes emitted from their wireless devices. We discussed on concepts of locating a device, either a node inside a wireless network, or an access point globally using huge databases. We also saw different methods on profiling users, such as discovering real-life relationships, clustering data with well-known graph algorithms, and comparing data with third-party services. We also looked how a WPS protocol can leak some information.
+
+After passive profiling, in Chapter~\ref{chapter:attacks} we discussed ways to perform active man-in-the-middle attacks. All the attacks share the same basic idea, attacker being between user and a legitimate service. We saw numerous way of them, and discovered that there are easy-to-use, off-shelf devices available even for attackers with low skills. Thus, we consider these attacks to be extremely feasible to perform, and they must be taken seriously.
+
+Having studied techinical views, we looked on legal status of above-discussed techniques on Chapter~\ref{chapter:legal}. Especially we focused on Google's Street View case, which is the best-known example of these issues, even though it does not address them in every way we would like to -- metadata collection has not been discussed on that case. We found that European Union legislation is much stricter than one in the United States, and that officials in the EU -- the Aricle 29 Working Group -- have taken really strong position on suggesting that all wireless network data should be treated as personal data, which makes huge burdens on companies to collect and use it. On the other hand, legislation is really permissive in the U.S. as long as it handles only metadata without actual messages, and allows even more if the analysis is not made public. However, we see that there might be oncoming changes on U.S. laws which would bring them closer to European counterparts, but the process is far from complete.
+
+In Chapter~\ref{chapter:practical} we conducted a practical experiment on techniques studied in Chapter~\ref{chapter:profiling}. We saw that majority of devices, 77~\%, had only wildcard scanning enabled, and can not be profiled. However, this does not prevent tracking, as the device is leaking its MAC address all the time. Naturally, we cannot know how many had only passive scanning enabled or turned their WLAN connectivity off, since those devices do not emit anything we could have captured.
+
+We saw that it is possible to find out some charasteristics of users based on their SSID list. Examples included discovering their hometown and if they favored high- or low-end restaurants and hotels. Still, the biggest problem with these findings is that they apply only to small percentage of the population.
+
+We also discovered that it is really difficult to find users from social media based on their SSID list. The biggest problem is that there is no large enough public mapping from visit history to identity: however, there probably are closed ones in big companies, where we do not have access. Even after that, number of false positives would be high, as networks overlap a lot in densely populated areas, such as cities. We think that identification requires measures that are not likely reasonable to be used, which means that SSID list should not be considered personal data in terms of EU legislation. However, MAC address should be, as it may allow identification easily with accurate indoor-WLAN position systems and CCTV cameras, and it is much more stable than SSID list.
+
+Once again, 77~\% of users had only wildcard scanning enabled, and certainly many had no scanning at all. However, the SSID list can be fetched with other, malicious means, for example with smartphone malware~\cite{2014_WISEC_Achara}.
+
+In the end, in Chapter~\ref{chapter:countermeasures}, we found that there are many countermeasures available. As short-term solutions, manufacturers should stop using active scanning but turn to wildcard or passive ones. At least there should be a private mode available, so that users could choose if they wanted to expose previous SSIDs to everyone or not. In medium term, MAC address randomization could be a working solution, and Apple is very soon launhing a new mobile operaing system with it. In long term, protocol changes would be required, and there have been propsals on them.
 
 % Load the bibliographic references
 % ------------------------------------------------------------------
