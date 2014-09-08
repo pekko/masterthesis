@@ -872,34 +872,9 @@ The actual standard for WPS is available without a charge only for Wi-Fi Allianc
 In the protocol there are three actors: enrollee, AP and registrar. Enrollee is a user willing to join a wireless network using WPS. Registrar is the authority who will gain or deny access. AP is the same access point as previously, but this time it is specified to act as a link between enrollee and registrar. In practice, and especially in consumer-grade devices, registrar's functionality is often included in AP. 
 
 \begin{figure}
-\label{tab:wps}
-\begin{tabular}{c|c p{10cm}}
-    \hline \\
-
-    E $\rightarrow$ R & M1 = & N$_E$, Description, PK$_E$ \\\\
-
-    &  & Below this every message includes a HMAC of current and previous messages \\
-    \hline \\
-
-    E $\leftarrow$ R & M2 = & N$_E$, N$_R$, Description, PK$_R$ \\\\
-
-    &  & Below this every message includes other party's nonce \\
-    \hline \\
-
-    E $\rightarrow$ R & M3 = & Password hashed \\\\
-
-    E $\leftarrow$ R & M4 = & Password hashed, 1st half of secret nonce encrypted \\\\
-
-    E $\rightarrow$ R & M5 = & 1st half of secret nonce encrypted \\\\
-
-    E $\leftarrow$ R & M6 = & 2nd half of secret nonce encrypted \\\\
-
-    E $\rightarrow$ R & M7 = & 2nd half of secret nonce encrypted, encrypted configuration data \\\\
-
-    E $\leftarrow$ R & M8 = & Encrypted configuration data \\
-    \hline
-\end{tabular}
-\caption{TODO Draw prettier one: Protocol for joining a WPS-enabled WLAN. Simplified from~\cite{microsoftWCN}}.
+    \includegraphics[width=\textwidth]{images/wps}
+    \caption{Protocol for joining a WPS-enabled WLAN. Simplified from~\cite{microsoftWCN}}.
+    \label{tab:wps}
 \end{figure}
 
 Because joining a WPS-enabled network has been wanted to make easy but secure for end-users, it is somewhat complex in technical side. Simplified version of protocol is shown in Figure~\ref{tab:wps}. Basically, first enrollee sends its nonce, its own description and its public key to registrar, and registrar replies with the same kind of message with its own information. Then, in messages 3 and 4, parties make precommitments that they know the password by sending it in hashed form. In messages 4-7, parties send their own secret, encrypted hashes, which can be used with previously-sent hashes to make sure that the password was correct. Finally, in message 8, registrar sends WLAN configuration data including credentials to join the WLAN.
