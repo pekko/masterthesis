@@ -1371,9 +1371,9 @@ For the rest parts of the experiments, we needed more details for our data. We d
     
     \item By location data and SSID, query Google Places to find out if the location is a well-known place. SSID was splitted into different words by several delimiters, such as `-', `\_', whitespace, and case changes. For example, SSID \texttt{FourSeasons\_Guests} splits into three search terms, \texttt{Four}, \texttt{Seasons}, and \texttt{Guests}.
 
-    \item If the SSID or data from Google suggested it to be a hotel, query Expedia database to get more details.
-
     \item Query Yelp database to get pricing information with same kind of parameters than Google Places.
+
+    \item If the SSID or data from Google suggested it to be a hotel, query Expedia database to get more details.
 
     \item Last, manually assign uncertainty score for Google Places result and Expedia hotel result, if present. For example, if for SSID \texttt{BW PLUS VICTORIA PARK SUITES} our system gave a hotel called ``Best Western Plus Victoria Park Suites'' as a result, we can consider that really trustworthy.
 \end{enumerate}
@@ -1390,8 +1390,9 @@ In Table~\ref{tab:stage_counts} there are count of SSIDs processed in every phas
         Reasonable low uncertainty for location & 2283 & 31~\%  \\ \hline
         Google Places data                      & 1543 & 21~\%  \\ \hline
         Trustworthy Google Places data          & 1016 & 14~\%  \\ \hline
-        Detailed hotel information              & 389  & 5.3~\%   \\ \hline
-        Trustworthy hotel information           & 222  & 3.1~\%   \\ \hline
+        Pricing data (Yelp)                     & 633  & 8.7~\%  \\ \hline
+        Detailed hotel information              & 389  & 5.3~\% \\ \hline
+        Trustworthy hotel information           & 222  & 3.1~\% \\ \hline
     \end{tabular}
     \caption{SSID count for specific phses of analysis}
     \label{tab:stage_counts}
@@ -1399,6 +1400,21 @@ In Table~\ref{tab:stage_counts} there are count of SSIDs processed in every phas
 
 \subsection{Price ranges}
 \label{subsec:practical_prices}
+
+It would be very valuable to know is users are willing to pay more, or if they are looking for the cheapest alternative. We can try to fetch a rough approximation from SSID list: it is a reasonable hypothesis, that if the user has visited a lot of expensive hotels and restaurants, she is ready to spend money on high-end products.
+
+We fetched pricing information from Yelp~\cite{yelp}, which reports price range for places with four-step scale, from one to four. This is a helpful feature, because then we need not to normalize the prices between different cities or different types of services (such as hotels or restaurants).
+
+To increase the accuracy of price range analysis, we discarded the results with high uncertainty for location or Google Places data. Also, most of the users had only one or two SSIDs with pricing information, and we discarded those too. As a result, we managed to calculate average price range for 328 users (11~\%).
+
+The distribution of price average is shown in Figure~\ref{fig:prices_users}. We see a big peak on range 2.0 -- 2.49, and only five users had an average of at least 3.0. This is may be a result of nature of Yelp data. Nonetheless, we believe that in many cases the result gives hints about customer's purchasing power or consuming behavior, accuracy correlating with the number of SSIDs where pricing data was found.
+
+\begin{figure}
+    \center
+    \includegraphics{images/prices_users}
+    \caption{Distribution of price average}
+    \label{fig:prices_users}
+\end{figure}
 
 \subsection{Hometown}
 \label{sec:practical_geolocation}
@@ -1474,20 +1490,24 @@ simultaneous devices. Due to birthday paradox, this number needs to be decreased
 
 $$n \approx \sqrt{\frac{1}{4} - 2 \cdot M \cdot \ln p}$$
 
-which gives us the results presented in Table~\ref{tab:prob_random}. As we see, the number of devices decreases rapidly when we raise probability requirements: for 99.9~\% probability for no collisions, only 65 simultaneous devices are allowed. However, we should remember that not all devices are in the same OUI block. Apple, who has more than 40~\% of market share in the U.S.~\cite{comscore2014}, has more than 300 OUI blocks reserved. Thus, it would be a safe bet to multiply the numbers in the table at least by ten -- which is a very conservative approach -- giving us easily enough address space even for higher requirements.
+which gives us the results presented in Table~\ref{tab:prob_random}. As we see, the number of devices decreases rapidly when we raise probability requirements: for 99.9~\% probability for no collisions, only 65 simultaneous devices are allowed.
 
-\begin{table}[h]
+However, we should remember that not all devices are in the same OUI block. Apple, who has more than 40~\% of market share in the U.S.~\cite{comscore2014}, has more than 300 OUI blocks reserved. Because the number of devices is proportional to square root of the size of address space, 300 times more addresses would give about 17 times more devices with same collision probability. Therefore, the numbers in the table can be multiplied by 20 (there are also other vendors than Apple), and we should be safe even for larger networks.
+
+
+\begin{table}[ht]
 \center
 \begin{tabular}{|l|r|}
     \hline
-    $p$ & $n$ \\ \hline \hline
-    0.5 & 1705 \\ \hline
-    0.9 & 665 \\ \hline
-    0.95 & 464 \\ \hline
-    0.99 & 205 \\ \hline
-    0.999 & 65 \\ \hline
+    $p$ & $n$   \\ \hline \hline
+    0.5 & 1705  \\ \hline
+    0.9 & 665   \\ \hline
+    0.95 & 464  \\ \hline
+    0.99 & 205  \\ \hline
+    0.999 & 65  \\ \hline
+    0.9999 & 20 \\ \hline
 \end{tabular}
-\caption{Number of devices $n$ to survive simultaneously in a same network without collisions with probability $p$.}
+\caption{Number of devices $n$ with the same OUI to survive simultaneously in a same network, without collisions, with probability $p$, when randomizing only 24 bits of the MAC address.}
 \label{tab:prob_random}
 \end{table}
 
