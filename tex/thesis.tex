@@ -1283,13 +1283,13 @@ In this chapter, we will conduct a practical experiment of previously discussed 
 \section{Methodology}
 \label{sec:methods}
 
-SSID probe data was captured from various public locations in a range of 25 kilometeres (15 miles). We used a single Apple laptop with an internal wireless antenna and open-source software. No special or expensive equipment nor propertiary software was used, so anybody is able to perform same kind of data collection.
+SSID probe data was captured from various public locations in California, U.S., within a range of 25 kilometeres (15 miles). We used a single Macbook Pro laptop with an internal wireless antenna and open-source software. No special or expensive equipment nor propertiary software was used, so anybody is able to perform same kind of data collection.
 
 Location data was obtained from WiGLE~\cite{wigle}, where we were given higher query limits than for ordinary users. For the other services we used, Google Places, Yelp, and Expedia, we had exactly the same privileges than normal user, and nothing was purchased for our research. Therefore the same kind of research can be done by anyone, and with commercial resources, its quality can probably be raised significantly.
 
 Twitter was a special case, since its API is pretty limited for rate and coverage. We collected Twitter's feed to our own servers and built our own database, so that we get an unlimited access to data, simulating private access. 
 
-Twitter's API return results in JSON (JavaScript Object Notation) format. We preprocessed the data by removing all the tweets without location information. After that, the data was imported into the database.
+Twitter's API returns results in JSON (JavaScript Object Notation) format. We preprocessed the data by removing all the tweets without location information. After that, the data was imported into the database.
 
 Our choice for database software was MongoDB~\cite{mongodb}, which is a high-performance NoSQL database. MongoDB is specifically designed to work with JSON format, so importing data was painless. 
 
@@ -1309,7 +1309,7 @@ From these unique devices, we saw 8,454 unique SSIDs. Distribution of nodes per 
     \label{fig:nodes_per_ssid}
 \end{figure}
 
-In Figure~\ref{fig:ssids_per_node} we see how many SSIDs a node probed. Almost half of the nodes, 48~\%, probed only one SSID and are exluded from the graph. This behavior may be result of joining a network. Since we did not collect any other data than probe requests, this hypothesis is impossible to verify. After that, we see various number of probes between two and 15, but on sixteen nodes there is a very significant raise. As $16 = 2^4$, we believe that this is hard-coded limit on some devices. However, no single device manufacturer stand up: Apple, Samsung, LG and others are all presented in expected way in nodes with SSID count of sixteen.
+In Figure~\ref{fig:ssids_per_node} we see how many SSIDs a node probed. Almost half of the nodes, 48~\%, probed only one SSID and are exluded from the graph. This behavior may be result of joining a network. Since we did not collect any other data than probe requests, this hypothesis is impossible to verify. After that, we see various number of probes between two and 15, but on sixteen nodes there is a very significant peak. As $16 = 2^4$, we believe that this is hard-coded limit on some devices. However, no single device manufacturer stand up: Apple, Samsung, LG and others are all presented in expected way in nodes with SSID count of sixteen.
 
 \begin{figure}
     \center
@@ -1332,17 +1332,17 @@ Manufacturer distribution is shown in Figure~\ref{fig:manufacturers}. Today's sm
 \section{Clustering}
 \label{sec:practical_clustering}
 
-We tried to find clusters from the data by using various methods. By finding clusters, we were looking if we could discover patterns. For example, do some SSIDs appear together often?
+We tried to find clusters from the data by using various methods. By finding clusters, we were looking if we could discover patterns. For example, do some SSIDs appear often together, and what it could tell us?
 
-First, we calculated the similarity matrix of nodes by looping through all pairs. For similarity metric, we used Jaccard Index and Psim-3, as specified in Section~\ref{subsec:clustering}. After that, we run the actual clustering algorithm, and interpreted results by forming a visual representation or connecting clusters with raw data. Visualization gives us overview how the data looks like, whereas connecting with data gives exact information.
+First, we calculated the similarity matrix of nodes by looping through all pairs. For similarity metric, we used Jaccard Index and Psim-3, as specified in Section~\ref{subsec:clustering}. After that, we run the actual clustering algorithm, and interpreted results by forming a visual representation or connecting cluster calculation with SSID lists. Visualization gives us an overview how the data looks like, whereas connecting with data shows the semantic meaning.
 
-Hierarchical clustering does not work well for this type of data. Too many nodes had exactly zero similarity, which yield to maximum distance (in hierarchical clustering, we need to use distance instead of similarity).
+Hierarchical clustering does not work well for this type of data. Too many nodes had exactly zero similarity, which yields to maximum distance (in hierarchical clustering, we need to use distance instead of similarity).
 
-Markov Clustering (MCL) works better with the data. We first created clusters of client devices with MCL, and then looked at shared SSIDs in each cluster. SSIDs were scored and sorted based on the frequency they appeared in a cluster. 
+Markov Clustering (MCL) works better with the data. We first created clusters of client devices with MCL, and then looked at shared SSIDs in each cluster. SSIDs were scored and sorted based on the frequency they appeared in a cluster, that is, the most important SSID is the one that most clients share withing the cluster. 
 
-First there are seemingly obvious connections, such as people using differently named networks within the same university or another organization, such as \texttt{UCSB Secure} and \texttt{UCSB Wireless Web}. By these, we can verify that our algorithm works at least on some extent, and can continue for further results. We see that there are definetely links between companies: we identified at least a few different restaurants, ice cream bars, hair salons and retail stores. Once again, the problem is the long tail of SSIDs: most of them appeared only in a small number of devices.
+First there are seemingly obvious connections, such as people using differently named networks within the same university or another organization, such as \texttt{UCSB Secure} and \texttt{UCSB Wireless Web}. By these, we can verify that our algorithm works at least on some extent, and can continue for further results. We see that there are definetely links between companies: we identified at least a few different restaurants, ice cream bars, hair salons and retail stores. Once again, the problem is the long tail of SSIDs: most of the SSIDs appeared only in a small number of devices, and defining connections is not reliable.
 
-To obtain a graphical representation of the data, we used Gephi and its \emph{Force Atlas} method~\cite{bastian2009gephi} to give graphical representation of the data. Showing all the edges was too heavy task, so we filtered the least important out. With Prism-3 similarity method and threshold$= 0.1$, we got the result shown in Figure~\ref{gephi_01}.
+To obtain a graphical representation of the data, we used Gephi and its \emph{Force Atlas} method~\cite{bastian2009gephi}. Showing all the edges was too heavy task, so we filtered the least important out. With Prism-3 similarity method and $\text{threshold} = 0.1$, we got the result shown in Figure~\ref{gephi_01}.
 
 \begin{figure}
     \center
@@ -1351,7 +1351,7 @@ To obtain a graphical representation of the data, we used Gephi and its \emph{Fo
     \label{gephi_01}
 \end{figure}
 
-The graph can be seen as having four rings. In the center are lots of nodes with no important connections to anywhere: every node is its own cluster. Around those, there are lots of two-node pairs, followed by three-node clusters. Outermost we have clusters with many nodes. In the graph, darker edge represents higher similarity: there are a couple of extremely similar pairs.
+The graph can be seen as having four rings. In the center there are lots of nodes with no important connections to anywhere: every node is its own cluster. Around those, there are lots of two-node pairs, followed by three-node clusters. Outermost we have clusters with many nodes. In the graph, darker edge represents higher similarity: there are a couple of extremely similar pairs.
 
 
 
@@ -1378,7 +1378,7 @@ For the rest parts of the experiments, we needed more details for our data. We d
     \item Last, manually assign uncertainty score for Google Places result and Expedia hotel result, if present. For example, if for SSID \texttt{BW PLUS VICTORIA PARK SUITES} our system gave a hotel called ``Best Western Plus Victoria Park Suites'' as a result, we can consider that really trustworthy.
 \end{enumerate}
 
-In Table~\ref{tab:stage_counts} there are count of SSIDs processed in every phase. We see from the table, that even though we were able to get location infromation for three-quarters of SSIDs, less than half of the locations were considered accurate enough. This is due to ambiguous SSIDs: they appear more than once and in various locations.
+In Table~\ref{tab:stage_counts} there are counts of SSIDs processed in every phase. We see from the table, that even though we were able to get location infromation for three-quarters of SSIDs, less than half of the locations were considered accurate enough. This is due to ambiguous SSIDs: they appear more than once and in various locations.
 
 \begin{table}[h]
     \center
@@ -1401,13 +1401,13 @@ In Table~\ref{tab:stage_counts} there are count of SSIDs processed in every phas
 \subsection{Price ranges}
 \label{subsec:practical_prices}
 
-It would be very valuable to know is users are willing to pay more, or if they are looking for the cheapest alternative. We can try to fetch a rough approximation from SSID list: it is a reasonable hypothesis, that if the user has visited a lot of expensive hotels and restaurants, she is ready to spend money on high-end products.
+It would be very valuable to know if users are willing to pay more, or if they are looking for the cheapest alternative. We can try to fetch a rough approximation from SSID list: it is a reasonable hypothesis, that if the user has visited many expensive hotels and restaurants, she is ready to spend money on high-end products.
 
-We fetched pricing information from Yelp~\cite{yelp}, which reports price range for places with four-step scale, from one to four. This is a helpful feature, because then we need not to normalize the prices between different cities or different types of services (such as hotels or restaurants).
+We fetched pricing information from Yelp~\cite{yelp}, which reports price range for places in four-step scale, from one to four. This is a helpful feature, because then we need not to normalize the prices between different cities or different types of services (such as hotels or restaurants).
 
 To increase the accuracy of price range analysis, we discarded the results with high uncertainty for location or Google Places data. Also, most of the users had only one or two SSIDs with pricing information, and we discarded those too. As a result, we managed to calculate average price range for 328 users (11~\%).
 
-The distribution of price average is shown in Figure~\ref{fig:prices_users}. We see a big peak on range 2.0 -- 2.49, and only five users had an average of at least 3.0. This is may be a result of nature of Yelp data. Nonetheless, we believe that in many cases the result gives hints about customer's purchasing power or consuming behavior, accuracy correlating with the number of SSIDs where pricing data was found.
+The distribution of price average is shown in Figure~\ref{fig:prices_users}. We see a big peak on range $2.0 - 2.49$, and only five users had an average of at least 3.0. This may be a result of nature of Yelp data. Nonetheless, we believe that in many cases the result gives hints about customer's purchasing power or consuming behavior, accuracy correlating with the number of SSIDs where pricing data was found.
 
 \begin{figure}
     \center
@@ -1416,10 +1416,10 @@ The distribution of price average is shown in Figure~\ref{fig:prices_users}. We 
     \label{fig:prices_users}
 \end{figure}
 
-\subsection{Hometown}
+\subsection{Discovering hometown}
 \label{sec:practical_geolocation}
 
-One task was to find out where a user comes from. Our hypothesis was that most of the people are from California, where the data was collected, but significant number of people probably are foreigners due to nature of area. Here, we define hometown as a place where user has spent most of his time lately: that is, if a German is visiting U.S., his hometown is still in German -- but if he has lived in California for a year, his current hometown can be considered to be in California.
+One task was to find out where a user comes from. Our hypothesis was that most of the people are from California, where the data was collected, but significant number of people probably are foreigners due to the tourist-friendly nature of area. Here, we define hometown as a place where user has spent most of his time lately: that is, if a German is visiting U.S., his hometown is still in Germany -- but if he has lived in California for a couple of years, his current hometown can be considered to be in California.
 
 The problem is that SSID list does not give any information about number of times the network was used. We obtain same kind of result if user has connected there once or a thousand times.
 
