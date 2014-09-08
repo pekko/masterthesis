@@ -1464,9 +1464,32 @@ Current WLAN standard offer no help as they mandate sending a MAC address with e
 
 As iOS 8 is not yet released, we cannot study its behavior in detail. However, randomization presents a couple of interesting questions. Normally, a device sends a bunch of probe requests almost at once and then sleeps for some period of time, usually between 30 to 60 seconds. A proper implementation requires that the MAC address is randomized after \emph{every} single probe request, not only between different cycles. Otherwise, tracker could identify device based on the broadcasted SSID list and completely ignore the MAC address.
 
-We should look if there is enough space for randomizing a new MAC address for every probe request without collisions. Suppose that an average device has $N = 15$ (TODO CHECK) SSIDs on their preferred network list. By randomizing only organizationally-controlled part of MAC address -- leaving OUI untouched, respecting its purpose -- a single OUI block can provide about 16 million different addresses, and give enough space for $M \approx 10^6$ simultaneous devices. Due to birthday paradox, this number needs to be decreased down to $\sqrt{10^6} = 1000$ devices, which should still be enough for one network. Also, in reality Apple has multiple OUI blocks, not only one.
+To be a working solution, it must not use too much resources. A device with randomized MAC address needs to save all the previous addresses in order to be able to filter replies targeted to it. Because number of different networks is really small, this will not be a pjroblem. Also, after a succesful connection or relatively short timeout (measured in seconds), a pseudonym can be forgotten. Some computational overhead will be generated from randomizing process, but that should be really small -- after all, we are only generating 24 or 48 bits, depending on whether we randomize also OUI part or not.
 
-To be a working solution, it must not use too much resources. A device with randomized MAC address needs to save all the previous addresses in order to be able to filter replies targeted to it. Because number of different networks is really small, this will not be a pjroblem. Also, after a succesful connection or relatively short timeout (measured in seconds), a pseudonym can be forgotten. Some computational overhead will be generated from randomizing process, but that should be really small -- after all, we are only generating 24 or 48 bits.
+We should look if there is enough space for randomizing a new MAC address for every probe request without collisions. Suppose that an average device has $N = 8$ SSIDs on their preferred network list, which is a safe assumption based on our dataset. By randomizing only organizationally-controlled part of MAC address -- leaving OUI untouched, respecting its purpose -- a single OUI block can provide about 16 million different addresses, and give enough space for
+
+$$M = \frac{2^{24}}{8} \approx 2*10^6$$
+
+simultaneous devices. Due to birthday paradox, this number needs to be decreased. The number of devices to success without collision for probability $p$ can be approximated by formula~\cite{mathis1991generalized}
+
+$$n \approx \sqrt{\frac{1}{4} - 2 \cdot M \cdot \ln p}$$
+
+which gives us the results presented in Table~\ref{tab:prob_random}. As we see, the number of devices decreases rapidly when we raise probability requirements: for 99.9~\% probability for no collisions, only 65 simultaneous devices are allowed. However, we should remember that not all devices are in the same OUI block. Apple, who has more than 40~\% of market share in the U.S.~\cite{comscore2014}, has more than 300 OUI blocks reserved. Thus, it would be a safe bet to multiply the numbers in the table at least by ten -- which is a very conservative approach -- giving us easily enough address space even for higher requirements.
+
+\begin{table}[h]
+\center
+\begin{tabular}{|l|r|}
+    \hline
+    $p$ & $n$ \\ \hline \hline
+    0.5 & 1705 \\ \hline
+    0.9 & 665 \\ \hline
+    0.95 & 464 \\ \hline
+    0.99 & 205 \\ \hline
+    0.999 & 65 \\ \hline
+\end{tabular}
+\caption{Number of devices $n$ to survive simultaneously in a same network without collisions with probability $p$.}
+\label{tab:prob_random}
+\end{table}
 
 Randomization can be more stealthy if the whole address is being randomized, including the OUI part. This way, tracker could not determine straight from MAC address which device it is. Spoofing such a field can be a double-edged sword: some services might rely on manufacturer identification and stop working after such a spoof. However, this is pretty unlikely. Randomization should happen only in scanning phase, and after joining a network, it will not change anymore.
 
