@@ -781,9 +781,7 @@ $$J(X,Y) = \left| \frac{X \cup Y}{X \cap Y} \right| $$
 However, the Jaccard Index takes into account only the size of intersection, and not the fact how popular an element was in the dataset. It does not matter whether the two nodes had the most popular SSID, for example \texttt{linksys}, in common, or if they were the only two nodes that had the SSID \texttt{Super-Private-XYZ123-Network}. In the paper, Cunche et al. argue that having a rare SSID in common should yield for stronger possibility of relationship. That is a reasonable argument, especially when we consider the long tail of SSID frequency: a few SSIDs are extremely common, but huge majority of SSIDs appear only in one or two devices.
 
 To take these characteristics of SSIDs into account, Cunche et al. develop a new metric, which is defined as 
-
 $$\text{Psim-}q(X,Y) = \sum_{z \in X \cap Y} \frac{1}{f_z^q}$$
-
 where q is a parameter and $f_z$ is the frequency of element $z$. The authors obtained best results when $q=3$.~\cite{cunche2014linking}
 
 Probably the biggest problem for finding relationships in dataset is that it is computationally somewhat heavy. Complexity is $O(N^2)$ where $N$ is the number of devices in a dataset, so it may be impractical to try to find all the links in a very large dataset, such as Cunche's six months long range of data. Nonetheless, if we are limited to small population, for example people visiting a specific place, a store, or an airport during a day or week, it most likely is perfectly feasible to calculate all possible combinations.
@@ -1284,7 +1282,7 @@ From these unique devices, we saw 8,454 unique SSIDs. Distribution of nodes per 
     \label{fig:nodes_per_ssid}
 \end{figure}
 
-In Figure~\ref{fig:ssids_per_node} we see how many SSIDs a node probed. Almost half of the nodes, 48~\%, probed only one SSID and are exluded from the graph. This behavior may be result of joining a network. Since we did not collect any other data than probe requests, this hypothesis is impossible to verify. After that, we see various number of probes between two and 15, but on sixteen nodes there is a very significant peak. As $16 = 2^4$, we believe that this is hard-coded limit on some devices. However, no single device manufacturer stand up: Apple, Samsung, LG and others are all presented in expected way in nodes with SSID count of sixteen.
+In Figure~\ref{fig:ssids_per_node} we see how many SSIDs a node probed. Almost half of the nodes, 48~\%, probed only one SSID and are exluded from the graph. This behavior may be result of joining a network, and especially because mobile devices try to save battery, rejoining a network. Since we did not collect any other data than probe requests, this hypothesis is impossible to verify. After that, we see various number of probes between two and 15, but on sixteen nodes there is a very significant peak. As $16 = 2^4$, we believe that this is hard-coded limit on some devices. However, no single device manufacturer stand up: Apple, Samsung, LG and others are all presented in expected way in nodes with SSID count of sixteen.
 
 \begin{figure}
     \center
@@ -1437,6 +1435,19 @@ To further study these cases, we tried to identify these people by searching the
 We found also 33 WPS leaks, specified in Section~\ref{sec:wps}. Sadly, the phone names in the leaks looked like default names, which the owner had not changed. Most of the leaks were from Motorola devices, bought from Verizon.
 
 
+\section{Conclusion of practical study}
+\label{sec:practical_conclusion}
+
+This chapter provided valuable information of how feasbile it is to perform profiling techniques based on SSID list.
+
+The first observation was that majority of clients seen were not performing active scanning. Also, this varied between manufacturers: in our data, Apple devices were overpresented compared to their market share, whereas Samsung had relatively low presense in the data.
+
+We saw that it is very difficult to identify users from social media based on SSID list. Such an action requires lots of resources, most likely direct access to social media database in question. Also, currently only a small minority of users are including their location in their postings -- in Twitter, it seems to be about on percent. Thus, odds to find an individual are very low.
+
+However, we showed that it is possible to form behavioral patterns based on SSID list. We succesfully ran graph clustering algorithm, that showed plausible links between networks and companies. We were successful to discover user's possible hometown. By using third-party services, we also created our hypotheses on users' willingess to pay for high-end services.
+
+In a conclusion, we showed that profiling is possible, but only for relatively small portion of population.
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
@@ -1458,13 +1469,9 @@ As iOS 8 is not yet released, we cannot study its behavior in detail. However, r
 To be a working solution, it must not use too much resources. A device with randomized MAC address needs to save all the previous addresses in order to be able to filter replies targeted to it. Because number of different networks is really small, this will not be a pjroblem. Also, after a succesful connection or relatively short timeout (measured in seconds), a pseudonym can be forgotten. Some computational overhead will be generated from randomizing process, but that should be really small -- after all, we are only generating 24 or 48 bits, depending on whether we randomize also OUI part or not.
 
 We should look if there is enough space for randomizing a new MAC address for every probe request without collisions. Suppose that an average device has $N = 8$ SSIDs on their preferred network list, which is a safe assumption based on our dataset. By randomizing only organizationally-controlled part of MAC address -- leaving OUI untouched, respecting its purpose -- a single OUI block can provide about 16 million different addresses, and give enough space for
-
 $$M = \frac{2^{24}}{8} \approx 2*10^6$$
-
-simultaneous devices. Due to birthday paradox, this number needs to be decreased. The number of devices to success without collision for probability $p$ can be approximated by formula~\cite{mathis1991generalized}
-
-$$n \approx \sqrt{\frac{1}{4} - 2 \cdot M \cdot \ln p}$$
-
+simultaneous devices. Due to birthday paradox, this number needs to be decreased. The number of devices to success without collision for probability $p$ can be approximated by formula~\cite{mathis1991generalized} 
+$$n \approx \sqrt{\frac{1}{4} - 2 \cdot M \cdot \ln p}$$ 
 which gives us the results presented in Table~\ref{tab:prob_random}. As we see, the number of devices decreases rapidly when we raise probability requirements: for 99.9~\% probability for no collisions, only 65 simultaneous devices are allowed.
 
 However, we should remember that not all devices are in the same OUI block. Apple, who has more than 40~\% of market share in the U.S.~\cite{comscore2014}, has more than 300 OUI blocks reserved. Because the number of devices is proportional to square root of the size of address space, 300 times more addresses would give about 17 times more devices with same collision probability. Therefore, the numbers in the table can be multiplied by 20 (there are also other vendors than Apple), and we should be safe even for larger networks.
@@ -1514,6 +1521,8 @@ Third way to limit exposure is to probe only networks that are physically near t
 This approach suffers from a couple of issues. First, it requires node to know its own location, which may take some time to resolve resulting worse user experience. Second, the requirement for location data forces user to keep his GPS on, which consumes battery -- an important constraint on mobile devices. Third, storing previous AP's location data on mobile device might cause new privacy issues for stolen device: an SSID-to-geolocation mapping is not anymore required, but a thief can easily see where user has visited. Fourth, if GPS is not available, which is the case indoors, they propose that node could determine its location by neighboring APs' signatures. This is not a very reliable way, and may lead to worse user experience, which prevents any manufacturer to implement the feature.
 
 We can allow devices to transmit data but render it useless for eavesdroppers using cryptographic techniques. Research by Lindqvist et al.~\cite{lindqvist2009privacy} proposes a method for that by modifying protocol to join a wireless network. In their work, a client includes its nonce $N_{client}$ in a probe request. Then AP sends back client's nonce, its own nonce $N_{AP}$, and a random identifier that acts as an SSID for the connection, called R-SSID. The R-SSID is encrypted using shared key, and the key is generated from shared secret, network passphrase.
+
+There are ways to render previous defenses ineffective. Achara et al. noticed that the SSID list can be fetched by smartphone app with specific permissions.~\cite{2014_WISEC_Achara} There, the app access directly the SSID list in the phone's storage, and is able to fetch it remotely. Users can choose not to grant such permissions, but we have serious doubts on leaving security to rely on a single ``OK'' click.
 
 To negate the second requirement, identifying which probes are sent from the same device, we can use the same technique as in previous section, MAC address randomization. If the MAC address is randomized for every probe, the only thing a profiler sees is single requests from different MAC addresses. It would need to identify devices in some other way, so we need to be sure that no additional information is leaked --- just as discussed in previous section.
 
@@ -1581,15 +1590,13 @@ In Chapter~\ref{chapter:profiling}, we discussed how and why someone could track
 
 After passive profiling, in Chapter~\ref{chapter:attacks} we discussed ways to perform active man-in-the-middle attacks. All the attacks share the same basic idea, attacker being between user and a legitimate service. We saw numerous way to do so, and discovered that there are easy-to-use, off-shelf devices available even for attackers with low skills. Thus, we consider these attacks to be extremely feasible to perform, and they must be taken seriously.
 
-Having studied techinical views, we looked on legal status of the discussed techniques on Chapter~\ref{chapter:legal}. Especially we focused on Google's Street View case, which is the best-known example of these issues, even though it does not address them in every way we would like to -- metadata collection has not been discussed on that case. We found that European Union legislation is much stricter than one in the United States, and that officials in the EU -- the Aricle 29 Working Group -- has taken really strong position on suggesting that all wireless network data should be treated as personal data, which makes huge burdens on companies to collect and use it. On the other hand, legislation is really permissive in the U.S. as long as it handles only metadata without actual messages, and allows even more if the analysis is not made public. However, we see that there might be oncoming changes on U.S. laws which would bring them closer to European counterparts, but the process is far from complete.
+Having studied techinical views, we looked on legal status of the discussed techniques on Chapter~\ref{chapter:legal}. Especially we focused on Google's Street View case, which is the best-known example of these issues, even though it does not address them in every way we would like to -- metadata collection has not been discussed on that case. We found that European Union legislation is much stricter than one in the United States, and that officials in the EU -- the Article 29 Working Group -- has taken really strong position on suggesting that all wireless network data should be treated as personal data, which makes huge burdens on companies to collect and use it. On the other hand, legislation is really permissive in the U.S. as long as it handles only metadata without actual messages, and allows even more if the analysis is not made public. However, we see that there might be oncoming changes on U.S. laws which would bring them closer to European counterparts, but the process is far from complete.
 
 In Chapter~\ref{chapter:practical} we conducted a practical experiment on techniques studied in Chapter~\ref{chapter:profiling}. We saw that majority of devices, 77~\%, had only wildcard scanning enabled, and can not be profiled. However, this does not prevent tracking, as the device is leaking its MAC address all the time. Naturally, we cannot know how many had only passive scanning enabled or turned their WLAN connectivity off, since those devices do not emit anything we could have captured.
 
 We saw that it is possible to find out some charasteristics of users based on their SSID list. Examples included discovering their hometown and if they favored high- or low-end restaurants and hotels. Still, the biggest problem with these findings is that they apply only to small percentage of the population: only small number of people have mobile device with active scanning, only some number of SSIDs can reliably resolve to a location user has visited, and for only some number of those we find pricing or other relevant information. Thus, large-scale profiling and gaining benefits in practise is not straightforward.
 
 We also discovered that it is really difficult to find users from social media based on their SSID list. The biggest problem is that there is no large enough public mapping from visit history to identity: however, there probably are closed ones in big companies, where we do not have access. Even after that, number of false positives would be high, as networks overlap a lot in densely populated areas, such as cities. We think that identification requires measures that are not likely reasonable to be used, which means that SSID list should not be considered personal data in terms of EU legislation. However, MAC address should be, as it may allow identification easily with accurate indoor-WLAN position systems and CCTV cameras, and it is much more stable than SSID list.
-
-Once again, 77~\% of users had only wildcard scanning enabled, and certainly many had no scanning at all. However, the SSID list can be fetched with other, malicious means, for example with smartphone malware~\cite{2014_WISEC_Achara}.
 
 In the end, in Chapter~\ref{chapter:countermeasures}, we found that there are many countermeasures available. As short-term solutions, manufacturers should stop using active scanning but turn to wildcard or passive ones. At least there should be a private mode available, so that users could choose if they wanted to expose previous SSIDs to everyone or not. In medium term, MAC address randomization could be a working solution, and Apple is very soon launhing a new mobile operaing system with it. In long term, protocol changes would be required, and there have been propsals on them.
 
