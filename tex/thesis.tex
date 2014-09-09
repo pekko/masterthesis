@@ -1293,12 +1293,12 @@ In Figure~\ref{fig:ssids_per_node} we see how many SSIDs a node probed. Almost h
 
 We mapped devices also by manufacturer, since we can know it by the OUI part of the MAC address. We compared then our findings to the smart phone market share: this way, we could see if there were manufacturers with more insecure default settings than others. The market share was obtained from comScore's report for second quarter of 2014~\cite{comscore2014}
 
-Manufacturer distribution is shown in Figure~\ref{fig:manufacturers}. Today's smartphone market in the U.S. is dominated by two largest players, Apple and Samsung. In our data, we see far more Apple devices than we should have expected: 57~\% of MAC addresses compared to 42~\% of market share. Also, Samsung is strongly underpresented in our data, with 10~\% of probes to 28~\% of market share. This suggests that owners of Apple iPhone leave their Wi-Fi actively scanning more often, or that Samsung uses wildcard probing or passive scanning in many of its devices.
+Manufacturer distribution is shown in Figure~\ref{fig:manufacturers}. Today's smartphone market in the U.S. is dominated by two largest players, Apple and Samsung. In our data, we see far more Apple devices than we should have expected: 57~\% of MAC addresses compared to 42~\% of market share. Also, Samsung is strongly underpresented in our data, with 10~\% of probes to 28~\% of market share. This suggests that owners of Apple iPhone leave their Wi-Fi on more often, or that Samsung uses passive scanning in many of its devices, or that Samsung users turn Wi-Fi off for some reason. This might be due to usage patterns, if iPhone encourages users to use wireless networks in some way. On the other hand, it is also possible that our target audience was biased towards Apple devices.
 
 \begin{figure}
     \center
     \includegraphics{images/manufacturers}
-    \caption{Distribution of MAC addresses we found by manufacturer, and U.S. smartphone market share\cite{comscore2014}}
+    \caption{Distribution of MAC addresses performing active scanning we found by manufacturer, and U.S. smartphone market share\cite{comscore2014}}
     \label{fig:manufacturers}
 \end{figure}
 
