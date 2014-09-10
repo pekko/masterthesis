@@ -757,7 +757,7 @@ Both of above-explained applications for geolocation data of wireless networks h
 
 In addition to proprietary databases, there exists an open one called WiGLE, Wireless Geographic Logging Engine~\cite{wigle}. WiGLE has operated since 2001, and it provides almost 150 million unique Wi-Fi networks with location data (as in August 2014). WiGLE gets locations from users' submissions and gives data access for free. In itself, WiGLE is not suitable for large-scale analysis, because it does not provide full data dump and limits amount of queries one is able to perform daily. For this research, we have been temporarily granted higher limits.
 
-It is important to note that the mapping from SSID to location is not one-to-one: multiple wireless networks around the world may share the same SSID. In fact, this is quite common, since many WLAN owners do not change the default SSID of their AP. In WiGLE, most common SSIDs are ``linksys'', ``NETGEAR'', and ``dlink'', which all are default SSIDs of different AP manufacturers.
+It is important to note that the mapping from SSID to location is not one-to-one: multiple wireless networks around the world may share the same SSID. In fact, this is quite common, since many WLAN owners do not change the default SSID of their AP. In WiGLE, most common SSIDs are \texttt{linksys}, \texttt{NETGEAR}, and \texttt{dlink}, which all are default SSIDs of different AP manufacturers.
 
 Some useful information can be obtained from geolocated SSIDs. The easiest one is to try to guess where the users might live by figuring out where the majority of SSIDs are located. Not exact results can be got with this approach, but city-wide accuracy should be possible in many cases.
 
@@ -1052,7 +1052,7 @@ Thus, the first requirement of personal data is that a person can be identified 
 
 To recognize only a possible group of people is not enough.~\cite{wp29_136} For example, only the last name of an individual is not personal data when talking about the whole population of a country, but within a school class, the last name is enough to identify a single person, and therefore personal data.
 
-Together with previous observation, we can note that identifying a group from big mass is not personal data, but multiple such identifications in a combination can result in personal data. Using the same example, one cannot identify a people when given only the class he studies in nor when given only his last name, but in a combination, identification is certainly possible.
+Together with previous observation, we can note that identifying a group from big mass is not personal data, but multiple such identifications in a combination can result in personal data. Using the same example, one cannot identify a person when given only the class he studies in nor when given only his last name, but in a combination, identification is certainly possible.
 
 If the data is considered to be personal data, there are numerous regulations that apply. Precise implementation is left for individual states, but they include at least
 \begin{itemize}
@@ -1133,7 +1133,7 @@ The relevant legislation for examining SSID data collection is the Wiretap Act~\
     any person who intentionally intercepts, endeavors to intercept, or procures any other person to intercept or endeavor to intercept, any wire, oral, or electronic communication [..] shall be punished [..]
 \end{quote}
 
-First question is on which parts of WLAN conncetion are included in ``electronic communication''. Visiting web pages or reading emails is definetely electornic communication, but SSID broadcasts are more problematic. In a case U.S. v. Forrester~\cite{us_forrester} the government had monitored Forrester's internet activity. In the decision of Court of Appeals, 9th Circuit\footnote{Court of Appeals, 9th Circuit is a federal court, which handles appeals from the western part of the U.S. There are total of 11 circuits in the United States.}, there is a specific distinction between content and metadata (emphasis added):
+First question is on which parts of WLAN conncetion are included in ``electronic communication''. Visiting web pages or reading emails is definetely electronic communication, but SSID broadcasts are more problematic. In a case U.S. v. Forrester~\cite{us_forrester} the government had monitored Forrester's internet activity. In the decision of Court of Appeals, 9th Circuit\footnote{Court of Appeals, 9th Circuit is a federal court, which handles appeals from the western part of the U.S. There are total of 11 circuits in the United States.}, there is a specific distinction between content and metadata (emphasis added):
 
 \begin{quote}
     e-mail and Internet users have \textbf{no expectation of privacy} in the to/from addresses of their messages or the IP addresses of the websites they visit
@@ -1141,7 +1141,7 @@ First question is on which parts of WLAN conncetion are included in ``electronic
 
 Using this and a couple of other cases, Mason~\cite{mason2014aligning} concludes that non-content data in general does not have reasonable expectation of privacy: it is the message which is protected. 
 
-Kerr~\cite{kerr2009applying} ends up to same result, when he compares pre-internet world to today's environment. Previously there was a distinction between outside and inside: people are permitted to walk on public streets and see and hear what people are talking, but going inside one's house is forbidden. Kerr proposes that this should be converted to content/non-content distinction on the Internet. Non-content information would be allowed to look on, but content would be protected. Same method applies to traditional mail service: Recipient's address is visible on top of envelope, but the actual letter is private. Using this mechanism, it would be legal to record SSIDs, because they are non-content data.
+Kerr~\cite{kerr2009applying} ends up to same result, when he compares pre-internet world to today's environment. Previously there was a distinction between outside and inside: people are permitted to walk on public streets and see and hear what people are talking, but going inside one's house is forbidden. Kerr proposes that this should be converted to content/non-content distinction on the Internet. Non-content information would be allowed to look at, but content would be protected. Same method applies to traditional mail service: Recipient's address is visible on top of envelope, but the actual letter is private. Using this mechanism, it would be legal to record SSIDs, because they are non-content data.
 
 In Google's Street View case, Google tried to appeal using an exception in the Wiretap Act~\cite{google_joffe}, in \textsection 2511(2)(g)(i):
 
@@ -1149,7 +1149,6 @@ In Google's Street View case, Google tried to appeal using an exception in the W
     It shall not be unlawful [..] \\
     (i) to intercept or access an [..] electronic communication [that] is readily accessible to the general public
 \end{quote}
-
 where ``readily accessible to general public'' includes radio communication that is not ``scrambled or encrypted'' (\textsection 2510(16)). 
 
 The appeal was unsuccessful. The key part is that we must not interpret radio communication in a techincal sense, including all the communication that happens using radio waves; instead, it means traditional public radio broadcasts. The court also explicitly says that Wi-Fi network is not readily accessible to the general public.
@@ -1159,14 +1158,13 @@ The important piece for our study is that in Google's case, the court notes that
 \begin{quote}
     We hold that the phrase ``radio communication'' in 18 U.S.C. \textsection 2510(16) excludes \textbf{payload data} transmitted over a Wi-Fi network.
 \end{quote}
-
 Only payload data is exlucded, metadata is not mentioned, addressed or even questioned in the whole lawsuit.
 
 In a conclusion, we may say that U.S. laws allow recording metadata, but not content of the WLAN communication, even if it was unencrypted and happens over radio waves, which could techinically be recorded. SSID and MAC address are part of metadata for both clients and APs, thus recording them is legal.
 
 \subsection{Analyzing data}
 
-Generally speaking, analyzing the collected data and conducting behavioral profiling in the U.S. is legal~\cite{jennings2012track}, and there is no single privacy law for commercial information~\cite{yeatesprivacy,jennings2012track}. Instead, there are a few laws that makes exceptions to that basic rule, but they are for only for special purposes: for example, data handled in healthcare is regulated and protected by Health Insurance Portability and Accountability Act (``HIPAA'').~\cite{jennings2012track}
+Generally speaking, analyzing the collected data and conducting behavioral profiling in the U.S. is legal~\cite{jennings2012track}, and there is no single privacy law for commercial information~\cite{yeatesprivacy,jennings2012track}. Instead, there are a few laws that makes exceptions to that basic rule, but they are only for special purposes: for example, data handled in healthcare is regulated and protected by Health Insurance Portability and Accountability Act (``HIPAA'').~\cite{jennings2012track}
 
 The authority for overlooking companies' actions is the Federal Trade Commission (FTC). However, its power is limited: Jennings~\cite{jennings2012track} notes that FTC can only act if company's acts are ``unfair or deceptive'', and that ``typical Internet privacy case does not fit neatly within this unfairness jurisdiction''. One and probably the only case where FTC can act under this regulation is where a company gives specific promises on customer's data protection, for example that it will not sell it to third parties, but does not follow its promise. If there is no promise made, FTC is unable to act.~\cite{jennings2012track}
 
@@ -1185,7 +1183,7 @@ In a conclusion, analyzing SSID data in the United States is legal under current
 
 \subsection{Ongoing development}
 
-U.S. privacy laws have been stagnant for last fifty fifty years~\cite{richards2010prosser}, but in recent years, there have been a few proposals to modernize privacy. Two of them, Commercial Privacy Bill of Rights and Do Not Track Online Act, were proposed by senators. Obama administrator also has proposed its Consumer Privacy Bill of Rights.
+U.S. privacy laws have been stagnant for last fifty fifty years~\cite{richards2010prosser}, but in recent years, there have been a few proposals to modernize privacy. Two of them, Commercial Privacy Bill of Rights and Do Not Track Online Act, were proposed by senators. Obama administration also has proposed its Consumer Privacy Bill of Rights.
 
 Commercial Privacy Bill of Rights~\cite{com_pbr} was proposed by senators John Kerry and John McCain. The bill introduces protections for personal data, and  many of them are similiar to EU's current legislation. The major parts of the proposal include
 
