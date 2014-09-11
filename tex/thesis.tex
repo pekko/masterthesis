@@ -1392,17 +1392,17 @@ The distribution of price average is shown in Figure~\ref{fig:prices_users}. We 
 
 One task was to find out where a user comes from. Our hypothesis was that most of the people are from California, where the data was collected, but significant number of people probably are foreigners due to the tourist-friendly nature of area. Here, we define hometown as a place where user has spent most of his time lately: that is, if a German is visiting U.S., his hometown is still in Germany -- but if he has lived in California for a couple of years, his current hometown can be considered to be in California.
 
-The problem is that SSID list does not give any information about number of times the network was used. We obtain same kind of result if user has connected there once or a thousand times.
+The problem is that SSID list does not give any information about number of times the network was used. We obtain absolutely same information if user has connected to the network once or a thousand times.
 
-To obtain results, we used the following method:
+To get results, we used the following method:
 \begin{enumerate}
     \item Filter out location results with too large uncertainty.
     \item Filter out hotels: we assume that people do not go to hotels in their hometown.
-    \item Calculate remaining locations grouped by country and state.
+    \item Calculate the number of remaining locations, grouped by country and state.
     \item If large enough fraction of locations is from a specific place, consider that as user's hometown.
 \end{enumerate}
 
-We verified our results by manually evaluating SSID lists of users marked as foreigners. Generally, we have good reasons to believe that they were correct. In many cases, there had SSIDs that appear in WiGLE's database only once, or ones that are named after local business.
+We verified our results by manually going through SSID lists of users marked as foreigners. Generally, we have good reasons to believe that they were correct. In many cases, there were SSIDs that appear in WiGLE's database only once, or ones that are named after local business.
 
 We run the analysis for nodes that had probed at least four different SSIDs, which is 870 nodes. Hometown was succesfully calculated for 618 (71~\%) of them. For 347 nodes (56~\% of succesfuls) it resulted as California, and 81 (13~\%) were identified as foreingers. If hotel results are included in results, number of identifications increases, but all the new results are categorized as Californians. Therefore, we can say that most of them are likely visiting the area, and must be excluded from the results.
 
