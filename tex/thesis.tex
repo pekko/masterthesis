@@ -1402,7 +1402,41 @@ To get results, we used the following method:
     \item If large enough fraction of locations is from a specific place, consider that as user's hometown.
 \end{enumerate}
 
-We verified our results by manually going through SSID lists of users marked as foreigners. Generally, we have good reasons to believe that they were correct. In many cases, there were SSIDs that appear in WiGLE's database only once, or ones that are named after local business.
+We verified our results by manually going through SSID lists of users marked as foreigners. Generally, we have good reasons to believe that they were correct. In many cases, there were SSIDs that appear in WiGLE's database only once, or ones that are named after local business. For instance, one with SSIDs shown in Table~\ref{tab:example_hometown} was categorized as being from Stockholm, Sweden.
+
+\begin{table}
+\center
+    \begin{tabular}{*{7}{l}}
+SSID                 & City          & Country & State/County   & Uncertainty  \\ \hline
+\hline
+Danhostel.Copenhagen & Copenhagen    & DK      & Capital Region & 0.00 \\ 
+\hline
+ForumNacka           & Nacka         & SE      & Stockholm      & 0.00 \\ 
+\hline
+Sophiahemmet Guest   & \"{O}stermalm     & SE      & Stockholm      & 0.00 \\ 
+\hline
+TELE2INTERNET-2924   & Solna         & SE      & Stockholm      & 0.00 \\ 
+\hline
+Taby\_Centrum\_WIFI  & T\"{a}by          & SE      & Stockholm      & 0.00 \\ 
+\hline
+The\_Sandman\_Inn    & Santa Barbara & US      & California     & 0.00 \\ 
+\hline
+LAX-WiFi             & El Segundo    & US      & California     & 0.69 \\ 
+\hline
+free-hotspot.com     & Villeurbanne  & FR      & Rhone-Alpes    & 100.30 \\ 
+\hline
+DOVADO               & Uppsala       & SE      & Uppsala        & 128.03 \\ 
+\hline
+AWG-WiFi             & Warwick       & US      & Rhode Island   & 2763.57 \\ 
+\hline
+home47               & Solntsevo     & RU      & Moscow         & 5412.23 \\ 
+\hline
+NETGEAR81            & Escondido     & US      & California     & 6144.63 \\ 
+\hline
+    \end{tabular}
+    \caption{User with this SSID list was categorized to be from Stockholm, Sweden.}
+    \label{tab:example_hometown}
+\end{table}    
 
 We run the analysis for nodes that had probed at least four different SSIDs, which is 870 nodes. Hometown was succesfully calculated for 618 (71~\%) of them. For 347 nodes (56~\% of succesfuls) it resulted as California, and 81 (13~\%) were identified as foreingers. If hotel results are included in results, number of identifications increases, but all the new results are categorized as Californians. Therefore, we can say that most of them are likely visiting the area, and must be excluded from the results.
 
