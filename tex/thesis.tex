@@ -1446,11 +1446,21 @@ We run the analysis for nodes that had probed at least four different SSIDs, whi
 \subsection{Social media networks}
 \label{sec:practical_social}
 
-We tried to identify users from social media networks based on their SSID history and location data included in social media postings. We found that in general case this is not possible.
+We tried to identify users from social media networks based on their SSID history and location data included in social media postings. 
+
+We can approach the problem in two ways. First, we use coordinates and distance. If a user has an SSID which maps to location $(x_0, y_0)$, search for all the tweets with coordinates $(x_1, y_1)$ where distance 
+$d\left( (x_0,y_0), (x_1,y_1) \right)$ 
+is smaller than certain search radius $r$, a parameter. After that, count the number of locations that matched. If the number is large enough -- threshold given as a parameter -- this might be a match. First verification can be to check if the user was nearby capture location at capture time, or somewhere else.
+
+This approach has a couple of problems. It is computationally heavy, and even sophisticated methods like MongoDB's geospatial indexing are slow, when $r$ is large (large meaning $r>1000 \text{m}$). Remember, we have more than 160 million tweets. Also, we may be too limited here: even if a user has used a specific wireless network, he might not have tweeted from there, but instead somewhere nearby -- and increasing $r$ makes searching way too slow.
+
+Another way is to look for cities instead of coordinates. Now we first map all the coordinates from tweets and SSIDs into cities. This is possible using free GeoNames database~\cite{geonames}. Next, we do exactly same kind of search as previously, but this time the condition is that cities match exactly, which is very fast operation using well-studied indexing algorithms. Once again, we count the matching cities and compare to threshold.
+
+However, we found that in a general case neither of approached resulted in any plausible results. Adjusting threshold provided only a little help: when too small, we had huge number of false positives. When a bit larger, we had no results at all.
 
 To see why this is the case, consider first our data. We have three datasets: user's SSID history, SSID-location mapping, and social media database. For every dataset, let's consider possible errors they have and coverage of population.
 
-The first is considered error-free: we have succesfully captured possible SSID probes, and filtered erroneous out with the checksum field (FCS) of 802.11 standard. Coverage could be increased with time, better antennas, and better capture positions, such as larger cities.
+The first is considered error-free: we have succesfully captured possible SSID probes, and filtered erroneous ones out with the checksum field (FCS) of the 802.11 standard. Coverage could be increased with time, better antennas, and better capture positions, such as larger cities.
 
 The second dataset, SSID-location mapping, is more problematic. As shown in Table~\ref{tab:stage_counts}, we got location data for about 64~\% of SSIDs. However, the accuracy and reliability of SSIDs shrink fast, and only 27~\% of them can be thought as reasonably trustworthy. Even in that part of data, there are small errors, for example GPS errors in the city or due to fact that location of measuring device is not the same as location of access point.
 
@@ -1458,7 +1468,9 @@ The third dataset, social media database, can be considered pretty accurate. The
 
 In dense areas such as in the center of a city, there are multiple wireless networks overlapping. Thus, a tweet from a specific location cannot be bound to a single wireless network, which yields higher amount of false positives.
 
-The identification might work, if special circumstances were met. The most important of these is to post to social media from a location where only small number of people has tweeted (sparsely populated area) --- but not too sparsely, so that the SSID database has its location. Also, a unique travel path would reveal the identity: a tweet from middle-sized city from Finland is not enough to identify an individual, but if the same person has tweeted also from mid-size town from U.S. west coast and northen Italy, odds are high that there are not many people having done so.
+The identification might work, if special circumstances were met. From the data collector's point of view, it would be to have larger dataset of people's location history. For current dataset, an important one would be for user to post to social media from a location where only small number of people has tweeted (sparsely populated area) --- but not too sparsely, so that the SSID database has its location. Also, a very unique travel path would reveal the identity: a tweet from middle-sized city from Finland is not enough to identify an individual, but if the same person has tweeted also from mid-size town from U.S. west coast and northen Italy, odds are high that there are not many people having done so. Unfortunately, no such Twitter users existed in our database.
+
+In a conclusion, we saw that the idea was promising, but lack of public databases render it very difficult to perform successfully. On the other hand, we may be happy that there is no publicly available database for people's locations.
 
 \section{Other findings}
 \label{sec:practical_other}
