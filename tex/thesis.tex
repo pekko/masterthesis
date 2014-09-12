@@ -1262,7 +1262,7 @@ Twitter was a special case, since its API is pretty limited for rate and coverag
 
 Twitter's API returns results in JSON (JavaScript Object Notation) format. We preprocessed the data by removing all the tweets without location information. After that, the data was imported into the database.
 
-Our choice for database software was MongoDB~\cite{mongodb}, which is a high-performance NoSQL database. MongoDB is specifically designed to work with JSON format, so importing data was painless. 
+Our choice for database software was MongoDB~\cite{mongodb}, which is a high-performance NoSQL database. MongoDB is specifically designed to work with JSON format, so importing data was painless. It also includes native support for geolocation queries, which play important role when using the Twitter data.
 
 The biggest problem with Twitter's data was its huge size. We were able to collect only 10~\% of continuous feed, which must have affected the results. Private access to Twitter's full database would probably have given better outcome.
 
