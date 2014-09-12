@@ -1262,7 +1262,7 @@ Twitter was a special case, since its API is pretty limited for rate and coverag
 
 Twitter's API returns results in JSON (JavaScript Object Notation) format. We preprocessed the data by removing all the tweets without location information. After that, the data was imported into the database.
 
-Our choice for database software was MongoDB~\cite{mongodb}, which is a high-performance NoSQL database. MongoDB is specifically designed to work with JSON format, so importing data was painless. It also includes native support for geolocation queries, which play important role when using the Twitter data.
+We used two different database softwares. Our first choice was MongoDB~\cite{mongodb}, which is a high-performance NoSQL database. MongoDB is specifically designed to work with JSON format, so importing data was painless. It also includes native support for geolocation queries, which play important role when using the Twitter data. However, the performance of MongoDB was a little disappointment, and we migrated some parts of data later into Postgres.
 
 The biggest problem with Twitter's data was its huge size. We were able to collect only 10~\% of continuous feed, which must have affected the results. Private access to Twitter's full database would probably have given better outcome.
 
@@ -1300,7 +1300,7 @@ Manufacturer distribution is shown in Figure~\ref{fig:manufacturers}. Today's sm
     \label{fig:manufacturers}
 \end{figure}
 
-For Twitter, we collected 10~\% of continuous feed in 2014 (January - August). After that, we filtered out all the results without geolocation data. In the end, we had 164 million tweets -- posts to Twitter -- in the database.
+For Twitter, we collected 10~\% of continuous feed from January 2014 to August 2014. After that, we filtered out all the results without geolocation data. In the end, we had 164 million tweets -- posts to Twitter -- in the database.
 
 \section{Clustering}
 \label{sec:practical_clustering}
@@ -1458,7 +1458,7 @@ The third dataset, social media database, can be considered pretty accurate. The
 
 In dense areas such as in the center of a city, there are multiple wireless networks overlapping. Thus, a tweet from a specific location cannot be bound to a single wireless network, which yields higher amount of false positives.
 
-The identification might work, if special circumstances are met. The most important of these is to post to social media from a location where only small number of people has tweeted (sparsely populated area) --- but not too sparsely, so that the SSID database has its location. Also, a unique travel path would reveal the identity: a tweet from middle-sized city from Finland is not enough to identify an individual, but if the same person has tweeted also from mid-size town from U.S. west coast and northen Italy, odds are high that there are not many people having done so.
+The identification might work, if special circumstances were met. The most important of these is to post to social media from a location where only small number of people has tweeted (sparsely populated area) --- but not too sparsely, so that the SSID database has its location. Also, a unique travel path would reveal the identity: a tweet from middle-sized city from Finland is not enough to identify an individual, but if the same person has tweeted also from mid-size town from U.S. west coast and northen Italy, odds are high that there are not many people having done so.
 
 \section{Other findings}
 \label{sec:practical_other}
