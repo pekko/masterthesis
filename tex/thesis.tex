@@ -795,11 +795,11 @@ Probably the biggest problem for finding relationships in dataset is that it is 
 \subsection{Clustering}
 \label{subsec:clustering}
 
-To generalize previous idea, we can see the situation as a weighted graph. In the graph, mobile devices are nodes, and the edges represent the similarity of two nodes. More similiar nodes have an edge with greated weight; if two nodes have nothing in common, there is no edge between them.
+To generalize previous idea, we can see the situation as a weighted graph. In the graph, mobile devices are nodes, and the edges represent the similarity of two nodes. More similar nodes have an edge with greater weight; if two nodes have nothing in common, there is no edge between them.
 
-Once again, the simplest method to create similarity function are calculating the size of intersection of SSID lists or the Jaccard index. We can also use advanced algorithms, such as Psim-q.
+Once again, the simplest methods to create similarity function are calculating the size of intersection of SSID lists or the Jaccard index. We can also use advanced algorithms, such as Psim-q.
 
-When we have formed a graph, we can search try to search for clusters. There is no single, widely-accepted definition for a cluster in graph~\cite{schaeffer2007graph} , but we will define it informally as ``recognizing natural groups within a class of entities''~\cite{van2000graph}, or partitioning the graph in groups in a way that distance inside a cluster is low and distance between clusters is high. Therefore, we are trying to look for groups of nodes that have common charasterics. The difference to previous section is that there we searched for strong connections between two nodes; now the size of group is larger than two.
+When we have formed a graph, we can search try to search for clusters. There is no single, widely-accepted definition for a cluster in graph~\cite{schaeffer2007graph} , but we will define it informally as ``recognizing natural groups within a class of entities''~\cite{van2000graph}, or partitioning the graph in groups in a way that distance inside a cluster is low and distance between clusters is high. Therefore, we are trying to look for groups of nodes that have common characterics. The difference to previous section is that there we searched for strong connections between two nodes; now the size of group is larger than two.
 
 Finding the clusters in the graph is therefore our actual problem. Luckily, we do not need to invent our own algorithm, since this is a general graph problem, and it has been studied in computer science before.
 
@@ -844,9 +844,9 @@ We see at least the following possibilities:\\
 
 \textbf{How much is a user traveling?} Identify airports and hotels. Categorize user to different price categories based on hotel's average price level. Probably same kind of information can be extracted from restaurants' and cafes' names.
 
-\textbf{Distuingish between locals and foreigners.} If the user has locations only nearby, he is probably a local. If majority of locations is from somewhere else but within a reasonably small radius, that might be his home location. However, making reliable difference between someone's hometown and a place where he has visited might be difficult.
+\textbf{Distinguish between locals and foreigners.} If the user has locations only nearby, he is probably a local. If majority of locations is from somewhere else but within a reasonably small radius, that might be his home location. However, making reliable difference between someone's hometown and a place where he has visited might be difficult.
 
-\textbf{Monitoring behavior in a specific industry.} We can characterize user's behavior in some industries, where wireless networks are common. For example, many hotels offer a network. Hotel owner could look for his customers history: have they visited a lot competitor's hotels, or is this even the first hotel visit they have? 
+\textbf{Monitoring behavior in a specific industry.} We can characterize user's behavior in some industries, where wireless networks are common. For example, many hotels offer a network. Hotel owner could look for his customers' history: have they visited a lot competitor's hotels, or is this even the first hotel visit they have? 
 
 \section{Other information obtained from probe requests}
 \label{sec:other_info}
@@ -970,7 +970,7 @@ However, there is a technique called sslstrip~\cite{marlinspike2009new}, which i
 \begin{figure}
     \center
     \includegraphics[width=0.8\textwidth]{images/wifi_pineapple_pic}
-    \caption{WiFi Pineapple, a ready-to-use toolkit to conduct attacks against wirelss networks. Note the size: there are an RJ45 and an USB port visible for comparison.}
+    \caption{WiFi Pineapple, a ready-to-use toolkit to conduct attacks against wireless networks. Note the size: there are an RJ45 and an USB port visible for comparison.}
     \label{wifi_pineapple_pic}
 \end{figure}
 
@@ -1015,7 +1015,7 @@ The best-known and best-documented legal case for two first questions is Google'
 
 The case with Google's Street View data collection has been a major case in terms of regulation of the topic, so we will first look on that. 
 
-Steet View~\cite{googlestreetview} is Google's service built on their Maps platform. In Street View, one can view panorama photos taken from the streets. Google has collected the images by driving on streets with a car equipped with multiple cameras and a GPS device~\cite{streetview_behindscenes}.
+Street View~\cite{googlestreetview} is Google's service built on their Maps platform. In Street View, one can view panorama photos taken from the streets. Google has collected the images by driving on streets with a car equipped with multiple cameras and a GPS device~\cite{streetview_behindscenes}.
 
 Cars were collecting more information than only pictures of the streets. Google first told that they were collecting photos, WLAN network information including only access points' SSIDs and MAC addresses, and 3-D geometry data with lasers, all of them to help Google build location services. Google stated explicitly that it does not collect any payload information from wireless networks.~\cite{fleischer_datacollected,google_wifi_collection} However, that was proved false when German Data Protection Authority (DPA) wanted to audit the data, and Google admitted that it ``had mistakenly included code in our software that collected samples of payload data from WiFi networks''~\cite{eustace_datacollected}.
 
@@ -1039,7 +1039,7 @@ For privacy issues, there is European Data Protection Supervisor (EDPS), who wor
 \subsection{Personal data}
 \label{subsec:eu:personal_data}
 
-According to the official opinion of the Working Party~\cite{wp29_185}, the relevant piece of legistation is the Data Protection Directive (1995/46/EC)~\cite{data_protection}. It states in the first article for its object that
+According to the official opinion of the Working Party~\cite{wp29_185}, the relevant piece of legislation is the Data Protection Directive (1995/46/EC)~\cite{data_protection}. It states in the first article for its object that
 
 \begin{quote}
     In accordance with this Directive, Member States shall protect the fundamental rights and freedoms of natural persons, and in particular their right to privacy with respect to the processing of personal data.
@@ -1051,7 +1051,7 @@ The question therefore is (1) is mapping of WLAN access points ``personal data''
     any information relating to an identified or identifiable natural person ('data subject'); an identifiable person is one who can be identified, directly or indirectly, in particular by reference to an identification number or to one or more factors specific to his physical, physiological, mental, economic, cultural or social identity;
 \end{quote}
 
-Thus, the first requirement of personal data is that a person can be identified from the data. This interpreation is backed by an opinion on personal data by the Working Party~\cite{wp29_136}. In the opinion, there is an example saying that ``Images of individuals captured by a video surveillance system can be personal data \textbf{to the extent that the individuals are recognizable}.'' (emphasis added)
+Thus, the first requirement of personal data is that a person can be identified from the data. This interpretation is backed by an opinion on personal data by the Working Party~\cite{wp29_136}. In the opinion, there is an example saying that ``Images of individuals captured by a video surveillance system can be personal data \textbf{to the extent that the individuals are recognizable}.'' (emphasis added)
 
 To recognize only a possible group of people is not enough.~\cite{wp29_136} For example, only the last name of an individual is not personal data when talking about the whole population of a country, but within a school class, the last name is enough to identify a single person, and therefore personal data.
 
@@ -1066,7 +1066,7 @@ If the data is considered to be personal data, there are numerous regulations th
     \item in some cases the controller must notify local data protection authority
 \end{itemize}
 
-These requrirements would increase the costs, reduce effectivity, and sometimes render data collection almost impossible. For example, it would be extremely difficult for Google to get consent from everyone to collect their network's SSID. Also, requiring users to turn off wireless connectivity if they do not want to participate would not be enough, as the Working Party notes~\cite{wp29_185}:
+These requirements would increase the costs, reduce effectivity, and sometimes render data collection almost impossible. For example, it would be extremely difficult for Google to get consent from everyone to collect their network's SSID. Also, requiring users to turn off wireless connectivity if they do not want to participate would not be enough, as the Working Party notes~\cite{wp29_185}:
 \begin{quote}
     If the default settings of an operating system would allow for the transmission of location data, a lack of intervention by its users should not be mistaken for freely given consent.
 \end{quote}
@@ -1077,7 +1077,7 @@ These requrirements would increase the costs, reduce effectivity, and sometimes 
 
 Next we will look for legal issues in collecting data from wireless access points in the European Union. We assume that a service is collecting two different pieces of data: SSID and location.
 
-To make it easier, we first examine the case of collecting only SSIDs. SSIDs are names of networks, decided by network administrators. Clearly SSIDs of public networks, such as the ones in buses or schools, are not personal data. In private home networks they are difficult to categorize as personal data: in many cases, the SSID is the default (for instance, \texttt{linksys}) or an arbitary name (\texttt{My little network}). Also, SSIDs are not unique, and there are lots of networks with the same name. The only possibility to render a SSID for personal data would be if someone named his network after his own name (\texttt{John Doe's network}), but this happens really rarely --- in our study, we found 20 this kind of SSIDs out of 8,500, which is 0.2~\%. Also, this does not make any difference between owner and user of the network. Therefore collecting only SSIDs should not be treated as personal data.
+To make it easier, we first examine the case of collecting only SSIDs. SSIDs are names of networks, decided by network administrators. Clearly SSIDs of public networks, such as the ones in buses or schools, are not personal data. In private home networks they are difficult to categorize as personal data: in many cases, the SSID is the default (for instance, \texttt{linksys}) or an arbitrary name (\texttt{My little network}). Also, SSIDs are not unique, and there are lots of networks with the same name. The only possibility to render a SSID for personal data would be if someone named his network after his own name (\texttt{John Doe's network}), but this happens really rarely --- in our study, we found 20 this kind of SSIDs out of 8,500, which is 0.2~\%. Also, this does not make any difference between owner and user of the network. Therefore collecting only SSIDs should not be treated as personal data.
 
 Combining the SSIDs with location data raises more questions. If we know the location of an access point, can we link it to a specific individual? The first thing to note is that location data is only an approximation. The location of a collecting device is not the same as the location of access point, and in fact, even the location data of a collecting device may have errors. In rural areas where spaces between houses are large, it is certainly possible to map a single access point to a specific house; in dense areas such as cities, this causes problems and at least requires significant amount of manual work.
 
@@ -1096,7 +1096,7 @@ The Working Party has said in a different opinion~\cite{wp29_185} that
     the combination of a MAC address of a WiFi access point with its calculated location, should be treated as personal data.
 \end{quote}
 
-However, in our case we had only a MAC address and an SSID, not the BSSID that would uniquely identify the access point. In an article written by Watts, Brunger, and Shires~\cite{watts2011european} authors argue that the practical likelihood of mapping an access point to an individual is extremily low, and therefore mapping of access points should not be treated as personal data, even when BSSID is collected. It is worth to note that the writers of the article were assisting Google on its Street View case, so their opinion is likely to be in favor of Google and against regulation of such databases.
+However, in our case we had only a MAC address and an SSID, not the BSSID that would uniquely identify the access point. In an article written by Watts, Brunger, and Shires~\cite{watts2011european} authors argue that the practical likelihood of mapping an access point to an individual is extremely low, and therefore mapping of access points should not be treated as personal data, even when BSSID is collected. It is worth to note that the writers of the article were assisting Google on its Street View case, so their opinion is likely to be in favor of Google and against regulation of such databases.
 
 Together with the Data Protection Directive, there is another possible directive for the case, the E-Privacy Directive (2002/58/EC). However, it is not relevant for the case. First, in the opinion of the Working Party, it is said to apply only to location data processed by telecom operators~\cite{wp29_185}. That can be read from the directive, where ``location data'' is defined in Article 2(c) as
 
@@ -1112,7 +1112,7 @@ The legal view of collecting mobile devices' data is analyzed in the same way as
 
 Every mobile device has an MAC address, which is a unique identifier. By tracking the movements of a person based on MAC address, and combining it with, for example, a CCTV camera, one may reasonably be able to identify an individual. This kind of information should be treated as personal data.
 
-Case of collecting SSID data is a little more difficult. In fact, our experiment in Chapter~\ref{chapter:practical} deals with this issue, as we try to show what kind of data can be extracted from SSIDs. Therefore the question wheteher SSIDs are considered to be personal data depends highly on iterpretation of result like our study: is it considered reasonably enough? At least there is a possibility that SSID queries should be treated as personal data.
+Case of collecting SSID data is a little more difficult. In fact, our experiment in Chapter~\ref{chapter:practical} deals with this issue, as we try to show what kind of data can be extracted from SSIDs. Therefore the question whether SSIDs are considered to be personal data depends highly on interpretation of result like our study: is it considered reasonably enough? At least there is a possibility that SSID queries should be treated as personal data.
 
 \subsection{Analyzing the data}
 
@@ -1136,7 +1136,7 @@ The relevant legislation for examining SSID data collection is the Wiretap Act~\
     any person who intentionally intercepts, endeavors to intercept, or procures any other person to intercept or endeavor to intercept, any wire, oral, or electronic communication [..] shall be punished [..]
 \end{quote}
 
-First question is on which parts of WLAN conncetion are included in ``electronic communication''. Visiting web pages or reading emails is definetely electronic communication, but SSID broadcasts are more problematic. In a case U.S. v. Forrester~\cite{us_forrester} the government had monitored Forrester's internet activity. In the decision of Court of Appeals, 9th Circuit\footnote{Court of Appeals, 9th Circuit is a federal court, which handles appeals from the western part of the U.S. There are total of 11 circuits in the United States.}, there is a specific distinction between content and metadata (emphasis added):
+First question is on which parts of WLAN connection are included in ``electronic communication''. Visiting web pages or reading emails is definitely electronic communication, but SSID broadcasts are more problematic. In a case U.S. v. Forrester~\cite{us_forrester} the government had monitored Forrester's internet activity. In the decision of Court of Appeals, 9th Circuit\footnote{Court of Appeals, 9th Circuit is a federal court, which handles appeals from the western part of the U.S. There are total of 11 circuits in the United States.}, there is a specific distinction between content and metadata (emphasis added):
 
 \begin{quote}
     e-mail and Internet users have \textbf{no expectation of privacy} in the to/from addresses of their messages or the IP addresses of the websites they visit
@@ -1154,24 +1154,24 @@ In Google's Street View case, Google tried to appeal using an exception in the W
 \end{quote}
 where ``readily accessible to general public'' includes radio communication that is not ``scrambled or encrypted'' (\textsection 2510(16)). 
 
-The appeal was unsuccessful. The key part is that we must not interpret radio communication in a techincal sense, including all the communication that happens using radio waves; instead, it means traditional public radio broadcasts. The court also explicitly says that Wi-Fi network is not readily accessible to the general public.
+The appeal was unsuccessful. The key part is that we must not interpret radio communication in a technical sense, including all the communication that happens using radio waves; instead, it means traditional public radio broadcasts. The court also explicitly says that Wi-Fi network is not readily accessible to the general public.
 
 The important piece for our study is that in Google's case, the court notes that~\cite{google_joffe} (emphasis added)
 
 \begin{quote}
     We hold that the phrase ``radio communication'' in 18 U.S.C. \textsection 2510(16) excludes \textbf{payload data} transmitted over a Wi-Fi network.
 \end{quote}
-Only payload data is exlucded, metadata is not mentioned, addressed or even questioned in the whole lawsuit.
+Only payload data is excluded, metadata is not mentioned, addressed or even questioned in the whole lawsuit.
 
-In a conclusion, we may say that U.S. laws allow recording metadata, but not content of the WLAN communication, even if it was unencrypted and happens over radio waves, which could techinically be recorded. SSID and MAC address are part of metadata for both clients and APs, thus recording them is legal.
+In a conclusion, we may say that U.S. laws allow recording metadata, but not content of the WLAN communication, even if it was unencrypted and happens over radio waves, which could technically be recorded. SSID and MAC address are part of metadata for both clients and APs, thus recording them is legal.
 
 \subsection{Analyzing data}
 
-Generally speaking, analyzing the collected data and conducting behavioral profiling in the U.S. is legal~\cite{jennings2012track}, and there is no single privacy law for commercial information~\cite{yeatesprivacy,jennings2012track}. Instead, there are a few laws that makes exceptions to that basic rule, but they are only for special purposes: for example, data handled in healthcare is regulated and protected by Health Insurance Portability and Accountability Act (``HIPAA'').~\cite{jennings2012track}
+Generally speaking, analyzing the collected data and conducting behavioral profiling in the U.S. is legal~\cite{jennings2012track}, and there is no single privacy law for commercial information~\cite{yeatesprivacy,jennings2012track}. Instead, there are a few laws that make exceptions to that basic rule, but they are only for special purposes: for example, data handled in healthcare is regulated and protected by Health Insurance Portability and Accountability Act (``HIPAA'').~\cite{jennings2012track}
 
 The authority for overlooking companies' actions is the Federal Trade Commission (FTC). However, its power is limited: Jennings~\cite{jennings2012track} notes that FTC can only act if company's acts are ``unfair or deceptive'', and that ``typical Internet privacy case does not fit neatly within this unfairness jurisdiction''. One and probably the only case where FTC can act under this regulation is where a company gives specific promises on customer's data protection, for example that it will not sell it to third parties, but does not follow its promise. If there is no promise made, FTC is unable to act.~\cite{jennings2012track}
 
-Privacy violation can also be thought as a tort. A tort is an act where the victic suffers damage, and the actor, known as \emph{tortfeasor}, is responsible to cover the damages. Torts are different from criminal acts. The concept of privacy torts was introduced by Prosser in 1960~\cite{prosser196048calif}, and he divided them into four categories:
+Privacy violation can also be thought as a tort. A tort is an act where the victim suffers damage, and the actor, known as \emph{tortfeasor}, is responsible to cover the damages. Torts are different from criminal acts. The concept of privacy torts was introduced by Prosser in 1960~\cite{prosser196048calif}, and he divided them into four categories:
 
 \begin{enumerate}
     \item Intrusion upon seclusion or private affairs
@@ -1188,10 +1188,10 @@ In a conclusion, analyzing SSID data in the United States is legal under current
 
 U.S. privacy laws have been stagnant for last fifty years~\cite{richards2010prosser}, but in recent years, there have been a few proposals to modernize privacy. Two of them, Commercial Privacy Bill of Rights and Do Not Track Online Act, were proposed by senators. Obama administration also has proposed its Consumer Privacy Bill of Rights.
 
-Commercial Privacy Bill of Rights~\cite{com_pbr} was proposed by senators John Kerry and John McCain. The bill introduces protections for personal data, and  many of them are similiar to EU's current legislation. The major parts of the proposal include
+Commercial Privacy Bill of Rights~\cite{com_pbr} was proposed by senators John Kerry and John McCain. The bill introduces protections for personal data, and  many of them are similar to EU's current legislation. The major parts of the proposal include
 
 \begin{itemize}
-    \item Defining \emph{personally identifiable information} in \textsection~3(5), which is close to EU's \emph{personal data}, altough in more detail
+    \item Defining \emph{personally identifiable information} in \textsection~3(5), which is close to EU's \emph{personal data}, although in more detail
     \item Requiring data collectors to notify individuals of data they have collected (\textsection~201(a))
     \item Requiring an opt-in mechanism for sensitive parts of data (\textsection~202(a)(3)) and an opt-out for other personally identifiable information
     \item Right to see own personal data (\textsection~202(a)(4))
@@ -1218,7 +1218,7 @@ In addition to Senate's work, in 2012 Obama administration announced a new frame
     \item to see the personal data collected from them
 \end{itemize}
 
-Once again, these include similiar charasteristics than European legislation and previous proposals. The proposal has not taken significant steps for two years, and consumer groups have been pushing Obama administration to make progress.~\cite{law360_groups}
+Once again, these include similar characteristics than European legislation and previous proposals. The proposal has not taken significant steps for two years, and consumer groups have been pushing Obama administration to make progress.~\cite{law360_groups}
 
 \section{Discussion on legal status}
 
@@ -1241,7 +1241,7 @@ As we have seen, legislation varies between Europe and the U.S. A conclusion is 
 
 Farah and Higby see the situation as U.S. relying on market forces: if the business is handling data in a inappropriate way, customers would not want to go there. Europe, on the other hand, has trusted in legislation.~\cite{farah2001commerce} We can question the reasonability of said U.S. approach: how would a customer know how the data is handled, if companies are not obliged to tell it? Perfect market theory requires perfect knowledge.
 
-A big problem with lawmaking is that the process is slow, but technology evolves rapidly. The legislation that seems to be appropriate today may cause unforeseen problems in following years. Therefore, we strongly suggest that new legislation should be as techinically-independent as possible. Laws should rely on general concepts instead of addressing a single, techinical problem. European privacy laws include good examples, where personal data is not defined in technical terms, but on what is possible to do with it -- to identify an individual.
+A big problem with lawmaking is that the process is slow, but technology evolves rapidly. The legislation that seems to be appropriate today may cause unforeseen problems in following years. Therefore, we strongly suggest that new legislation should be as technically-independent as possible. Laws should rely on general concepts instead of addressing a single, technical problem. European privacy laws include good examples, where personal data is not defined in technical terms, but on what is possible to do with it -- to identify an individual.
 
 However, today's threats are different from yesterday's. Thus, we hope that U.S. will update its privacy legislation to match today's environment instead of fifty-year-old one. There are signs that U.S. is following same kind of route than the European Union.
 
@@ -1251,12 +1251,12 @@ However, today's threats are different from yesterday's. Thus, we hope that U.S.
 \chapter{Practical study}
 \label{chapter:practical}
 
-In this chapter, we will conduct a practical experiment of previously discussed techniques and methods. We will look for general patterns in data, compare manufacuturers, and apply different profiling techniques to the data. 
+In this chapter, we will conduct a practical experiment of previously discussed techniques and methods. We will look for general patterns in data, compare manufacturers, and apply different profiling techniques to the data. 
 
 \section{Methodology}
 \label{sec:methods}
 
-SSID probe data was captured from various public locations in California, U.S., within a range of 25 kilometeres (15 miles) during one month. We used a single Macbook Pro laptop with an internal wireless antenna and open-source software. No special or expensive equipment nor propertiary software was used, so anybody is able to perform same kind of data collection.
+SSID probe data was captured from various public locations in California, U.S., within a range of 25 kilometers (15 miles) during one month. We used a single Macbook Pro laptop with an internal wireless antenna and open-source software. No special or expensive equipment nor propretiary software was used, so anybody is able to perform same kind of data collection.
 
 Location data was obtained from WiGLE~\cite{wigle}, where we were given higher query limits than for ordinary users. For the other services we used, Google Places, Yelp, and Expedia, we had exactly the same privileges than normal user, and nothing was purchased for our research. Therefore the same kind of research can be done by anyone, and with commercial resources, its quality can probably be raised significantly.
 
@@ -1264,7 +1264,7 @@ Twitter was a special case, since its API is pretty limited for rate and coverag
 
 Twitter's API returns results in JSON (JavaScript Object Notation) format. We preprocessed the data by removing all the tweets without location information. After that, the data was imported into the database.
 
-We used two different database softwares. Our first choice was MongoDB~\cite{mongodb}, which is a high-performance NoSQL database. MongoDB is specifically designed to work with JSON format, so importing data was painless. It also includes native support for geolocation queries, which play important role when using the Twitter data. However, the performance of MongoDB was a little disappointment, and we migrated some parts of data later into Postgres.
+We used two different database software. Our first choice was MongoDB~\cite{mongodb}, which is a high-performance NoSQL database. MongoDB is specifically designed to work with JSON format, so importing data was painless. It also includes native support for geolocation queries, which play important role when using the Twitter data. However, the performance of MongoDB was a little disappointment, and we migrated some parts of data later into Postgres.
 
 The biggest problem with Twitter's data was its huge size. We were able to collect only 10~\% of continuous feed, which must have affected the results. Private access to Twitter's full database would probably have given better outcome.
 
@@ -1282,7 +1282,7 @@ From these unique devices, we saw 8,454 unique SSIDs. Distribution of nodes per 
     \label{fig:nodes_per_ssid}
 \end{figure}
 
-In Figure~\ref{fig:ssids_per_node} we see how many SSIDs a node probed. Almost half of the nodes, 48~\%, probed only one SSID and are exluded from the graph. This behavior may be result of joining a network, and especially because mobile devices try to save battery, rejoining a network. Since we did not collect any other data than probe requests, this hypothesis is impossible to verify. After that, we see various number of probes between two and 15, but on sixteen nodes there is a very significant peak. As $16 = 2^4$, we believe that this is hard-coded limit on some devices. However, no single device manufacturer stand up: Apple, Samsung, LG and others are all presented in expected way in nodes with SSID count of sixteen.
+In Figure~\ref{fig:ssids_per_node} we see how many SSIDs a node probed. Almost half of the nodes, 48~\%, probed only one SSID and are excluded from the graph. This behavior may be result of joining a network, and especially because mobile devices try to save battery, rejoining a network. Since we did not collect any other data than probe requests, this hypothesis is impossible to verify. After that, we see various number of probes between two and 15, but on sixteen nodes there is a very significant peak. As $16 = 2^4$, we believe that this is hard-coded limit on some devices. However, no single device manufacturer stand up: Apple, Samsung, LG and others are all presented in expected way in nodes with SSID count of sixteen.
 
 \begin{figure}
     \center
@@ -1293,7 +1293,7 @@ In Figure~\ref{fig:ssids_per_node} we see how many SSIDs a node probed. Almost h
 
 We mapped devices also by manufacturer, since we can know it by the OUI part of the MAC address. We compared then our findings to the smart phone market share: this way, we could see if manufacturer's phones were more vulnerable than others, or if users with different phones behaved differently, such as leaving WLAN probing on. The market share was obtained from comScore's report for second quarter of 2014~\cite{comscore2014}
 
-Manufacturer distribution is shown in Figure~\ref{fig:manufacturers}. Today's smartphone market in the U.S. is dominated by two largest players, Apple and Samsung. In our data, we see far more Apple devices than we should have expected: 57~\% of MAC addresses compared to 42~\% of market share. Also, Samsung is strongly underpresented in our data, with 10~\% of probes to 28~\% of market share. This suggests that owners of Apple iPhone leave their Wi-Fi on more often, or that Samsung uses passive scanning in many of its devices, or that Samsung users turn Wi-Fi off for some reason. This might be due to usage patterns, if iPhone encourages users to use wireless networks in some way. On the other hand, it is also possible that our target audience was biased towards Apple devices.
+Manufacturer distribution is shown in Figure~\ref{fig:manufacturers}. Today's smartphone market in the U.S. is dominated by two largest players, Apple and Samsung. In our data, we see far more Apple devices than we should have expected: 57~\% of MAC addresses compared to 42~\% of market share. Also, Samsung is strongly underrepresented in our data, with 10~\% of probes to 28~\% of market share. This suggests that owners of Apple iPhone leave their Wi-Fi on more often, or that Samsung uses passive scanning in many of its devices, or that Samsung users turn Wi-Fi off for some reason. This might be due to usage patterns, if iPhone encourages users to use wireless networks in some way. On the other hand, it is also possible that our target audience was biased towards Apple devices.
 
 \begin{figure}
     \center
@@ -1313,9 +1313,9 @@ First, we calculated the similarity matrix of nodes by looping through all pairs
 
 Hierarchical clustering does not work well for this type of data. Too many nodes had exactly zero similarity, which yields to maximum distance (in hierarchical clustering, we need to use distance instead of similarity).
 
-Markov Clustering (MCL) works better with the data. We first created clusters of client devices with MCL, and then looked at shared SSIDs in each cluster. SSIDs were scored and sorted based on the frequency they appeared in a cluster, that is, the most important SSID is the one that most clients share withing the cluster. 
+Markov Clustering (MCL) works better with the data. We first created clusters of client devices with MCL, and then looked at shared SSIDs in each cluster. SSIDs were scored and sorted based on the frequency they appeared in a cluster, that is, the most important SSID is the one that most clients share with the cluster. 
 
-First there are seemingly obvious connections, such as people using differently named networks within the same university or another organization, such as \texttt{UCSB Secure} and \texttt{UCSB Wireless Web}. By these, we can verify that our algorithm works at least on some extent, and can continue for further results. We see that there are definetely links between companies: we identified at least a few different restaurants, ice cream bars, hair salons and retail stores. Once again, the problem is the long tail of SSIDs: most of the SSIDs appeared only in a small number of devices, and defining connections is not reliable.
+First there are seemingly obvious connections, such as people using differently named networks within the same university or another organization, such as \texttt{UCSB Secure} and \texttt{UCSB Wireless Web}. By these, we can verify that our algorithm works at least on some extent, and can continue for further results. We see that there are definitely links between companies: we identified at least a few different restaurants, ice cream bars, hair salons and retail stores. Once again, the problem is the long tail of SSIDs: most of the SSIDs appeared only in a small number of devices, and defining connections is not reliable.
 
 To obtain a graphical representation of the data, we used Gephi and its \emph{Force Atlas} method~\cite{bastian2009gephi}. Showing all the edges was too heavy task, so we filtered the least important out. With Prism-3 similarity method and $\text{threshold} = 0.1$, we got the result shown in Figure~\ref{gephi_01}.
 
@@ -1340,7 +1340,7 @@ For the rest parts of the experiments, we needed more details for our data. We d
 
     \item Get access point location data from WiGLE by SSID
     
-    \item Calculate score for uncertainity of the location data:
+    \item Calculate score for uncertainty of the location data:
         $$ u_{Loc} = C_1 \cdot \ln n + C_2 \cdot d^2 $$
         where $n$ is number of different locations for the SSID, $d$ is the average distance between locations, and $C_1$ and $C_2$ are constants. This way, there are small penalty for large number of networks with the same SSID, and larger penalty if they are far away from each others.
     
@@ -1353,7 +1353,7 @@ For the rest parts of the experiments, we needed more details for our data. We d
     \item Last, manually assign uncertainty score for Google Places result and Expedia hotel result, if present. For example, if for SSID \texttt{BW PLUS VICTORIA PARK SUITES} our system gave a hotel called ``Best Western Plus Victoria Park Suites'' as a result, we can consider that very trustworthy.
 \end{enumerate}
 
-In Table~\ref{tab:stage_counts} there are counts of SSIDs processed in every phase. We see from the table, that even though we were able to get location infromation for three-quarters of SSIDs, less than half of the locations were considered accurate enough. This is due to ambiguous SSIDs: they appear more than once and in various locations.
+In Table~\ref{tab:stage_counts} there are counts of SSIDs processed in every phase. We see from the table, that even though we were able to get location information for three-quarters of SSIDs, less than half of the locations were considered accurate enough. This is due to ambiguous SSIDs: they appear more than once and in various locations.
 
 \begin{table}[h]
     \center
@@ -1442,7 +1442,7 @@ We verified our results by manually going through SSID lists of users marked as 
     \label{tab:example_hometown}
 \end{table}    
 
-We run the analysis for nodes that had probed at least four different SSIDs, which is 870 nodes. Hometown was succesfully calculated for 618 (71~\%) of them. For 347 nodes (56~\% of succesfuls) it resulted as California, and 81 (13~\%) were identified as foreingers. If hotel results are included in results, number of identifications increases, but all the new results are categorized as Californians. Therefore, we can say that most of them are likely visiting the area, and must be excluded from the results.
+We run the analysis for nodes that had probed at least four different SSIDs, which is 870 nodes. Hometown was successfully calculated for 618 (71~\%) of them. For 347 nodes (56~\% of successful) it resulted as California, and 81 (13~\%) were identified as foreigners. If hotel results are included in results, number of identifications increases, but all the new results are categorized as Californians. Therefore, we can say that most of them are likely visiting the area, and must be excluded from the results.
 
 \subsection{Social media networks}
 \label{sec:practical_social}
@@ -1478,15 +1478,15 @@ However, we found that in a general case neither of approached resulted in any p
 
 To see why this is the case, consider first our data. We have three datasets: user's SSID history, SSID-location mapping, and social media database. For every dataset, let's consider possible errors they have and coverage of population.
 
-The first is considered error-free: we have succesfully captured possible SSID probes, and filtered erroneous ones out with the checksum field (FCS) of the 802.11 standard. Coverage could be increased with time, better antennas, and better capture positions, such as larger cities.
+The first is considered error-free: we have successfully captured possible SSID probes, and filtered erroneous ones out with the checksum field (FCS) of the 802.11 standard. Coverage could be increased with time, better antennas, and better capture positions, such as larger cities.
 
 The second dataset, SSID-location mapping, is more problematic. As shown in Table~\ref{tab:stage_counts}, we got location data for about 64~\% of SSIDs. However, the accuracy and reliability of SSIDs shrink fast, and only 27~\% of them can be thought as reasonably trustworthy. Even in that part of data, there are small errors, for example GPS errors in the city or due to fact that location of measuring device is not the same as location of access point.
 
-The third dataset, social media database, can be considered pretty accurate. The location features of a smartphone are reasonably good, even though small errors from GPS can occur, as in previous case. The bigger problem is the coverage of data: we were able to obtain only 10~\% of total Twitter feed in 2014. Furhter, only about 1~\% of tweets included location data, as including location to tweets is a setting controlled by user, and off by default. Thus, we had only 0.1~\% of total tweets to analyze and try to find the user. Also, Twitter is a relatively small media: in 2013, 18~\% of online adults used it, whereas Facebook scored as high as 71~\%~\cite{pew_socialmedia}, and some of those users are only occasionally following it without posting anything.
+The third dataset, social media database, can be considered pretty accurate. The location features of a smartphone are reasonably good, even though small errors from GPS can occur, as in previous case. The bigger problem is the coverage of data: we were able to obtain only 10~\% of total Twitter feed in 2014. Further, only about 1~\% of tweets included location data, as including location to tweets is a setting controlled by user, and off by default. Thus, we had only 0.1~\% of total tweets to analyze and try to find the user. Also, Twitter is a relatively small media: in 2013, 18~\% of online adults used it, whereas Facebook scored as high as 71~\%~\cite{pew_socialmedia}, and some of those users are only occasionally following it without posting anything.
 
 In dense areas such as in the center of a city, there are multiple wireless networks overlapping. Thus, a tweet from a specific location cannot be bound to a single wireless network, which yields higher amount of false positives, when operating on coordinate-basis.
 
-The identification might work if special circumstances were met. From the data collector's point of view, it would be to have larger dataset of people's location history. In regards of user's actions with our Twitter data, an important one would be for user to tweet from a location where only small number of people has tweeted, that is, from sparsely populated area --- but not too sparsely, so that the SSID database has its location. Also, a very unique travel path would reveal the identity: a tweet from middle-sized city from Finland is not enough to identify an individual, but if the same person has tweeted also from mid-size town from U.S. west coast and northen Italy, odds are high that there are not many people having done so. Unfortunately, no such people existed in the data we captured.
+The identification might work if special circumstances were met. From the data collector's point of view, it would be to have larger dataset of people's location history. In regards of user's actions with our Twitter data, an important one would be for user to tweet from a location where only small number of people has tweeted, that is, from sparsely populated area --- but not too sparsely, so that the SSID database has its location. Also, a very unique travel path would reveal the identity: a tweet from middle-sized city from Finland is not enough to identify an individual, but if the same person has tweeted also from mid-size town from U.S. west coast and northern Italy, odds are high that there are not many people having done so. Unfortunately, no such people existed in the data we captured.
 
 In a conclusion, we saw that the idea was promising, but lack of public databases render it very difficult to perform successfully. On the other hand, we may be happy that there is no publicly available database for people's locations.
 
@@ -1503,13 +1503,13 @@ We found also 33 WPS leaks, specified in Section~\ref{sec:wps}. Sadly, the phone
 \section{Conclusion of practical study}
 \label{sec:practical_conclusion}
 
-This chapter provided valuable information of how feasbile it is to perform profiling techniques based on SSID list.
+This chapter provided valuable information of how feasible it is to perform profiling techniques based on SSID list.
 
-The first observation was that majority of clients seen were not performing active scanning. Also, this varied between manufacturers: in our data, Apple devices were overpresented compared to their market share, whereas Samsung had relatively low presense in the data.
+The first observation was that majority of clients seen were not performing active scanning. Also, this varied between manufacturers: in our data, Apple devices were overrepresented compared to their market share, whereas Samsung had relatively low presence in the data.
 
 We saw that it is very difficult to identify users from social media based on SSID list. Such an action requires lots of resources, most likely direct access to social media database in question. Also, currently only a small minority of users are including their location in their postings -- in Twitter, it seems to be about on percent. Thus, odds to find an individual are very low.
 
-However, we showed that it is possible to form behavioral patterns based on SSID list. We succesfully ran graph clustering algorithm, that showed plausible links between networks and companies. We were successful to discover user's possible hometown. By using third-party services, we also created our hypotheses on users' willingess to pay for high-end services.
+However, we showed that it is possible to form behavioral patterns based on SSID list. We successfully ran graph clustering algorithm, that showed plausible links between networks and companies. We were successful to discover user's possible hometown. By using third-party services, we also created our hypotheses on users' willingness to pay for high-end services.
 
 In a conclusion, we showed that profiling is possible, but only for relatively small portion of population.
 
@@ -1523,7 +1523,7 @@ Not everyone is happy or comfortable with an idea that someone is tracking their
 
 \section{Countermeasures for MAC address tracking}
 
-Tracking customers' movements based on MAC address is a relatively simply technique, as we have already seen. Tracker needs to be able to (1) locate a device, and (2) combine togheter individual location points from the same device.
+Tracking customers' movements based on MAC address is a relatively simply technique, as we have already seen. Tracker needs to be able to (1) locate a device, and (2) combine together individual location points from the same device.
 
 We cannot prevent anyone from locating a device that transmits signal on radio frequencies, so the only possible countermeasure is to negate possibility to match location points to a single device. Therefore a device must not broadcast MAC address or other information that uniquely identifies it.
 
@@ -1531,7 +1531,7 @@ Current WLAN standard offer no help as they mandate sending a MAC address with e
 
 As iOS 8 is not yet released, we cannot study its behavior in detail. However, randomization presents a couple of interesting questions. Normally, a device sends a bunch of probe requests almost at once and then sleeps for some period of time, usually between 30 to 60 seconds. A proper implementation requires that the MAC address is randomized after \emph{every} single probe request, not only between different cycles. Otherwise, tracker could identify device based on the broadcasted SSID list and completely ignore the MAC address.
 
-To be a working solution, it must not use too much resources. A device with randomized MAC address needs to save all the previous addresses in order to be able to filter replies targeted to it. Because number of different networks is really small, this will not be a pjroblem. Also, after a succesful connection or relatively short timeout (measured in seconds), a pseudonym can be forgotten. Some computational overhead will be generated from randomizing process, but that should be really small -- after all, we are only generating 24 or 48 bits, depending on whether we randomize also OUI part or not.
+To be a working solution, it must not use too much resources. A device with randomized MAC address needs to save all the previous addresses in order to be able to filter replies targeted to it. Because number of different networks is really small, this will not be a problem. Also, after a successful connection or relatively short timeout (measured in seconds), a pseudonym can be forgotten. Some computational overhead will be generated from randomizing process, but that should be really small -- after all, we are only generating 24 or 48 bits, depending on whether we randomize also OUI part or not.
 
 We should look if there is enough space for randomizing a new MAC address for every probe request without collisions. Suppose that an average device has $N = 8$ SSIDs on their preferred network list, which is a safe assumption based on our dataset. By randomizing only organizationally-controlled part of MAC address -- leaving OUI untouched, respecting its purpose -- a single OUI block can provide about 16 million different addresses, and give enough space for
 $$M = \frac{2^{24}}{8} \approx 2*10^6$$
@@ -1598,7 +1598,7 @@ The third option, preventing analyzing, cannot be done in technical measures.
 
 In the following, we will look at how to secure against active man-in-the-middle attacks presented in Chapter~\ref{chapter:attacks}. 
 
-Defense mechanisms can be categorized into two groups. In client-side defenses, mobile nodes take new security precautions to avoid connecting to rogue access point. In network administrator's defenses, the administrator of WLAN is trying to actively locate rogue access points in his own network. After detecting one, other technical and non-techincal actions can be taken in order to remove the access point.
+Defense mechanisms can be categorized into two groups. In client-side defenses, mobile nodes take new security precautions to avoid connecting to rogue access point. In network administrator's defenses, the administrator of WLAN is trying to actively locate rogue access points in his own network. After detecting one, other technical and non-technical actions can be taken in order to remove the access point.
 
 \subsection{Client-side defenses}
 
@@ -1610,21 +1610,21 @@ In evil twin attack, the attacker has learnt a SSID of an existing access point 
     \item If not, it is possible that network equipment has been upgraded, or the network spans over a larger physical area with lots of access points. In that case, a mobile device could present confirmation dialog to the user, asking if he really wants to connect to that network. This approach is present at least on Windows Phone 8.
 \end{enumerate}
 
-Song et al.~\cite{song2010peeping} suggest that client could look for network hops. Their defense addresses the situation where there is an evil twin between the legitimate AP and the client. In other words, th evil twin is using the original WLAN for internet connectivity. When this is the case, the client could detect that in a network with two different APs with the same SSID, one has one hop more to the internet than another. Therefore, it can know that an extra hop is for MITM attack, and should not connect there.
+Song et al.~\cite{song2010peeping} suggest that client could look for network hops. Their defense addresses the situation where there is an evil twin between the legitimate AP and the client. In other words, the evil twin is using the original WLAN for internet connectivity. When this is the case, the client could detect that in a network with two different APs with the same SSID, one has one hop more to the internet than another. Therefore, it can know that an extra hop is for MITM attack, and should not connect there.
 
-Song's approach works well when their assumptions hold. It is reasonable to think that their use case is a realistic one, but one should not base full trust on it. First, with today's cellular connectivity (3G, 4G), the evil twin may easily be connected to internet without utilising the original AP's internet connection. Second, the evil twin may be located somwhere else: for example, someone could setup a ``Starbucks WiFi'' where there is no Starbucks nearby, but quite a many may join the network since they have previously visited Starbucks.
+Song's approach works well when their assumptions hold. It is reasonable to think that their use case is a realistic one, but one should not base full trust on it. First, with today's cellular connectivity (3G, 4G), the evil twin may easily be connected to internet without utilizing the original AP's internet connection. Second, the evil twin may be located somewhere else: for example, someone could setup a ``Starbucks WiFi'' where there is no Starbucks nearby, but quite a many may join the network since they have previously visited Starbucks.
 
-To tackle the previous Starbucks scenario, Gonzales et al.~\cite{gonzales2010practical} propose two methods. First, they want to combine trust with location data: if the network is seen on a different place than initially, it may be evil. The location is determined by looking for other APs nearby: if too many of them have changed, the location is tought to be different. The second method requires protocol changes, as they propose that APs should be identified with public key cryptography. Keys would be self-signed without trusted third party, which means that initially there is \emph{no verified trust}, but all the later connections are guaranteed to be with the same AP as the first one. The approach is called \emph{trust-on-first-use}, and is used also in SSH protocol. Similiar kind of method is proposed by Bauer, Gonzales and McCoy~\cite{bauer2008mitigating}.
+To tackle the previous Starbucks scenario, Gonzales et al.~\cite{gonzales2010practical} propose two methods. First, they want to combine trust with location data: if the network is seen on a different place than initially, it may be evil. The location is determined by looking for other APs nearby: if too many of them have changed, the location is thought to be different. The second method requires protocol changes, as they propose that APs should be identified with public key cryptography. Keys would be self-signed without trusted third party, which means that initially there is \emph{no verified trust}, but all the later connections are guaranteed to be with the same AP as the first one. The approach is called \emph{trust-on-first-use}, and is used also in SSH protocol. Similar kind of method is proposed by Bauer, Gonzales and McCoy~\cite{bauer2008mitigating}.
 
 Often best solutions are simple. Consider the scenario when attacker is exploiting user's probe requests to guess a name of network user would be willing to connect to. Then the defense is straightforward: do not send probe requests with SSIDs, but resort to wildcard probing or passive scanning. A problem with passive scanning is that it may reduce performance, which manufacturers do not like to see. However, active scanning with wildcard SSID should be fast enough.
 
-An attack for previous defense would be to guess a few most used SSIDs and try to connect with them. Here saving a BSSID with an SSID would help: guessing a SSID from, say, out of twenty most common used ones is trivial, but going through the MAC address is not. Even if attacker would be limited to a couple of OUIs by guessing correclty the manufacturer, it has still 24-bit keyspace to discover, which is more than 16 million possibilities.
+An attack for previous defense would be to guess a few most used SSIDs and try to connect with them. Here saving a BSSID with an SSID would help: guessing a SSID from, say, out of twenty most common used ones is trivial, but going through the MAC address is not. Even if attacker would be limited to a couple of OUIs by guessing correctly the manufacturer, it has still 24-bit keyspace to discover, which is more than 16 million possibilities.
 
-In a conclusion, there are lots of different approaches for defending user against evil twin attacks on the client side. None of them is perfect: some require changes to protocol which may be troublesome to deploy; some work only on some scenarios, and attackers knowning that limitation can easily change their way to attack. The best defense is achieved by combining many different approaches, and can be thought as \emph{defense in depth} with many layers.
+In a conclusion, there are lots of different approaches for defending user against evil twin attacks on the client side. None of them is perfect: some require changes to protocol which may be troublesome to deploy; some work only on some scenarios, and attackers knowing that limitation can easily change their way to attack. The best defense is achieved by combining many different approaches, and can be thought as \emph{defense in depth} with many layers.
 
 \subsection{Network administrator's defenses}
 
-In addition to user's efforts, network administrators can try to detect rogue APs around their network. This field is much more mature in terms of commercial solutions than client's side, which may be due to the fact that it is easier to sell security solutions to techinical administrators than to poorly-educated consumers. Manufacturers include most of big vendors in wireless and networking industry, such as Motorola~\cite{motorola_airdefense} and Cisco~\cite{cisco_ips}. Unfortunately companies do not usually disclose the details of their implementations.
+In addition to user's efforts, network administrators can try to detect rogue APs around their network. This field is much more mature in terms of commercial solutions than client's side, which may be due to the fact that it is easier to sell security solutions to technical administrators than to poorly-educated consumers. Manufacturers include most of big vendors in wireless and networking industry, such as Motorola~\cite{motorola_airdefense} and Cisco~\cite{cisco_ips}. Unfortunately companies do not usually disclose the details of their implementations.
 
 The first type of administrator-side defenses monitors waves on radio frequencies (RF) to find rogue APs. The idea behind this method is simple: there are only a known amount of wireless access points in known locations with known BSSIDs, and everything else is unauthorized. The method is therefore comparing scanning results to a whitelist. The scanning can be done my walking around with a laptop or installing probing devices around the building.~\cite{proxim_rogue_ap}
 
@@ -1632,13 +1632,13 @@ There are also solutions that combine access points with a probing device. Toget
 
 Another possibility to detect rogue APs would be to measure round-trip time (RTT) to a known router inside the network as shown in work by Watkings et al.~\cite{watkins2007passive} The approach exploits the fact that time difference can be measured when packet travels through an extra hop. Thus, the last approach is actually the same as presented in previous section for user-side defenses to detect an extra hop, just with administrator's devices.
 
-Both of these methods require network administrator to deploy his monitoring devices around the area network covers which can be expensive. To solve this particular problem, Bahl et al. from Microsoft propose~\cite{bahl2005dair} that in an office environment, existing desktop computers could have cheap wireless USB devices and use their spare CPU time to detect unknown APs. As desktop workstations are normally connected via wired network, the wireless connectivity would be available for only monitoring purposes.
+Both of these methods require network administrator to deploy his monitoring devices around the area network covers, which can be expensive. To solve this particular problem, Bahl et al. from Microsoft propose~\cite{bahl2005dair} that in an office environment, existing desktop computers could have cheap wireless USB devices and use their spare CPU time to detect unknown APs. As desktop workstations are normally connected via wired network, the wireless connectivity would be available for only monitoring purposes.
 
 \subsection{Conclusion of active attacks defenses}
 
 In a conclusion, we can say that there are numerous types of users and threats. The ones a regular traveler may face are somewhat different from the ones a network administrator in a big company encounters, even though the basic idea and technology is pretty much the same.
 
-No single silver bullet exist to mitigate all the threats. The best result is achieved with defense in depth by having multiple layers of defenses that complement each others.
+No single silver bullet exists to mitigate all the threats. The best result is achieved with defense in depth by having multiple layers of defenses that complement each others.
 
 Having said that, we must note that leaving active probing on increases attack surface significantly. The easiest defense is to use wildcard probing or passive scanning.
 
@@ -1655,15 +1655,15 @@ In Chapter~\ref{chapter:profiling}, we discussed how and why someone could track
 
 After passive profiling, in Chapter~\ref{chapter:attacks} we discussed ways to perform active man-in-the-middle attacks. All the attacks share the same basic idea, attacker being between user and a legitimate service. We saw numerous way to do so, and discovered that there are easy-to-use, off-shelf devices available even for attackers with low skills. Thus, we consider these attacks to be extremely feasible to perform, and they must be taken seriously.
 
-Having studied techinical views, we looked on legal status of the discussed techniques on Chapter~\ref{chapter:legal}. Especially we focused on Google's Street View case, which is the best-known example of these issues, even though it does not address them in every way we would like to -- metadata collection has not been discussed on that case. We found that European Union legislation is much stricter than one in the United States, and that officials in the EU -- the Article 29 Working Group -- has taken really strong position on suggesting that all wireless network data should be treated as personal data, which makes huge burdens on companies to collect and use it. On the other hand, legislation is really permissive in the U.S. as long as it handles only metadata without actual messages, and allows even more if the analysis is not made public. However, we see that there might be oncoming changes on U.S. laws which would bring them closer to European counterparts, but the process is far from complete.
+Having studied technical views, we looked on legal status of the discussed techniques on Chapter~\ref{chapter:legal}. Especially we focused on Google's Street View case, which is the best-known example of these issues, even though it does not address them in every way we would like to -- metadata collection has not been discussed on that case. We found that European Union legislation is much stricter than one in the United States, and that officials in the EU -- the Article 29 Working Group -- has taken really strong position on suggesting that all wireless network data should be treated as personal data, which makes huge burdens on companies to collect and use it. On the other hand, legislation is really permissive in the U.S. as long as it handles only metadata without actual messages, and allows even more if the analysis is not made public. However, we see that there might be oncoming changes on U.S. laws which would bring them closer to European counterparts, but the process is far from complete.
 
 In Chapter~\ref{chapter:practical} we conducted a practical experiment on techniques studied in Chapter~\ref{chapter:profiling}. We saw that majority of devices, 77~\%, had only wildcard scanning enabled, and can not be profiled. However, this does not prevent tracking, as the device is leaking its MAC address all the time. Naturally, we cannot know how many had only passive scanning enabled or turned their WLAN connectivity off, since those devices do not emit anything we could have captured.
 
-We saw that it is possible to find out some charasteristics of users based on their SSID list. Examples included discovering their hometown and if they favored high- or low-end restaurants and hotels. Still, the biggest problem with these findings is that they apply only to small percentage of the population: only small number of people have mobile device with active scanning, only some number of SSIDs can reliably resolve to a location user has visited, and for only some number of those we find pricing or other relevant information. Thus, large-scale profiling and gaining benefits in practise is not straightforward.
+We saw that it is possible to find out some characteristics of users based on their SSID list. Examples included discovering their hometown and if they favored high- or low-end restaurants and hotels. Still, the biggest problem with these findings is that they apply only to small percentage of the population: only small number of people have mobile device with active scanning, only some number of SSIDs can reliably resolve to a location user has visited, and for only some number of those we find pricing or other relevant information. Thus, large-scale profiling and gaining benefits in practice is not straightforward.
 
 We also discovered that it is really difficult to find users from social media based on their SSID list. The biggest problem is that there is no large enough public mapping from visit history to identity: however, there probably are closed ones in big companies, where we do not have access. Even after that, number of false positives would be high, as networks overlap a lot in densely populated areas, such as cities. We think that identification requires measures that are not likely reasonable to be used, which means that SSID list should not be considered personal data in terms of EU legislation. However, MAC address should be, as it may allow identification easily with accurate indoor-WLAN position systems and CCTV cameras, and it is much more stable than SSID list.
 
-In the end, in Chapter~\ref{chapter:countermeasures}, we found that there are many countermeasures available. As short-term solutions, manufacturers should stop using active scanning but turn to wildcard or passive ones. At least there should be a private mode available, so that users could choose if they wanted to expose previous SSIDs to everyone or not. In medium term, MAC address randomization could be a working solution, and Apple is very soon launhing a new mobile operaing system with it. In long term, protocol changes would be required, and there have been propsals on them.
+In the end, in Chapter~\ref{chapter:countermeasures}, we found that there are many countermeasures available. As short-term solutions, manufacturers should stop using active scanning but turn to wildcard or passive ones. At least there should be a private mode available, so that users could choose if they wanted to expose previous SSIDs to everyone or not. In medium term, MAC address randomization could be a working solution, and Apple is very soon launching a new mobile operaing system with it. In long term, protocol changes would be required, and there have been proposals on them.
 
 % Load the bibliographic references
 % ------------------------------------------------------------------
