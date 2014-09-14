@@ -799,7 +799,7 @@ To generalize previous idea, we can see the situation as a weighted graph. In th
 
 Once again, the simplest methods to create similarity function are calculating the size of intersection of SSID lists or the Jaccard index. We can also use advanced algorithms, such as Psim-q.
 
-When we have formed a graph, we can search try to search for clusters. There is no single, widely-accepted definition for a cluster in graph~\cite{schaeffer2007graph} , but we will define it informally as ``recognizing natural groups within a class of entities''~\cite{van2000graph}, or partitioning the graph in groups in a way that distance inside a cluster is low and distance between clusters is high. Therefore, we are trying to look for groups of nodes that have common characterics. The difference to previous section is that there we searched for strong connections between two nodes; now the size of group is larger than two.
+When we have formed a graph, we can search try to search for clusters. There is no single, widely-accepted definition for a cluster in graph~\cite{schaeffer2007graph} , but we will define it informally as ``recognizing natural groups within a class of entities''~\cite{van2000graph}, or partitioning the graph in groups in a way that distance inside a cluster is low and distance between clusters is high. Therefore, we are trying to look for groups of nodes that have common characteristics. The difference to previous section is that there we searched for strong connections between two nodes; now the size of group is larger than two.
 
 Finding the clusters in the graph is therefore our actual problem. Luckily, we do not need to invent our own algorithm, since this is a general graph problem, and it has been studied in computer science before.
 
@@ -1256,7 +1256,7 @@ In this chapter, we will conduct a practical experiment of previously discussed 
 \section{Methodology}
 \label{sec:methods}
 
-SSID probe data was captured from various public locations in California, U.S., within a range of 25 kilometers (15 miles) during one month. We used a single Macbook Pro laptop with an internal wireless antenna and open-source software. No special or expensive equipment nor propretiary software was used, so anybody is able to perform same kind of data collection.
+SSID probe data was captured from various public locations in California, U.S., within a range of 25 kilometers (15 miles) during one month. We used a single Macbook Pro laptop with an internal wireless antenna and open-source software. No special or expensive equipment nor proprietary software was used, so anybody is able to perform same kind of data collection.
 
 Location data was obtained from WiGLE~\cite{wigle}, where we were given higher query limits than for ordinary users. For the other services we used, Google Places, Yelp, and Expedia, we had exactly the same privileges than normal user, and nothing was purchased for our research. Therefore the same kind of research can be done by anyone, and with commercial resources, its quality can probably be raised significantly.
 
@@ -1663,7 +1663,7 @@ We saw that it is possible to find out some characteristics of users based on th
 
 We also discovered that it is really difficult to find users from social media based on their SSID list. The biggest problem is that there is no large enough public mapping from visit history to identity: however, there probably are closed ones in big companies, where we do not have access. Even after that, number of false positives would be high, as networks overlap a lot in densely populated areas, such as cities. We think that identification requires measures that are not likely reasonable to be used, which means that SSID list should not be considered personal data in terms of EU legislation. However, MAC address should be, as it may allow identification easily with accurate indoor-WLAN position systems and CCTV cameras, and it is much more stable than SSID list.
 
-In the end, in Chapter~\ref{chapter:countermeasures}, we found that there are many countermeasures available. As short-term solutions, manufacturers should stop using active scanning but turn to wildcard or passive ones. At least there should be a private mode available, so that users could choose if they wanted to expose previous SSIDs to everyone or not. In medium term, MAC address randomization could be a working solution, and Apple is very soon launching a new mobile operaing system with it. In long term, protocol changes would be required, and there have been proposals on them.
+In the end, in Chapter~\ref{chapter:countermeasures}, we found that there are many countermeasures available. As short-term solutions, manufacturers should stop using active scanning but turn to wildcard or passive ones. At least there should be a private mode available, so that users could choose if they wanted to expose previous SSIDs to everyone or not. In medium term, MAC address randomization could be a working solution, and Apple is very soon launching a new mobile operating system with it. In long term, protocol changes would be required, and there have been proposals on them.
 
 % Load the bibliographic references
 % ------------------------------------------------------------------
