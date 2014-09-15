@@ -961,7 +961,7 @@ If there is no preferred networks available, a node may choose the one which has
     \end{center}
 \end{figure}
 
-The idea of an evil twin attack is presented in Figure~\ref{fig:evil_twin}. First, there is a normal scenario. A user is having a coffee in his favorite cafe, and joins cafe's open, unencrypted network which has an SSID \texttt{NiceCafe}. Everything goes well. The next time the same user is visiting the cafe again, but this time there is a malicious access point with the same SSID, \texttt{NiceCafe}. Remember, SSID is not a unique identifier, and it can be chosen freely. The malicious AP is located closer to the user or has a more powerful antenna, so its signal is much stronger than the original AP's. Therefore, the user connects to the malicious access point, and all the traffic is suddenly exposed to the attacker.
+The idea of an evil twin attack is presented in Figure~\ref{fig:evil_twin}. First, there is a normal scenario. A user is having a coffee in his favorite cafe, and joins cafe's open, unencrypted network that has an SSID \texttt{NiceCafe}. Everything goes well. The next time the same user is visiting the cafe again, but this time there is a malicious access point with the same SSID, \texttt{NiceCafe}. Remember, SSID is not a unique identifier, and it can be chosen freely. The malicious AP is located closer to the user or has a more powerful antenna, so its signal is much stronger than the original AP's. Therefore, the user connects to the malicious access point, and all the traffic is suddenly exposed to the attacker.
 
 Evil twin can appear also in another place than original AP was. The attacker can set up an AP with SSID ``Starbucks'' even if there is no Starbucks nearby: the user may not notice the problem, if his computer connects automatically to the network.
 
@@ -1257,7 +1257,7 @@ Once again, these include similar characteristics than European legislation and 
 
 As we have seen, legislation varies between Europe and the U.S. A conclusion is presented on Table~\ref{table:conclusion}. Collecting personal data and analyzing it is regulated within EU, but the United States still is pretty open for everything as long as it does not target actual message, or is not made public.
 
-Farah and Higby see the situation as U.S. relying on market forces: if the business is handling data in a inappropriate way, customers would not want to go there. Europe, on the other hand, has trusted in legislation.~\cite{farah2001commerce} We can question the reasonability of said U.S. approach: how would a customer know how the data is handled, if companies are not obliged to tell it? Perfect market theory requires perfect knowledge.
+Farah and Higby see the situation as U.S. relying on market forces: if the business handled data in an inappropriate way, customers would not want to go there. Europe, on the other hand, has trusted in legislation.~\cite{farah2001commerce} We can question the reasonability of said U.S. approach: how would a customer know how the data is handled, if companies are not obliged to tell it? Perfect market theory requires perfect knowledge.
 
 A big problem with lawmaking is that the process is slow, but technology evolves rapidly. The legislation that seems to be appropriate today may cause unforeseen problems in following years. Therefore, we strongly suggest that new legislation should be as technically-independent as possible. Laws should rely on general concepts instead of addressing a single, technical problem. European privacy laws include good examples, where personal data is not defined in technical terms, but on what is possible to do with it -- to identify an individual.
 
@@ -1274,7 +1274,7 @@ In this chapter, we will conduct a practical experiment of previously discussed 
 \section{Methodology}
 \label{sec:methods}
 
-SSID probe data was captured from various public locations in California, U.S., within a range of 25 kilometers (15 miles) during one month. We used a single Macbook Pro laptop with an internal wireless antenna and open-source software. No special or expensive equipment nor proprietary software was used, so anybody is able to perform same kind of data collection.
+SSID probe data was captured from various public locations in California, U.S., within a range of 25 kilometers (15 miles) during one month. We used a single Macbook Pro laptop with an internal wireless antenna and open-source software. Neither special or expensive equipment nor proprietary software was used, so anybody is able to perform same kind of data collection.
 
 Location data was obtained from WiGLE~\cite{wigle}, where we were given higher query limits than for ordinary users. For the other services we used, Google Places, Yelp, and Expedia, we had exactly the same privileges than normal user, and nothing was purchased for our research. Therefore the same kind of research can be done by anyone, and with commercial resources, its quality can probably be raised significantly.
 
@@ -1289,9 +1289,9 @@ The biggest problem with Twitter's data was its huge size. We were able to colle
 \section{Overview of data}
 \label{sec:data_overview}
 
-We collected total of 490,374 valid probe requests from 20,420 different devices. Here, we assume that devices are following the standard and have an unique and permanent MAC address. 15,749 devices (77.1~\%) probed only wildcard SSID, and these were excluded from later analysis. Therefore, we have 4,671 unique devices left for further analysis.
+We collected total of 490,374 valid probe requests from 20,420 different devices. Here, we assume that devices are following the standard and have a unique and permanent MAC address. 15,749 devices (77.1~\%) probed only wildcard SSID, and these were excluded from later analysis. Therefore, we have 4,671 unique devices left for further analysis.
 
-From these unique devices, we saw 13,013 unique SSIDs. Distribution of nodes per SSID is shown on Figure~\ref{fig:nodes_per_ssid}. We see that huge majority of SSIDs, 11,422 or 87~\%, were found only on a single device. This will make it harder to find clusters, because most of the SSIDs are not shared at all between devices. On the other hand, it may allow to differentiate users more.
+From these unique devices, we saw 13,013 unique SSIDs. Distribution of nodes per SSID is shown on Figure~\ref{fig:nodes_per_ssid}. We see that huge majority of SSIDs, 11,422 or 87~\%, were found only on a single device. This will make it harder to find clusters, because most of the SSIDs are not shared at all between devices. On the other hand, it may allow differentiating users more.
 
 \begin{figure}
     \center
