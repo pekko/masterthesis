@@ -1271,9 +1271,9 @@ The biggest problem with Twitter's data was its huge size. We were able to colle
 \section{Overview of data}
 \label{sec:data_overview}
 
-We collected total of 279,950 valid probe requests from 12,856 different devices. Here, we assume that devices are following the standard and have an unique and permanent MAC address. 9,872 devices (76.8~\%) probed only wildcard SSID, and these were excluded from later analysis. Therefore, we have 2,984 unique devices left for further analysis.
+We collected total of 490,374 valid probe requests from 20,420 different devices. Here, we assume that devices are following the standard and have an unique and permanent MAC address. 15,749 devices (77.1~\%) probed only wildcard SSID, and these were excluded from later analysis. Therefore, we have 4,671 unique devices left for further analysis.
 
-From these unique devices, we saw 8,454 unique SSIDs. Distribution of nodes per SSID is shown on Figure~\ref{fig:nodes_per_ssid}. We see that huge majority of SSIDs, 7,927 or 86~\%, were found only on a single device. This will make it harder to find clusters, because most of the SSIDs are not shared at all between devices. On the other hand, it may allow to differentiate users more.
+From these unique devices, we saw 13,013 unique SSIDs. Distribution of nodes per SSID is shown on Figure~\ref{fig:nodes_per_ssid}. We see that huge majority of SSIDs, 11,422 or 87~\%, were found only on a single device. This will make it harder to find clusters, because most of the SSIDs are not shared at all between devices. On the other hand, it may allow to differentiate users more.
 
 \begin{figure}
     \center
@@ -1282,18 +1282,18 @@ From these unique devices, we saw 8,454 unique SSIDs. Distribution of nodes per 
     \label{fig:nodes_per_ssid}
 \end{figure}
 
-In Figure~\ref{fig:ssids_per_node} we see how many SSIDs a node probed. Almost half of the nodes, 48~\%, probed only one SSID and are excluded from the graph. This behavior may be result of joining a network, and especially because mobile devices try to save battery, rejoining a network. Since we did not collect any other data than probe requests, this hypothesis is impossible to verify. After that, we see various number of probes between two and 15, but on sixteen nodes there is a very significant peak. As $16 = 2^4$, we believe that this is hard-coded limit on some devices. However, no single device manufacturer stand up: Apple, Samsung, LG and others are all presented in expected way in nodes with SSID count of sixteen.
+In Figure~\ref{fig:ssids_per_node} we see how many SSIDs a node probed. More than half of the nodes, 56~\%, probed only one SSID and are excluded from the graph. This behavior may be result of joining a network, and especially because mobile devices try to save battery, rejoining a network. Since we did not collect any other data than probe requests, this hypothesis is impossible to verify. After that, we see various number of probes between two and 15, but on sixteen nodes there is a very significant peak. As $16 = 2^4$, we believe that this is hard-coded limit on some devices. However, no single device manufacturer stand up: Apple, Samsung, LG and others are all presented in expected way in nodes with SSID count of sixteen.
 
 \begin{figure}
     \center
     \includegraphics{images/ssids_per_node}
-    \caption{How many nodes a client probed. SSID count of one is excluded, having value of 1,174. Also, 12 nodes had SSID count larger than 25, and are not visible in the graph.}
+    \caption{How many nodes a client probed. SSID count of one is excluded, having value of 2,607. Also, 22 nodes had SSID count larger than 25, and are not visible in the graph.}
     \label{fig:ssids_per_node}
 \end{figure}
 
 We mapped devices also by manufacturer, since we can know it by the OUI part of the MAC address. We compared then our findings to the smart phone market share: this way, we could see if manufacturer's phones were more vulnerable than others, or if users with different phones behaved differently, such as leaving WLAN probing on. The market share was obtained from comScore's report for second quarter of 2014~\cite{comscore2014}
 
-Manufacturer distribution is shown in Figure~\ref{fig:manufacturers}. Today's smartphone market in the U.S. is dominated by two largest players, Apple and Samsung. In our data, we see far more Apple devices than we should have expected: 57~\% of MAC addresses compared to 42~\% of market share. Also, Samsung is strongly underrepresented in our data, with 10~\% of probes to 28~\% of market share. This suggests that owners of Apple iPhone leave their Wi-Fi on more often, or that Samsung uses passive scanning in many of its devices, or that Samsung users turn Wi-Fi off for some reason. This might be due to usage patterns, if iPhone encourages users to use wireless networks in some way. On the other hand, it is also possible that our target audience was biased towards Apple devices.
+Manufacturer distribution is shown in Figure~\ref{fig:manufacturers}. Today's smartphone market in the U.S. is dominated by two largest players, Apple and Samsung. In our data, we see far more Apple devices than we should have expected: 58~\% of MAC addresses compared to 42~\% of market share. Also, Samsung is strongly underrepresented in our data, with 10~\% of probes to 28~\% of market share. This suggests that owners of Apple iPhone leave their Wi-Fi on more often, or that Samsung uses passive scanning in many of its devices, or that Samsung users turn Wi-Fi off for some reason. This might be due to usage patterns, if iPhone encourages users to use wireless networks in some way. On the other hand, it is also possible that our target audience was biased towards Apple devices.
 
 \begin{figure}
     \center
@@ -1359,8 +1359,9 @@ In Table~\ref{tab:stage_counts} there are counts of SSIDs processed in every pha
     \center
     \begin{tabular}{|l|c|c|}
         \hline
+        % TODO UPDATE:
         Unique SSIDs                            & 8454 & --- \\ \hline
-        Unique SSIDs for devices with more than 3 probes                                  & 7271 & 100~\% \\ \hline
+        Unique SSIDs for devices with more than 3 probes  & 7271 & 100~\% \\ \hline
         Location point for SSID                 & 5451 & 75~\%  \\ \hline
         Reasonable low uncertainty for location & 2283 & 31~\%  \\ \hline
         Google Places data                      & 1543 & 21~\%  \\ \hline
@@ -1380,12 +1381,15 @@ It would be very valuable to know if users are willing to pay more, or if they a
 
 We fetched pricing information from Yelp~\cite{yelp}, which reports price range for places in four-step scale, from one to four. This is a helpful feature, because then we need not to normalize the prices between different cities or different types of services (such as hotels or restaurants).
 
+% TODO UPDATE:
 To increase the accuracy of price range analysis, we discarded the results with high uncertainty for location or Google Places data. Also, most of the users had only one or two SSIDs with pricing information, and we discarded those too. As a result, we managed to calculate average price range for 328 users (11~\%).
 
+% TODO UPDATE:
 The distribution of price average is shown in Figure~\ref{fig:prices_users}. We see a big peak on range $2.0 - 2.49$, and only five users had an average of at least 3.0. This may be a result of nature of Yelp data. Nonetheless, we believe that in many cases the result gives hints about customer's purchasing power or consuming behavior, accuracy correlating with the number of SSIDs where pricing data was found.
 
 \begin{figure}
     \center
+    % TODO UPDATE
     \includegraphics{images/prices_users}
     \caption{Distribution of price average}
     \label{fig:prices_users}
@@ -1440,8 +1444,9 @@ We verified our results by manually going through SSID lists of users marked as 
     \end{tabular}
     \caption{User with this SSID list was categorized to be from Stockholm, Sweden. Last five locations were not included in calculation due to high uncertainty.}
     \label{tab:example_hometown}
-\end{table}    
+\end{table}
 
+% TODO UPDATE:
 We run the analysis for nodes that had probed at least four different SSIDs, which is 870 nodes. Hometown was successfully calculated for 618 (71~\%) of them. For 347 nodes (56~\% of successful) it resulted as California, and 81 (13~\%) were identified as foreigners. If hotel results are included in results, number of identifications increases, but all the new results are categorized as Californians. Therefore, we can say that most of them are likely visiting the area, and must be excluded from the results.
 
 \subsection{Social media networks}
@@ -1480,6 +1485,7 @@ To see why this is the case, consider first our data. We have three datasets: us
 
 The first is considered error-free: we have successfully captured possible SSID probes, and filtered erroneous ones out with the checksum field (FCS) of the 802.11 standard. Coverage could be increased with time, better antennas, and better capture positions, such as larger cities.
 
+% TODO UPDATE:
 The second dataset, SSID-location mapping, is more problematic. As shown in Table~\ref{tab:stage_counts}, we got location data for about 64~\% of SSIDs. However, the accuracy and reliability of SSIDs shrink fast, and only 27~\% of them can be thought as reasonably trustworthy. Even in that part of data, there are small errors, for example GPS errors in the city or due to fact that location of measuring device is not the same as location of access point.
 
 The third dataset, social media database, can be considered pretty accurate. The location features of a smartphone are reasonably good, even though small errors from GPS can occur, as in previous case. The bigger problem is the coverage of data: we were able to obtain only 10~\% of total Twitter feed in 2014. Further, only about 1~\% of tweets included location data, as including location to tweets is a setting controlled by user, and off by default. Thus, we had only 0.1~\% of total tweets to analyze and try to find the user. Also, Twitter is a relatively small media: in 2013, 18~\% of online adults used it, whereas Facebook scored as high as 71~\%~\cite{pew_socialmedia}, and some of those users are only occasionally following it without posting anything.
@@ -1493,11 +1499,12 @@ In a conclusion, we saw that the idea was promising, but lack of public database
 \section{Other findings}
 \label{sec:practical_other}
 
+% TODO UPDATE:
 As noted while studying legal issues on Chapter~\ref{chapter:legal}, someone might name his network after his own name. We looked the data we had captured to find such networks. In fact, we found 24 SSIDs that were form of \texttt{[firstname] [lastname]'s [network|own network|etc]}, of which 22 were named after different individuals, one was duplicate, and one was after a family name.
 
 To further study these cases, we tried to identify these people by searching their name from various public sources and social media. As the names of people are not unique, we assumed that they were living in a reasonable distance from capture area. We believe that we found the correct individuals in 13 cases; in three cases we found too many results to uniquely identify a person; and six SSIDs did not result to a match.
 
-We found also 33 WPS leaks, specified in Section~\ref{sec:wps}. Sadly, the phone names in the leaks looked like default names, which the owner had not changed. Most of the leaks were from Motorola devices, bought from Verizon.
+We found also 42 WPS leaks, specified in Section~\ref{sec:wps}. Most of the phone names in the leaks looked like default names, which the owner had not changed. Most of the leaks were from Motorola devices, bought from Verizon.
 
 
 \section{Conclusion of practical study}
