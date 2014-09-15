@@ -199,7 +199,7 @@
 \newcommand{\TITLE}{Caught Before Connecting}
 \newcommand{\FTITLE}{Havaittu ennen yhdist\"{a}mist\"{a}}
 \newcommand{\SUBTITLE}{Privacy Implications of Wireless Network Probing}
-\newcommand{\FSUBTITLE}{Yksityisyydensuoja langattomien verkkojen etsinn\"{a}ss\"{a}}
+\newcommand{\FSUBTITLE}{Yksityisyydensuoja langattomia verkkoja etsiess\"{a}}
 \newcommand{\DATE}{August 5, 2014}
 \newcommand{\FDATE}{5. elokuuta 2014}
 
@@ -228,8 +228,8 @@
 
 % Professorship code is the same in all languages
 \newcommand{\PROFCODE}{T-110}
-\newcommand{\KEYWORDS}{}
-\newcommand{\FKEYWORDS}{}
+\newcommand{\KEYWORDS}{wireless networks, probing, privacy, profiling}
+\newcommand{\FKEYWORDS}{langattomat verkot, yksityisyys, profilointi}
 
 \newcommand{\LANGUAGE}{English}
 \newcommand{\FLANGUAGE}{Englanti}
@@ -278,6 +278,7 @@
 % You need a special package to hyphenate those words.
 % \hyphenation{di-gi-taa-li-sta yksi-suun-tai-sta}
 \hyphenation{probing}
+\hyphenation{etsinnassa}
 
 
 % The preamble ends here, and the document begins. 
@@ -306,13 +307,30 @@
 % Abstract in English
 % ------------------------------------------------------------------
 \thesisabstract{english}{
+Wireless devices are optimized to join networks fast. In order to do that, they often remember the networks joined previously, and will try these first by probing them. If that fails, a device will request list of all available networks in the range, or passively monitor to see the networks.
 
+In this thesis we recorded half a million of wireless network probe requests, and many of them included names for previously-joined networks. After that, we combined the list with publicly-accessible data, and tried to figure out where a specific network is located, if it belongs to, for example, a hotel or a restaurant, and how expensive the hotel or the restaurant is supposed to be. Combining list of networks with network information may reveal device owner's hometown, willingness to pay for high-end services, or other behavioral patterns.
+
+We also studied the legal status of the issue, and found out that in the U.S. such profiling is legal. However, in Europe the laws are stricter, but no definitive answer can be given: in order to apply restrictions, legislation requires that an individual must be able to identify, which we tried with social media data, but did not see reasonably possible.
+
+There are also numerous ways to perform active attacks, which do not limit to profiling user's behavior, but are suitable for malicious intents such as eavesdropping user's web browsing. In addition, there are easy-to-use tools available on the market, and performing an attack does not require advanced knowledge.
+
+To prevent user's privacy against the profiling techniques, we looked for possible countermeasures, their effectiveness, and feasibility to implement. There are promising ones available, and first manufacturers are implementing them. Also, the simplest defense is to disable active probing, which would be a great way to stop most of information leaks, but not all.
 }
 
 % Abstract in Finnish
+% argh latex, plase support utf-8
 % ------------------------------------------------------------------
 \thesisabstract{finnish}{
+Valmistajat optimoivat laittensa liittym\"{a}\"{a}n langattomiin verkkoihin nopeasti. T\"{a}st\"{a} syyst\"{a} laitteet pit\"{a}v\"{a}t kirjaa verkoista, joihin ovat aiemmin liityneet, ja yritt\"{a}v\"{a}t ensin etsi\"{a} niit\"{a}. Ep\"{a}onnistuessaan laite voi pyyt\"{a}\"{a} tietoa kaikista alueella olevista verkoista tai passivisesti etsi\"{a} verkkoja.
 
+T\"{a}ss\"{a} diplomity\"{o}ss\"{a} tallensimme puoli miljoonaa langattoman verkon etsint\"{a}yrityst\"{a}, joista monet sis\"{a}lsiv\"{a}t aiemmin liitytyn verkon nimen. Yhdistimme tulokset avoimiin tietokantoihin, ja yritimme selvitt\"{a}\"{a} miss\"{a} kyseiset verkot fyysisesti sijaitsivat, kuuluivatko ne esimerkiksi jollekin hotellille tai ravintolalle, ja mihin hintaluokkaan hotelli tai ravintola kuuluu. T\"{a}m\"{a}nkaltainen tietojen yhdist\"{a}minen voi paljastaa kiinnostavia tietoja laitteen omistajasta, kuten kotipaikan tai valmiuden maksaa korkealaatuisesta palvelusta.
+
+Tutkimme my\"{o}s juridista n\"{a}k\"{o}kulmaa profilointiin. Havaitsimme, ett\"{a} Yhdysvalloissa se on hyvin pitk\"{a}lti laillista. Euroopan Unionissa tietosuojam\"{a}\"{a}r\"{a}ykset ovat merkitt\"{a}v\"{a}sti tiukemmat, mutta t\"{a}sm\"{a}llist\"{a} ja varmaa vastausta emme voi antaa: rajoitukset edellytt\"{a}v\"{a}t, ett\"{a} yksitt\"{a}inen henkil\"{o} voidaan tunnistaa datasta, mit\"{a} yritimme sosiaalisen median avulla, mutta emme pid\"{a} k\"{a}yt\"{a}nn\"{o}ss\"{a} mahdollisena.
+
+Passiivisen seurannan ja profiloinnin lis\"{a}ksi tutkimme aktiivisia hy\"{o}kk\"{a}yksi\"{a}. N\"{a}m\"{a} menev\"{a}t pidemm\"{a}lle ja ovat vaarallisempia kuin edell\"{a} kuvattu seuranta, sill\"{a} ne voivat onnistuessaan kaapata ja muokata kohteen web-selaamista. Markkinoilla on my\"{o}s valmiita ja helppok\"{a}ytt\"{o}isi\"{a} ty\"{o}kaluja, joten hy\"{o}kk\"{a}ykseen ei tarvita erityisen edistyksellisi\"{a} taitoja.
+
+Yksityisyyden turvaamiseksi tutkimme mahdollisia vastatoimenpiteit\"{a} edell\"{a} kuvattuja tekniikoita vastaan, ja erityisesti n\"{a}iden tehokkuutta ja toteutettavuutta. L\"{o}ysimme lupaavia ehdokkaita, ja havaitisimme, ett\"{a} ensimm\"{a}iset valmistajat ovat jo ottamassa n\"{a}it\"{a} k\"{a}ytt\"{o}\"{o}n. Yksinkertaisin suojautuminen, aktiivisen etsimisen kytkeminen pois p\"{a}\"{a}lt\"{a}, est\"{a}isi valtaosan tietovuoidoista -- vaan ei kaikkia.
 }
 
 % Acknowledgements
