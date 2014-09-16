@@ -1320,8 +1320,7 @@ Manufacturer distribution is shown in Figure~\ref{fig:manufacturers}. Today's sm
     \label{fig:manufacturers}
 \end{figure}
 
-% TODO UPDATE
-For Twitter, we collected 10~\% of continuous feed from January 2014 to August 2014. After that, we filtered out all the results without geolocation data. In the end, we had 164 million tweets -- posts to Twitter -- in the database.
+For Twitter, we collected 10~\% of continuous feed from January 2014 to August 2014. After that, we filtered out all the results without geolocation data. In the end, we had 193 million tweets -- posts to Twitter -- in the database.
 
 \section{Clustering}
 \label{sec:practical_clustering}
@@ -1489,8 +1488,7 @@ We can approach the problem in two ways. First, we use coordinates and distance,
 $d\left( (x_0,y_0), (x_1,y_1) \right)$ 
 is smaller than certain search radius $r$, a parameter. Save the Twitter users with those location. Repeat for every SSID in one device's SSID list. After that, count the number of locations for every user: if the number is large enough -- threshold given as a parameter -- this might be a match. First verification can be to check if the user was nearby capture location at capture time, or somewhere else.
 
-% TODO UPDATE tweet count:
-This approach has a couple of problems. It is computationally heavy, and even sophisticated methods like MongoDB's geospatial indexing are slow, when $r$ is large (large meaning $r>1000 \text{m}$). Remember, we have more than 160 million tweets. Also, we may be too limited here: even if a user has used a specific wireless network, he might not have tweeted from there, but instead somewhere nearby -- and increasing $r$ makes searching way too slow.
+This approach has a couple of problems. It is computationally heavy, and even sophisticated methods like MongoDB's geospatial indexing are slow, when $r$ is large (large meaning $r>1000 \text{m}$). Remember, we have almost 200 million tweets. Also, we may be too limited here: even if a user has used a specific wireless network, he might not have tweeted from there, but instead somewhere nearby -- and increasing $r$ makes searching way too slow.
 
 Another way is to look for cities instead of coordinates. Now we first map all the coordinates from tweets and SSIDs into cities. This is possible using free GeoNames database~\cite{geonames}. Next, we do exactly same kind of search as previously, but this time the condition is that cities match exactly, which is very fast operation using well-studied indexing algorithms. Once again, we count the matching cities and compare to threshold.
 
