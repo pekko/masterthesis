@@ -1490,9 +1490,11 @@ is smaller than certain search radius $r$, a parameter. Save the Twitter users w
 
 This approach has a couple of problems. It is computationally heavy, and even sophisticated methods like MongoDB's geospatial indexing are slow, when $r$ is large (large meaning $r>1000 \text{m}$). Remember, we have almost 200 million tweets. Also, we may be too limited here: even if a user has used a specific wireless network, he might not have tweeted from there, but instead somewhere nearby -- and increasing $r$ makes searching way too slow.
 
-Another way is to look for cities instead of coordinates. Now we first map all the coordinates from tweets and SSIDs into cities. This is possible using free GeoNames database~\cite{geonames}. Next, we do exactly same kind of search as previously, but this time the condition is that cities match exactly, which is very fast operation using well-studied indexing algorithms. Once again, we count the matching cities and compare to threshold.
+Another way is to look for cities instead of coordinates. Now we first map all the coordinates from tweets and SSIDs into cities. This is possible using free GeoNames database~\cite{geonames}. Next, we do exactly same kind of search as previously, but this time the condition is that cities match exactly. Once again, we count the matching cities and compare to threshold.
 
-However, we found that in a general case neither of approached resulted in any plausible results. Adjusting threshold provided only a little help: when too small, we had huge number of false positives. When a bit larger, we had no results at all.
+Searching for cities has multiple advantages over exact coordinates. Searching for the exact match is a lot faster than calculating locations. Also, the size of database is smaller, because usually people tweet multiple times from the same city -- now all of them are reduced into single row into database. As a result, we have 32 million rows generated from 193 million tweets, which is one sixth of the original size.
+
+However, we found that neither of approached resulted in any plausible results. Adjusting threshold provided only a little help: when too small, we had huge number of false positives. When a bit larger, we had no results at all.
 
 To see why this is the case, consider first our data. We have three datasets: user's SSID history, SSID-location mapping, and social media database. For every dataset, let's consider possible errors they have and coverage of population.
 
