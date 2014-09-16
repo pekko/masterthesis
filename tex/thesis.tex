@@ -1300,12 +1300,12 @@ From these unique devices, we saw 13,013 unique SSIDs. Distribution of nodes per
     \label{fig:nodes_per_ssid}
 \end{figure}
 
-In Figure~\ref{fig:ssids_per_node} we see how many SSIDs a node probed. More than half of the nodes, 56~\%, probed only one SSID and are excluded from the graph. This behavior may be result of joining a network, and especially because mobile devices try to save battery, rejoining a network. Since we did not collect any other data than probe requests, this hypothesis is impossible to verify. After that, we see various number of probes between two and 15, but on sixteen nodes there is a very significant peak. As $16 = 2^4$, we believe that this is hard-coded limit on some devices. However, no single device manufacturer stand up: Apple, Samsung, LG and others are all presented in expected way in nodes with SSID count of sixteen.
+In Figure~\ref{fig:ssids_per_node} we see how many SSIDs a node probed. More than half of the nodes, 56~\%, probed only one SSID. This behavior may be result of joining a network, and especially because mobile devices try to save battery, rejoining a network. Since we did not collect any other data than probe requests, this hypothesis is impossible to verify. After that, we see various number of probes between two and 15, but on sixteen nodes there is a very significant peak. As $16 = 2^4$, we believe that this is hard-coded limit on some devices. However, no single device manufacturer stand up: Apple, Samsung, LG and others are all presented in expected way in nodes with SSID count of sixteen.
 
 \begin{figure}
     \center
     \includegraphics{images/ssids_per_node}
-    \caption{How many nodes a client probed. SSID count of one is excluded, having value of 2,607. Also, 22 nodes had SSID count larger than 25, and are not visible in the graph.}
+    \caption{How many nodes a client probed. 22 nodes had SSID count larger than 25, and are not visible in the graph. Note also broken axis on the first column.}
     \label{fig:ssids_per_node}
 \end{figure}
 
