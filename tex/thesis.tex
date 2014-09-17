@@ -1420,6 +1420,7 @@ To get results, we used the following method:
 \begin{enumerate}
     \item Filter out location results with too large uncertainty.
     \item Filter out hotels: we assume that people do not go to hotels in their hometown.
+    \item Filter out all the locations that were from the same cities than previously-filtered hotels: they most likely belong to the same trip.
     \item Calculate the number of remaining locations, grouped by country and state.
     \item If large enough fraction of locations is from a specific place, consider that as user's hometown.
 \end{enumerate}
