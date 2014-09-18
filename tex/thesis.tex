@@ -670,7 +670,7 @@ The standard does not specify time interval between two probe requests or two ro
 
 There exists also a combination of active and passive scanning. A node can request information of all present wireless networks by sending a probe request frame with wildcard SSID. When an AP sees a wildcard probe request, it replies to the node with its own SSID. This way, the node does not state which networks it knows or wants to join, but it also does not need to wait for APs to advertise themselves by beacon frames. As a downside, this may increase unnecessary network traffic.
 
-IEEE Standard states wildcard SSID to be the one with all bits set to zero. 
+IEEE Standard states wildcard SSID to be the one with length set to zero. 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1362,7 +1362,7 @@ For the rest parts of the experiments, we needed more details for our data. We d
         $$ u_{Loc} = C_1 \cdot \ln n + C_2 \cdot d^2 $$
         where $n$ is number of different locations for the SSID, $d$ is the average distance between locations, and $C_1$ and $C_2$ are constants. This way, there are small penalty for large number of networks with the same SSID, and larger penalty if they are far away from each others.
     
-    \item By location data and SSID, query Google Places to find out if the location is a well-known place. SSID was splitted into different words by several delimiters, such as `-', `\_', whitespace, and case changes. For example, SSID \texttt{FourSeasons\_Guests} splits into three search terms, \texttt{Four}, \texttt{Seasons}, and \texttt{Guests}.
+    \item By location data and SSID, query Google Places to find out if the location is a well-known place. SSID was split into different words by several delimiters, such as `-', `\_', whitespace, and case changes. For example, SSID \texttt{FourSeasons\_Guests} splits into three search terms, \texttt{Four}, \texttt{Seasons}, and \texttt{Guests}.
 
     \item Query Yelp database to get pricing information with same kind of parameters than Google Places.
 
@@ -1400,7 +1400,27 @@ We fetched pricing information from Yelp~\cite{yelp}, which reports price range 
 
 To increase the accuracy of price range analysis, we discarded the results with high uncertainty for location or Google Places data. Also, most of the users had only one or two SSIDs with pricing information, and we discarded those too. As a result, we managed to calculate average price range for 531 users (11~\%).
 
-The distribution of price average is shown in Figure~\ref{fig:prices_users}. We see a big peak on range $2.0 - 2.49$, and only seven users had an average of at least 3.0. This may be a result of nature of Yelp data. Nonetheless, we believe that in many cases the result gives hints about customer's purchasing power or consuming behavior, accuracy correlating with the number of SSIDs where pricing data was found.
+\begin{table}
+\center
+    \begin{tabular}{|l|c|}
+    \hline
+        \textbf{SSID}           & \textbf{Price $(1..4)$} \\ \hline
+        DJS WiFi                &       \\ \hline
+        HollisterBrewingCompany & 2     \\ \hline
+        JAVA STATION            & 1     \\ \hline
+        Motel 6 On Wi-Fi 5      & 1     \\ \hline
+        Spanish Mackerel        & 2     \\ \hline
+        DAILY GRIND             & 1     \\ \hline
+        ZIZZO'S COFFEE          &       \\ \hline
+        sbccWireless            &       \\ \hline
+    \end{tabular}
+    \caption{An example of price search. This user favors low-to-medium-cost services.}
+    \label{tab:example_price}
+\end{table}
+
+An example of price search is shown in Table~\ref{tab:example_price}. For clarity, other columns are not visible. We see that this user most likely favors low-price services. Also, from SSID \texttt{sbccWireless} we can guess that he goes to Santa Barbara City College, which sounds reasonable: usually, students are not the wealthiest part of the population.
+
+The distribution of price average is shown in Figure~\ref{fig:prices_users}. We see quite a lot of users on ranges $1.5-1.99$ and $2.0 - 2.49$, and only four users had an average of at least 3.0. This may be a result of nature of Yelp data or restaurant and hotel business: there are lots of low-to-medium range businesses, and reasonably low number of high-end services. Nonetheless, we believe that in many cases the result gives hints about customer's purchasing power or consuming behavior, accuracy correlating with the number of SSIDs where pricing data was found.
 
 \begin{figure}
     \center
