@@ -307,9 +307,9 @@
 % Abstract in English
 % ------------------------------------------------------------------
 \thesisabstract{english}{
-Wireless devices are optimized to join networks fast. In order to do that, they often remember the networks joined previously, and will try these first by probing them. If that fails, a device will request list of all available networks in the range, or passively monitor to see the networks.
+Manufacturers want to make wireless devices to join network fast. In order to do that, devices often remember the networks joined previously, and will try these first by probing them. If that fails, the device will request list of all available networks in the range, or passively monitor to see the networks.
 
-In this thesis we recorded half a million of wireless network probe requests, and many of them included names for previously-joined networks. After that, we combined the list with publicly-accessible data, and tried to figure out where a specific network is located, if it belongs to, for example, a hotel or a restaurant, and how expensive the hotel or the restaurant is supposed to be. Combining list of networks with network information may reveal device owner's hometown, willingness to pay for high-end services, or other behavioral patterns.
+In this thesis we recorded half a million wireless network probe requests, and many of them included names for previously-joined networks. After that, we combined the list with publicly accessible data, and tried to figure out where a specific network is located; if it belongs to, for example, a hotel or a restaurant; and how expensive the hotel or the restaurant is supposed to be. Combining the list of networks with network information may reveal device owner's hometown, willingness to pay for high-end services, or other behavioral patterns.
 
 We also studied the legal status of the issue, and found out that in the U.S. such profiling is legal. However, in Europe the laws are stricter, but no definitive answer can be given: in order to apply restrictions, legislation requires that an individual must be able to identify, which we tried with social media data, but did not see reasonably possible.
 
@@ -350,7 +350,7 @@ I would like to thank my supervisor Tuomas Aura from Aalto University for being 
 
 In addition, I want to thank Davide Balzarotti and S3 research group of Eurecom for introducing me into information security scene.
 
-Last, I wish to thank my friends around the world for a great student life, and especially the ones in Finland giving a push to go international.
+Last, I wish to thank my friends around the world for a great student life, and especially the ones in Finland giving me a push to go international.
 
 \vskip 10mm
 
@@ -415,7 +415,7 @@ Wireless technology has been established well in everyday life. Most of the peop
 
 From the very nature of wireless networks, transferred data is always visible on the physical layer to everyone who is inside the range of the network. Compared to traditional on-wire networking, this creates worries for information security -- eavesdropping the cable is much harder. Lots of work has been done in order to make sure that actual transferred information, for example the content of web pages browsed, remains confident and is not visible for eavesdroppers. Such work includes, for example, standards for wireless network encryption.
 
-However, we are interested in data exchange that happens before a device joins a wireless network. The device has not established any connections yet, so all the information is sent in plaintext, unencrypted, in public. This information includes at least the identifier of the device that is trying to connect to a network, and the network name it is trying to connect. Or, alternatively, the device can ask for information about all the networks in the range.
+However, we are interested in data exchange that happens before a device joins a wireless network. The device has not established any connections yet, so all the information is sent in plaintext, unencrypted, in public. This information includes at least the identifier of the device trying to connect to a network, and the network's name. Or, alternatively, the device can ask for information about all the networks in the range.
 
 Manufacturers want to provide best possible user experience to their customers. A part of the experience is the ability to find a wireless network in the device's range, and to join fast to the network. Because of this, many devices scan continuously the airspace and try to find out if there are networks to join. An understandable goal means that devices might leak out data about users: the names of networks the device, or the user, would like to join.
 
@@ -442,7 +442,7 @@ The thesis is organized as follows. In Chapter~\ref{chapter:protocol}, we tell h
 \chapter{The 802.11 wireless network protocol}
 \label{chapter:protocol}
 
-We will examine the protocols and data transmissions used inside wireless local area networks (WLAN). Before the wireless connectivity, these local area networks (LANs) have been created by connecting cables between computers and a hub, a switch, or a router. During last decade, the wireless networks have gained lots of popularity, as they obviously allow users a great mobility. Also, as smartphones have developed with new mobile apps requiring more and more bandwidth, local area networks are easier and cheaper to build and use than mobile networks.
+We will examine the protocols and data transmissions used inside wireless local area networks (WLAN). Before the wireless connectivity, these local area networks (LANs) have been created by connecting cables between computers and a hub, a switch, or a router. During the last decade, wireless networks have gained lots of popularity, as they obviously allow users a great mobility. Also, as smartphones have developed with new mobile apps requiring more and more bandwidth, local area networks are easier and cheaper to build and use than cellular mobile networks.
 
 IEEE LAN/MAN Standards Committee, also known as IEEE 802, maintains the protocol for wireless LAN. The family of protocols covering WLAN is called the 802.11 family, and it includes many different versions of the standard, denoted by letters. Widely implemented standards of the family are 802.11b, 802.11g, and 802.11n.~\cite{IEEE802.11}
 
@@ -454,7 +454,7 @@ Inside a wireless network there can be found several different devices. In the f
 
 IEEE, a standards organization maintaining the wireless standard, defines all the devices capable to connect wireless network as \emph{stations} (STA). However, this definition is a bit too broad, so we will split it further.
 
-First there are devices only connecting to an existing network, which we will call \emph{nodes}. A node can be any kind of device, and most common and most relevant ones for this study are laptops and smartphones. Other possible terms for node are \emph{client} or \emph{terminal}.
+First there are devices only connecting to an existing network, which we will call \emph{nodes}. A node can be any kind of device, and most common and most relevant ones for this study are laptops and smartphones. Other possible terms for node are \emph{client} and \emph{terminal}.
 
 Second, the devices building the wireless network and allowing nodes to connect to it are called \emph{Access points} (AP). A wireless network can consist of one or more APs.
 
@@ -536,7 +536,7 @@ The frame begins with a frame control field, which includes protocol version, ty
 
 The flags in the frame control field specify, for example, whether the data transmitted has been split into fragments, or if this frame has already tried to be sent but failed, and this one is a retransmission of a failed one.
 
-As much as four different address fields are included can be included in a MAC frame. Their purpose depends on frame type, and can include source address, destination address, or routing-related information in ad-hoc network.
+As much as four different address fields are included in a MAC frame. Their purpose depends on the frame type, and can include source address, destination address, or routing-related information in ad-hoc network.
 
 Another fields in MAC frame include sequence control, quality of service (QoS), and high-throughput (HT) control fields. We will not study these fields more.
 
@@ -605,7 +605,7 @@ Management frames can be further divided into different frames depending of the 
 \subsubsection{Beacon frame format}
 \label{subsubsec:beacon_frame}
 
-APs sent Beacon frames to advertise their own existence. They are defined to be a management frame with \texttt{subtype} of value 8, so identifying rule is \texttt{type == 0 and subtype == 8}.
+APs send Beacon frames to advertise their own existence. They are defined to be a management frame with \texttt{subtype} of value 8, so identifying rule is \texttt{type == 0 and subtype == 8}.
 
 The body of a Beacon frame is huge, containing total of 55 different field plus vendor-specific ones. We do not list them all here. The most important is the fourth field, \texttt{SSID}, which was presented in Section~\ref{sec:SSID}. Another important field is the second field in frame body, \texttt{Beacon interval}, which represents the number of time units between beacon transmissions.
 
@@ -619,7 +619,7 @@ Probe Request frame is a management frame with \texttt{subtype == 4}. Therefore 
 
 All the fields in a Probe Request frame are shown in Figure~\ref{fig:probe_request}. For us, the most important one is the first one, \texttt{SSID}, which was studied in detail in Section~\ref{sec:SSID}. Here we note that the maximum length of SSID is 32 bytes, and it can contain UTF-8-encoded characters, if Extended Capabilities field (9th in Probe Request frame body) contains specific UTF-8 flag set to one.
 
-In addition to single SSID field, there is a field called \texttt{SSID List}, tenth in order, where one can specify multiple SSIDs it is interested in. The field includes a subfield to note the length of the list. The length subfield has a size of one octet, so there can be at most 255 different SSIDs. However, we found that devices do not use this feature.
+In addition to a single SSID field, there is a field called \texttt{SSID List}, tenth in order, where one can specify multiple SSIDs it is interested in. The field includes a subfield to note the length of the list. The length subfield has a size of one octet, so there can be at most 255 different SSIDs. However, we found that devices do not use this feature.
 
 In the last field, vendor can specify its own extensions.
 
@@ -648,7 +648,7 @@ In the last field, vendor can specify its own extensions.
 \caption{Probe Request frame body}
 \end{figure}
 
-\section{Joining a network}
+\section{Finding a network}
 \label{sec:joining}
 
 So far we have characterized different elements of a wireless network. In this section, we will discuss how a node can find an existing wireless network. This can be achieved using either (1) active scanning or (2) passive scanning, which both are defined in the IEEE standard.~\cite{IEEE802.11_scanning}
@@ -656,9 +656,9 @@ So far we have characterized different elements of a wireless network. In this s
 \subsection{Passive scanning}
 \label{subsec:passive_scanning}
 
-In passive scanning, a node does not send anything by itself in order to find the network it wants to join. Instead, a node listens the transmissions, and scans for beacon frames sent by APs.
+In passive scanning, a node does not send anything by itself in order to find the network it wants to join. Instead, the node listens for the transmissions, and scans for beacon frames sent by APs.
 
-As we have learnt previously in Section~\ref{subsubsec:beacon_frame}, beacon frames include an SSID, and in Section~\ref{sec:SSID}, SSID identifies particular network and acts as a human-understandable network name. Therefore the node can display the networks it found to end-user, who makes the decision which network to join. Alternatively, node can compare its findings to previously generated list of known networks, and join one it finds familiar.
+As we have learnt previously in Section~\ref{subsubsec:beacon_frame}, beacon frames include an SSID, and in Section~\ref{sec:SSID}, SSID identifies particular network and acts as a human-understandable network name. Therefore the node can display the networks it found to end-user, who makes the decision which network to join. Alternatively, node can compare its findings to previously generated list of known networks, and join the one it finds familiar.
 
 Passive scanning has some drawbacks. First, it might be relatively slow, as a node needs to wait for APs to broadcast their beacons. Second, it is possible to configure AP so that it does not broadcast its SSID: this feature is called \emph{Hidden SSID}. Therefore, a node using passive scanning does not see APs using Hidden SSIDs --- it can only join them by using AP's MAC address.
 
@@ -674,7 +674,7 @@ The standard does not specify time interval between two probe requests or two ro
 
 There exists also a combination of active and passive scanning. A node can request information of all present wireless networks by sending a probe request frame with wildcard SSID. When an AP sees a wildcard probe request, it replies to the node with its own SSID. This way, the node does not state which networks it knows or wants to join, but it also does not need to wait for APs to advertise themselves by beacon frames. As a downside, this may increase unnecessary network traffic.
 
-IEEE Standard states wildcard SSID to be the one with length set to zero. 
+IEEE Standard states wildcard SSID to be the one with length set to zero.~\cite{IEEE802.11}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
