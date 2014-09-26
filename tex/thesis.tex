@@ -728,9 +728,6 @@ To see where a user has been and how he has moved, tracking system needs to be a
 
 Wireless nodes send their MAC address with every probe request, as we learnt in Section~\ref{subsec:active_scanning}. The MAC address is also globally unique; see Section~\ref{sec:MAC}. Therefore the MAC address seems to be a good candidate for an ID, so we can continue towards a much harder problem, actually locating the nodes.
 
-\subsection{Determining the location of a node}
-\label{sec:location}
-
 A na{\"i}ve yet robust way to approximate user's location would be to look which AP received node's probe request. In Figure~\ref{fig:position_1} an oversimplified situation is presented: there is a rectangular-shaped building with a room, a few shelves, and four access points. The APs are labeled with letters from A to D. The building is divided into four sections, and the position of a mobile device is determined by looking which AP received a request from it. For example, it might be assumed that only AP D receives a signal from the mobile device in the picture, and therefore the user is somewhere in the lower-right section of the building.
 
 \begin{figure}
@@ -873,7 +870,11 @@ We see at least the following possibilities:\\
 \section{Other information obtained from probe requests}
 \label{sec:other_info}
 
-We are able to find even more information from probe requests than we have discovered so far. As discussed in Section~\ref{sec:MAC}, first half of a MAC address, Organizationally Unique Identifier (OUI), is determined by manufacturing company. When comparing that to a database containing all the OUIs assigned, we will be able to discover the manufacturer of a node. The database is available for free~\cite{oui_listing}.
+We are able to find even more information from probe requests than we have discovered so far.
+
+As discussed in Section~\ref{sec:MAC}, first half of a MAC address, Organizationally Unique Identifier (OUI), is determined by manufacturing company. When comparing that to a database containing all the OUIs assigned, we will be able to discover the manufacturer of a node. The database is available for free~\cite{oui_listing}.
+
+\subsection{Traffic characteristics}
 
 In~\cite{pang2007802}, Pang et al. have been trying to fingerprint WLAN users by different traffic characteristics. The methods they used were (1) network destinations, (2) SSID probes, (3) broadcast packet sizes, and (4) MAC protocol fields. 
 
