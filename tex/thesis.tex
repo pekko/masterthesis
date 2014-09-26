@@ -506,13 +506,9 @@ With SSID there is an abstraction of logical network over a physical one. Using 
 
 Network can also consist of more than one APs sharing the same SSID. This way, a wireless network can cover a huge building or even a larger area. When configured in such way, the network is said to be an \emph{Extended Service Set} (ESS).~\cite{IEEE802.11}
 
-\subsection{Basic Service Set Identifier (BSSID)}
+We need also a unique identifier for the network, because SSID is not enough. This one is called Basic Service Set Identifier (BSSID), as network consisting of clients and APs is called also Basic Service Set (BSS).
 
-As we learnt previously, a network is called officially as Basic Service Set (BSS). To identify that uniquely, a Basic Service Set Identifier (BSSID) is used. 
-
-If there is only single access point in the network, BSSID is the same as AP's MAC address. 
-
-In ESS mode with multiple access points, every AP has still its own BSSID, but the whole network under a SSID needs a unique identifier. This is called ESSID, Extended Service Set Identifier.
+If there is only a single access point in the network, BSSID is the same as AP's MAC address. In ESS mode with multiple access points, every AP has still its own BSSID, but the whole network under a SSID needs a unique identifier. This is called ESSID, Extended Service Set Identifier.
 
 
 \section{Packets}
