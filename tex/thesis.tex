@@ -824,7 +824,7 @@ Generic hierarchical clustering has time complexity of $O(N^3)$~\cite{manning200
 
 Another promising approach could be \emph{Markov Cluster Process} (MCL Process), introduced in van Dongen's PhD dissertation (2000)~\cite{van2000graph} and taught nowadays in university classes~\cite{mlc_macropol}. The algorithm first transforms a graph into a transition matrix, where element $(x,y)$ denotes the weight from $x$ to $y$. Columns are normalized so that each sums to one. After that, there are two operations: expansion and inflation. Expansion simply raises the matrix to power of $e$, which is a parameter. Inflation consists of squaring every column and then normalizing it again to sum to one; this way, inflation strengthens already strong connections and weakens already weak ones. In other words, expansion allows flow to connect new parts of the graph and inflation grows the range of values. Inflation and expansion are repeated until the algorithm convergences. Resulting matrix gives the clusters.
 
-MCL has same kind of problems than hierarchical clustering. First, MCL's time complexity is $O(N^3)$, where $N$ is number of edges, which may become a problem with very large graphs. However, for our use it most likely is manageable, as numbers of nodes is closer to thousands than millions. Second, it cannot find overlapping clusters -- each node belongs only to one cluster. However, by providing different initial parameters for multiple runs, we may be able to retrieve different clustering results.
+MCL has the same kind of problems than hierarchical clustering. First, MCL's time complexity is $O(N^3)$, where $N$ is number of edges, which may become a problem with very large graphs. However, for our use it most likely is manageable, as numbers of nodes is closer to thousands than millions. Second, it cannot find overlapping clusters -- each node belongs only to one cluster. However, by providing different initial parameters for multiple runs, we may be able to retrieve different clustering results.
 
 As we have seen, both algorithms suffer from inability to deal with overlapping clusters. Finding clusters that can overlap is an open research question, with some algorithms proposed in last years, for example OClustR~\cite{PerezSuarez2013234} and DClustR~\cite{PerezSuarez20133040} from P\`{e}rez-Su\'{a}rez et al., and another link clustering based method by Shi et al.~\cite{Shi2013394}. Development of efficient algorithms is still ongoing.
 
@@ -857,7 +857,7 @@ We see at least the following possibilities:\\
 
 \textbf{Identify students and other academic people.} Universities have usually wireless networks with very recognizable SSIDs, either individual ones or common \texttt{eduroam} in Europe, so they are easy to spot.
 
-\textbf{How much is a user traveling?} Identify airports and hotels. Categorize user to different price categories based on hotel's average price level. Probably same kind of information can be extracted from restaurants' and cafes' names.
+\textbf{How much is a user traveling?} Identify airports and hotels. Categorize user to different price categories based on hotel's average price level. Probably the same kind of information can be extracted from restaurants' and cafes' names.
 
 \textbf{Distinguish between locals and foreigners.} If the user has locations only nearby, he is probably a local. If majority of locations is from somewhere else but within a reasonably small radius, that might be his home location. However, making reliable difference between someone's hometown and a place where he has visited might be difficult.
 
@@ -1163,7 +1163,7 @@ First question is on which parts of WLAN connection are included in ``electronic
 
 Using this and a couple of other cases, Mason~\cite{mason2014aligning} concludes that non-content data in general does not have reasonable expectation of privacy: it is the message which is protected. 
 
-Kerr~\cite{kerr2009applying} ends up to same result, when he compares pre-internet world to today's environment. Previously there was a distinction between outside and inside: people are permitted to walk on public streets and see and hear what people are talking, but going inside one's house is forbidden. Kerr proposes that this should be converted to content/non-content distinction on the Internet. Non-content information would be allowed to look at, but content would be protected. Same method applies to traditional mail service: Recipient's address is visible on top of envelope, but the actual letter is private. Using this mechanism, it would be legal to record SSIDs, because they are non-content data.
+Kerr~\cite{kerr2009applying} ends up to the same result, when he compares pre-internet world to today's environment. Previously there was a distinction between outside and inside: people are permitted to walk on public streets and see and hear what people are talking, but going inside one's house is forbidden. Kerr proposes that this should be converted to content/non-content distinction on the Internet. Non-content information would be allowed to look at, but content would be protected. The same method applies to traditional mail service: Recipient's address is visible on top of envelope, but the actual letter is private. Using this mechanism, it would be legal to record SSIDs, because they are non-content data.
 
 In Google's Street View case, Google tried to appeal using an exception in the Wiretap Act~\cite{google_joffe}, in \textsection 2511(2)(g)(i):
 
@@ -1262,7 +1262,7 @@ Farah and Higby see the situation as U.S. relying on market forces: if the busin
 
 A big problem with lawmaking is that the process is slow, but technology evolves rapidly. The legislation that seems to be appropriate today may cause unforeseen problems in following years. Therefore, we strongly suggest that new legislation should be as technically-independent as possible. Laws should rely on general concepts instead of addressing a single, technical problem. European privacy laws include good examples, where personal data is not defined in technical terms, but on what is possible to do with it -- to identify an individual.
 
-However, today's threats are different from yesterday's. Thus, we hope that U.S. will update its privacy legislation to match today's environment instead of fifty-year-old one. There are signs that U.S. is following same kind of route than the European Union.
+However, today's threats are different from yesterday's. Thus, we hope that U.S. will update its privacy legislation to match today's environment instead of fifty-year-old one. There are signs that U.S. is following the same kind of route than the European Union.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -1275,7 +1275,7 @@ In this chapter, we will conduct a practical experiment of previously discussed 
 \section{Methodology}
 \label{sec:methods}
 
-SSID probe data was captured from various public locations in California, U.S., within a range of 25 kilometers (15 miles) during one month. We used a single Macbook Pro laptop with an internal wireless antenna and open-source software. Neither special or expensive equipment nor proprietary software was used, so anybody is able to perform same kind of data collection.
+SSID probe data was captured from various public locations in California, U.S., within a range of 25 kilometers (15 miles) during one month. We used a single Macbook Pro laptop with an internal wireless antenna and open-source software. Neither special or expensive equipment nor proprietary software was used, so anybody is able to perform the same kind of data collection.
 
 Location data was obtained from WiGLE~\cite{wigle}, where we were given higher query limits than for ordinary users. For the other services we used, Google Places, Yelp, and Expedia, we had exactly the same privileges than normal user, and nothing was purchased for our research. Therefore the same kind of research can be done by anyone, and with commercial resources, its quality can probably be raised significantly.
 
@@ -1365,7 +1365,7 @@ For the rest parts of the experiments, we needed more details for our data. We d
     
     \item By location data and SSID, query Google Places to find out if the location is a well-known place. SSID was split into different words by several delimiters, such as `-', `\_', whitespace, and case changes. For example, SSID \texttt{FourSeasons\_Guests} splits into three search terms, \texttt{Four}, \texttt{Seasons}, and \texttt{Guests}.
 
-    \item Query Yelp database to get pricing information with same kind of parameters than Google Places.
+    \item Query Yelp database to get pricing information with the same kind of parameters than Google Places.
 
     \item If the SSID or data from Google suggested it to be a hotel, query Expedia database to get more details.
 
@@ -1435,7 +1435,7 @@ The distribution of price average is shown in Figure~\ref{fig:prices_users}. We 
 
 One task was to find out where a user comes from. Our hypothesis was that most of the people are from California, where the data was collected, but significant number of people probably are foreigners due to the tourist-friendly nature of area. Here, we define hometown as a place where user has spent most of his time lately: that is, if a German is visiting U.S., his hometown is still in Germany -- but if he has lived in California for a couple of years, his current hometown can be considered to be in California.
 
-The problem is that SSID list does not give any information about number of times the network was used. We obtain absolutely same information if user has connected to the network once or a thousand times.
+The problem is that SSID list does not give any information about number of times the network was used. We obtain absolutely the same information if user has connected to the network once or a thousand times.
 
 To get results, we used the following method:
 \begin{enumerate}
@@ -1512,7 +1512,7 @@ is smaller than certain search radius $r$, a parameter. Save the Twitter users w
 
 This approach has a couple of problems. It is computationally heavy, and even sophisticated methods like MongoDB's geospatial indexing are slow, when $r$ is large (large meaning $r>1000 \text{m}$). Remember, we have almost 200 million tweets. Also, we may be too limited here: even if a user has used a specific wireless network, he might not have tweeted from there, but instead somewhere nearby -- and increasing $r$ makes searching way too slow.
 
-Another way is to look for cities instead of coordinates. Now we first map all the coordinates from tweets and SSIDs into cities. This is possible using free GeoNames database~\cite{geonames}. Next, we do exactly same kind of search as previously, but this time the condition is that cities match exactly. Once again, we count the matching cities and compare to threshold.
+Another way is to look for cities instead of coordinates. Now we first map all the coordinates from tweets and SSIDs into cities. This is possible using free GeoNames database~\cite{geonames}. Next, we do exactly the same kind of search as previously, but this time the condition is that cities match exactly. Once again, we count the matching cities and compare to threshold.
 
 Searching for cities has multiple advantages over exact coordinates. Searching for the exact match is a lot faster than calculating locations. Also, the size of database is smaller, because usually people tweet multiple times from the same city -- now all of them are reduced into single row into database. As a result, we have 32 million rows generated from 193 million tweets, which is one sixth of the original size.
 
@@ -1581,7 +1581,7 @@ simultaneous devices. This is an extremely lucky case, and in fact assumes that 
 $$n \approx \sqrt{\frac{1}{4} - 2 \cdot M \cdot \ln p}$$ 
 which gives us the results presented in Table~\ref{tab:prob_random}. As we see, the number of devices decreases rapidly when we raise probability requirements: for 99.9~\% probability for no collisions, only 65 simultaneous devices are allowed.
 
-However, we should remember that not all devices are in the same OUI block. Apple, who has more than 40~\% of market share in the U.S.~\cite{comscore2014}, has more than 300 OUI blocks reserved. Because the number of devices is proportional to square root of the size of address space, 300 times more addresses would give about 17 times more devices with same collision probability. Therefore, the numbers in the table can be multiplied by 20 (there are also other vendors than Apple), and we should be safe even for larger networks.
+However, we should remember that not all devices are in the same OUI block. Apple, who has more than 40~\% of market share in the U.S.~\cite{comscore2014}, has more than 300 OUI blocks reserved. Because the number of devices is proportional to square root of the size of address space, 300 times more addresses would give about 17 times more devices with the same collision probability. Therefore, the numbers in the table can be multiplied by 20 (there are also other vendors than Apple), and we should be safe even for larger networks.
 
 
 \begin{table}[ht]
@@ -1596,7 +1596,7 @@ However, we should remember that not all devices are in the same OUI block. Appl
     0.999 & 65  \\ \hline
     0.9999 & 20 \\ \hline
 \end{tabular}
-\caption{Number of devices $n$ with the same OUI to survive simultaneously in a same network, without collisions, with probability $p$, when randomizing only 24 bits of the MAC address.}
+\caption{Number of devices $n$ with the same OUI to survive simultaneously in a the same network, without collisions, with probability $p$, when randomizing only 24 bits of the MAC address.}
 \label{tab:prob_random}
 \end{table}
 
