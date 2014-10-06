@@ -794,7 +794,7 @@ Finding strongly connected nodes in two datasets has been studied well in comput
 
 A simple metric for comparing two samples is the Jaccard Index. It is defined as follows, where $X$ and $Y$ are two sets of SSIDs.
 
-$$J(X,Y) = \left| \frac{X \cup Y}{X \cap Y} \right| $$
+$$J(X,Y) = \frac{\left| X \cap Y \right| }{\left| X \cup Y \right| } $$
 
 However, the Jaccard Index takes into account only the size of intersection, and not the fact how popular an element was in the dataset. It does not matter whether the two nodes had the most popular SSID, for example \texttt{linksys}, in common, or if they were the only two nodes that had the SSID \texttt{Super-Private-XYZ123-Network}. In the paper, Cunche et al. argue that having a rare SSID in common should yield for stronger possibility of relationship. That is a reasonable argument, especially when we consider the long tail of SSID frequency: a few SSIDs are extremely common, but huge majority of SSIDs appear only in one or two devices.
 
