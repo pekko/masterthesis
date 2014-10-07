@@ -1564,7 +1564,14 @@ We cannot prevent anyone from locating a device that transmits signal on radio f
 
 Current WLAN standard offer no help as they mandate sending a MAC address with every request, so there is a need for new solutions. Apple announced in June 2014 that in iOS 8, it will randomize the MAC address during wireless network scanning~\cite{FredericJacobs2014,apple_wwdc_privacy}. A randomized address would work as a \emph{pseudonym}, which identifies device for a specific request or for a limited time, but not universally.
 
-As iOS 8 is not yet released, we cannot study its behavior in detail. However, randomization presents a couple of interesting questions. Normally, a device sends a bunch of probe requests almost at once and then sleeps for some period of time, usually between 30 to 60 seconds. A proper implementation requires that the MAC address is randomized after \emph{every} single probe request, not only between different cycles. Otherwise, tracker could identify device based on the broadcasted SSID list and completely ignore the MAC address.
+As iOS 8 is not yet released, we cannot study its behavior in detail. However, randomization presents a couple of interesting questions. Consider first the issue of when and how often the MAC address is randomized. We see three possibilities:
+\begin{enumerate}
+    \item after a timeout, for example every minute; or
+    \item after having queried every SSID in its list: normally, devices go through their SSID list and sleep for a while, so this would create a natural break; or
+    \item for every new probe request.
+\end{enumerate}
+
+A proper implementation must use the last method, to generate a new MAC address for every probe request. Otherwise, the tracker could identify the device by correlating broadcasted SSID lists, and it could completely ignore the MAC address.
 
 To be a working solution, it must not use too much resources. A device with randomized MAC address needs to save all the previous addresses in order to be able to filter replies targeted to it. Because number of different networks is really small, this will not be a problem. Also, after a successful connection or relatively short timeout (measured in seconds), a pseudonym can be forgotten. Some computational overhead will be generated from randomizing process, but that should be really small -- after all, we are only generating 24 or 48 bits, depending on whether we randomize also OUI part or not.
 
