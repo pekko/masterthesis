@@ -892,7 +892,7 @@ The actual standard for WPS is available without a charge only for Wi-Fi Allianc
 In the protocol there are three actors: enrollee, AP and registrar. Enrollee is a user willing to join a wireless network using WPS. Registrar is the authority who will gain or deny access. AP is the same access point as previously, but this time it is specified to act as a link between enrollee and registrar. In practice, and especially in consumer-grade devices, registrar's functionality is often included in AP. 
 
 \begin{figure}
-    \includegraphics[width=\textwidth]{images/wps}
+    \includegraphics[width=0.9\textwidth]{images/wps}
     \caption{Protocol for joining a WPS-enabled WLAN. Simplified from~\cite{microsoftWCN}}.
     \label{tab:wps}
 \end{figure}
@@ -903,7 +903,11 @@ The most important and interesting part for us is in the very beginning, since w
 
 In message 1, there is a broadly-named field ``Description''. The data it includes makes it worth to look closer. Microsoft's document says that it is ``[a] human-readable description of the sending device (UUID, manufacturer, model number, MAC address, and so on) and device capabilities such as supported algorithms, I/O channels, and Registration Protocol role.'', and Wireshark confirms exactly that. Also, there is a field called ``DEVICE\_NAME'', which is the human-readable name user has given to his device, for instance ``Pekko's phone''.
 
-With all this information, we may be able to
+The UUID is Universally Unique Indetifier, defined by RFC 4122~\cite{rfc4122}. Depending on the purpose, UUID can be time-based, name-based or random-based. As the names suggest, time-based UUIDs include creation timestamp, whereas name-based ones remain constant for the same entity, for example for the same device creating them. The name used in UUIDs can be any kind of object identifier, for instance a MAC address or a domain name.
+
+In WPS, we found that the devices use version 5 of UUIDs, which is a name-based one. The UUID is formed by hashing a namespace UUID and device's identifier using SHA-1 algorithm. We cannot retrieve the identifier used while generating the UUID, but we consider it as a information leak: depending on the implementation, it might be possible that UUID remains constant even if some other identifiers are changed, such as while MAC address randomization.
+
+Thus, with all this information, we may be able to
 \begin{enumerate}
     \item categorize users by their phone manufacturer and model,
     \item identify a node with UUID in addition to MAC address, and
