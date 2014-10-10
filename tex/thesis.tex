@@ -155,7 +155,7 @@
 %   twoinstructors  - changes the title of instructors to plural form
 %   twosupervisors  - changes the title of supervisors to plural form
 % \usepackage[mydraft]{aalto-thesis}
-\usepackage[mydraft,twoinstructors]{aalto-thesis}
+\usepackage[twoinstructors]{aalto-thesis}
 %\usepackage{aalto-thesis}
 
 
@@ -200,8 +200,8 @@
 \newcommand{\FTITLE}{Havaittu ennen yhdist\"{a}mist\"{a}}
 \newcommand{\SUBTITLE}{Privacy Implications of Wireless Network Probing}
 \newcommand{\FSUBTITLE}{Yksityisyydensuoja langattomia verkkoja etsiess\"{a}}
-\newcommand{\DATE}{October 8, 2014}
-\newcommand{\FDATE}{8. lokakuuta 2014}
+\newcommand{\DATE}{October 10, 2014}
+\newcommand{\FDATE}{10. lokakuuta 2014}
 
 % Supervisors and instructors
 % ------------------------------------------------------------------
@@ -350,7 +350,7 @@ I would like to thank my supervisor Tuomas Aura from Aalto University for being 
 
 In addition, I want to thank Davide Balzarotti and S3 research group of Eurecom for introducing me into information security scene.
 
-Last, I wish to thank my friends around the world for a great student life, and especially the ones in Finland giving me a push to go international.
+Last, I wish to thank all my friends in Finland and around the world for a great student life, and especially the ones who gave me a push to go international.
 
 \vskip 10mm
 
@@ -903,7 +903,7 @@ The most important and interesting part for us is in the very beginning, since w
 
 In message 1, there is a broadly-named field ``Description''. The data it includes makes it worth to look closer. Microsoft's document says that it is ``[a] human-readable description of the sending device (UUID, manufacturer, model number, MAC address, and so on) and device capabilities such as supported algorithms, I/O channels, and Registration Protocol role.'', and Wireshark confirms exactly that. Also, there is a field called ``DEVICE\_NAME'', which is the human-readable name user has given to his device, for instance ``Pekko's phone''.
 
-The UUID is Universally Unique Indetifier, defined by RFC 4122~\cite{rfc4122}. Depending on the purpose, UUID can be time-based, name-based or random-based. As the names suggest, time-based UUIDs include creation timestamp, whereas name-based ones remain constant for the same entity, for example for the same device creating them. The name used in UUIDs can be any kind of object identifier, for instance a MAC address or a domain name.
+The UUID is Universally Unique Identifier, defined by RFC 4122~\cite{rfc4122}. Depending on the purpose, UUID can be time-based, name-based or random-based. As the names suggest, time-based UUIDs include creation timestamp, whereas name-based ones remain constant for the same entity, for example for the same device creating them. The name used in UUIDs can be any kind of object identifier, for instance a MAC address or a domain name.
 
 In WPS, we found that the devices use version 5 of UUIDs, which is a name-based one. The UUID is formed by hashing a namespace UUID and device's identifier using SHA-1 algorithm. We cannot retrieve the identifier used while generating the UUID, but we consider it as a information leak: depending on the implementation, it might be possible that UUID remains constant even if some other identifiers are changed, such as while randomizing the MAC address.
 
@@ -926,7 +926,7 @@ In addition to passive surveillance, there is a possibility for performing activ
 
 All the following attacks are some variants of man-in-the-middle (MITM) scheme. In MITM attack, the attacker positions himself between user and the service user is connecting to. This way, an attacker is able to read and alter all unencrypted communication while remaining transparent to the victim. The following attacks differ by how an attacker gains such a position.
 
-In active attacks, the attacker is usually able to conduct greater violations to victim's privacy than only profiling or tracking the user. The attacker might be able to read all the victim's communication or alter it. However, the initial cause of privacy violation remains the same: the user is transfering data to a party it did not suppose to. In previous cases, the unwanted party was general public; now it is the single attacker.
+In active attacks, the attacker is usually able to conduct greater violations to victim's privacy than only profiling or tracking the user. The attacker might be able to read all the victim's communication or alter it. However, the initial cause of privacy violation remains the same: the user is transferring data to a party it did not suppose to. In previous cases, the unwanted party was general public; now it is the single attacker.
 
 \section{Unencrypted access point}
 \label{sec:attack_unencrypted}
@@ -1128,13 +1128,13 @@ Case of collecting SSID data is a little more difficult. In fact, our experiment
 
 The analyzing phase depends greatly on the decision whether data collected is considered to be personal data or not. 
 
-If it is, then all purposes of where data is used must have been told to the data subject -- that is, the target of collection -- beforehand, and his constent must be obtained. Also, there is so-called ``right to be forgotten'', which includes a possibility for everyone to see their personal data and ask for its deletion in the Data Protection Directive, Article 12~\cite{data_protection}. 
+If it is, then all purposes of where data is used must have been told to the data subject -- that is, the target of collection -- beforehand, and his consent must be obtained. Also, there is so-called ``right to be forgotten'', which includes a possibility for everyone to see their personal data and ask for its deletion in the Data Protection Directive, Article 12~\cite{data_protection}. 
 
 However, if the data is not considered to be personal data, no EU-wide legislation applies. 
 
 \subsection{Wiretapping laws}
 
-In addition to privacy laws, there might be an issue with legislation on wiretapping. These laws vary between countries, and the European Union seems not to have a clear directive on the issue. In the directive 97/66/EC~\cite{privacy_directive}, Article 5, the directive defines confidentality of communication as follows:
+In addition to privacy laws, there might be an issue with legislation on wiretapping. These laws vary between countries, and the European Union seems not to have a clear directive on the issue. In the directive 97/66/EC~\cite{privacy_directive}, Article 5, the directive defines confidentiality of communication as follows:
 \begin{quote}
     [Member states] shall prohibit listening, tapping, storage or other kinds of interception or surveillance of communications, by others than users, without the consent of the users concerned
 \end{quote}
@@ -1558,7 +1558,7 @@ The first observation was that majority of clients seen were not performing acti
 
 We saw that it is very difficult to identify users from social media based on SSID list. Such an action requires lots of resources, most likely direct access to social media database in question. Also, currently only a small minority of users are including their location in their postings -- in Twitter, it seems to be about on percent. Thus, odds to find an individual are very low.
 
-However, we showed that it is possible to form behavioral patterns based on SSID list. We successfully ran graph clustering algorithm, that showed plausible links between networks and companies. We were successful to discover user's possible hometown. By using third-party services, we also created our hypotheses on users' willingness to pay for high-end services, which would be extremely valuable for business-owners.
+However, we showed that it is possible to form behavioral patterns based on SSID list. We successfully ran a graph clustering algorithm, which showed plausible links between networks and companies. We were successful to discover user's possible hometown. By using third-party services, we also created our hypotheses on users' willingness to pay for high-end services, which would be extremely valuable for business-owners.
 
 In a conclusion, we showed that profiling is possible, but only for relatively small portion of population.
 
@@ -1715,7 +1715,7 @@ In Chapter~\ref{chapter:profiling}, we discussed how and why someone could track
 
 After passive profiling, in Chapter~\ref{chapter:attacks} we discussed ways to perform active man-in-the-middle attacks. All the attacks share the same basic idea, attacker being between the user and a legitimate service. We saw numerous way to do so, and discovered that there are easy-to-use, off-the-shelf devices available even for attackers with low skills. Thus, we consider these attacks to be extremely feasible to perform, and they must be taken seriously.
 
-Having studied technical views, we looked on legal status of the discussed techniques on Chapter~\ref{chapter:legal}. Especially we focused on Google's Street View case, which is the best-known example of these issues, even though it does not address them in every way we would like to -- metadata collection has not been discussed on that case. We found that European Union legislation is much stricter than one in the United States, and that officials in the EU -- the Article 29 Working Group -- has taken a really strong position on suggesting that all wireless network data should be treated as personal data, which makes huge burdens on companies to collect and use it. On the other hand, legislation is really permissive in the U.S. as long as it handles only metadata without actual messages, and allows even more if the analysis is not made public. However, we see that there might be oncoming changes on U.S. laws which would bring them closer to European counterparts, but the process is far from complete.
+Having studied technical views, we looked on legal status of the discussed techniques on Chapter~\ref{chapter:legal}. Especially we focused on Google's Street View case, which is the best-known example of these issues, even though it does not address them in every way we would like to -- metadata collection has not been discussed on that case. We found that European Union legislation is much stricter than one in the United States, and that officials in the EU -- the Article 29 Working Group -- has taken a really strong position on suggesting that all wireless network data should be treated as personal data, which makes huge burdens on companies to collect and use it. On the other hand, legislation is really permissive in the U.S. as long as it handles only metadata without actual messages, and allows even more if the analysis is not made public. However, we see that there might be oncoming changes on U.S. laws, which would bring them closer to European counterparts, but the process is far from complete.
 
 In Chapter~\ref{chapter:practical} we conducted a practical experiment on techniques studied in Chapter~\ref{chapter:profiling}. We saw that majority of devices, 77~\%, had only wildcard scanning enabled, and can not be profiled. However, this does not prevent tracking, as the device is leaking its MAC address all the time. Naturally, we cannot know how many had only passive scanning enabled or turned their WLAN connectivity off, since those devices do not emit anything we could have captured.
 
