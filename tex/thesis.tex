@@ -1082,7 +1082,6 @@ These requirements would increase the costs, reduce effectivity, and sometimes r
     If the default settings of an operating system would allow for the transmission of location data, a lack of intervention by its users should not be mistaken for freely given consent.
 \end{quote}
 
-
 \subsection{Collecting access point data}
 \label{subsec:eu_collect}
 
@@ -1132,6 +1131,22 @@ The analyzing phase depends greatly on the decision whether data collected is co
 If it is, then all purposes of where data is used must have been told to the data subject -- that is, the target of collection -- beforehand, and his constent must be obtained. Also, there is so-called ``right to be forgotten'', which includes a possibility for everyone to see their personal data and ask for its deletion in the Data Protection Directive, Article 12~\cite{data_protection}. 
 
 However, if the data is not considered to be personal data, no EU-wide legislation applies. 
+
+\subsection{Wiretapping laws}
+
+In addition to privacy laws, there might be an issue with legislation on wiretapping. These laws vary between countries, and the European Union seems not to have a clear directive on the issue. In the directive 97/66/EC~\cite{privacy_directive}, Article 5, the directive defines confidentality of communication as follows:
+\begin{quote}
+    [Member states] shall prohibit listening, tapping, storage or other kinds of interception or surveillance of communications, by others than users, without the consent of the users concerned
+\end{quote}
+
+Thus, the problem here is to define \emph{communications}. Clearly monitoring and recording actual traffic, for example web browsing, is illegal. However, it is unclear if only probing different networks should be considered as communications. The directive is about ``public telecommunications network'', which means (emphasis added)
+\begin{quote}
+    transmission systems and, where applicable, switching equipment and other resources which permit the conveyance of signals between \textbf{defined termination points} [..]
+\end{quote}
+
+When an access point is broadcasting its bacons, there is only a single termination point, the access point itself -- the targeted audience of probes are everyone. Thus, it should not be considered as communications in the directive.
+
+When a client device is probing the SSIDs it has, the situation is more difficult. Once again, the probe is technically broadcasted, but now it includes also the target SSID. Thus, by strictly interpreting the definition, it might be possible that there are two defined termination points, and it should be treated as communications, and recording them would be illegal.
 
 
 \section{The United States}
@@ -1240,7 +1255,7 @@ Once again, these include similar characteristics than European legislation and 
         \textbf{Action performed} & \textbf{EU} & \textbf{USA} \\ \hline
         Collecting SSIDs from APs with location & Unclear & Legal \\ 
         \hline
-        Collecting SSIDs from mobile devices & Restrictions possibly apply & Legal \\ 
+        Collecting SSIDs from mobile devices & Possibly illegal & Legal \\ 
         \hline
         Analyzing the collected data & Restrictions possibly apply & Legal \\ \hline
     \end{tabular}
