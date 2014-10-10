@@ -905,7 +905,7 @@ In message 1, there is a broadly-named field ``Description''. The data it includ
 
 The UUID is Universally Unique Indetifier, defined by RFC 4122~\cite{rfc4122}. Depending on the purpose, UUID can be time-based, name-based or random-based. As the names suggest, time-based UUIDs include creation timestamp, whereas name-based ones remain constant for the same entity, for example for the same device creating them. The name used in UUIDs can be any kind of object identifier, for instance a MAC address or a domain name.
 
-In WPS, we found that the devices use version 5 of UUIDs, which is a name-based one. The UUID is formed by hashing a namespace UUID and device's identifier using SHA-1 algorithm. We cannot retrieve the identifier used while generating the UUID, but we consider it as a information leak: depending on the implementation, it might be possible that UUID remains constant even if some other identifiers are changed, such as while MAC address randomization.
+In WPS, we found that the devices use version 5 of UUIDs, which is a name-based one. The UUID is formed by hashing a namespace UUID and device's identifier using SHA-1 algorithm. We cannot retrieve the identifier used while generating the UUID, but we consider it as a information leak: depending on the implementation, it might be possible that UUID remains constant even if some other identifiers are changed, such as while randomizing the MAC address.
 
 Thus, with all this information, we may be able to
 \begin{enumerate}
@@ -1592,7 +1592,7 @@ To be a working solution, it must not use too much resources. A device with rand
 An open question is whether the randomized address remains in use after the probing phase, or if the real address is used once the network is found. Both ways have drawbacks. If the device reverts back to the real MAC address, it allows the tracker to track device's appearances over time. If the randomized address is used after the connection, there is a risk for collisions, as the address is not anymore globally unique.
 
 Thus, we should look if there is enough space for randomizing a new MAC address for every probe request without collisions. Suppose that an average device has $N = 8$ SSIDs on their preferred network list, which is a safe assumption based on our dataset. By randomizing only organizationally-controlled part of MAC address -- leaving OUI untouched, respecting its purpose -- a single OUI block has the keyspace of $K=2^{24}$. Thus, it can provide about 16 million different addresses, and give enough space for
-$$D = \frac{K}{N} = \frac{2^{24}}{8} \approx 2*10^6$$
+$$D = \frac{K}{N} = \frac{2^{24}}{8} \approx 2 \times 10^6$$
 simultaneous devices. This is an extremely lucky case, and in fact assumes that every device know everyone else's addresses and chooses its own from available ones. If every device is an independent actor without knowledge of others, we need to decrease the number using birthday paradox. The number of MAC addresses to be present without collisions for probability $p$ can be approximated by formula~\cite{mathis1991generalized}
 $$M \approx \sqrt{\frac{1}{4} - 2 \cdot K \cdot \ln p}$$ 
 and number of devices is then
